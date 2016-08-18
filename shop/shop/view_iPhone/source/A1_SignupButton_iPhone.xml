@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui namespace="A1_SignupButton_iPhone">
+    <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
+   
+	<style type="text/css">
+        #getIdentifyCode {
+        background-mode: stretch;
+        background-image: url(button_red.png);
+        width: 50px;
+        margin-bottom: 5px;
+        height: 44px;
+        }
+    </style>
+</ui>

@@ -50,6 +50,8 @@
 		5F12937F1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F12937C1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m */; };
 		5F1293831D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1293811D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m */; };
 		5F1293841D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1293821D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml */; };
+		5F12A6CA1D7565CD005419B7 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F12A6C91D7565CD005419B7 /* RegisterModel.m */; };
+		5F5C4F251D78340B008BDD84 /* region.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F5C4F241D78340B008BDD84 /* region.plist */; };
 		5F803E961D6ADF5E00103EF4 /* A0_SigninBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE64161D64607900A66F3F /* A0_SigninBoard_iPhone.m */; };
 		5F9725FC1D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9725F61D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m */; };
 		5F9725FD1D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F9725F71D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml */; };
@@ -987,6 +989,9 @@
 		5F1293801D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_TeacherSignupCell2_iPhone.h; sourceTree = "<group>"; };
 		5F1293811D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_TeacherSignupCell2_iPhone.m; sourceTree = "<group>"; };
 		5F1293821D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_TeacherSignupCell2_iPhone.xml; sourceTree = "<group>"; };
+		5F12A6C81D7564D5005419B7 /* RegisterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
+		5F12A6C91D7565CD005419B7 /* RegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterModel.m; sourceTree = "<group>"; };
+		5F5C4F241D78340B008BDD84 /* region.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = region.plist; sourceTree = "<group>"; };
 		5F9725F61D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_TeacherSignupBoard_iPhone.m; sourceTree = "<group>"; };
 		5F9725F71D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_TeacherSignupBoard_iPhone.xml; sourceTree = "<group>"; };
 		5F9725F81D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_TeacherSignupCell_iPhone.h; sourceTree = "<group>"; };
@@ -2792,6 +2797,8 @@
 				CB81D0BC18ABB3EE00F277EA /* OrderModel.m */,
 				CB81D0BD18ABB3EE00F277EA /* PriceRangeModel.h */,
 				CB81D0BE18ABB3EE00F277EA /* PriceRangeModel.m */,
+				5F12A6C81D7564D5005419B7 /* RegisterModel.h */,
+				5F12A6C91D7565CD005419B7 /* RegisterModel.m */,
 				CB81D0C118ABB3EE00F277EA /* RegionModel.h */,
 				CB81D0C218ABB3EE00F277EA /* RegionModel.m */,
 				CB81D0C318ABB3EE00F277EA /* SearchCategoryModel.h */,
@@ -3476,6 +3483,7 @@
 				CB9C228F18BB3B0C00DDA501 /* H0_BrowserBoard_iPhone.m */,
 				CB9C229018BB3B0C00DDA501 /* H1_PayBoard_iPhone.h */,
 				CB9C229118BB3B0C00DDA501 /* H1_PayBoard_iPhone.m */,
+				5F5C4F241D78340B008BDD84 /* region.plist */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -5627,6 +5635,7 @@
 				CB9C242118BB3B0C00DDA501 /* G1_HelpCell_iPhone.xml in Resources */,
 				CB9C22ED18BB3B0C00DDA501 /* item_grid_filter_bg@2x.png in Resources */,
 				CB9C22EA18BB3B0C00DDA501 /* item_grid_body_free_shipping_bg@2x.png in Resources */,
+				5F5C4F251D78340B008BDD84 /* region.plist in Resources */,
 				CB9C234518BB3B0C00DDA501 /* trade_info_cont_bg1@2x.png in Resources */,
 				CB9C236418BB3B0C00DDA501 /* wizard-568h.css in Resources */,
 				CB9C22E718BB3B0C00DDA501 /* item_faverites_edit_close_btn@2x.png in Resources */,
@@ -6151,6 +6160,7 @@
 				CB9C238918BB3B0C00DDA501 /* B1_ProductListSearchBarCell_iPhone.m in Sources */,
 				CB81D27A18ABB3F000F277EA /* SearchKeywordsModel.m in Sources */,
 				CBD174E918BCBFC8003D1862 /* Bee_UITransitionFade.m in Sources */,
+				5F12A6CA1D7565CD005419B7 /* RegisterModel.m in Sources */,
 				CBD174BE18BCBFC8003D1862 /* UIView+BeeUICell.m in Sources */,
 				CBD1756F18BCBFC8003D1862 /* CXMLElement_CreationExtensions.m in Sources */,
 				CBD174D318BCBFC8003D1862 /* UIButton+LayoutParser.m in Sources */,

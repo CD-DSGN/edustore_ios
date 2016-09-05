@@ -46,3 +46,5 @@
 #import "PRICE_RANGE+TagList.h"
 #import "PHOTO+AutoSelection.h"
 #import "NSObject+ScrollViewExt.h"
+
+#import "RegisterModel.h"

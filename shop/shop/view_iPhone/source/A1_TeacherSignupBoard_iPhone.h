@@ -25,14 +25,20 @@
 AS_OUTLET( BeeUIScrollView, list )
 
 AS_MODEL( UserModel, userModel )
+AS_MODEL( RegisterModel, registerModel )
 
 @property (nonatomic, retain) NSMutableArray * group;
-@property (nonatomic) NSInteger currentCountDown;
-@property (nonatomic, assign) NSTimer * timer;
 @property (nonatomic, retain) NSString * identifyCode;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * mobilePhone;
+// 这么写是为了增加复用（checkuser、timer都有使用）
 @property (nonatomic, retain) BeeUIButton * code;
+// 获取验证码按钮计时
+@property (nonatomic) NSInteger currentCountDown;
+@property (nonatomic, assign) NSTimer * timer;
+// 验证码有效性计时
+@property (nonatomic) NSInteger identifyCodeValidTime;
+@property (nonatomic, assign) NSTimer * identifyCodeTimer;
 //@property (nonatomic, retain) NSArray * group2;
 
 @end

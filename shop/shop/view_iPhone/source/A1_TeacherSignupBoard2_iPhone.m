@@ -26,31 +26,34 @@ SUPPORT_RESOURCE_LOADING( YES )
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 
 DEF_MODEL( UserModel, userModel )
+DEF_MODEL( RegisterModel, registerModel )
 
 - (void)load
 {
 	self.userModel = [UserModel modelWithObserver:self];
+    self.registerModel = [RegisterModel modelWithObserver:self];
     
     self.group = [NSMutableArray array];
     self.course = [NSMutableArray array];
-    self.province = [NSMutableArray array];
-    self.city = [NSMutableArray array];
-    self.town = [NSMutableArray array];
-    self.provinceId = [NSMutableArray array];
-    self.cityId = [NSMutableArray array];
-    self.townId = [NSMutableArray array];
     
-    [self.selectCourse setTag:1];
+    self.provinceArray = [NSMutableArray array];
+    self.cityArray = [NSArray array];
+    self.townArray = [NSArray array];
+    self.selectedArray = [NSArray array];
+    self.pickerDic = [NSDictionary dictionary];
     
+    self.selectedProvinceName = self.selectedCityName = self.selectedTownName = nil;
+    self.selectedProvinceRow = self.selectedCityRow = self.selectedTownRow = 0;
     self.courseName = @"请选择课程";
     self.courseId = 0;
     
-    self.initPickerView = NO;
+    self.isInitRegionPickerView = NO;
 }
 
 - (void)unload
 {
 	SAFE_RELEASE_MODEL( self.userModel );
+    SAFE_RELEASE_MODEL( self.registerModel );
     
     self.group = nil;
     self.course = nil;
@@ -75,33 +78,41 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        NSArray * datas = self.group;
+        self.list.total = 1;
         
-        self.list.total = datas.count;
+        BeeUIScrollItem * item = self.list.items[0];
+        item.clazz = [A1_TeacherSignupCell2_iPhone class];
+        item.rule  = BeeUIScrollLayoutRule_Line;
+        item.size  = CGSizeAuto;
+        item.data  = self.registerModel;
         
-        for ( int i=0; i < datas.count; i++ )
-        {
-            FormData * formData = [self.group safeObjectAtIndex:i];
-            
-            if ( i == 0 )
-            {
-                formData.scrollIndex = UIScrollViewIndexFirst;
-            }
-            else if ( i == self.list.total - 1 ) // self.commentModel.comments.count
-            {
-                formData.scrollIndex = UIScrollViewIndexLast;
-            }
-            else
-            {
-                formData.scrollIndex = UIScrollViewIndexDefault;
-            }
-
-            BeeUIScrollItem * item = self.list.items[i];
-            item.clazz = [A1_TeacherSignupCell2_iPhone class];
-            item.rule  = BeeUIScrollLayoutRule_Line;
-            item.size  = CGSizeAuto;
-            item.data  = formData;
-        }
+//        NSArray * datas = self.group;
+//        
+//        self.list.total = datas.count;
+//        
+//        for ( int i=0; i < datas.count; i++ )
+//        {
+//            FormData * formData = [self.group safeObjectAtIndex:i];
+//            
+//            if ( i == 0 )
+//            {
+//                formData.scrollIndex = UIScrollViewIndexFirst;
+//            }
+//            else if ( i == self.list.total - 1 ) // self.commentModel.comments.count
+//            {
+//                formData.scrollIndex = UIScrollViewIndexLast;
+//            }
+//            else
+//            {
+//                formData.scrollIndex = UIScrollViewIndexDefault;
+//            }
+//
+//            BeeUIScrollItem * item = self.list.items[i];
+//            item.clazz = [A1_TeacherSignupCell2_iPhone class];
+//            item.rule  = BeeUIScrollLayoutRule_Line;
+//            item.size  = CGSizeAuto;
+//            item.data  = formData;
+//        }
     };
     
     [self observeNotification:BeeUIKeyboard.HIDDEN];
@@ -150,6 +161,7 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     [self doRegister];
 }
 
+// 如果重构页面需要修改的地方
 #pragma mark - BeeUITextField
 
 ON_SIGNAL3( BeeUITextField, RETURN, signal )
@@ -164,18 +176,18 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     {
         // 下一步为选择地区
         [self getRegion];
-        BeeUITextField * next = [inputs objectAtIndex:(index + 2)];
-        [next becomeFirstResponder];
+        BeeUITextField * next = [inputs objectAtIndex:index];
+        [next resignFirstResponder];
     }
-    if ( index == 2 )
+    else if ( index == 1 )
     {
         // 下一步为选择课程
         [self getCourse];
-        BeeUITextField * next = [inputs objectAtIndex:(index + 2)];
-        [next becomeFirstResponder];
+        BeeUITextField * next = [inputs objectAtIndex:index];
+        [next resignFirstResponder];
     }
     
-    if ( UIReturnKeyNext == input.returnKeyType )
+    else if ( UIReturnKeyNext == input.returnKeyType )
     {
         BeeUITextField * next = [inputs objectAtIndex:(index + 1)];
         [next becomeFirstResponder];
@@ -208,14 +220,50 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
     [self getRegion];
 }
 
+// 查询数据库中存在的课程
 - (void)getCourse
 {
     [self.userModel getCourse];
 }
 
+// 加载省市县的信息（后面还有一些使用）
 - (void)getRegion
 {
-    [self.userModel selectRegionByParentId:@"1"];
+    // 如果没有被初始化过(初始化的是array)
+    if ( !self.isInitRegionPickerView )
+    {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"region" ofType:@"plist"];
+        self.pickerDic = [[NSDictionary alloc] initWithContentsOfFile:path];
+        // 从字典中读取出的顺序与数据库中的不同，需处理
+        NSArray * province = [NSArray arrayWithObjects:@"北京",@"安徽",@"福建",@"甘肃",@"广东",@"广西",@"贵州",@"海南",@"河北",@"河南",@"黑龙江",@"湖北",@"湖南",@"吉林",@"江苏",@"江西",@"辽宁",@"内蒙古",@"宁夏",@"青海",@"山东",@"山西",@"陕西",@"上海",@"四川",@"天津",@"西藏",@"新疆",@"云南",@"浙江",@"重庆",@"香港",@"澳门",@"台湾", nil];
+        for ( int i = 0; i < province.count; i++ )
+        {
+            [self.provinceArray addObject:[province objectAtIndex:i]];
+        }
+        self.selectedArray = [self.pickerDic objectForKey:@"北京"];
+        //    self.provinceArray = [self.pickerDic allKeys];
+        //    self.selectedArray = [self.pickerDic objectForKey:[[self.pickerDic allKeys] objectAtIndex:0]];
+        
+        if (self.selectedArray.count > 0) {
+            self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+        }
+        
+        if (self.cityArray.count > 0) {
+            self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
+        }
+        self.selectedProvinceName = [self.provinceArray objectAtIndex:0];
+        self.selectedCityName = [self.cityArray objectAtIndex:0];
+        self.selectedTownName = [self.townArray objectAtIndex:0];
+        [self initPickerView:self.selectRegion];
+        [self initAlertControllerWithPickerView:self.selectRegion];
+        self.isInitRegionPickerView = YES;
+    }
+    else
+    {
+        [self initPickerView:self.selectRegion];
+        [self initAlertControllerWithPickerView:self.selectRegion];
+    }
+    
 }
 
 #pragma mark -
@@ -224,97 +272,107 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
 {
     NSMutableArray * inputs = [NSMutableArray array];
     
-    for ( BeeUIScrollItem * item in self.list.items )
-    {
-        if ( [item.view isKindOfClass:[A1_TeacherSignupCell2_iPhone class]] )
-        {
-            [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).input];
-        }
-    }
+    BeeUIScrollItem * item = self.list.items[0];
     
+    if ( [item.view isKindOfClass:[A1_TeacherSignupCell2_iPhone class]])
+    {
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).realname];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).school];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).password];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).confirmePassword];
+    }
     return inputs;
 }
 
 - (void)setupFields
 {
-    [self.group removeAllObjects];
+//    self.registerModel.usernameTag = __TEXT(@"login_username");
+    self.registerModel.passwordTag = __TEXT(@"login_password");
+    self.registerModel.confirmPasswordTag = __TEXT(@"register_confirm");
+//    self.registerModel.mobilePhoneTag = __TEXT(@"mobile_phone");
+//    self.registerModel.identifyCodeTag = __TEXT(@"identify_code");
+    self.registerModel.realnameTag = __TEXT(@"login_realname");
+    self.registerModel.regionTag = __TEXT(@"region");
+    self.registerModel.schoolTag = __TEXT(@"school");
+    self.registerModel.courseTag = __TEXT(@"course");
     
-    NSArray * fields = self.userModel.fields;
-
-    FormData * realname = [FormData data];
-    realname.tagString = @"realname";
-    realname.placeholder = __TEXT(@"login_realname");
-    realname.keyboardType = UIKeyboardTypeDefault;
-    realname.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:realname];
+//    [self.group removeAllObjects];
+//    NSArray * fields = self.userModel.fields;
+//
+//    FormData * realname = [FormData data];
+//    realname.tagString = @"realname";
+//    realname.placeholder = __TEXT(@"login_realname");
+//    realname.keyboardType = UIKeyboardTypeDefault;
+//    realname.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:realname];
+//    
+//    FormData * region = [FormData data];
+//    region.tagString = @"region";
+//    region.placeholder = __TEXT(@"region");
+//    region.keyboardType = UIKeyboardTypeEmailAddress;
+//    region.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:region];
+//    
+//    FormData * school = [FormData data];
+//    school.tagString = @"school";
+//    school.placeholder = __TEXT(@"school");
+//    school.keyboardType = UIKeyboardTypeEmailAddress;
+//    school.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:school];
+//    
+//    FormData * course = [FormData data];
+//    course.tagString = @"course";
+//    course.placeholder = __TEXT(@"course");
+//    course.keyboardType = UIKeyboardTypeEmailAddress;
+//    course.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:course];
+//    
+//    FormData * password = [FormData data];
+//    password.tagString = @"password";
+//    password.placeholder = __TEXT(@"login_password");
+//    password.isSecure = YES;
+//    password.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:password];
+//    
+//    FormData * password2 = [FormData data];
+//    password2.tagString = @"password2";
+//    password2.placeholder = __TEXT(@"register_confirm");
+//    password2.isSecure = YES;
+//    
+//    if ( fields.count == 0 )
+//    {
+//        password2.returnKeyType = UIReturnKeyDone;
+//    }
+//    else
+//    {
+//        password2.returnKeyType = UIReturnKeyNext;
+//    }
+//    
+//    [self.group addObject:password2];
     
-    FormData * region = [FormData data];
-    region.tagString = @"region";
-    region.placeholder = __TEXT(@"region");
-    region.keyboardType = UIKeyboardTypeEmailAddress;
-    region.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:region];
-    
-    FormData * school = [FormData data];
-    school.tagString = @"school";
-    school.placeholder = __TEXT(@"school");
-    school.keyboardType = UIKeyboardTypeEmailAddress;
-    school.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:school];
-    
-    FormData * course = [FormData data];
-    course.tagString = @"course";
-    course.placeholder = __TEXT(@"course");
-    course.keyboardType = UIKeyboardTypeEmailAddress;
-    course.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:course];
-    
-    FormData * password = [FormData data];
-    password.tagString = @"password";
-    password.placeholder = __TEXT(@"login_password");
-    password.isSecure = YES;
-    password.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:password];
-    
-    FormData * password2 = [FormData data];
-    password2.tagString = @"password2";
-    password2.placeholder = __TEXT(@"register_confirm");
-    password2.isSecure = YES;
-    
-    if ( fields.count == 0 )
-    {
-        password2.returnKeyType = UIReturnKeyDone;
-    }
-    else
-    {
-        password2.returnKeyType = UIReturnKeyNext;
-    }
-    
-    [self.group addObject:password2];
-    
-    if ( fields && 0 != fields.count  )
-    {
-        for ( int i=0; i < fields.count; i++ )
-        {
-            SIGNUP_FIELD * field = fields[i];
-            
-            FormData * element = [FormData data];
-            element.tagString = field.id.stringValue;
-            element.placeholder = field.name;
-            element.data = field;
-            
-            if ( i == (fields.count - 1) )
-            {
-                element.returnKeyType = UIReturnKeyDone;
-            }
-            else
-            {
-                element.returnKeyType = UIReturnKeyNext;
-            }
-            
-            [self.group addObject:element];
-        }
-    }
+//    if ( fields && 0 != fields.count  )
+//    {
+//        for ( int i=0; i < fields.count; i++ )
+//        {
+//            SIGNUP_FIELD * field = fields[i];
+//            
+//            FormData * element = [FormData data];
+//            element.tagString = field.id.stringValue;
+//            element.placeholder = field.name;
+//            element.data = field;
+//            
+//            if ( i == (fields.count - 1) )
+//            {
+//                element.returnKeyType = UIReturnKeyDone;
+//            }
+//            else
+//            {
+//                element.returnKeyType = UIReturnKeyNext;
+//            }
+//            
+//            [self.group addObject:element];
+//        }
+//    }
 }
 
 - (void)doRegister
@@ -333,60 +391,82 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
     
     NSMutableArray * fields = [NSMutableArray array];
     
+    // 为注册需要的参数赋值
     userName = self.username;
     mobilePhone = self.mobilePhone;
+    course = [[NSString alloc] initWithFormat:@"%ld",(long)self.courseId];
+    
     for ( BeeUITextField * input in inputs )
     {
-        A1_TeacherSignupCell2_iPhone * cell = (A1_TeacherSignupCell2_iPhone *)input.superview;
-
-        FormData * data = cell.data;
-        
-        if ( [data.tagString isEqualToString:@"realname"] )
+        if ( [input.placeholder isEqualToString:__TEXT(@"login_realname")] )
         {
-            realname = cell.input.text.trim;
-            data.text = realname;
+            realname = input.text;
         }
-        else if ( [data.tagString isEqualToString:@"region"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
         {
-
+            password = input.text;
         }
-        else if( [data.tagString isEqualToString:@"school"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"register_confirm")] )
         {
-            school = cell.input.text.trim;
-            data.text = school;
+            password2 = input.text;
         }
-        else if( [data.tagString isEqualToString:@"password"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"school")] )
         {
-            password = cell.input.text;
-            data.text = password;
-        }
-        else if( [data.tagString isEqualToString:@"password2"] )
-        {
-            password2 = cell.input.text;
-            data.text = password2;
-        }
-        else if( [data.tagString isEqualToString:@"course"] )
-        {
-            NSString * string = [[NSString alloc] initWithFormat:@"%ld",(long)self.courseId ];
-            course = string;
-        }
-        else
-        {
-            SIGNUP_FIELD * field = (SIGNUP_FIELD *)cell.data;
-
-            if ( field.need.boolValue && cell.input.text.length == 0 )
-            {
-                [self presentMessageTips:[NSString stringWithFormat:@"%@%@", __TEXT(@"please_input"), field.name]];
-                return;
-            }
-            
-            SIGNUP_FIELD_VALUE * fieldValue = [[[SIGNUP_FIELD_VALUE alloc] init] autorelease];
-            fieldValue.id = field.id;
-            fieldValue.value = cell.input.text;
-            data.text = cell.input.text;
-            [fields addObject:fieldValue];
+            school = input.text;
         }
     }
+//    for ( BeeUITextField * input in inputs )
+//    {
+//        A1_TeacherSignupCell2_iPhone * cell = (A1_TeacherSignupCell2_iPhone *)input.superview;
+//
+//        FormData * data = cell.data;
+//        
+//        if ( [data.tagString isEqualToString:@"realname"] )
+//        {
+//            realname = cell.input.text.trim;
+//            data.text = realname;
+//        }
+//        else if ( [data.tagString isEqualToString:@"region"] )
+//        {
+//
+//        }
+//        else if( [data.tagString isEqualToString:@"school"] )
+//        {
+//            school = cell.input.text.trim;
+//            data.text = school;
+//        }
+//        else if( [data.tagString isEqualToString:@"password"] )
+//        {
+//            password = cell.input.text;
+//            data.text = password;
+//        }
+//        else if( [data.tagString isEqualToString:@"password2"] )
+//        {
+//            password2 = cell.input.text;
+//            data.text = password2;
+//        }
+//        else if( [data.tagString isEqualToString:@"course"] )
+//        {
+//            NSString * string = [[NSString alloc] initWithFormat:@"%ld",(long)self.courseId ];
+//            course = string;
+//        }
+//        else
+//        {
+//            SIGNUP_FIELD * field = (SIGNUP_FIELD *)cell.data;
+//
+//            if ( field.need.boolValue && cell.input.text.length == 0 )
+//            {
+//                [self presentMessageTips:[NSString stringWithFormat:@"%@%@", __TEXT(@"please_input"), field.name]];
+//                return;
+//            }
+//            
+//            SIGNUP_FIELD_VALUE * fieldValue = [[[SIGNUP_FIELD_VALUE alloc] init] autorelease];
+//            fieldValue.id = field.id;
+//            fieldValue.value = cell.input.text;
+//            data.text = cell.input.text;
+//            [fields addObject:fieldValue];
+
+//        }
 
     // 上一步已做过判断
 //	if ( 0 == userName.length || NO == [userName isChineseUserName] )
@@ -412,15 +492,15 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
 //		[self presentMessageTips:__TEXT(@"wrong_email")];
 //		return;
 //	}
-    
-    if ( 0 == course )
-    {
-        [self presentMessageTips:__TEXT(@"wrong_course")];
-        return;
-    }
     if ( 0 == realname.length )
     {
         [self presentMessageTips:__TEXT(@"null_realname")];
+        return;
+    }
+    // 省市不能为空，县可以为空
+    if ( self.selectedTownName.length == 0 )
+    {
+        [self presentMessageTips:__TEXT(@"region")];
         return;
     }
     if ( 0 == school.length )
@@ -428,7 +508,11 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
         [self presentMessageTips:__TEXT(@"null_school")];
         return;
     }
-	
+    if ( [course isEqualToString:@"0"] )
+    {
+        [self presentMessageTips:__TEXT(@"wrong_course")];
+        return;
+    }
 	if ( 0 == password.length || NO == [password isPassword] )
 	{
 		[self presentMessageTips:__TEXT(@"wrong_password")];
@@ -461,6 +545,9 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
                             school:school
                             course:course
                          isTeacher:isTeacher
+                      provinceName:self.selectedProvinceName
+                          cityName:self.selectedCityName
+                          townName:self.selectedTownName
     ];
 }
 
@@ -526,91 +613,6 @@ ON_MESSAGE3( API, teacher_signup, msg )
     }
 }
 
-// 联动选择地区的实现
-ON_MESSAGE3( API, get_region, msg )
-{
-    if( msg.sending )
-    {
-        // 获取课程中，可以不显示东西
-    }
-    else if( msg.succeed )
-    {
-        NSArray * data = msg.GET_OUTPUT(@"data");
-        
-        REGION * region = [data objectAtIndex:0];
-        // 通过数据库结构的特性来判断
-        if ( [region.type isEqualToString:@"1"] ) // 省
-        {
-            [self.province removeAllObjects];
-            [self.provinceId removeAllObjects];
-            for( int i = 0; i < [data count]; i++ )
-            {
-                REGION * region = [data objectAtIndex:i];
-                [self.province addObject:region.name];
-                [self.provinceId addObject:region.id];
-            }
-        }
-        else if ( [region.type isEqualToString:@"2"] ) // 市
-        {
-            [self.city removeAllObjects];
-            [self.town removeAllObjects];
-            [self.cityId removeAllObjects];
-            for( int i = 0; i < [data count]; i++ )
-            {
-                REGION * region = [data objectAtIndex:i];
-                [self.city addObject:region.name];
-                [self.cityId addObject:region.id];
-            }
-            [self.selectRegion selectRow:0 inComponent:1 animated:NO];
-            [self.selectRegion reloadComponent:1];
-            [self.selectRegion reloadComponent:2];
-        }
-        else if ( [region.type isEqualToString:@"3"] ) // 县
-        {
-            [self.town removeAllObjects];
-            [self.townId removeAllObjects];
-            for( int i = 0; i < [data count]; i++ )
-            {
-                REGION * region = [data objectAtIndex:i];
-                [self.town addObject:region.name];
-                [self.townId addObject:region.id];
-            }
-            [self.selectRegion selectRow:0 inComponent:2 animated:NO];
-            [self.selectRegion reloadComponent:2];
-        }
-        
-        // 通过参数设定只初始化一次
-        if ( self.initPickerView == NO )
-        {
-            // 新建一个 UIPickerView
-            self.selectRegion = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-            self.selectRegion.delegate = self;
-            self.selectRegion.dataSource = self;
-            [self.selectRegion reloadAllComponents];
-            // 新建一个 UIAlertController, \n 为其预留出高度
-            NSString * message = @"\n\n\n\n\n\n\n\n\n\n";
-            UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
-            // 添加确定按钮
-            [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
-                //点击确定的逻辑处理...
-                self.initPickerView = NO;
-            }]];
-            [sheet.view addSubview:self.selectRegion];
-            // 将 sheet 显示出来
-            [self presentViewController:sheet animated:YES completion:nil];
-            self.initPickerView = YES;
-        }
-    }
-    else if ( msg.failed )
-    {
-        // 地区课程失败时：
-        
-    }
-    else if ( msg.cancelled )
-    {
-    }
-}
-
 ON_MESSAGE3( API, get_course, msg )
 {
     if( msg.sending )
@@ -628,7 +630,7 @@ ON_MESSAGE3( API, get_course, msg )
             [self.course addObject:getCourse.course_name[i]];
         }
         // 新建一个 UIPickerView
-        self.selectCourse = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+        self.selectCourse = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
         self.selectCourse.delegate = self;
         self.selectCourse.dataSource = self;
         
@@ -640,7 +642,7 @@ ON_MESSAGE3( API, get_course, msg )
         // 添加确定按钮
         [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
             //点击确定的逻辑处理...
-            BeeUILabel * course = [self getCourseLabel];
+            BeeUILabel * course = [self getLabelByLabelName:@"course"];
             if( self.courseId == 0 ) {
                 //用户未选择课程,字体为浅灰色
                 course.textColor = [UIColor lightGrayColor];
@@ -648,6 +650,7 @@ ON_MESSAGE3( API, get_course, msg )
                 course.textColor = [UIColor blackColor];
             }
             course.text = self.courseName;
+            
         }]];
         // 保存上一次选择的行
         [self.selectCourse selectRow:self.courseId inComponent:0 animated:NO];
@@ -658,7 +661,6 @@ ON_MESSAGE3( API, get_course, msg )
         else if ( msg.failed )
         {
             // 获取课程失败时：
-            
         }
         else if ( msg.cancelled )
         {
@@ -690,15 +692,15 @@ ON_MESSAGE3( API, get_course, msg )
     {
         if ( component == 0 )
         {
-            return [self.province count];
+            return [self.provinceArray count];
         }
         else if ( component == 1 )
         {
-            return [self.city count];
+            return [self.cityArray count];
         }
         else
         {
-            return [self.town count];
+            return [self.townArray count];
         }
     }
     return 0;
@@ -709,21 +711,21 @@ ON_MESSAGE3( API, get_course, msg )
 {
     if ( pickerView == self.selectCourse )
     {
-        return  self.view.frame.size.width-10;
+        return  self.view.frame.size.width;
     }
     else if ( pickerView == self.selectRegion )
     {
         if ( component == 0 )
         {
-            return  self.view.frame.size.width/3;
+            return  self.view.frame.size.width/3-20;
         }
-        else if ( component == 1)
+        else if ( component == 1 )
         {
-            return  self.view.frame.size.width/3;
+            return  self.view.frame.size.width/3-15;
         }
-        else
+        else if ( component == 2 )
         {
-            return  self.view.frame.size.width/3;
+            return  self.view.frame.size.width/3+10;
         }
     }
     return 0;
@@ -733,41 +735,44 @@ ON_MESSAGE3( API, get_course, msg )
 {
     return 30;
 }
-// 不使用这个视图了，还是通过返回字符串实现
-// 初始化 PickerView 的每一行
-//- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
-//{
-//    if( !view ) {
-//        view = [[UIView alloc] init];
-//    }
-//    
-//    if ( pickerView == self.selectCourse )
-//    {
-//        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-10, 30)];
-//        text.textAlignment = NSTextAlignmentCenter;
-//        text.text = [self.course objectAtIndex:row];
-//        [view addSubview:text];
-//    }
-//    else
-//    {
-//        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-10/3, 30)];
-//        text.textAlignment = NSTextAlignmentCenter;
-//        if ( component == 0 )
-//        {
-//            text.text = [self.province objectAtIndex:row];
-//        }
-//        else if ( component == 1)
-//        {
-//            text.text = [self.city objectAtIndex:row];
-//        }
-//        else
-//        {
-//            text.text = [self.town objectAtIndex:row];
-//        }
-//        [view addSubview:text];
-//    }
-//    return view;
-//}
+// 初始化 PickerView 的每一行，可以自定义返回样式
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
+{
+    if( !view ) {
+        view = [[UIView alloc] init];
+    }
+    
+    if ( pickerView == self.selectCourse )
+    {
+        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        text.textAlignment = NSTextAlignmentCenter;
+        text.text = [self.course objectAtIndex:row];
+        [view addSubview:text];
+    }
+    else
+    {
+        UILabel * text = [[UILabel alloc] init];
+        if ( component == 0 )
+        {
+            text.frame = CGRectMake(0, 0, self.frame.size.width/3-20, 30);
+            text.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+        }
+        else if ( component == 1)
+        {
+            text.frame = CGRectMake(0, 0, self.frame.size.width/3-15, 30);
+            text.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+        }
+        else
+        {
+            text.frame = CGRectMake(0, 0, self.frame.size.width/3+10, 30);
+            text.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+        }
+        text.textAlignment = UITextAlignmentCenter;
+        // text.adjustsFontSizeToFitWidth = YES;
+        [view addSubview:text];
+    }
+    return view;
+}
 // pickerview 获取选中的值
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
@@ -778,22 +783,53 @@ ON_MESSAGE3( API, get_course, msg )
     }
     else if ( pickerView == self.selectRegion )
     {
-        // 每次选择之后只能获取到name，ID 似乎还需要从数据库得到
-        // 或者是否可以用另一个数组来承载ID，使之和row一一对应？？
+        // 地区数据从本地获取，省市县的id僵硬,写数据库的时候查询算了
         if ( component == 0 )
         {
-            NSString * id = [self.provinceId objectAtIndex:row];
-            [self.userModel selectRegionByParentId:id];
+            self.selectedArray = [self.pickerDic objectForKey:[self.provinceArray objectAtIndex:row]];
+            if ( self.selectedArray.count > 0 )
+            {
+                self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+            }
+            else
+            {
+                self.cityArray = nil;
+            }
+            if ( self.cityArray.count > 0 )
+            {
+                self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
+            }
+            else
+            {
+                self.townArray = nil;
+            }
+            self.selectedProvinceRow = row;
+            self.selectedTownRow = self.selectedCityRow = 0;
+            [self.selectRegion selectRow:self.selectedCityRow inComponent:1 animated:NO];
+            [self.selectRegion selectRow:self.selectedTownRow inComponent:2 animated:NO];
+            [self.selectRegion reloadComponent:1];
+            
+            self.selectedProvinceName = [self.provinceArray objectAtIndex:row];
         }
         else if ( component == 1 )
         {
-            NSString * id = [self.cityId objectAtIndex:row];
-            [self.userModel selectRegionByParentId:id];
+            if ( self.selectedArray.count > 0 )
+            {
+                self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:row]];
+            }
+            else
+            {
+                self.townArray = nil;
+            }
+            self.selectedCityRow = row;
+            self.selectedTownRow = 0;
+            [self.selectRegion selectRow:self.selectedTownRow inComponent:2 animated:NO];
         }
-        else    // 县的变化与之前不一样
+        else if ( component == 2 )
         {
-            
+            self.selectedTownRow = row;
         }
+        [self.selectRegion reloadComponent:2];
     }
     
 }
@@ -809,44 +845,93 @@ ON_MESSAGE3( API, get_course, msg )
     {
         if ( component == 0 )
         {
-            NSString * str = [self.province objectAtIndex:row];
-            return str;
+            return [self.provinceArray objectAtIndex:row];
         }
         else if ( component == 1 )
         {
-            NSString * str = [self.city objectAtIndex:row];
-            return str;
+            return [self.cityArray objectAtIndex:row];
         }
         else
         {
-            NSString * str = [self.town objectAtIndex:row];
-            return str;
+            return [self.townArray objectAtIndex:row];
         }
     }
     return nil;
 }
 
 // 获取选择课程 按钮 之上的 label
-- (BeeUILabel *)getCourseLabel
+- (BeeUILabel *)getLabelByLabelName:(NSString *) labelName
 {
     NSMutableArray * inputs = [NSMutableArray array];
     
-    for ( BeeUIScrollItem * item in self.list.items )
+    BeeUIScrollItem * item = self.list.items[0];
+    
+    if ( [item.view isKindOfClass:[A1_TeacherSignupCell2_iPhone class]])
     {
-        if ( [item.view isKindOfClass:[A1_TeacherSignupCell2_iPhone class]] )
-        {
-            [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).course];
-        }
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).region];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).course];
     }
-    for ( BeeUILabel * courseLabel in inputs )
+    if ( [labelName isEqualToString:@"region"] )
     {
-        A1_TeacherSignupCell2_iPhone * cell = (A1_TeacherSignupCell2_iPhone *)courseLabel.superview;
-        if( [cell.input.placeholder isEqualToString:__TEXT(@"course")] )
-        {
-            return cell.course;
-        }
+        return inputs[0];
+    }
+    else if ( [labelName isEqualToString:@"course"] )
+    {
+        return inputs[1];
     }
     return nil;
+}
+
+// 初始化pickerview，以备复用
+- (void)initPickerView:(UIPickerView *) pickerView
+{
+    if ( pickerView == self.selectRegion )
+    {
+        self.selectRegion = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+        self.selectRegion.delegate = self;
+        self.selectRegion.dataSource = self;
+        [self.selectRegion selectRow:self.selectedProvinceRow inComponent:0 animated:NO];
+        [self.selectRegion selectRow:self.selectedCityRow inComponent:1 animated:NO];
+        [self.selectRegion selectRow:self.selectedTownRow inComponent:2 animated:NO];
+        [self.selectRegion reloadAllComponents];
+    }
+    else if ( pickerView == self.selectCourse )
+    {
+        
+    }
+}
+// 初始化alertController，以备复用
+- (void)initAlertControllerWithPickerView:(UIPickerView *) pickerView
+{
+    if ( pickerView == self.selectRegion )
+    {
+        NSString * message = @"\n\n\n\n\n\n\n\n\n";
+        UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+        // 添加确定按钮
+        [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+            //点击确定的逻辑处理...
+            BeeUILabel * region = [self getLabelByLabelName:@"region"];
+            
+            NSString * temp = [self.provinceArray objectAtIndex:self.selectedProvinceRow];
+            temp = [temp stringByAppendingString:@" "];
+            temp = [temp stringByAppendingString:[self.cityArray objectAtIndex:self.selectedCityRow]];
+            temp = [temp stringByAppendingString:@" "];
+            temp = [temp stringByAppendingString:[self.townArray objectAtIndex:self.selectedTownRow]];
+            region.text = temp;
+            //  因为没有取消按钮，所以每次必会选择出一个地址，可以之后修改
+            region.textColor = [UIColor blackColor];
+            
+            // 赋值，为了传参
+            self.selectedProvinceName = [self.provinceArray objectAtIndex:self.selectedProvinceRow];
+            self.selectedCityName = [self.cityArray objectAtIndex:self.selectedCityRow];
+            self.selectedTownName = [self.townArray objectAtIndex:self.selectedTownRow];
+        }]];
+        [sheet.view addSubview:pickerView];
+        // 将 sheet 显示出来
+        [self presentViewController:sheet animated:YES completion:nil];
+      //  self.initPickerView = YES;
+    }
+    
 }
 
 @end

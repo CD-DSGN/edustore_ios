@@ -56,7 +56,10 @@ AS_NOTIFICATION( UPDATED )
               realname:(NSString *)realname
                 school:(NSString *)school
                 course:(NSString *)course
-             isTeacher:(NSString *)isTeacher;
+             isTeacher:(NSString *)isTeacher
+          provinceName:(NSString *)provinceName
+              cityName:(NSString *)cityName
+              townName:(NSString *)townName;
 
 // 通过父亲id查询地区
 - (void)selectRegionByParentId:(NSString *)parent_id;

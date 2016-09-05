@@ -84,6 +84,7 @@ enum RANK_LEVEL
 @class TOTAL;
 @class USER;
 @class COLLECT_GOODS;
+@class TIMER;
 
 @interface ADDRESS : NSObject
 @property (nonatomic, retain) NSNumber *		id;
@@ -416,20 +417,31 @@ enum RANK_LEVEL
 @property (nonatomic, assign) BOOL isEditing; // TODO:
 @end
 
-//接收返回的验证码
+//接收返回的验证码,nhj
 @interface identifyCode : NSObject
 @property (nonatomic, retain) NSString *        identifyCode;
 @end
 
-// 接收返回的 course 信息
+// 接收返回的 course 信息,nhj
 @interface Course : NSObject
 @property (nonatomic, retain) NSArray * course_name;
 @end
 
-// 接收返回的 region 信息
+// 接收返回的 region 信息,nhj
 @interface Regions : NSObject
 @property (nonatomic, retain) NSNumber * more;
 @property (nonatomic, retain) NSArray * regions;
+@end
+
+// add by nhj,a new class for timer
+@interface TIMER : NSObject
+
+- (void)validCountDownTime:(NSInteger) time
+        forTimer:(NSTimer *) timer
+        forButton:(BeeUIButton *) button;
+- (void)validCountDownTime:(NSInteger) time
+        forTimer:(NSTimer *) timer;
+- (void)removeTimer:(NSTimer *) timer;
 @end
 
 #pragma mark - controllers

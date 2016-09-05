@@ -25,6 +25,7 @@
 AS_OUTLET( BeeUIScrollView, list )
 
 AS_MODEL( UserModel, userModel )
+AS_MODEL( RegisterModel, registerModel )
 
 @property (nonatomic, retain) NSMutableArray * group;
 @property (nonatomic, retain) NSString * identifyCode;

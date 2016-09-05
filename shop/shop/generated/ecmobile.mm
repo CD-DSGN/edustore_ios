@@ -429,6 +429,41 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation TIMER
+
+- (void)validCountDownTime:(NSInteger)time
+                  forTimer:(NSTimer *)timer
+                 forButton:(BeeUIButton *)button
+{
+    if ( time >= 0 )
+    {
+        [button setEnabled:NO];
+        [button setSelected:YES];
+        [button setTitle:[NSString stringWithFormat:@"%ld秒后重新获取",(long)time]];
+        time--;
+    }
+    else
+    {
+        [self removeTimer:timer];
+        [button setEnabled:YES];
+        [button setTitle:@"重新获取验证码"];
+        [button setImage:nil];
+    }
+}
+
+- (void)validCountDownTime:(NSInteger)time
+                  forTimer:(NSTimer *)timer
+{
+    
+}
+
+- (void)removeTimer:(NSTimer *)timer
+{
+    
+}
+
+@end
+
 #pragma mark - controllers
 
 @implementation API
@@ -2226,6 +2261,9 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSString * school = msg.GET_INPUT( @"school" );
         NSString * course = msg.GET_INPUT( @"course" );
         NSNumber * isTeacher = msg.GET_INPUT( @"isTeacher" );
+        NSString * provinceName = msg.GET_INPUT( @"provinceName" );
+        NSString * cityName = msg.GET_INPUT( @"cityName" );
+        NSString * townName = msg.GET_INPUT( @"townName" );
         
         if ( nil == name || NO == [name isKindOfClass:[NSString class]] )
         {
@@ -2247,8 +2285,11 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         requestBody.APPEND( @"school", school );
         requestBody.APPEND( @"course", course );
         requestBody.APPEND( @"isTeacher", isTeacher );
+        requestBody.APPEND( @"provinceName", provinceName );
+        requestBody.APPEND( @"cityName", cityName );
+        requestBody.APPEND( @"townName", townName );
         
-        NSString * requestURI = [NSString stringWithFormat:@"%@/user/teacherSignup", [ServerConfig sharedInstance].url];
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/signup", [ServerConfig sharedInstance].url];
         
         msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
     }

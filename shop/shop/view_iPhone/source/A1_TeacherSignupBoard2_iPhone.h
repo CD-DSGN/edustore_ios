@@ -25,6 +25,7 @@
 AS_OUTLET( BeeUIScrollView, list )
 
 AS_MODEL( UserModel, userModel )
+AS_MODEL( RegisterModel, registerModel )
 
 @property (nonatomic, retain) NSMutableArray * group;
 @property (nonatomic, retain) NSString * username;
@@ -35,13 +36,21 @@ AS_MODEL( UserModel, userModel )
 // courseId 与数据库中的id相同，也表示course在pickerview中的位置
 @property (nonatomic) NSInteger courseId;
 //@property (nonatomic, retain) NSArray * group2;
-@property (nonatomic, retain) UIPickerView * selectRegion;
-@property (nonatomic, retain) NSMutableArray * province;
-@property (nonatomic, retain) NSMutableArray * city;
-@property (nonatomic, retain) NSMutableArray * town;
-@property (nonatomic, retain) NSMutableArray * provinceId;
-@property (nonatomic, retain) NSMutableArray * cityId;
-@property (nonatomic, retain) NSMutableArray * townId;
-@property (nonatomic) BOOL initPickerView;
+@property (nonatomic, retain) UIPickerView          *    selectRegion;
+@property (strong, nonatomic) NSDictionary          *    pickerDic;
+@property (strong, nonatomic) NSMutableArray        *    provinceArray;
+@property (strong, nonatomic) NSArray               *    cityArray;
+@property (strong, nonatomic) NSArray               *    townArray;
+@property (strong, nonatomic) NSArray               *    selectedArray;
+// 所选择地区字符串，传入后台查询id写数据库
+@property (nonatomic, retain) NSString              *    selectedProvinceName;
+@property (nonatomic, retain) NSString              *    selectedCityName;
+@property (nonatomic, retain) NSString              *    selectedTownName;
+// 保留当前选择地区的行数
+@property (nonatomic) NSInteger                          selectedProvinceRow;
+@property (nonatomic) NSInteger                          selectedCityRow;
+@property (nonatomic) NSInteger                          selectedTownRow;
+
+@property (nonatomic) BOOL isInitRegionPickerView;
 
 @end

@@ -228,6 +228,9 @@ DEF_NOTIFICATION( UPDATED )
                 school:(NSString *)school
                 course:(NSString *)course
              isTeacher:(NSString *)isTeacher
+          provinceName:(NSString *)provinceName
+              cityName:(NSString *)cityName
+              townName:(NSString *)townName
 {
     self.CANCEL_MSG( API.teacher_signup );
     self
@@ -239,7 +242,10 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"realname", realname )
     .INPUT( @"school", school )
     .INPUT( @"course", course )
-    .INPUT( @"isTeacher", isTeacher );
+    .INPUT( @"isTeacher", isTeacher )
+    .INPUT( @"provinceName", provinceName )
+    .INPUT( @"cityName", cityName )
+    .INPUT( @"townName", townName );
 }
 
 - (void)getCourse

@@ -21,9 +21,12 @@
 AS_OUTLET( BeeUIImageView, background )
 AS_OUTLET( BeeUITextField, input )
 AS_OUTLET( BeeUIButton, chooseCourses )
-AS_OUTLET( BeeUILabel, course )
-AS_OUTLET( BeeUIImageView, button_bkg )
 AS_OUTLET( BeeUIButton, chooseRegion )
+AS_OUTLET( BeeUITextField, password )
+AS_OUTLET( BeeUITextField, confirmePassword )
+AS_OUTLET( BeeUITextField, realname )
+AS_OUTLET( BeeUITextField, school )
 AS_OUTLET( BeeUILabel, region )
+AS_OUTLET( BeeUILabel, course )
 
 @end

@@ -25,12 +25,14 @@ SUPPORT_RESOURCE_LOADING( YES )
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 
 DEF_MODEL( UserModel, userModel )
+DEF_MODEL( RegisterModel, registerModel )
 
 DEF_OUTLET( BeeUIScrollItem, list )
 
 - (void)load
 {
 	self.userModel = [UserModel modelWithObserver:self];
+    self.registerModel = [RegisterModel modelWithObserver:self];
     
     self.group = [NSMutableArray array];
 }
@@ -38,6 +40,7 @@ DEF_OUTLET( BeeUIScrollItem, list )
 - (void)unload
 {
 	SAFE_RELEASE_MODEL( self.userModel );
+    SAFE_RELEASE_MODEL( self.registerModel );
     
     self.group = nil;
 }
@@ -59,34 +62,41 @@ ON_CREATE_VIEWS( signal )
     self.list.whenReloading = ^
     {
         @normalize(self);
+        self.list.total = 1;
         
-        NSArray * datas = self.group;
+        BeeUIScrollItem * item = self.list.items[0];
+        item.clazz = [A1_SignupCell_iPhone class];
+        item.rule  = BeeUIScrollLayoutRule_Line;
+        item.size  = CGSizeAuto;
+        item.data  = self.registerModel;
         
-        self.list.total = datas.count;
-        
-        for ( int i=0; i < datas.count; i++ )
-        {
-            FormData * formData = [self.group safeObjectAtIndex:i];
-            
-            if ( i == 0 )
-            {
-                formData.scrollIndex = UIScrollViewIndexFirst;
-            }
-            else if ( i == self.list.total - 1 ) // self.commentModel.comments.count
-            {
-                formData.scrollIndex = UIScrollViewIndexLast;
-            }
-            else
-            {
-                formData.scrollIndex = UIScrollViewIndexDefault;
-            }
-
-            BeeUIScrollItem * item = self.list.items[i];
-            item.clazz = [A1_SignupCell_iPhone class];
-            item.rule  = BeeUIScrollLayoutRule_Line;
-            item.size  = CGSizeAuto;
-            item.data  = formData;
-        }
+//        NSArray * datas = self.group;
+//        
+//        self.list.total = datas.count;
+//        
+//        for ( int i=0; i < datas.count; i++ )
+//        {
+//            FormData * formData = [self.group safeObjectAtIndex:i];
+//            
+//            if ( i == 0 )
+//            {
+//                formData.scrollIndex = UIScrollViewIndexFirst;
+//            }
+//            else if ( i == self.list.total - 1 ) // self.commentModel.comments.count
+//            {
+//                formData.scrollIndex = UIScrollViewIndexLast;
+//            }
+//            else
+//            {
+//                formData.scrollIndex = UIScrollViewIndexDefault;
+//            }
+//
+//            BeeUIScrollItem * item = self.list.items[i];
+//            item.clazz = [A1_SignupCell_iPhone class];
+//            item.rule  = BeeUIScrollLayoutRule_Line;
+//            item.size  = CGSizeAuto;
+//            item.data  = formData;
+//        }
     };
     
     [self observeNotification:BeeUIKeyboard.HIDDEN];
@@ -170,107 +180,134 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 {
     NSMutableArray * inputs = [NSMutableArray array];
     
-    for ( BeeUIScrollItem * item in self.list.items )
+    BeeUIScrollItem * item = self.list.items[0];
+    if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]])
     {
-        if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
-        {
-            [inputs addObject:((A1_SignupCell_iPhone *)item.view).input];
-        }
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).username];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).password];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).confirmePassword];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).mobilePhone];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).identifyCode];
     }
-    
     return inputs;
+    
+//    for ( BeeUIScrollItem * item in self.list.items )
+//    {
+//        if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
+//        {
+//            [inputs addObject:((A1_SignupCell_iPhone *)item.view).input];
+//        }
+//    }
 }
+
+- (NSArray *)buttons
+{
+    NSMutableArray * buttons = [NSMutableArray array];
+    
+    BeeUIScrollItem * item = self.list.items[0];
+    if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]])
+    {
+        [buttons addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
+    }
+    return buttons;
+}
+
+//- (void)setupFields
+//{
+//    [self.group removeAllObjects];
+//    
+////    NSArray * fields = self.userModel.fields;
+//
+//    FormData * username = [FormData data];
+//    username.tagString = @"username";
+//    username.placeholder = __TEXT(@"login_username");
+//    username.keyboardType = UIKeyboardTypeDefault;
+//    username.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:username];
+//    
+////    FormData * email = [FormData data];
+////    email.tagString = @"email";
+////    email.placeholder = __TEXT(@"register_email");
+////    email.keyboardType = UIKeyboardTypeEmailAddress;
+////    email.returnKeyType = UIReturnKeyNext;
+////    [self.group addObject:email];
+//
+//    
+//    FormData * password = [FormData data];
+//    password.tagString = @"password";
+//    password.placeholder = __TEXT(@"login_password");
+//    password.isSecure = YES;
+//    password.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:password];
+//    
+//    FormData * password2 = [FormData data];
+//    password2.tagString = @"password2";
+//    password2.placeholder = __TEXT(@"register_confirm");
+//    password2.isSecure = YES;
+//    password2.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:password2];
+//    
+//    FormData * mobilePhone = [FormData data];
+//    mobilePhone.tagString = @"mobilePhone";
+//    mobilePhone.placeholder = __TEXT(@"mobile_phone");
+//    mobilePhone.keyboardType = UIKeyboardTypeDefault;
+//    mobilePhone.returnKeyType = UIReturnKeyNext;
+//    [self.group addObject:mobilePhone];
+//    
+//    FormData * identifyCode = [FormData data];
+//    identifyCode.tagString = @"identifyCode";
+//    identifyCode.placeholder = __TEXT(@"identify_code");
+//    identifyCode.keyboardType = UIKeyboardTypeDefault;
+//    identifyCode.returnKeyType = UIReturnKeyDone;
+//    [self.group addObject:identifyCode];
+//    
+////    if ( fields.count == 0 )
+////    {
+////        password2.returnKeyType = UIReturnKeyDone;
+////    }
+////    else
+////    {
+////        password2.returnKeyType = UIReturnKeyNext;
+////    }
+//    
+//    
+//      // 不需要的扩展数据
+////    if ( fields && 0 != fields.count  )
+////    {
+////        for ( int i=0; i < fields.count; i++ )
+////        {
+////            SIGNUP_FIELD * field = fields[i];
+////            
+////            FormData * element = [FormData data];
+////            element.tagString = field.id.stringValue;
+////            element.placeholder = field.name;
+////            element.data = field;
+////            
+////            if ( i == (fields.count - 1) )
+////            {
+////                element.returnKeyType = UIReturnKeyDone;
+////            }
+////            else
+////            {
+////                element.returnKeyType = UIReturnKeyNext;
+////            }
+////            
+////            [self.group addObject:element];
+////        }
+////    }
+//}
 
 - (void)setupFields
 {
-    [self.group removeAllObjects];
-    
-//    NSArray * fields = self.userModel.fields;
-
-    FormData * username = [FormData data];
-    username.tagString = @"username";
-    username.placeholder = __TEXT(@"login_username");
-    username.keyboardType = UIKeyboardTypeDefault;
-    username.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:username];
-    
-//    FormData * email = [FormData data];
-//    email.tagString = @"email";
-//    email.placeholder = __TEXT(@"register_email");
-//    email.keyboardType = UIKeyboardTypeEmailAddress;
-//    email.returnKeyType = UIReturnKeyNext;
-//    [self.group addObject:email];
-    
-//    UIButton * btn = [[UIButton alloc] init];
-//    btn.frame = CGRectMake(0, 0, 200, 140);
-//    btn.center = CGPointMake(180, 215);
-//    [btn addTarget:self action:@selector(btnClick:)   forControlEvents:UIControlEventTouchUpInside];
-//    [btn setTitle:@"getIdentify" forState:UIControlStateNormal];
-//    [self.view addSubview:btn];
-
-    
-    FormData * password = [FormData data];
-    password.tagString = @"password";
-    password.placeholder = __TEXT(@"login_password");
-    password.isSecure = YES;
-    password.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:password];
-    
-    FormData * password2 = [FormData data];
-    password2.tagString = @"password2";
-    password2.placeholder = __TEXT(@"register_confirm");
-    password2.isSecure = YES;
-    password2.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:password2];
-    
-    FormData * mobilePhone = [FormData data];
-    mobilePhone.tagString = @"mobilePhone";
-    mobilePhone.placeholder = __TEXT(@"mobile_phone");
-    mobilePhone.keyboardType = UIKeyboardTypeDefault;
-    mobilePhone.returnKeyType = UIReturnKeyNext;
-    [self.group addObject:mobilePhone];
-    
-    FormData * identifyCode = [FormData data];
-    identifyCode.tagString = @"identifyCode";
-    identifyCode.placeholder = __TEXT(@"identify_code");
-    identifyCode.keyboardType = UIKeyboardTypeDefault;
-    identifyCode.returnKeyType = UIReturnKeyDone;
-    [self.group addObject:identifyCode];
-    
-//    if ( fields.count == 0 )
-//    {
-//        password2.returnKeyType = UIReturnKeyDone;
-//    }
-//    else
-//    {
-//        password2.returnKeyType = UIReturnKeyNext;
-//    }
-    
-    
-      // 不需要的扩展数据
-//    if ( fields && 0 != fields.count  )
-//    {
-//        for ( int i=0; i < fields.count; i++ )
-//        {
-//            SIGNUP_FIELD * field = fields[i];
-//            
-//            FormData * element = [FormData data];
-//            element.tagString = field.id.stringValue;
-//            element.placeholder = field.name;
-//            element.data = field;
-//            
-//            if ( i == (fields.count - 1) )
-//            {
-//                element.returnKeyType = UIReturnKeyDone;
-//            }
-//            else
-//            {
-//                element.returnKeyType = UIReturnKeyNext;
-//            }
-//            
-//            [self.group addObject:element];
-//        }
-//    }
+    self.registerModel.usernameTag = __TEXT(@"login_username");
+    self.registerModel.passwordTag = __TEXT(@"login_password");
+    self.registerModel.confirmPasswordTag = __TEXT(@"register_confirm");
+    self.registerModel.mobilePhoneTag = __TEXT(@"mobile_phone");
+    self.registerModel.identifyCodeTag = __TEXT(@"identify_code");
+//    self.registerModel.realnameTag = __TEXT(@"login_realname");
+//    self.registerModel.regionTag = __TEXT(@"region");
+//    self.registerModel.schoolTag = __TEXT(@"school");
+//    self.registerModel.courseTag = __TEXT(@"course");
 }
 
 - (void)doRegister
@@ -289,51 +326,43 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
     //为我们需要的参数赋值
     for ( BeeUITextField * input in inputs )
     {
-        A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)input.superview;
-
-        FormData * data = cell.data;
-        
-        if ( [data.tagString isEqualToString:@"username"] )
+        if ( [input.placeholder isEqualToString:__TEXT(@"login_username")] )
         {
-            userName = cell.input.text.trim;
-            data.text = userName;
+            userName = input.text;
         }
-        else if( [data.tagString isEqualToString:@"mobilePhone"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
         {
-            mobilePhone = cell.input.text.trim;
-            data.text = mobilePhone;
+            password = input.text;
         }
-        else if( [data.tagString isEqualToString:@"identifyCode"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"register_confirm")] )
         {
-            identifyCode = cell.input.text.trim;
-            data.text = identifyCode;
+           password2 = input.text;
         }
-        else if( [data.tagString isEqualToString:@"password"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"mobile_phone")] )
         {
-            password = cell.input.text;
-            data.text = password;
+            mobilePhone = input.text;
         }
-        else if( [data.tagString isEqualToString:@"password2"] )
+        else if( [input.placeholder isEqualToString:__TEXT(@"identify_code")] )
         {
-            password2 = cell.input.text;
-            data.text = password2;
+            identifyCode = input.text;
         }
-        else
-        {
-            SIGNUP_FIELD * field = (SIGNUP_FIELD *)cell.data;
-
-            if ( field.need.boolValue && cell.input.text.length == 0 )
-            {
-                [self presentMessageTips:[NSString stringWithFormat:@"%@%@", __TEXT(@"please_input"), field.name]];
-                return;
-            }
-            
-            SIGNUP_FIELD_VALUE * fieldValue = [[[SIGNUP_FIELD_VALUE alloc] init] autorelease];
-            fieldValue.id = field.id;
-            fieldValue.value = cell.input.text;
-            data.text = cell.input.text;
-            [fields addObject:fieldValue];
-        }
+        // 扩展字段不考虑
+//        else
+//        {
+//            SIGNUP_FIELD * field = (SIGNUP_FIELD *)cell.data;
+//
+//            if ( field.need.boolValue && cell.input.text.length == 0 )
+//            {
+//                [self presentMessageTips:[NSString stringWithFormat:@"%@%@", __TEXT(@"please_input"), field.name]];
+//                return;
+//            }
+//            
+//            SIGNUP_FIELD_VALUE * fieldValue = [[[SIGNUP_FIELD_VALUE alloc] init] autorelease];
+//            fieldValue.id = field.id;
+//            fieldValue.value = cell.input.text;
+//            data.text = cell.input.text;
+//            [fields addObject:fieldValue];
+//        }
     }
 
 	if ( 0 == userName.length || NO == [userName isChineseUserName] )
@@ -390,7 +419,7 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 		return;
 	}
     
-    if ( self.identifyCode != identifyCode )
+    if ( ![self.identifyCode isEqualToString:identifyCode] )
     {
         [self presentMessageTips:@"验证码不正确，请重新输入"];
         return;
@@ -509,6 +538,11 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
 - (void)countDown: (NSTimer *) theTimer
 {
     BeeUIButton * code = [self getIdentifyCodeButton];
+    if ( code == nil )
+    {
+        [self presentMessageTips:@"unknown error"];
+        return;
+    }
     //计数器大于0时计数，且按钮不可用
     if( self.currentCountDown >= 0 )
     {
@@ -553,22 +587,10 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
 
 - (BeeUIButton *)getIdentifyCodeButton
 {
-    NSMutableArray * inputs = [NSMutableArray array];
-    
-    for ( BeeUIScrollItem * item in self.list.items )
+    BeeUIScrollItem * item = self.list.items[0];
+    if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]])
     {
-        if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
-        {
-            [inputs addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
-        }
-    }
-    for ( BeeUIButton * identifyCodeButton in inputs )
-    {
-        A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)identifyCodeButton.superview;
-        if( [cell.input.placeholder isEqualToString:@"验证码"] )
-        {
-            return cell.getIdentifyCode;
-        }
+        return ((A1_SignupCell_iPhone *)item.view).getIdentifyCode;
     }
     return nil;
 }
@@ -580,13 +602,9 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
     
     for ( BeeUITextField * input in inputs )
     {
-        A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)input.superview;
-        
-        FormData * data = cell.data;
-        
-        if ( [data.tagString isEqualToString:@"mobilePhone"] )
+        if ( [input.placeholder isEqualToString:__TEXT(@"mobile_phone")] )
         {
-            mobilePhone = cell.input.text.trim;
+            mobilePhone = input.text;
         }
     }
     self.MSG( API.getIdentifyCode )

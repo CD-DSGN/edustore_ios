@@ -21,5 +21,9 @@
 AS_OUTLET( BeeUIImageView, background )
 AS_OUTLET( BeeUITextField, input )
 AS_OUTLET( BeeUIButton, getIdentifyCode )
-
+AS_OUTLET( BeeUITextField, username )
+AS_OUTLET( BeeUITextField, password )
+AS_OUTLET( BeeUITextField, confirmePassword )
+AS_OUTLET( BeeUITextField, mobilePhone )
+AS_OUTLET( BeeUITextField, identifyCode )
 @end

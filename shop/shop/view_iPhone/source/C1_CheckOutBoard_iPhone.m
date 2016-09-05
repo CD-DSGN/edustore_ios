@@ -398,7 +398,6 @@ ON_SIGNAL3( C1_CheckOutCell_iPhone, balance_redpocket, signal )
         {
             [titles addObject:b.bonus_money_formated];
         }
-        
         BeeUIPickerView * bonusPicker = [BeeUIPickerView spawn];
         [bonusPicker addTitles:titles forColumn:0];
         [bonusPicker showInViewController:self];

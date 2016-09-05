@@ -185,7 +185,7 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 {
     [self.group removeAllObjects];
     
-    NSArray * fields = self.userModel.fields;
+//    NSArray * fields = self.userModel.fields;
 
     FormData * username = [FormData data];
     username.tagString = @"username";
@@ -247,34 +247,30 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 //    }
     
     
-    
-    if ( fields && 0 != fields.count  )
-    {
-        for ( int i=0; i < fields.count; i++ )
-        {
-            SIGNUP_FIELD * field = fields[i];
-            
-            FormData * element = [FormData data];
-            element.tagString = field.id.stringValue;
-            element.placeholder = field.name;
-            element.data = field;
-            
-            if ( i == (fields.count - 1) )
-            {
-                element.returnKeyType = UIReturnKeyDone;
-            }
-            else
-            {
-                element.returnKeyType = UIReturnKeyNext;
-            }
-            
-            [self.group addObject:element];
-        }
-    }
-}
-
-- (void)btnClick:(id) sender {
-    [sender removeFromSuperview];
+      // 不需要的扩展数据
+//    if ( fields && 0 != fields.count  )
+//    {
+//        for ( int i=0; i < fields.count; i++ )
+//        {
+//            SIGNUP_FIELD * field = fields[i];
+//            
+//            FormData * element = [FormData data];
+//            element.tagString = field.id.stringValue;
+//            element.placeholder = field.name;
+//            element.data = field;
+//            
+//            if ( i == (fields.count - 1) )
+//            {
+//                element.returnKeyType = UIReturnKeyDone;
+//            }
+//            else
+//            {
+//                element.returnKeyType = UIReturnKeyNext;
+//            }
+//            
+//            [self.group addObject:element];
+//        }
+//    }
 }
 
 - (void)doRegister
@@ -393,11 +389,16 @@ ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 		[self presentMessageTips:__TEXT(@"wrong_password")];
 		return;
 	}
+    
+    if ( self.identifyCode != identifyCode )
+    {
+        [self presentMessageTips:@"验证码不正确，请重新输入"];
+        return;
+    }
 
     [self.userModel signupWithUser:userName
                           password:password
                        mobilePhone:mobilePhone
-                      identifyCode:identifyCode
                             fields:fields];
 }
 
@@ -472,59 +473,67 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
 {
     if( msg.sending )
     {
-       //短信发送中，按钮框变样
+       //短信发送中，进行电话的错误判断
     }
     if( msg.succeed )
     {
         //短信发送成功，倒计时重新获取
         self.currentCountDown = 60;
+        self.identifyCodeValidTime = 300;
+        //开启两个计时器
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown:) userInfo:nil repeats:YES];
+        self.identifyCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(identifyCodeCountDown:) userInfo:nil repeats:YES];
+        
+        identifyCode * identifyCode = msg.GET_OUTPUT(@"data");
+        self.identifyCode = identifyCode.identifyCode;
     }
     else if( msg.failed )
     {
-        
+        STATUS * status = msg.GET_OUTPUT(@"status");
+        int error_code = [(status.error_code) intValue];
+        if ( error_code == 1 )
+        {
+            [self presentMessageTips:@"电话已被注册"];
+        }
+        else if (error_code == 2 )
+        {
+            [self presentMessageTips:@"电话格式不正确"];
+        }
+        else
+        {
+            [self presentMessageTips:@"错误，请重新获取验证码"];
+        }
     }
 }
 
 - (void)countDown: (NSTimer *) theTimer
 {
-//    NSMutableArray * inputs = [NSMutableArray array];
-//    
-//    for ( BeeUIScrollItem * item in self.list.items )
-//    {
-//        if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
-//        {
-//            [inputs addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
-//        }
-//    }
-//    
-//    for ( BeeUIButton * identifyCodeButton in inputs )
-//    {
-//        A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)identifyCodeButton.superview;
-//        cell.getIdentifyCode.image = [UIImage imageNamed:@"button_narrow_blue.png"];
-// 
-//    }
-    if( self.currentCountDown > 0 )
+    BeeUIButton * code = [self getIdentifyCodeButton];
+    //计数器大于0时计数，且按钮不可用
+    if( self.currentCountDown >= 0 )
     {
-        NSMutableArray * inputs = [NSMutableArray array];
-        
-        for ( BeeUIScrollItem * item in self.list.items )
-        {
-            if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
-            {
-                [inputs addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
-            }
-        }
-        
-        for ( BeeUIButton * identifyCodeButton in inputs )
-        {
-            A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)identifyCodeButton.superview;
-            cell.getIdentifyCode.image = [UIImage imageNamed:@"button_narrow_blue.png"];
-            [cell.getIdentifyCode setTitle:[NSString stringWithFormat:@"%ld秒后重新获取",(long)self.currentCountDown]];
-        }
-        self.currentCountDown -= 1;
-    }else {
+        [code setEnabled:NO];
+        // code.image = [UIImage imageNamed:@"button_orange.png"];
+        code.selected = YES;
+        // [code setBackgroundImage:[UIImage imageNamed:@"button_orange.png"] forState:UIControlStateSelected];
+        // code.image = [UIImage imageNamed:@"button_narrow_blue.png"];
+        [code setTitle:[NSString stringWithFormat:@"%ld秒后重新获取",(long)self.currentCountDown]];
+        self.currentCountDown--;
+    }else {     //计数器小于0时，清空计数器并恢复按钮状态
         [self removeTimer];
+        [code setEnabled:YES];
+        [code setImage:nil];
+        [code setTitle:@"获取验证码"];
+    }
+}
+
+- (void)identifyCodeCountDown: (NSTimer *) theTimer
+{
+    if ( self.identifyCodeValidTime >= 0 ) {
+        self.identifyCodeValidTime--;
+    } else {
+        self.identifyCode = nil;
+        [self clearIdentifyCodeTimer];
     }
 }
 
@@ -535,26 +544,33 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
     self.timer = nil;
 }
 
-- (void)getIdentifyCodeButton
+- (void)clearIdentifyCodeTimer
 {
-        NSMutableArray * inputs = [NSMutableArray array];
+    self.identifyCodeValidTime = 0;
+    [self.identifyCodeTimer invalidate];
+    self.identifyCodeTimer = nil;
+}
+
+- (BeeUIButton *)getIdentifyCodeButton
+{
+    NSMutableArray * inputs = [NSMutableArray array];
     
-        for ( BeeUIScrollItem * item in self.list.items )
+    for ( BeeUIScrollItem * item in self.list.items )
+    {
+        if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
         {
-            if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]] )
-            {
-                [inputs addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
-            }
+            [inputs addObject:((A1_SignupCell_iPhone *)item.view).getIdentifyCode];
         }
-    
-        for ( BeeUIButton * identifyCodeButton in inputs )
+    }
+    for ( BeeUIButton * identifyCodeButton in inputs )
+    {
+        A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)identifyCodeButton.superview;
+        if( [cell.input.placeholder isEqualToString:@"验证码"] )
         {
-            A1_SignupCell_iPhone * cell = (A1_SignupCell_iPhone *)identifyCodeButton.superview;
-            if(cell.tagString isEqualToString:@"验证码")
-            {
-                
-            }
+            return cell.getIdentifyCode;
         }
+    }
+    return nil;
 }
 
 - (void)getIdentifyCode
@@ -573,7 +589,6 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
             mobilePhone = cell.input.text.trim;
         }
     }
-    
     self.MSG( API.getIdentifyCode )
         .INPUT( @"mobilePhone", mobilePhone);
 }

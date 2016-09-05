@@ -209,7 +209,6 @@ DEF_NOTIFICATION( UPDATED )
 - (void)signupWithUser:(NSString *)user
 			  password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
-          identifyCode:(NSString *)identifyCode
 				fields:(NSArray *)fields
 {
 	self.CANCEL_MSG( API.user_signup );
@@ -218,8 +217,51 @@ DEF_NOTIFICATION( UPDATED )
 	.INPUT( @"name", user )
 	.INPUT( @"password", password )
 	.INPUT( @"mobilePhone", mobilePhone )
-    .INPUT( @"identifyCode", identifyCode )
 	.INPUT( @"field", fields );
+}
+
+- (void)signupWithUser:(NSString *)user
+              password:(NSString *)password
+           mobilePhone:(NSString *)mobilePhone
+                fields:(NSArray *)fields
+              realname:(NSString *)realname
+                school:(NSString *)school
+                course:(NSString *)course
+             isTeacher:(NSString *)isTeacher
+{
+    self.CANCEL_MSG( API.teacher_signup );
+    self
+    .MSG( API.teacher_signup )
+    .INPUT( @"name", user )
+    .INPUT( @"password", password )
+    .INPUT( @"mobilePhone", mobilePhone )
+    .INPUT( @"field", fields )
+    .INPUT( @"realname", realname )
+    .INPUT( @"school", school )
+    .INPUT( @"course", course )
+    .INPUT( @"isTeacher", isTeacher );
+}
+
+- (void)getCourse
+{
+    self.CANCEL_MSG( API.get_course );
+    self.MSG( API.get_course );
+}
+
+- (void)selectRegionByParentId:(NSString *)parent_id
+{
+    self.CANCEL_MSG( API.get_region );
+    self
+    .MSG( API.get_region )
+    .INPUT( @"parent_id", parent_id);
+}
+
+- (void)checkUser:(NSString *)user
+{
+    self.CANCEL_MSG( API.checkUser );
+    self
+    .MSG( API.checkUser )
+    .INPUT( @"name", user);
 }
 
 - (void)signout
@@ -280,6 +322,27 @@ ON_MESSAGE3( API, user_signin, msg )
 }
 
 ON_MESSAGE3( API, user_signup, msg )
+{
+	if ( msg.succeed )
+	{
+		STATUS * status = msg.GET_OUTPUT( @"data_status" );
+		if ( NO == status.succeed.boolValue )
+		{
+			msg.errorCode = status.error_code.intValue;
+			msg.errorDesc = status.error_desc;
+			msg.failed = YES;
+			return;
+		}
+
+		self.session = msg.GET_OUTPUT( @"data_session" );
+		self.user = msg.GET_OUTPUT( @"data_user" );
+		self.loaded = YES;
+		
+		[self setOnline:YES];
+	}
+}
+
+ON_MESSAGE3( API, teacher_signup, msg )
 {
 	if ( msg.succeed )
 	{

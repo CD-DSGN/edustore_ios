@@ -354,6 +354,7 @@ DEF_SIGNAL( CONFIRMED )
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    NSLog(@"%lu",(unsigned long)self.columns);
 	return self.columns;
 }
 
@@ -361,7 +362,8 @@ DEF_SIGNAL( CONFIRMED )
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
 	NSArray * objects = [self.columnTitles safeObjectAtIndex:component];
-
+    NSLog(@"%lu",(unsigned long)objects.count);
+    return objects.count;
 	if ( objects && [objects isKindOfClass:[NSArray class]] )
 	{
 		return objects.count;
@@ -387,9 +389,10 @@ DEF_SIGNAL( CONFIRMED )
 // these methods return either a plain NSString, a NSAttributedString, or a view (e.g UILabel) to display the row for the component.
 // for the view versions, we cache any hidden and thus unused views and pass them back for reuse.
 // If you return back a different object, the old one will be released. the view will be centered in the row rect
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	NSArray * objects = [self.columnTitles safeObjectAtIndex:component];
+    NSLog(@"%@",[objects safeObjectAtIndex:row]);
 	if ( objects && [objects isKindOfClass:[NSArray class]] )
 	{
 		return [objects safeObjectAtIndex:row];

@@ -317,6 +317,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize more = _more;
 @synthesize name = _name;
 @synthesize parent_id = _parent_id;
+@synthesize type = _type;
 
 @end
 
@@ -412,6 +413,19 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @implementation identifyCode
 
 @synthesize identifyCode = _identifyCode;
+
+@end
+
+@implementation Course
+
+@synthesize course_name = _course_name;
+
+@end
+
+@implementation Regions
+
+@synthesize more = _more;
+@synthesize regions = _regions;
 
 @end
 
@@ -2131,7 +2145,6 @@ DEF_MESSAGE_( user_signup, msg )
 	{
 		// NSString * email = msg.GET_INPUT( @"email" );
         NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
-        NSString * identifyCode = msg.GET_INPUT( @"identifyCode");
 		NSString * name = msg.GET_INPUT( @"name" );
 		NSString * password = msg.GET_INPUT( @"password" );
 		NSArray * field = msg.GET_INPUT( @"field" );
@@ -2154,7 +2167,6 @@ DEF_MESSAGE_( user_signup, msg )
 
 		NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
 		// requestBody.APPEND( @"email", email );
-        requestBody.APPEND( @"identifyCode", identifyCode);
         requestBody.APPEND( @"mobilePhone", mobilePhone);
 		requestBody.APPEND( @"name", name );
 		requestBody.APPEND( @"password", password );
@@ -2193,8 +2205,6 @@ DEF_MESSAGE_( user_signup, msg )
 		msg.OUTPUT( @"data_session", session );
 		msg.OUTPUT( @"data_status", status );
 		msg.OUTPUT( @"data_user", user );
-		
-
 	}
 	else if ( msg.failed )
 	{
@@ -2202,6 +2212,151 @@ DEF_MESSAGE_( user_signup, msg )
 	else if ( msg.cancelled )
 	{
 	}
+}
+
+DEF_MESSAGE_ ( teacher_signup, msg )
+{
+    if( msg.sending )
+    {
+        NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
+        NSString * name = msg.GET_INPUT( @"name" );
+        NSString * password = msg.GET_INPUT( @"password" );
+        NSArray * field = msg.GET_INPUT( @"field" );
+        NSString * realname = msg.GET_INPUT( @"realname" );
+        NSString * school = msg.GET_INPUT( @"school" );
+        NSString * course = msg.GET_INPUT( @"course" );
+        NSNumber * isTeacher = msg.GET_INPUT( @"isTeacher" );
+        
+        if ( nil == name || NO == [name isKindOfClass:[NSString class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        if ( nil == password || NO == [password isKindOfClass:[NSString class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"mobilePhone", mobilePhone);
+        requestBody.APPEND( @"name", name );
+        requestBody.APPEND( @"password", password );
+        requestBody.APPEND( @"field", field );
+        requestBody.APPEND( @"realname", realname );
+        requestBody.APPEND( @"school", school );
+        requestBody.APPEND( @"course", course );
+        requestBody.APPEND( @"isTeacher", isTeacher );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/teacherSignup", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        SESSION * session = [SESSION objectFromDictionary:[response dictAtPath:@"data.session"]];
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        USER * user = [USER objectFromDictionary:[response dictAtPath:@"data.user"]];
+        
+        INFO( status.error_desc );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        if ( nil == user || NO == [user isKindOfClass:[USER class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"data_session", session );
+        msg.OUTPUT( @"data_status", status );
+        msg.OUTPUT( @"data_user", user );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( get_course, msg )
+{
+    if( msg.sending )
+    {
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/course", [ServerConfig sharedInstance].url];
+        msg.HTTP_POST( requestURI );
+    }
+    else if( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        Course * data = [Course objectFromDictionary:[response dictAtPath:@"data"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( get_region, msg )
+{
+    if ( msg.sending )
+    {
+        NSString * parent_id = msg.GET_INPUT( @"parent_id" );
+        if (parent_id == nil )
+        {
+            parent_id = @"1";
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"parent_id", parent_id);
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/region", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        NSArray * data = [REGION objectsFromArray:[response arrayAtPath:@"data.regions"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
 }
 
 #pragma mark - POST user/signupFields
@@ -2217,18 +2372,6 @@ DEF_MESSAGE_( user_signupFields, msg )
 	}
 	else if ( msg.succeed )
 	{
-		NSDictionary * response = msg.responseJSONDictionary;
-		STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
-		NSArray * data = [SIGNUP_FIELD objectsFromArray:[response arrayAtPath:@"data"]];
-
-		if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
-		{
-			msg.failed = YES;
-			return;
-		}
-
-		msg.OUTPUT( @"status", status );
-		msg.OUTPUT( @"data", data );
 
 	}
 	else if ( msg.failed )
@@ -2470,6 +2613,37 @@ DEF_MESSAGE_( getIdentifyCode, msg)
         
         msg.OUTPUT( @"status", status );
         msg.OUTPUT( @"data", data );
+    }
+    else if( msg.failed )
+    {
+    }
+    else if( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( checkUser, msg )
+{
+    if( msg.sending )
+    {
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/checkUser", [ServerConfig sharedInstance].url];
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"username", msg.GET_INPUT( @"name" ) );
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
     }
     else if( msg.failed )
     {

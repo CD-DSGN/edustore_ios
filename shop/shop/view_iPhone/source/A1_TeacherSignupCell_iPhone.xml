@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ui namespace="A1_SignupCell_iPhone">
+<ui namespace="A1_TeacherSignupCell_iPhone">
 
-	<row class="list-item-header">
-        <image id="background" class="background"/>
-        <input id="input" class="input"></input>
+    <row class="list-item-header">
+        <col>
+            <image id="background" class="background"/>
+            <input id="input" class="input"></input>
+        </col>
+        <col>
+            <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
+        </col>
     </row>
-   
-	<style type="text/css">
+
+<style type="text/css">
         .input {
         margin-left: 20px;
-        height: 35px;
+        height: 44px;
         width: 285px;
         line-height: 35px;
         font: 16px;
@@ -37,5 +42,15 @@
         background-insets: 10px;
         }
         
-	</style>
+        #getIdentifyCode {
+        position: absolute;
+        font-size: 12px;
+        width: 120px;
+        height: 44px;
+        line-height: 44px;
+        right:10px;
+        top: 0;
+        background-image: url(button_red.png);
+        }
+</style>
 </ui>

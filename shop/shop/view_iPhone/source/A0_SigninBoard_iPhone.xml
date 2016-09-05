@@ -19,9 +19,6 @@
             <row class="signup-wrapper">
                 <button id="teacherSignup">教师注册</button>
             </row>
-            <row class="signup-wrapper">
-                <button id="getIdentifyCode">获取验证码</button>
-            </row>
         </row>
     </col>
     <style type="text/css">
@@ -55,16 +52,6 @@
 			button-title-color: #666;
 		}
         #teacherSignup {
-            margin-top: 20px;
-            float: center;
-            height: 20px;
-            width: 50%;
-            float: center;
-            margin-right: 20;
-            button-title-color: #666;
-        }
-        #getIdentifyCode
-        {
             margin-top: 20px;
             float: center;
             height: 20px;

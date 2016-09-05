@@ -24,6 +24,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_OUTLET( BeeUIImageView, background )
 DEF_OUTLET( BeeUITextField, input )
+DEF_OUTLET( BeeUIButton, getIdentifyCode )
 
 - (void)load
 {
@@ -60,6 +61,11 @@ DEF_OUTLET( BeeUITextField, input )
             default:
                 self.background.image = [UIImage imageNamed:@"cell_bg_content.png"];
                 break;
+        }
+        
+        if ( formData.placeholder != __TEXT(@"identify_code"))
+        {
+            self.getIdentifyCode.hidden = YES;
         }
     }
 }

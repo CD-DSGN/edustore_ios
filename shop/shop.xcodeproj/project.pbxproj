@@ -46,12 +46,16 @@
 		3268BEE2192B4CCD00512CB7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3268BEE1192B4CCD00512CB7 /* AddressBook.framework */; };
 		3268BEE4192B502100512CB7 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3268BEE3192B502100512CB7 /* iflyMSC.framework */; };
 		32D6036C1A301FB30008B974 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6036B1A301FB30008B974 /* JSONKit.m */; };
+		5F12937E1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F12937B1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.xml */; };
+		5F12937F1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F12937C1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m */; };
+		5F1293831D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1293811D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m */; };
+		5F1293841D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1293821D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml */; };
+		5F803E961D6ADF5E00103EF4 /* A0_SigninBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE64161D64607900A66F3F /* A0_SigninBoard_iPhone.m */; };
 		5F9725FC1D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9725F61D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m */; };
 		5F9725FD1D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F9725F71D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml */; };
 		5F9725FE1D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9725F91D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.m */; };
 		5F9725FF1D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F9725FA1D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.xml */; };
 		5FBE64181D64607900A66F3F /* A0_SigninBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5FBE64151D64607900A66F3F /* A0_SigninBoard_iPhone.xml */; };
-		5FBE64191D64607900A66F3F /* A0_SigninBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE64161D64607900A66F3F /* A0_SigninBoard_iPhone.m */; };
 		6302390C177C1676004C052D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 630236B1177C1675004C052D /* AppDelegate.m */; };
 		6302390D177C1676004C052D /* controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 630236B4177C1675004C052D /* controller.m */; };
 		6302390F177C1676004C052D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 630236B7177C1675004C052D /* Default-568h@2x.png */; };
@@ -977,6 +981,12 @@
 		3268BEE3192B502100512CB7 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		32D6036A1A301FB30008B974 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		32D6036B1A301FB30008B974 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		5F12937B1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_TeacherSignupBoard2_iPhone.xml; sourceTree = "<group>"; };
+		5F12937C1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_TeacherSignupBoard2_iPhone.m; sourceTree = "<group>"; };
+		5F12937D1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_TeacherSignupBoard2_iPhone.h; sourceTree = "<group>"; };
+		5F1293801D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_TeacherSignupCell2_iPhone.h; sourceTree = "<group>"; };
+		5F1293811D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_TeacherSignupCell2_iPhone.m; sourceTree = "<group>"; };
+		5F1293821D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_TeacherSignupCell2_iPhone.xml; sourceTree = "<group>"; };
 		5F9725F61D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_TeacherSignupBoard_iPhone.m; sourceTree = "<group>"; };
 		5F9725F71D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_TeacherSignupBoard_iPhone.xml; sourceTree = "<group>"; };
 		5F9725F81D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_TeacherSignupCell_iPhone.h; sourceTree = "<group>"; };
@@ -3171,6 +3181,12 @@
 				5F9725F81D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.h */,
 				5F9725F91D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.m */,
 				5F9725FA1D62CDB8000582ED /* A1_TeacherSignupCell_iPhone.xml */,
+				5F12937D1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.h */,
+				5F12937C1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m */,
+				5F12937B1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.xml */,
+				5F1293801D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.h */,
+				5F1293811D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m */,
+				5F1293821D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml */,
 				CB9C217718BB3B0A00DDA501 /* B0_BannerCell_iPhone.h */,
 				CB9C217818BB3B0A00DDA501 /* B0_BannerCell_iPhone.m */,
 				CB9C217918BB3B0A00DDA501 /* B0_BannerCell_iPhone.xml */,
@@ -5466,6 +5482,7 @@
 				1848BD8A18B4D8690007238A /* messages_right_bubble@2x.png in Resources */,
 				CB9C23B918BB3B0C00DDA501 /* C1_CheckoutHeader_iPhone.xml in Resources */,
 				CB9C22FA18BB3B0C00DDA501 /* item_info_buy_choose_num_bg@2x.png in Resources */,
+				5F12937E1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.xml in Resources */,
 				CB9C231E18BB3B0C00DDA501 /* profile_refresh_up_arrow_icon@2x.png in Resources */,
 				CB9C22D418BB3B0C00DDA501 /* expired_568h@2x.jpg in Resources */,
 				CB9C22C318BB3B0C00DDA501 /* browser_baritem_stop@2x.png in Resources */,
@@ -5588,6 +5605,7 @@
 				1848BD8F18B4D8690007238A /* nav_bg.png in Resources */,
 				CB9C22DE18BB3B0C00DDA501 /* footer_user_active_icon@2x.png in Resources */,
 				CB9C22C118BB3B0C00DDA501 /* browser_baritem_forward@2x.png in Resources */,
+				5F1293841D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.xml in Resources */,
 				CB9C236E18BB3B0C00DDA501 /* A1_SignupBoard_iPhone.xml in Resources */,
 				CB9C234F18BB3B0C00DDA501 /* trade_info_stream_logistics_time_active_icon@2x.png in Resources */,
 				CB9C231418BB3B0C00DDA501 /* profile_img_bg@2x.png in Resources */,
@@ -5850,6 +5868,7 @@
 				CB81D26818ABB3F000F277EA /* CommentModel.m in Sources */,
 				CBD1746F18BCBFC8003D1862 /* CSSSelector.m in Sources */,
 				CBD174A218BCBFC8003D1862 /* Bee_UIVideoEditorController.m in Sources */,
+				5F12937F1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m in Sources */,
 				CBD175E918BCBFC8003D1862 /* bee.services.wizard.m in Sources */,
 				CB9C241118BB3B0C00DDA501 /* F1_NewAddressCell_iPhone.m in Sources */,
 				E9F5DEFC1954407600216A56 /* ServiceShare_SinaWeibo.m in Sources */,
@@ -5892,7 +5911,6 @@
 				CB9C23FF18BB3B0C00DDA501 /* E5_CollectionCell_iPhone.m in Sources */,
 				CBD174D618BCBFC8003D1862 /* UIScrollView+LayoutParser.m in Sources */,
 				CBD1753918BCBFC8003D1862 /* NSTimer+BeeExtension.mm in Sources */,
-				5FBE64191D64607900A66F3F /* A0_SigninBoard_iPhone.m in Sources */,
 				CBD1753F18BCBFC8003D1862 /* Bee_HTTPClient.m in Sources */,
 				CB9C237D18BB3B0C00DDA501 /* B0_IndexRecommendGoodsCell_iPhone.m in Sources */,
 				CB9C240318BB3B0C00DDA501 /* E6_ShippingStatusBody_iPhone.m in Sources */,
@@ -5998,6 +6016,7 @@
 				CB9C23D318BB3B0C00DDA501 /* D0_SearchCategory_iPhone.m in Sources */,
 				CB9C237518BB3B0C00DDA501 /* B0_IndexBoard_iPhone.m in Sources */,
 				CBD1745318BCBFC8003D1862 /* BeeUIBoard+Traversing.m in Sources */,
+				5F803E961D6ADF5E00103EF4 /* A0_SigninBoard_iPhone.m in Sources */,
 				CBD1750F18BCBFC8003D1862 /* Bee_MemoryCache.mm in Sources */,
 				CBD175B218BCBFC8003D1862 /* bee.services.location.m in Sources */,
 				CB9C23D918BB3B0C00DDA501 /* D1_CategoryBoard_iPhone.m in Sources */,
@@ -6054,6 +6073,7 @@
 				CB9C23B018BB3B0C00DDA501 /* C0_ShoppingCartHeaderCell_iPhone.m in Sources */,
 				CB9C242718BB3B0C00DDA501 /* H0_BrowserBoard_iPhone.m in Sources */,
 				CB81D27918ABB3F000F277EA /* SearchCategoryModel.m in Sources */,
+				5F1293831D66AE5D008E21ED /* A1_TeacherSignupCell2_iPhone.m in Sources */,
 				CB81D27318ABB3F000F277EA /* GoodsPageModel.m in Sources */,
 				CB9C229918BB3B0C00DDA501 /* CommonFootLoader.m in Sources */,
 				CBD174C718BCBFC8003D1862 /* Bee_UILayoutBuilder_v2.m in Sources */,
@@ -6292,7 +6312,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6346,7 +6366,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6429,7 +6449,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",

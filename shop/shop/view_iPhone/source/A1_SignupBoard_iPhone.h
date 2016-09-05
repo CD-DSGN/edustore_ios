@@ -27,8 +27,13 @@ AS_OUTLET( BeeUIScrollView, list )
 AS_MODEL( UserModel, userModel )
 
 @property (nonatomic, retain) NSMutableArray * group;
-@property (nonatomic, assign) NSInteger * currentCountDown;
+@property (nonatomic, retain) NSString * identifyCode;
+// 获取验证码按钮计时
+@property (nonatomic) NSInteger currentCountDown;
 @property (nonatomic, assign) NSTimer * timer;
+// 验证码有效性计时
+@property (nonatomic) NSInteger identifyCodeValidTime;
+@property (nonatomic, assign) NSTimer * identifyCodeTimer;
 //@property (nonatomic, retain) NSArray * group2;
 
 @end

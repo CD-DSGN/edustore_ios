@@ -12,19 +12,23 @@
 //	Powered by BeeFramework
 //
 
-#import "A1_SignupCell_iPhone.h"
+#import "A1_TeacherSignupCell2_iPhone.h"
 #import "FormCell.h"
 
 #pragma mark -
 
-@implementation A1_SignupCell_iPhone
+@implementation A1_TeacherSignupCell2_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_OUTLET( BeeUIImageView, background )
 DEF_OUTLET( BeeUITextField, input )
-DEF_OUTLET( BeeUIButton, getIdentifyCode )
+DEF_OUTLET( BeeUIButton, chooseCourses )
+DEF_OUTLET( BeeUILabel, course )
+DEF_OUTLET( BeeUIImageView, button_bkg )
+DEF_OUTLET( BeeUIButton, chooseRegion )
+DEF_OUTLET( BeeUILabel, region )
 
 - (void)load
 {
@@ -63,14 +67,29 @@ DEF_OUTLET( BeeUIButton, getIdentifyCode )
                 break;
         }
         
-        if ( formData.placeholder != __TEXT(@"identify_code"))
+        // 做一些视图上的修改，以后如果对BEE有更深入了解，可能修改做法
+        if ( formData.placeholder != __TEXT(@"course"))
         {
-            self.getIdentifyCode.hidden = YES; 
-        } else {
-            $(@"input").CSS(@"width:165px");
-            $(@"input").CSS(@"input-return-key:done");
+            self.chooseCourses.hidden = YES;
+            self.course.hidden = YES;
+            self.button_bkg.hidden = YES;
         }
-        
+        else
+        {
+            self.input.hidden = YES;
+            self.input.enabled = NO;
+        }
+        if ( formData.placeholder != __TEXT(@"region"))
+        {
+            self.chooseRegion.hidden = YES;
+            self.region.hidden =  YES;
+            self.button_bkg.hidden = YES;
+        }
+        else
+        {
+            self.input.hidden = YES;
+            self.input.enabled = NO;
+        }
     }
 }
 

@@ -44,6 +44,7 @@ ON_CREATE_VIEWS( signal )
 //	[self showBarButton:BeeUINavigationBar.LEFT image:[UIImage imageNamed:@"nav_back.png"]];
     [self showBarButton:BeeUINavigationBar.LEFT title:__TEXT(@"cancel") image:[[UIImage imageNamed:@"nav_right.png"] stretched]];
     [self showBarButton:BeeUINavigationBar.RIGHT title:__TEXT(@"login_login") image:[[UIImage imageNamed:@"nav_right.png"] stretched]];
+    
 }
 
 ON_DELETE_VIEWS( signal )
@@ -108,12 +109,6 @@ ON_SIGNAL3( A0_SigninBoard_iPhone, signup, signal )
 ON_SIGNAL3( A0_SigninBoard_iPhone, teacherSignup, signal)
 {
     [self.stack pushBoard:[A1_TeacherSignupBoard_iPhone board] animated:YES];
-}
-
-ON_SIGNAL3( A0_SigninBoard_iPhone, getIdentifyCode, signal)
-{
-    self.MSG( API.getIdentifyCode )
-        .INPUT( @"mobilePhone", @"18380207432" );
 }
 
 #pragma mark -
@@ -192,23 +187,6 @@ ON_MESSAGE3( API, user_signin, msg )
 	{
 		[self showErrorTips:msg];
 	}
-}
-
-ON_MESSAGE3( API, getIdentifyCode, msg)
-{
-    if( msg.sending )
-    {
-        [self presentMessageTips:__TEXT(@"username_too_long")];
-    }
-    if( msg.succeed )
-    {
-        NSArray * data = msg.GET_OUTPUT(@"data");
-        [self presentMessageTips:__TEXT(data[0])];
-    }
-    else if( msg.failed )
-    {
-        
-    }
 }
 
 @end

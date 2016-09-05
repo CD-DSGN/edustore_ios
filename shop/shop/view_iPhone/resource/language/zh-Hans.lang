@@ -377,5 +377,13 @@
 <string name="identify_code">验证码</string>
 <string name="wrong_mobile">请输入正确的电话号码</string>
 <string name="wrong_identifyCode">验证码长度不正确</string>
+<string name="next_step">下一步</string>
+<string name="login_realname">教师姓名</string>
+<string name="school">学校</string>
+<string name="course">请选择课程</string>
+<string name="wrong_course">请选择课程</string>
+<string name="null_school">学校不能为空</string>
+<string name="null_realname">姓名不能为空</string>
+<string name="region">请选择地区</string>
 
 </resources>

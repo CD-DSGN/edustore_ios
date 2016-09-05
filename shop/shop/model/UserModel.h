@@ -43,16 +43,32 @@ AS_NOTIFICATION( UPDATED )
 //			  password:(NSString *)password
 //				 email:(NSString *)email
 //				fields:(NSArray *)fields;
+// 重写注册传参
 - (void)signupWithUser:(NSString *)user
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
-          identifyCode:(NSString *)identifyCode
                 fields:(NSArray *)fields;
+
+- (void)signupWithUser:(NSString *)user
+              password:(NSString *)password
+           mobilePhone:(NSString *)mobilePhone
+                fields:(NSArray *)fields
+              realname:(NSString *)realname
+                school:(NSString *)school
+                course:(NSString *)course
+             isTeacher:(NSString *)isTeacher;
+
+// 通过父亲id查询地区
+- (void)selectRegionByParentId:(NSString *)parent_id;
+
+- (void)getCourse;
 
 - (void)signout;
 - (void)kickout;
 
 - (void)updateFields;
 - (void)updateProfile;
+
+- (void)checkUser:(NSString *)user;
 
 @end

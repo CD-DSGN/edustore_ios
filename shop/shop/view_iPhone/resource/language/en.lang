@@ -377,5 +377,14 @@
 <string name="identify_code">identify code</string>
 <string name="wrong_mobile">please input correct mobile phone</string>
 <string name="wrong_identifyCode">wrong identify code length</string>
+<string name="next_step">next step</string>
+<string name="login_realname">real name</string>
+<string name="school">School</string>
+<string name="course">plaese choose course</string>
+<string name="wrong_course">please choose course</string>
+<string name="null_school">null school</string>
+<string name="null_realname">null teacher name</string>
+<string name="region">Please choose region</string>
+
 
 </resources>

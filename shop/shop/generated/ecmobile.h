@@ -330,11 +330,13 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSNumber *		price_max;
 @end
 
+// modify by nhj
 @interface REGION : NSObject
 @property (nonatomic, retain) NSNumber *		more;
 @property (nonatomic, retain) NSString *		name;
 @property (nonatomic, retain) NSNumber *		parent_id;
 @property (nonatomic, retain) NSNumber *		id;
+@property (nonatomic, retain) NSString *       type;   // 区分省市县
 @end
 
 @interface SESSION : NSObject
@@ -417,6 +419,17 @@ enum RANK_LEVEL
 //接收返回的验证码
 @interface identifyCode : NSObject
 @property (nonatomic, retain) NSString *        identifyCode;
+@end
+
+// 接收返回的 course 信息
+@interface Course : NSObject
+@property (nonatomic, retain) NSArray * course_name;
+@end
+
+// 接收返回的 region 信息
+@interface Regions : NSObject
+@property (nonatomic, retain) NSNumber * more;
+@property (nonatomic, retain) NSArray * regions;
 @end
 
 #pragma mark - controllers
@@ -528,6 +541,15 @@ AS_MESSAGE( user_signin );
 // POST user/signup
 AS_MESSAGE( user_signup );
 
+// POST user/teacherSignup
+AS_MESSAGE( teacher_signup );
+
+// POST user/getCourse
+AS_MESSAGE( get_course );
+
+// POST getRegion
+AS_MESSAGE( get_region );
+
 // POST user/signupFields
 AS_MESSAGE( user_signupFields );
 
@@ -545,6 +567,9 @@ AS_MESSAGE( price_range );
 
 // POST mobile_phone
 AS_MESSAGE( getIdentifyCode );
+
+// POST check_username
+AS_MESSAGE( checkUser );
 
 @end
 

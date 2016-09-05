@@ -51,7 +51,8 @@
         line-height: 44px;
         right:10px;
         top: 0;
-        background-image: url(button_red.png);
+        background-image: url(button_blue.png);
+       
         }
         
 	</style>

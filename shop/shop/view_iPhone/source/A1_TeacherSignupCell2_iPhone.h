@@ -16,10 +16,14 @@
 
 #pragma mark -
 
-@interface A1_TeacherSignupCell_iPhone : BeeUICell
+@interface A1_TeacherSignupCell2_iPhone : BeeUICell
 
 AS_OUTLET( BeeUIImageView, background )
 AS_OUTLET( BeeUITextField, input )
-AS_OUTLET( BeeUIButton, getIdentifyCode)
+AS_OUTLET( BeeUIButton, chooseCourses )
+AS_OUTLET( BeeUILabel, course )
+AS_OUTLET( BeeUIImageView, button_bkg )
+AS_OUTLET( BeeUIButton, chooseRegion )
+AS_OUTLET( BeeUILabel, region )
 
 @end

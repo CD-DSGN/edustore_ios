@@ -2401,6 +2401,36 @@ DEF_MESSAGE_( get_course, msg )
     }
 }
 
+DEF_MESSAGE_( course, msg )
+{
+    if( msg.sending )
+    {
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/course", [ServerConfig sharedInstance].url];
+        msg.HTTP_POST( requestURI );
+    }
+    else if( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        Course * data = [Course objectFromDictionary:[response dictAtPath:@"data"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
 DEF_MESSAGE_( get_teacher, msg )
 {
     if( msg.sending )

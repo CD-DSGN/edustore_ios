@@ -388,6 +388,6 @@
 <string name="follow">关注老师</string>
 <string name="integral">积分</string>
 <string name="null">搜索结果为空</string>
-
+<string name="tap_refresh">点击刷新</string>
 
 </resources>

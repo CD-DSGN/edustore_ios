@@ -38,8 +38,10 @@
 
 - (void)load
 {
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-
+	// [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[AppBoard_iPhone sharedInstance] prefersStatusBarHidden];
+    [[AppBoard_iPhone sharedInstance] prefersStatusBarStyle];
+    
 	bee.ui.config.ASR = YES;		// Signal自动路由
 	bee.ui.config.iOS6Mode = YES;	// iOS6.0界面布局
 
@@ -54,8 +56,9 @@
 	[UserModel			sharedInstance];
 
     // 配置ECSHOP
-    [ServerConfig sharedInstance].url = @"http://localhost/edustore/ecmobile/?url=";
+//     [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
     // [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
+    [ServerConfig sharedInstance].url = @"http://f30cf16.ngrok.natapp.cn/edustore/ecmobile/?url=";
     
     // 配置管理后台
     [ECMobileManager sharedInstance].appID	= @"52653a425feb4754";
@@ -88,7 +91,7 @@
 	// 配置导航条
 	{
 		[BeeUINavigationBar setTitleColor:[UIColor whiteColor]];
-		[BeeUINavigationBar setBackgroundColor:[UIColor blackColor]];
+		[BeeUINavigationBar setBackgroundColor:[UIColor lightGrayColor]];
 		
 		if ( IOS7_OR_LATER )
 		{
@@ -108,6 +111,7 @@
 	self.window.rootViewController = [AppBoard_iPhone sharedInstance];
 	
 	[MobClick appLaunched];
+    
 }
 
 - (void)unload

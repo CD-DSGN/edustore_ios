@@ -29,6 +29,7 @@ DEF_MODEL( UserModel, userModel );
     self.userResult = [NSMutableArray array];
     self.teacherId = [NSMutableArray array];
     self.isFollowed = [NSMutableArray array];
+    self.school = [NSMutableArray array];
     
     self.history = [UITableView alloc];
     self.result = [UITableView alloc];
@@ -42,6 +43,7 @@ DEF_MODEL( UserModel, userModel );
     self.userResult = nil;
     self.teacherId = nil;
     self.isFollowed = nil;
+    self.school = nil;
     
     self.history = nil;
     self.result = nil;
@@ -201,7 +203,20 @@ ON_DID_DISAPPEAR( signal )
 
 - (void)cancelFollow:(UIButton *)button
 {
-    [self.userModel cancelFollowByStudentId:self.user_id courseId:self.course_id];
+    NSString * teacherName = self.userResult[button.tag];
+    NSString * title = @"确定要取消";
+    title = [title stringByAppendingString:teacherName];
+    title = [title stringByAppendingString:@"老师的关注吗"];
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [sheet addAction:[UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action){
+        [self.userModel cancelFollowByStudentId:self.user_id courseId:self.course_id];
+    }]];
+    [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:sheet animated:YES completion:nil];
+    
+    // [self.userModel cancelFollowByStudentId:self.user_id courseId:self.course_id];
 }
 
 - (void)showSearchHistory
@@ -218,6 +233,40 @@ ON_DID_DISAPPEAR( signal )
     [self.result setHidden:NO];
 }
 
+// 对查询出来的用户信息进行排序：已关注的教师放置在最前
+- (void)sortUserInfo
+{
+    BOOL followTeacherInResult = NO;
+    int temp = 0;
+    for ( int i = 0; i < self.teacherId.count; i++ )
+    {
+        NSNumber * isFollowed = [self.isFollowed objectAtIndex:i];
+        if ( isFollowed.intValue == 1 )
+        {
+            followTeacherInResult = YES;
+            temp = i;
+            break;
+        }
+    }
+    if ( followTeacherInResult )
+    {
+        NSNumber * tempTeacherId = [self.teacherId objectAtIndex:temp];
+        NSNumber * tempIsFollowed = [self.isFollowed objectAtIndex:temp];
+        NSString * tempTeacherName = [self.userResult objectAtIndex:temp];
+        NSString * tempSchool = [self.school objectAtIndex:temp];
+        
+        [self.teacherId removeObjectAtIndex:temp];
+        [self.isFollowed removeObjectAtIndex:temp];
+        [self.userResult removeObjectAtIndex:temp];
+        [self.school removeObjectAtIndex:temp];
+        
+        [self.teacherId insertObject:tempTeacherId atIndex:0];
+        [self.isFollowed insertObject:tempIsFollowed atIndex:0];
+        [self.userResult insertObject:tempTeacherName atIndex:0];
+        [self.school insertObject:tempSchool atIndex:0];
+    }
+}
+
 #pragma mark - keyboard return get search result
 ON_SIGNAL2( BeeUITextField, signal )
 {
@@ -227,14 +276,15 @@ ON_SIGNAL2( BeeUITextField, signal )
     {
         [textField endEditing:YES];
         
-        [self doSearch:textField.text];
+        self.searchKeyWord = textField.text;
+        [self doSearch:self.searchKeyWord];
     }
 }
 
 ON_SIGNAL3( E7_SearchTeacherBoard_iPhone, back, signal )
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"back");
+        
     }];
 }
 
@@ -251,10 +301,15 @@ ON_MESSAGE3( API, search_user, msg )
         NSArray * data = msg.GET_OUTPUT(@"data");
         [self.userResult removeAllObjects];
         [self.teacherId removeAllObjects];
+        [self.isFollowed removeAllObjects];
+        [self.school removeAllObjects];
         if ( data.count == 0 )
         {
             // 当搜索结果为空时，记得消除关注按钮
             [self.userResult addObject:__TEXT(@"null")];
+            [self.teacherId addObject:@"null"];
+            [self.school addObject:@""];
+            [self.isFollowed addObject:@"null"];
         }
         else
         {
@@ -263,8 +318,10 @@ ON_MESSAGE3( API, search_user, msg )
                 [self.teacherId addObject:user.user_id];
                 [self.userResult addObject:user.real_name];
                 [self.isFollowed addObject:user.isFollowed];
+                [self.school addObject:user.school];
             }
         }
+        [self sortUserInfo];
         [self showUserResult];
     }
     // 查询失败的错误处理
@@ -290,14 +347,13 @@ ON_MESSAGE3( API, add_follow, msg )
         {
             // 已关注过其他教师
             [self presentFailureTips:@"您已关注过其他教师"];
-            NSLog(@"fault");
         }
         else if( [followed isEqualToString:@"0"] )
         {
             // 关注成功
-            [self presentMessageTips:@"success"];
-            [self dismissViewControllerAnimated:YES completion:^{}];
-            NSLog(@"success");
+            [self presentMessageTips:@"关注成功"];
+            [self doSearch:self.searchKeyWord];
+            // [self dismissViewControllerAnimated:YES completion:^{}];
         }
     }
     // 查询失败的错误处理
@@ -319,7 +375,8 @@ ON_MESSAGE3( API, cancel_follow, msg )
     else if( msg.succeed )
     {
         // 取消关注后刷新
-        [self dismissViewControllerAnimated:YES completion:^{}];
+        [self doSearch:self.searchKeyWord];
+        // [self dismissViewControllerAnimated:YES completion:^{}];
         
     }
     else if ( msg.failed )
@@ -396,27 +453,29 @@ ON_MESSAGE3( API, cancel_follow, msg )
         {
             // 右侧按钮,目标实现点击关注与取消关注
             UIButton * follow = [[UIButton alloc] init];
-            follow.frame = CGRectMake(280, 10, 20, 20);
+            follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
             follow.tag = indexPath.row;
             // follow.backgroundImage = [UIImage imageNamed:@"follow.png"];
             NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
             if ( followed.intValue == 1 )   // 该学生正在关注该教师
             {
-                follow.backgroundColor = [UIColor blueColor];
+                // follow.backgroundColor = [UIColor blueColor];
+                follow.backgroundImage = [UIImage imageNamed:@"has_follow_02.png"];
                 [follow addTarget:self action:@selector(cancelFollow:) forControlEvents:UIControlEventTouchUpInside];
             }
             else
             {
-                follow.backgroundColor = [UIColor orangeColor];
+                // follow.backgroundColor = [UIColor orangeColor];
+                follow.backgroundImage = [UIImage imageNamed:@"add_follow_06.png"];
                 [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
             }
             [cell.contentView addSubview:follow];
         }
         // user name or some describtion
         cell.textLabel.text = [self.userResult objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [self.userResult objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [self.school objectAtIndex:indexPath.row];
         // user header image
-        cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];
+        // cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];
         return cell;
     }
     return nil;
@@ -431,7 +490,8 @@ ON_MESSAGE3( API, cancel_follow, msg )
         {
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             NSString * keyword = cell.textLabel.text;
-            [self doSearch:keyword];
+            self.searchKeyWord = keyword;
+            [self doSearch:self.searchKeyWord];
         }
     }
     else if ( tableView == self.result )

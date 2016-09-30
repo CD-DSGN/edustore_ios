@@ -20,12 +20,15 @@ AS_OUTLET( BeeUITextField, searchInput )
 AS_MODEL( UserModel, userModel )
 
 @property (nonatomic, retain) NSNumber * course_id;
-@property (nonatomic, retain)NSNumber * user_id;
+@property (nonatomic, retain) NSNumber * user_id;
+@property (nonatomic, retain) NSString * course_name;
+@property (nonatomic, retain) NSString * searchKeyWord;
 
 @property (nonatomic, retain) NSArray * searchHistory;
 @property (nonatomic, retain) NSMutableArray * userResult;
 @property (nonatomic, retain) NSMutableArray * teacherId;
 @property (nonatomic, retain) NSMutableArray * isFollowed;
+@property (nonatomic, retain) NSMutableArray * school;
 
 @property (nonatomic, retain) UITableView * history;
 @property (nonatomic, retain) UITableView * result;

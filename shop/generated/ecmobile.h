@@ -593,6 +593,9 @@ AS_MESSAGE( teacher_signup );
 // POST user/getCourse
 AS_MESSAGE( get_course );
 
+// POST user/getCourse
+AS_MESSAGE( course );
+
 // POST getRegion
 AS_MESSAGE( get_region );
 

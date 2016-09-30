@@ -19,6 +19,9 @@
 // 查数据库，获取课程信息，存放于list（scrollView）中，在Cell中呈现
 @implementation E7_FollowBoard_iPhone
 
+SUPPORT_AUTOMATIC_LAYOUT( YES )
+SUPPORT_RESOURCE_LOADING( YES )
+
 DEF_MODEL( UserModel, userModel )
 
 DEF_OUTLET( BeeUIScrollView, list )
@@ -98,6 +101,7 @@ ON_WILL_APPEAR( signal )
 
 ON_DID_APPEAR( signal )
 {
+    
     [self.list reloadData];
 }
 
@@ -134,14 +138,22 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     [self.userModel getTeacher:self.user_id];
 }
 
+- (void)refresh_course:(UIButton *)button
+{
+    [button removeFromSuperview];
+    [self.userModel getCourse:self.user_id];
+}
+
 ON_MESSAGE3( API, get_course, msg )
 {
     if( msg.sending )
     {
-        // 获取课程中，可以不显示东西
+        // 获取课程中
+        [self presentLoadingTips:@"正在加载..."];
     }
-    else if( msg.succeed )
+    if( msg.succeed )
     {
+        [self dismissTips];
         Course * getCourse = msg.GET_OUTPUT(@"data");
         [self.course removeAllObjects];
         [self.course_id removeAllObjects];
@@ -154,9 +166,27 @@ ON_MESSAGE3( API, get_course, msg )
         }
         [self.list reloadData];
     }
-    else if ( msg.failed )
+    else
     {
-        // 获取课程失败时：
+        [self dismissTips];
+        [self.list reloadData];
+    }
+    if ( msg.failed )
+    {
+        // 获取课程失败时：下拉功能已经被我屏蔽，做成点击屏幕刷新
+        // 要图片的话加一个图片的控件
+        // 字体颜色什么的最后期修改
+        // 之后还是换成用cell写吧，可以把那个表头隐藏
+        [self dismissTips];
+        UIButton * refresh = [[UIButton alloc] init];
+        refresh.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        
+        [refresh setTitle:__TEXT(@"tap_refresh") forState:UIControlStateNormal];
+        [refresh setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        refresh.titleLabel.font = [UIFont systemFontOfSize:18.0];
+        
+        [refresh addTarget:self action:@selector(refresh_course:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:refresh];
     }
     else if ( msg.cancelled )
     {
@@ -212,6 +242,7 @@ ON_SIGNAL3( E7_FollowCell_iPhone, follow, signal )
     E7_SearchTeacherBoard_iPhone * board = [[[E7_SearchTeacherBoard_iPhone alloc] init] autorelease];
     board.course_id = [NSNumber numberWithInteger:follow.tag];
     board.user_id = self.user_id;
+    board.course_name = [self.course objectAtIndex:(follow.tag - 1)];
     board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:board animated:YES completion:nil];
     // [self.stack pushBoard:board animated:YES];
@@ -221,7 +252,33 @@ ON_SIGNAL3(E7_FollowCell_iPhone, cancel_follow, signal )
 {
     UIButton * cancel = signal.source;
     NSNumber * course_id = [NSNumber numberWithInteger:cancel.tag];
-    [self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
+    //[self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
+    
+    NSString * courseName = [self.course objectAtIndex:(course_id.intValue - 1)];
+    NSString * teacherName = [self.teacher_name objectAtIndex:(course_id.intValue - 1)];
+    
+    if ( [teacherName isEqualToString:@""] )
+    {
+        NSString * tips = @"您尚未关注";
+        tips = [tips stringByAppendingString:courseName];
+        tips = [tips stringByAppendingString:@"课的教师"];
+        [self presentMessageTips:tips];
+    }
+    else
+    {
+        NSString * title = @"确定要取消";
+        title = [title stringByAppendingString:courseName];
+        title = [title stringByAppendingString:@"课的关注吗?"];
+        
+        UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [sheet addAction:[UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action){
+            [self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
+        }]];
+        [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        
+        [self presentViewController:sheet animated:YES completion:nil];
+    }
 }
 
 @end

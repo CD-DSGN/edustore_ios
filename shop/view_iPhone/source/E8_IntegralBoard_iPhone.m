@@ -15,6 +15,9 @@
 
 @implementation E8_IntegralBoard_iPhone
 
+SUPPORT_AUTOMATIC_LAYOUT( YES )
+SUPPORT_RESOURCE_LOADING( YES )
+
 DEF_MODEL( UserModel, userModel )
 
 DEF_OUTLET( BeeUIScrollView, list )

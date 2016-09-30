@@ -64,7 +64,8 @@ AS_NOTIFICATION( UPDATED )
 // 通过父亲id查询地区
 - (void)selectRegionByParentId:(NSString *)parent_id;
 
-- (void)getCourse:(NSNumber *)student_id;
+- (void)get_course;     // 注册时查询课程
+- (void)getCourse:(NSNumber *)student_id;       // 关注时查询课程
 - (void)getTeacher:(NSNumber *)student_id;
 
 - (void)searchUserByName:(NSString *)name

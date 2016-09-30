@@ -14,10 +14,12 @@
         </row>
         <row class="signup-select">
             <row class="signup-wrapper">
-                <button id="signup">学生注册</button>
+                <button id="signup" class="student_btn">学生注册  |</button>
+                <view class="student_line" />
             </row>
             <row class="signup-wrapper">
-                <button id="teacherSignup">教师注册</button>
+                <button id="teacherSignup" class="teacher_btn">教师注册</button>
+                <view class="teacher_line" />
             </row>
         </row>
     </col>
@@ -39,25 +41,25 @@
 			image-mode: fit;
 		}
 		.signup-wrapper {
-			width: 100%;
+			width: 50%;
 			height: auto;
 		}
 		#signup {
-			margin-top: 20px;
-			float: center;
 			height: 20px;
-			width: 50%;
-			float: center;
-			margin-right: 20;
+			width: 80px;
+			float: right;
+            margin-top: 20px;
+			margin-right: 0px;
 			button-title-color: #666;
+            
 		}
         #teacherSignup {
-            margin-top: 20px;
-            float: center;
             height: 20px;
-            width: 50%;
-            float: center;
-            margin-right: 20;
+            width: 70px;
+            float: left;
+            margin-top: 20px;
+            margin-left: px;
+            padding-left: 0px;
             button-title-color: #666;
         }
 		.line {
@@ -92,7 +94,7 @@
 		}
 		.list-wrapper-group {
 			margin-left: 10px;
-			margin-top: 74px;
+			margin-top: 10px;
 			width: 300px;
 			align: center;
 			height: 100px;
@@ -144,9 +146,29 @@
 			background-image: url(cell_bg_single.png);
 		}
         .signup-select {
-            width: 100%;
+            width: 90%;
+            float: center;
             height: 80px;
+            margin-left: 5px;
         }
+        
+        .student_line {
+            position: absolute;
+            top: 41px;
+            right: 16px;
+            height: 1px;
+            width: 60px;
+            background-color: #666;
+        }
+        .teacher_line {
+            position: absolute;
+            top: 41px;
+            left: 5px;
+            height: 1px;
+            width: 60px;
+            background-color: #666;
+        }
+        
     </style>
 
 </ui>

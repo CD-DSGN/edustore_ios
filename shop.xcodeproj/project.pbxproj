@@ -54,8 +54,14 @@
 		5F12A6CA1D7565CD005419B7 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F12A6C91D7565CD005419B7 /* RegisterModel.m */; };
 		5F27CD571D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F27CD561D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m */; };
 		5F27CD591D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F27CD581D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml */; };
-		5F4AA9201D81043500470C8F /* bee.services.liveload in Resources */ = {isa = PBXBuildFile; fileRef = 5F4AA91F1D81043500470C8F /* bee.services.liveload */; };
 		5F5C4F251D78340B008BDD84 /* region.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F5C4F241D78340B008BDD84 /* region.plist */; };
+		5F70DD5D1D922A3C00F7DAE7 /* bee.services.liveload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD501D922A3C00F7DAE7 /* bee.services.liveload.m */; };
+		5F70DD5E1D922A3C00F7DAE7 /* bee.services.liveload.md in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD511D922A3C00F7DAE7 /* bee.services.liveload.md */; };
+		5F70DD5F1D922A3C00F7DAE7 /* ServiceLiveload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD541D922A3C00F7DAE7 /* ServiceLiveload.m */; };
+		5F70DD601D922A3C00F7DAE7 /* ServiceLiveload_Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD561D922A3C00F7DAE7 /* ServiceLiveload_Border.m */; };
+		5F70DD611D922A3C00F7DAE7 /* ServiceLiveload_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD581D922A3C00F7DAE7 /* ServiceLiveload_Category.m */; };
+		5F70DD621D922A3C00F7DAE7 /* ServiceLiveload_Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD5A1D922A3C00F7DAE7 /* ServiceLiveload_Hook.m */; };
+		5F70DD631D922A3C00F7DAE7 /* ServiceLiveload_Watcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F70DD5C1D922A3C00F7DAE7 /* ServiceLiveload_Watcher.m */; };
 		5F803E961D6ADF5E00103EF4 /* A0_SigninBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE64161D64607900A66F3F /* A0_SigninBoard_iPhone.m */; };
 		5F8166651D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F81665A1D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.m */; };
 		5F8166661D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F81665B1D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.xml */; };
@@ -1007,8 +1013,20 @@
 		5F27CD551D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E7_SearchTeacherBoard_iPhone.h; sourceTree = "<group>"; };
 		5F27CD561D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E7_SearchTeacherBoard_iPhone.m; sourceTree = "<group>"; };
 		5F27CD581D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E7_SearchTeacherBoard_iPhone.xml; sourceTree = "<group>"; };
-		5F4AA91F1D81043500470C8F /* bee.services.liveload */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bee.services.liveload; sourceTree = "<group>"; };
 		5F5C4F241D78340B008BDD84 /* region.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = region.plist; sourceTree = "<group>"; };
+		5F70DD4F1D922A3C00F7DAE7 /* bee.services.liveload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bee.services.liveload.h; sourceTree = "<group>"; };
+		5F70DD501D922A3C00F7DAE7 /* bee.services.liveload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bee.services.liveload.m; sourceTree = "<group>"; };
+		5F70DD511D922A3C00F7DAE7 /* bee.services.liveload.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = bee.services.liveload.md; sourceTree = "<group>"; };
+		5F70DD531D922A3C00F7DAE7 /* ServiceLiveload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLiveload.h; sourceTree = "<group>"; };
+		5F70DD541D922A3C00F7DAE7 /* ServiceLiveload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLiveload.m; sourceTree = "<group>"; };
+		5F70DD551D922A3C00F7DAE7 /* ServiceLiveload_Border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLiveload_Border.h; sourceTree = "<group>"; };
+		5F70DD561D922A3C00F7DAE7 /* ServiceLiveload_Border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLiveload_Border.m; sourceTree = "<group>"; };
+		5F70DD571D922A3C00F7DAE7 /* ServiceLiveload_Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLiveload_Category.h; sourceTree = "<group>"; };
+		5F70DD581D922A3C00F7DAE7 /* ServiceLiveload_Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLiveload_Category.m; sourceTree = "<group>"; };
+		5F70DD591D922A3C00F7DAE7 /* ServiceLiveload_Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLiveload_Hook.h; sourceTree = "<group>"; };
+		5F70DD5A1D922A3C00F7DAE7 /* ServiceLiveload_Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLiveload_Hook.m; sourceTree = "<group>"; };
+		5F70DD5B1D922A3C00F7DAE7 /* ServiceLiveload_Watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLiveload_Watcher.h; sourceTree = "<group>"; };
+		5F70DD5C1D922A3C00F7DAE7 /* ServiceLiveload_Watcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLiveload_Watcher.m; sourceTree = "<group>"; };
 		5F8166591D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = D0_SearchBoard_iPhone.h; sourceTree = "<group>"; };
 		5F81665A1D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = D0_SearchBoard_iPhone.m; sourceTree = "<group>"; };
 		5F81665B1D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = D0_SearchBoard_iPhone.xml; sourceTree = "<group>"; };
@@ -2674,6 +2692,34 @@
 				5F077EC51D825AA4002413BB /* history.plist */,
 			);
 			name = searchHistary;
+			sourceTree = "<group>";
+		};
+		5F70DD4E1D922A3C00F7DAE7 /* bee.services.liveload */ = {
+			isa = PBXGroup;
+			children = (
+				5F70DD4F1D922A3C00F7DAE7 /* bee.services.liveload.h */,
+				5F70DD501D922A3C00F7DAE7 /* bee.services.liveload.m */,
+				5F70DD511D922A3C00F7DAE7 /* bee.services.liveload.md */,
+				5F70DD521D922A3C00F7DAE7 /* source */,
+			);
+			path = bee.services.liveload;
+			sourceTree = "<group>";
+		};
+		5F70DD521D922A3C00F7DAE7 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				5F70DD531D922A3C00F7DAE7 /* ServiceLiveload.h */,
+				5F70DD541D922A3C00F7DAE7 /* ServiceLiveload.m */,
+				5F70DD551D922A3C00F7DAE7 /* ServiceLiveload_Border.h */,
+				5F70DD561D922A3C00F7DAE7 /* ServiceLiveload_Border.m */,
+				5F70DD571D922A3C00F7DAE7 /* ServiceLiveload_Category.h */,
+				5F70DD581D922A3C00F7DAE7 /* ServiceLiveload_Category.m */,
+				5F70DD591D922A3C00F7DAE7 /* ServiceLiveload_Hook.h */,
+				5F70DD5A1D922A3C00F7DAE7 /* ServiceLiveload_Hook.m */,
+				5F70DD5B1D922A3C00F7DAE7 /* ServiceLiveload_Watcher.h */,
+				5F70DD5C1D922A3C00F7DAE7 /* ServiceLiveload_Watcher.m */,
+			);
+			path = source;
 			sourceTree = "<group>";
 		};
 		630236AF177C1675004C052D /* shop */ = {
@@ -4863,7 +4909,7 @@
 		CBD172E818BCBFC7003D1862 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				5F4AA91F1D81043500470C8F /* bee.services.liveload */,
+				5F70DD4E1D922A3C00F7DAE7 /* bee.services.liveload */,
 				D8135D251BCCF2EB00C9FDBE /* bee.services.uppayplugin */,
 				D8135CA01BCCE3BA00C9FDBE /* bee.services.alipay */,
 				E9F5DEB11954407600216A56 /* bee.services.share */,
@@ -5419,7 +5465,6 @@
 				CBD175F018BCBFC8003D1862 /* ServiceWizard_CustomCell.xml in Resources */,
 				CB9C231A18BB3B0C00DDA501 /* profile_refresh_prompt_bg@2x.png in Resources */,
 				CB9C233918BB3B0C00DDA501 /* shopping_cart_edit_remove_bg_grey@2x.png in Resources */,
-				5F4AA9201D81043500470C8F /* bee.services.liveload in Resources */,
 				CB9C232018BB3B0C00DDA501 /* search_new_shopping_cart_num_bg@2x.png in Resources */,
 				CB9C232C18BB3B0C00DDA501 /* shopping_cart_acc_btn_red@2x.png in Resources */,
 				1848BD9718B4D8690007238A /* Localizable.strings in Resources */,
@@ -5830,6 +5875,7 @@
 				CBD1753A18BCBFC8003D1862 /* Bee_Language.m in Sources */,
 				CBD1749F18BCBFC8003D1862 /* Bee_UITextField.m in Sources */,
 				CBD1748F18BCBFC8003D1862 /* Bee_UIImageView.m in Sources */,
+				5F70DD5E1D922A3C00F7DAE7 /* bee.services.liveload.md in Sources */,
 				CBD174D918BCBFC8003D1862 /* UIView+LayoutParser.m in Sources */,
 				CBD1749618BCBFC8003D1862 /* Bee_UIPickerView.m in Sources */,
 				CB9C242018BB3B0C00DDA501 /* G1_HelpCell_iPhone.m in Sources */,
@@ -5869,12 +5915,14 @@
 				CBD174B218BCBFC8003D1862 /* UIView+Wireframe.m in Sources */,
 				CBD1746018BCBFC8003D1862 /* BeeUIStyle+Builder.m in Sources */,
 				CBD1749718BCBFC8003D1862 /* Bee_UIProgressView.m in Sources */,
+				5F70DD5F1D922A3C00F7DAE7 /* ServiceLiveload.m in Sources */,
 				CBD174CF18BCBFC8003D1862 /* UITextField+BeeUILayout.m in Sources */,
 				CB81D26718ABB3F000F277EA /* CollectionModel.m in Sources */,
 				CBD1756718BCBFC8003D1862 /* OpenUDID.m in Sources */,
 				CB9C23C418BB3B0C00DDA501 /* C2_PaymentBoard_iPhone.m in Sources */,
 				CBD1755218BCBFC8003D1862 /* ProcessingRoutes.m in Sources */,
 				CBD1754418BCBFC8003D1862 /* Bee_HTTPConnection2.m in Sources */,
+				5F70DD601D922A3C00F7DAE7 /* ServiceLiveload_Border.m in Sources */,
 				CBD174B918BCBFC8003D1862 /* Bee_UIZoomImageView.m in Sources */,
 				CBD174BF18BCBFC8003D1862 /* Bee_UISignal.m in Sources */,
 				CBD1747018BCBFC8003D1862 /* CSSStyleSelector.m in Sources */,
@@ -5973,6 +6021,7 @@
 				CBD1743D18BCBFC8003D1862 /* BeeMessage+BeeNetwork.mm in Sources */,
 				CB9C229B18BB3B0C00DDA501 /* CommonNoResultCell.m in Sources */,
 				CBD174DC18BCBFC8003D1862 /* BeeUIQuery+AJAX.m in Sources */,
+				5F70DD621D922A3C00F7DAE7 /* ServiceLiveload_Hook.m in Sources */,
 				CB9C239F18BB3B0C00DDA501 /* B4_ProductParamCell_iPhone.m in Sources */,
 				1835C75B18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.m in Sources */,
 				CBD1756C18BCBFC8003D1862 /* CXMLDocument_CreationExtensions.m in Sources */,
@@ -5993,6 +6042,7 @@
 				CBD174F018BCBFC8003D1862 /* BeeViewModel+BeeUISignal.m in Sources */,
 				CBD175D618BCBFC8003D1862 /* ServiceSiri.m in Sources */,
 				CBD174A818BCBFC8003D1862 /* UIView+Manipulation.m in Sources */,
+				5F70DD611D922A3C00F7DAE7 /* ServiceLiveload_Category.m in Sources */,
 				D8135D1B1BCCE3BB00C9FDBE /* NSDataEx.m in Sources */,
 				CBD1754918BCBFC8003D1862 /* Bee_HTTPServer2.m in Sources */,
 				CB9C23CC18BB3B0C00DDA501 /* C4_InvoiceCell_iPhone.m in Sources */,
@@ -6210,6 +6260,7 @@
 				CBD1750718BCBFC8003D1862 /* UIView+XMLParser.m in Sources */,
 				CBD1747A18BCBFC8003D1862 /* UIView+Animation.m in Sources */,
 				E9F5DEF51954407600216A56 /* ServiceShare_AuthorizeBoard.m in Sources */,
+				5F70DD631D922A3C00F7DAE7 /* ServiceLiveload_Watcher.m in Sources */,
 				CBD1750C18BCBFC8003D1862 /* Bee_CacheProtocol.mm in Sources */,
 				CB9C229318BB3B0C00DDA501 /* AppClosed_iPhone.m in Sources */,
 				CBD175F118BCBFC8003D1862 /* ServiceWizard_PhotoCell.m in Sources */,
@@ -6287,6 +6338,7 @@
 				CBD174E118BCBFC8003D1862 /* BeeUIQuery+Manipulation.m in Sources */,
 				CBD174FD18BCBFC8003D1862 /* Bee_UITemplateParserXML.m in Sources */,
 				CBD1748218BCBFC8003D1862 /* Bee_UICapability.m in Sources */,
+				5F70DD5D1D922A3C00F7DAE7 /* bee.services.liveload.m in Sources */,
 				CBD1753818BCBFC8003D1862 /* NSString+BeeExtension.mm in Sources */,
 				CBD1747518BCBFC8003D1862 /* Bee_UIAnimationAlpha.m in Sources */,
 				CBD1756418BCBFC8003D1862 /* FMDatabaseQueue.m in Sources */,
@@ -6323,7 +6375,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "1AC7FD9F-2989-4F7A-A4A9-B4A5F4DC08E9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AC7FD9F-2989-4F7A-A4A9-B4A5F4DC08E9";
@@ -6351,7 +6403,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "1AC7FD9F-2989-4F7A-A4A9-B4A5F4DC08E9";
@@ -6389,7 +6441,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6445,7 +6497,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6492,7 +6544,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "1AC7FD9F-2989-4F7A-A4A9-B4A5F4DC08E9";
@@ -6530,7 +6582,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",

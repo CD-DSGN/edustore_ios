@@ -72,7 +72,7 @@ DEF_MODEL( UserModel,	userModel )
 #pragma mark -
 
 - (void)load
-{	
+{
 	@weakify(self);
 
 	bee.services.push.whenRegistered = ^
@@ -140,7 +140,7 @@ ON_SIGNAL2( BeeUIBoard, signal )
 	if ( [signal is:BeeUIBoard.CREATE_VIEWS] )
 	{
         self.view.backgroundColor = [UIColor whiteColor];
-
+        
 		bee.ui.router[self.TAB_HOME]	= [B0_IndexBoard_iPhone class];
 		bee.ui.router[self.TAB_SEARCH]	= [D0_SearchBoard_iPhone class];
 		bee.ui.router[self.TAB_CART]	= [C0_ShoppingCartBoard_iPhone class];
@@ -428,6 +428,16 @@ ON_NOTIFICATION3( UserModel, LOGIN, n )
     bee.ui.tabbar.frame = tabbarFrame;
 	
     [UIView commitAnimations];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return NO;
+}
+
+- (UIStatusBarStyle)prefersStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
 }
 
 #pragma mark -

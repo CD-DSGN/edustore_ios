@@ -223,7 +223,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
 // 查询数据库中存在的课程
 - (void)getCourse
 {
-    [self.userModel getCourse];
+    [self.userModel get_course];
 }
 
 // 加载省市县的信息（后面还有一些使用）
@@ -613,7 +613,7 @@ ON_MESSAGE3( API, teacher_signup, msg )
     }
 }
 
-ON_MESSAGE3( API, get_course, msg )
+ON_MESSAGE3( API, course, msg )
 {
     if( msg.sending )
     {

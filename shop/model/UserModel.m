@@ -248,6 +248,12 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"townName", townName );
 }
 
+- (void)get_course
+{
+    self.CANCEL_MSG( API.course );
+    self.MSG( API.course );
+}
+
 - (void)getCourse:(NSNumber *)student_id
 {
     self.CANCEL_MSG( API.get_course );

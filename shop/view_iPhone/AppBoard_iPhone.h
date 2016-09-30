@@ -67,4 +67,7 @@ AS_MODEL( UserModel,	userModel )
 - (void)showTabbar;
 - (void)hideTabbar;
 
+- (BOOL)prefersStatusBarHidden;
+- (UIStatusBarStyle)prefersStatusBarStyle;
+
 @end

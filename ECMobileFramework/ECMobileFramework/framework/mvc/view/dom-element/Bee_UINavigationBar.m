@@ -152,23 +152,20 @@ static UIImage *	__backgroundImage = nil;
 {
 	if ( __backgroundColor )
 	{
-		[self setBackgroundColor:__backgroundColor];
+		[self setBackgroundImage:[UIImage imageWithColor:__backgroundColor] forBarMetrics:UIBarMetricsDefault];
+	}
+    
+	if ( IOS10_OR_LATER )
+	{
+		NSMutableDictionary * titleTextAttributes = [NSMutableDictionary dictionary];
+		titleTextAttributes[NSForegroundColorAttributeName] = __titleColor;
+		titleTextAttributes[NSFontAttributeName] = __titleFont;
+		[self setTitleTextAttributes:titleTextAttributes];
 	}
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
 	if ( IOS7_OR_LATER )
 	{
-//        for ( id subview in self.subviews )
-//		{
-//            if ( [subview isKindOfClass:[UIImageView class]] )
-//			{
-//				UIImageView * imageView = subview;
-//				imageView.layer.shadowColor = [UIColor clearColor].CGColor;
-//				imageView.layer.shadowOffset = CGSizeZero;
-//				imageView.layer.shadowOpacity = 0.0f;
-//            }
-//        }
-
 		if ( __backgroundTintColor )
 		{
 			[self setTintColor:__backgroundTintColor];
@@ -218,43 +215,14 @@ static UIImage *	__backgroundImage = nil;
 		}
 	}
 	
-//	self.layer.shadowOpacity = 0.7f;
-//	self.layer.shadowRadius = 1.5f;
-//	self.layer.shadowOffset = CGSizeMake(0.0f, 0.6f);
-//	self.layer.shadowColor = [UIColor blackColor].CGColor;
-//	self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
-//	self.layer.shouldRasterize = YES;
-
-//	CAShapeLayer * maskLayer = nil;
-//
-//	for ( CALayer * layer in self.layer.sublayers )
-//	{
-//		if ( [layer isKindOfClass:[CAShapeLayer class]] && [layer.name isEqualToString:@"maskLayer"] )
-//		{
-//			maskLayer = (CAShapeLayer *)layer;
-//			break;
-//		}
-//	}
-//
-//	if ( nil == maskLayer )
-//	{
-//		maskLayer = [CAShapeLayer layer];
-//		[self.layer addSublayer:maskLayer];
-//		[self.layer setMask:maskLayer];
-//	}
-//
-//	CGRect bounds = self.bounds;
-//	UIBezierPath * maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-//													byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
-//														  cornerRadii:CGSizeMake(4.0, 4.0)];
-//	if ( maskPath && maskLayer )
-//	{
-//		maskLayer.frame = bounds;
-//		maskLayer.path = maskPath.CGPath;
-//		maskLayer.name = @"maskLayer";
-//	}
-
 	[self setNeedsDisplay];
+    
+//    NSLog(@"IOS10_OR_LATER=%d\n", IOS10_OR_LATER);
+//    NSLog(@"IOS8_OR_LATER=%d\n", IOS8_OR_LATER);
+//    NSLog(@"IOS7_OR_LATER=%d\n", IOS7_OR_LATER);
+//    NSLog(@"IOS6_OR_LATER=%d\n", IOS6_OR_LATER);
+//    NSLog(@"IOS5_OR_LATER=%d\n", IOS5_OR_LATER);
+//    NSLog(@"IOS4_OR_LATER=%d\n", IOS4_OR_LATER);
 }
 
 - (void)handleUISignal:(BeeUISignal *)signal

@@ -388,5 +388,7 @@
 <string name="follow">follow teacher</string>
 <string name="integral">integral</string>
 <string name="null">null result</string>
+<string name="tap_refresh">tap to refresh</string>
+
 
 </resources>

@@ -3,12 +3,14 @@
     <col class="content">
         <row class="line_one">
             <image class="background_one" />
-            <label class="label_one" id="label"></label>
+            <label class="integral" id="label"></label>
         </row>
         <row class="line_two">
             <image class="background_two" />
-            <textarea class="label_two" id="label2"></textarea>
-            
+            <label class="hui_integral" id="hui_integal">汇积分：</label>
+            <label class="recommend_integral" id="recommend_integral">推荐积分：</label>
+            <label class="hui_count" id="hui_count">关注所获积分：</label>
+            <label class="recommend_count" id="recommend_count">推荐人数：</label>
         </row>
     </col>
     <style>
@@ -19,14 +21,15 @@
         }
         
         .line_one {
-            margin-top: 70px;
-            width: 100%;
-            height: 60px;
+            margin-top: 10px;
+            width: 290px;
+            height: 40px;
+            float: center;
         }
         .line_two {
-            margin-top: 70px;
+            margin-top: 20px;
             width: 100%;
-            height: 100px;
+            height: 130px;
         }
         
         .background_one {
@@ -46,19 +49,44 @@
             top: 0;
             left: 0;
             background-mode: stretch;
-            background-insets: 10px;
-            background-image: url(shopping_checkout_body_bg_sm.png);
+            background-insets: 40px;
+            background-image: url(shopping_cart_body_bg_02.png);
         }
         
-        .label_one {
+        .integral {
             width: 100%;
             height: 100%;
+            margin-left: 5px;
             font-size: 16px;
         }
-        .label_two {
+        
+        .hui_integral {
             width: 100%;
-            height: 100%;
-            font-size: 16px;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .recommend_integral {
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .hui_count {
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .recommend_count {
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 10px;
+            font-size: 14px;
         }
     </style>
 </ui>

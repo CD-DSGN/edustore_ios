@@ -34,7 +34,7 @@ SUPPORT_RESOURCE_LOADING( YES )
         NSString * temp = @"您的积分为：";
         temp = [temp stringByAppendingString:self.data];
         self.label.data = temp;
-        self.label2.data = @"label2 的积分内容显示 label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示";
+        // self.label2.data = @"label2 的积分内容显示 label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示";
     }
 }
 

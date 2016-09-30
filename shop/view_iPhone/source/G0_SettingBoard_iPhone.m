@@ -305,9 +305,12 @@ ON_SIGNAL3( G0_SettingCell_iPhone, setting_logout, signal )
 
 ON_SIGNAL3( G0_SettingBoard_iPhone, SIGNOUT, signal )
 {
+    // 退出登录后回到首页
     [[UserModel sharedInstance] signout];
-    
-    [bee.ui.appBoard showLogin];
+    [bee.ui.tabbar selectHome];
+    [bee.ui.router open:AppBoard_iPhone.TAB_HOME animated:NO];
+    [self.stack popBoardAnimated:NO];
+    // [bee.ui.appBoard showLogin];
 }
 
 #pragma mark -

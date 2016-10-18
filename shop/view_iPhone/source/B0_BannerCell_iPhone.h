@@ -25,4 +25,7 @@
 AS_OUTLET( BeeUIScrollView, list )
 AS_OUTLET( BeeUIPageControl, pager )
 
+@property (nonatomic, retain) NSTimer * timer;
+@property (nonatomic, assign) NSInteger currentTime;
+
 @end

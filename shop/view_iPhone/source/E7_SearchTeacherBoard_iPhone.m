@@ -69,6 +69,8 @@ ON_CREATE_VIEWS( signal )
     [self.view addSubview:self.result];
     
     [self showSearchHistory];
+    
+    
 }
 
 ON_DELETE_VIEWS( signal )
@@ -116,8 +118,15 @@ ON_DID_DISAPPEAR( signal )
 - (void)doSearch:(NSString *)keyword
 {
     [self.searchInput resignFirstResponder];
-    [self.userModel searchUserByName:keyword andCourseId:self.course_id andUserId:self.user_id];
-    [self addKeywordToLocal:keyword];
+    if ( keyword.length < 2 )
+    {
+        [self presentFailureTips:@"输入更多内容，获取准确信息"];
+    }
+    else
+    {
+        [self.userModel searchUserByName:keyword andCourseId:self.course_id andUserId:self.user_id];
+        [self addKeywordToLocal:keyword];
+    }
 }
 
 - (void)addKeywordToLocal:(NSString *)keyword
@@ -473,6 +482,10 @@ ON_MESSAGE3( API, cancel_follow, msg )
         }
         // user name or some describtion
         cell.textLabel.text = [self.userResult objectAtIndex:indexPath.row];
+//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@"("];
+//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:self.course_name];
+//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@")"];
+        
         cell.detailTextLabel.text = [self.school objectAtIndex:indexPath.row];
         // user header image
         // cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];

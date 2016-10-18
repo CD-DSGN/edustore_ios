@@ -238,46 +238,78 @@ ON_MESSAGE3( API, cancel_follow, msg )
 ON_SIGNAL3( E7_FollowCell_iPhone, follow, signal )
 {
     UIButton * follow = signal.source;
-    // printf("%ld\n", (long)follow.tag);
     E7_SearchTeacherBoard_iPhone * board = [[[E7_SearchTeacherBoard_iPhone alloc] init] autorelease];
-    board.course_id = [NSNumber numberWithInteger:follow.tag];
-    board.user_id = self.user_id;
-    board.course_name = [self.course objectAtIndex:(follow.tag - 1)];
-    board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:board animated:YES completion:nil];
-    // [self.stack pushBoard:board animated:YES];
+    // printf("%ld\n", (long)follow.tag);
+    int temp = -1;
+    for (int i = 0; i < self.course_id.count; i++)
+    {
+        if ([self.course_id[i] intValue] == follow.tag)
+        {
+            temp = i;
+            break;
+        }
+    }
+    if (temp != -1)
+    {
+        board.course_id = [self.course_id objectAtIndex:temp];
+        board.user_id = self.user_id;
+        board.course_name = [self.course objectAtIndex:temp];
+        board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:board animated:YES completion:nil];
+        // [self.stack pushBoard:board animated:YES];
+    }
+    else
+    {
+        [self presentFailureTips:@"error"];
+    }
+    
 }
 
 ON_SIGNAL3(E7_FollowCell_iPhone, cancel_follow, signal )
 {
     UIButton * cancel = signal.source;
-    NSNumber * course_id = [NSNumber numberWithInteger:cancel.tag];
-    //[self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
-    
-    NSString * courseName = [self.course objectAtIndex:(course_id.intValue - 1)];
-    NSString * teacherName = [self.teacher_name objectAtIndex:(course_id.intValue - 1)];
-    
-    if ( [teacherName isEqualToString:@""] )
+    int temp = -1;
+    for (int i = 0; i < self.course_id.count; i++)
     {
-        NSString * tips = @"您尚未关注";
-        tips = [tips stringByAppendingString:courseName];
-        tips = [tips stringByAppendingString:@"课的教师"];
-        [self presentMessageTips:tips];
+        if ([self.course_id[i] intValue] == cancel.tag)
+        {
+            temp = i;
+            break;
+        }
+    }
+    if (temp != -1)
+    {
+        NSNumber * course_id = [self.course_id objectAtIndex:temp];
+        //[self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
+        NSString * courseName = [self.course objectAtIndex:temp];
+        NSString * teacherName = [self.teacher_name objectAtIndex:temp];
+        
+        if ( [teacherName isEqualToString:@""] )
+        {
+            NSString * tips = @"您尚未关注";
+            tips = [tips stringByAppendingString:courseName];
+            tips = [tips stringByAppendingString:@"课的教师"];
+            [self presentMessageTips:tips];
+        }
+        else
+        {
+            NSString * title = @"确定要取消";
+            title = [title stringByAppendingString:courseName];
+            title = [title stringByAppendingString:@"课的关注吗?"];
+            
+            UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [sheet addAction:[UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action){
+                [self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
+            }]];
+            [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            
+            [self presentViewController:sheet animated:YES completion:nil];
+        }
     }
     else
     {
-        NSString * title = @"确定要取消";
-        title = [title stringByAppendingString:courseName];
-        title = [title stringByAppendingString:@"课的关注吗?"];
-        
-        UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        [sheet addAction:[UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action){
-            [self.userModel cancelFollowByStudentId:self.user_id courseId:course_id];
-        }]];
-        [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-        
-        [self presentViewController:sheet animated:YES completion:nil];
+        [self presentFailureTips:@"error"];
     }
 }
 

@@ -216,7 +216,6 @@ static UIImage *	__backgroundImage = nil;
 	}
 	
 	[self setNeedsDisplay];
-    
 //    NSLog(@"IOS10_OR_LATER=%d\n", IOS10_OR_LATER);
 //    NSLog(@"IOS8_OR_LATER=%d\n", IOS8_OR_LATER);
 //    NSLog(@"IOS7_OR_LATER=%d\n", IOS7_OR_LATER);

@@ -50,13 +50,13 @@ AS_PACKAGE( BeePackage_System, BeeSystemInfo, info );
 //#define IOS4_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
 //#define IOS3_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
 
-#define IOS10_OR_LATER      1
-#define IOS8_OR_LATER      1
-#define IOS7_OR_LATER      1
-#define IOS6_OR_LATER      1
-#define IOS5_OR_LATER      1
-#define IOS4_OR_LATER      1
-#define IOS3_OR_LATER      1
+#define IOS10_OR_LATER          ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0 )
+#define IOS8_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
+#define IOS7_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 )
+#define IOS6_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0 )
+#define IOS5_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0 )
+#define IOS4_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 4.0 )
+#define IOS3_OR_LATER      ( [[[UIDevice currentDevice] systemVersion] floatValue] >= 3.0 )
 
 #define IOS7_OR_EARLIER		( !IOS8_OR_LATER )
 #define IOS6_OR_EARLIER		( !IOS7_OR_LATER )

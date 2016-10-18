@@ -35,6 +35,7 @@ DEF_MODEL( RegisterModel, registerModel )
     
     self.group = [NSMutableArray array];
     self.course = [NSMutableArray array];
+    self.course_id = [NSMutableArray array];
     
     self.provinceArray = [NSMutableArray array];
     self.cityArray = [NSArray array];
@@ -57,6 +58,7 @@ DEF_MODEL( RegisterModel, registerModel )
     
     self.group = nil;
     self.course = nil;
+    self.course_id = nil;
 }
 
 #pragma mark -
@@ -394,7 +396,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
     // 为注册需要的参数赋值
     userName = self.username;
     mobilePhone = self.mobilePhone;
-    course = [[NSString alloc] initWithFormat:@"%ld",(long)self.courseId];
+    course = self.course_id[self.courseId - 1];
     
     for ( BeeUITextField * input in inputs )
     {
@@ -623,11 +625,12 @@ ON_MESSAGE3( API, course, msg )
     {
         Course * getCourse = msg.GET_OUTPUT(@"data");
         [self.course removeAllObjects];
+        [self.course_id removeAllObjects];
         [self.course addObject:@"请选择课程"];
-        [self.course arrayByAddingObject:getCourse.course_name];
         for( int i = 0; i < getCourse.course_name.count; i++ )
         {
             [self.course addObject:getCourse.course_name[i]];
+            [self.course_id addObject:getCourse.course_id[i]];
         }
         // 新建一个 UIPickerView
         self.selectCourse = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];

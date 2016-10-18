@@ -33,6 +33,9 @@ DEF_OUTLET( BeeUIPageControl, pager )   // 轮播图片下面标识页面的圆�
      * BeeUIScrollView的block方式写法可以从它对应的delegate方法中转换而来
      */
 
+    self.currentTime = 5;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(rollPhoto:) userInfo:nil repeats:YES];
+    
     @weakify(self);
 
     self.list.animationDuration = 0.25f;
@@ -63,6 +66,7 @@ DEF_OUTLET( BeeUIPageControl, pager )   // 轮播图片下面标识页面的圆�
 		
 		[self.pager setNeedsDisplay];
     };
+    // scrollView 滚动停止时
     self.list.whenStop = ^
     {
         @normalize(self);;
@@ -74,9 +78,35 @@ DEF_OUTLET( BeeUIPageControl, pager )   // 轮播图片下面标识页面的圆�
     };
 }
 
+// NStimer是加入runloop中的，必须保证谁创建，谁消除
+// unload是肯定无法进入的，因为没有消除index这个页面
+// 打开一个不关闭的计时器实现自动轮播
+- (void)unload
+{
+    
+}
+
 - (void)dataDidChanged
 {
     [self.list reloadData];
+}
+
+- (void)rollPhoto: (NSTimer *)theTimer
+{
+    if ( self.currentTime >0 )
+    {
+        self.currentTime--;
+    }
+    else    // 滚动图片
+    {
+        NSInteger tempPageIndex = (self.list.pageIndex + 1) % (self.list.total);
+        // [self.list setPageIndex:tempPageIndex];
+        [self.list scrollToIndex:tempPageIndex animated:YES];
+        self.pager.numberOfPages = self.list.total;
+        self.pager.currentPage = tempPageIndex;
+        [self.pager setNeedsDisplay];
+        self.currentTime = 5;
+    }
 }
 
 @end

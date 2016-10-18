@@ -56,9 +56,10 @@
 	[UserModel			sharedInstance];
 
     // 配置ECSHOP
-//     [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
+    // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
     // [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
-    [ServerConfig sharedInstance].url = @"http://f30cf16.ngrok.natapp.cn/edustore/ecmobile/?url=";
+    // [ServerConfig sharedInstance].url = @"http://nhj.vip.natapp.cn/edustore/ecmobile/?url=";
+    [ServerConfig sharedInstance].url = @"http://localhost/edustore/ecmobile/?url=";
     
     // 配置管理后台
     [ECMobileManager sharedInstance].appID	= @"52653a425feb4754";

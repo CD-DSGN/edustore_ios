@@ -359,7 +359,7 @@ ON_SIGNAL3( AppTabbar_iPhone, user_button, signal )
 
 ON_NOTIFICATION3( UserModel, KICKOUT, n )
 {
-	[self showLogin];
+	// [self showLogin];
 	// 登录用户过期后，执行当前页面viewWillApper
 	[bee.ui.router.currentBoard viewWillAppear:YES];
 }

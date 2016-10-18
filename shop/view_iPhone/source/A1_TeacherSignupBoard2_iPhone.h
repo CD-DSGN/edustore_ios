@@ -33,7 +33,8 @@ AS_MODEL( RegisterModel, registerModel )
 @property (nonatomic, retain) UIPickerView * selectCourse;
 @property (nonatomic, retain) NSMutableArray * course;
 @property (nonatomic, retain) NSString * courseName;
-// courseId 与数据库中的id相同，也表示course在pickerview中的位置
+@property (nonatomic, retain) NSMutableArray * course_id;
+// 这个courseId表明pickView中的位置，之前设计不好，与课程id冲突
 @property (nonatomic) NSInteger courseId;
 //@property (nonatomic, retain) NSArray * group2;
 @property (nonatomic, retain) UIPickerView          *    selectRegion;

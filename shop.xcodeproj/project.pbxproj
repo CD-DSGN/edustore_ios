@@ -5400,6 +5400,7 @@
 				TargetAttributes = {
 					63249C9A1754E07900372FD7 = {
 						DevelopmentTeam = UF5JE69P2G;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -6459,7 +6460,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ngunh0ng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -6515,7 +6516,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ngunh0ng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -6600,7 +6601,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ngunh0ng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

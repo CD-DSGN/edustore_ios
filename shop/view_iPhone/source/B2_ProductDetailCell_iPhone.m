@@ -72,7 +72,19 @@ DEF_OUTLET( BeeUIScrollView, list )
     if ( goodsModel )
     {
         // name
+        // modify nhj，增加预售商品的判断与界面修改
+        if ( goodsModel.goods.is_presell.intValue == 1)
+        {
+            $(@"#goods-title").CSS(@"margin-left : 5px");
+            $(@"#presell_goods_title").TEXT( @"[预售]" );
+        }
+        else
+        {
+            $(@"#goods-title").CSS(@"margin-left : -60px");
+            $(@"#presell_goods_title").TEXT( @"" );
+        }
         $(@"#goods-title").TEXT( goodsModel.goods.goods_name );
+        
         
         // price
         if ( goodsModel.goods.promote_price.length && goodsModel.goods.promote_price.integerValue )
@@ -115,6 +127,13 @@ DEF_OUTLET( BeeUIScrollView, list )
             infoStr = [NSString stringWithFormat:@"%@: %@\n", price.rank_name, price.price];
             [goodsInfo appendString:infoStr];
 		}
+        
+        // 预售商品发货时间
+        if ( goodsModel.goods.is_presell.intValue == 1 )
+        {
+            infoStr = [NSString stringWithFormat:@"发货时间: %@\n", goodsModel.goods.presell_shipping_time];
+            [goodsInfo appendString:infoStr];
+        }
         
         $(@"#goods-info").TEXT( goodsInfo );
         

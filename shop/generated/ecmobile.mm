@@ -179,6 +179,8 @@ CONVERT_PROPERTY_CLASS( children, CATEGORY );
 @synthesize rank_prices = _rank_prices;
 @synthesize shop_price = _shop_price;
 @synthesize specification = _specification;
+@synthesize is_presell = _is_presell;
+@synthesize presell_shipping_time = _presell_shipping_time;
 
 CONVERT_PROPERTY_CLASS( pictures, PHOTO );
 CONVERT_PROPERTY_CLASS( properties, GOOD_ATTR );
@@ -893,7 +895,6 @@ DEF_MESSAGE_( cart_create, msg )
 
 //		NSString * requestURI = @"http://shop.ecmobile.me/ecmobile/?url=cart/create";
 		NSString * requestURI = [NSString stringWithFormat:@"%@/cart/create", [ServerConfig sharedInstance].url];
-		
 		msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
 	}
 	else if ( msg.succeed )

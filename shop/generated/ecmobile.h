@@ -232,6 +232,8 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString *		shop_price;
 @property (nonatomic, retain) NSArray *         specification;
 @property (nonatomic, retain) NSNumber *		id;
+@property (nonatomic, retain) NSNumber *        is_presell;
+@property (nonatomic, retain) NSString *        presell_shipping_time;
 @end
 
 @interface GOOD_ATTR : NSObject

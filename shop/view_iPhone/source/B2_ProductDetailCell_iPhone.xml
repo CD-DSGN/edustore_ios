@@ -3,7 +3,10 @@
     
     <col class="wrapper">
         
-        <label id="goods-title"></label>
+        <row class="title">
+            <label id="presell_goods_title"></label>
+            <label id="goods-title"></label>
+        </row>
         
         <row class="goods-price-wrapper">
             <label id="goods-price"></label>
@@ -85,13 +88,27 @@
         }
         
         #goods-title {
+            margin-left: 5px;
+            font-weight: bold;
+            text-align: left;
+            font-size: 20px;
+            width: 240px;
+            height: 30px;
+            color: #333;
+        }
+        #presell_goods_title {
             margin-left: 10px;
             font-weight: bold;
             text-align: left;
             font-size: 20px;
-            width: 300px;
+            width: 55px;
             height: 30px;
-            color: #333;
+            color: red;
+        }
+        .title {
+            width: 320px;
+            height: 30px;
+            margin-left: 10px;
         }
         
         .goods-price-wrapper {

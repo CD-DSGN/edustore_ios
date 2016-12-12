@@ -61,12 +61,14 @@ DEF_SIGNAL( CANCEL_APP )
 DEF_MODEL( FlowModel, flowModel )
 DEF_MODEL( OrderModel, orderModel )
 DEF_MODEL( WXPayModel, wxpayModel )
+DEF_MODEL( ALIPayModel, alipayModel )
 
 - (void)load
 {
     self.flowModel = [FlowModel modelWithObserver:self];
     self.wxpayModel = [WXPayModel modelWithObserver:self];
 	self.orderModel = [OrderModel modelWithObserver:self];
+    self.alipayModel = [ALIPayModel modelWithObserver:self];
 	self.orderModel.type = ORDER_LIST_AWAIT_PAY;
 }
 
@@ -75,6 +77,7 @@ DEF_MODEL( WXPayModel, wxpayModel )
 	SAFE_RELEASE_MODEL( self.flowModel );
 	SAFE_RELEASE_MODEL( self.orderModel );
     SAFE_RELEASE_MODEL( self.wxpayModel );
+    SAFE_RELEASE_MODEL( self.alipayModel );
 }
 
 #pragma mark -
@@ -164,12 +167,15 @@ ON_SIGNAL3( C1_CheckOutBoard_iPhone, ACTION_PAY, signal )
 	{
 		if ( NSOrderedSame == [order_info.pay_code compare:@"alipay" options:NSCaseInsensitiveSearch] )
 		{
+//            modify nhj, pay SDK only
 			// 选择WAP或SDK支付
-			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
-			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK];
-			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP];
-			[paySelect addCancelTitle:__TEXT(@"button_cancel") signal:self.CANCEL object:nil];
-			[paySelect showInViewController:self];
+//			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
+//			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK];
+//			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP];
+//			[paySelect addCancelTitle:__TEXT(@"button_cancel") signal:self.CANCEL object:nil];
+//			[paySelect showInViewController:self];
+            
+            [self sendUISignal:self.PAY_SDK];
 		}
 		else if ( NSOrderedSame == [order_info.pay_code compare:@"cod" options:NSCaseInsensitiveSearch] )
 		{
@@ -267,37 +273,82 @@ ON_SIGNAL3( C1_CheckOutBoard_iPhone, ACTION_BACK, signal )
     [self.stack popBoardAnimated:YES];
 }
 
+#pragma mark 支付宝支付SIGNAL
+ON_SIGNAL3( ALIPayModel, RELOADING, signal )
+{
+    [self presentMessageTips:@"拉取支付信息中..."];
+}
+
+ON_SIGNAL3( ALIPayModel, RELOADED, signal )
+{
+    ALIAS( bee.services.alipay,	alipay );
+    
+    @weakify(self);
+    
+    alipay.config.signString = self.alipayModel.signString;
+    
+    alipay.whenWaiting = ^
+    {
+    };
+    alipay.whenSucceed = ^
+    {
+        @normalize(self);
+        [self.orderModel firstPage];
+        [self didPaySuccess];
+    };
+    alipay.whenFailed = ^
+    {
+        [self presentMessageTips:__TEXT(@"pay_failed")];
+    };
+    alipay.PAY();
+}
+
+ON_SIGNAL3( ALIPayModel, FAILED, signal )
+{
+    [self presentMessageTips:@"支付出问题啦，请重试"];
+}
+
 /**
  * 购物车-结算-提交订单-确认提交, 选择使用SDK进行支付
  */
 ON_SIGNAL3( C1_CheckOutBoard_iPhone, PAY_SDK, signal )
 {
-	ALIAS( bee.services.alipay,	alipay );
-
-//	if ( alipay.installed )
-	{
-		@weakify(self);
-
-        alipay.config.tradeNO		= self.flowModel.order_info.order_sn;
-        alipay.config.productName	= self.flowModel.order_info.subject;
-        alipay.config.productDescription	= self.flowModel.order_info.desc;
-        alipay.config.amount	= self.flowModel.order_info.order_amount;
-
-		alipay.whenWaiting = ^
-		{
-		};
-		alipay.whenSucceed = ^
-		{
-			@normalize(self);
-			[self didPaySuccess];
-		};
-		alipay.whenFailed = ^
-		{
-			@normalize(self);
-			[self didPayFail];
-		};
-		alipay.PAY();
-	}
+    ALIAS( bee.services.alipay,	alipay );
+    
+    alipay.config.tradeNO		= self.flowModel.order_info.order_sn;
+    alipay.config.productName	= self.flowModel.order_info.subject;
+    alipay.config.productDescription	= self.flowModel.order_info.desc;
+    alipay.config.amount	= self.flowModel.order_info.order_amount;
+    
+    self.alipayModel.order_id = self.flowModel.order_id;
+    [self.alipayModel pay];
+    
+//	ALIAS( bee.services.alipay,	alipay );
+//
+////	if ( alipay.installed )
+//	{
+//		@weakify(self);
+//
+//        alipay.config.tradeNO		= self.flowModel.order_info.order_sn;
+//        alipay.config.productName	= self.flowModel.order_info.subject;
+//        alipay.config.productDescription	= self.flowModel.order_info.desc;
+//        alipay.config.amount	= self.flowModel.order_info.order_amount;
+//
+//		alipay.whenWaiting = ^
+//		{
+//		};
+//		alipay.whenSucceed = ^
+//		{
+//			@normalize(self);
+//			[self didPaySuccess];
+//		};
+//		alipay.whenFailed = ^
+//		{
+//			@normalize(self);
+//			[self didPayFail];
+//		};
+//		alipay.PAY();
+//	}
 }
 
 /**

@@ -68,6 +68,8 @@ AS_MODEL( OrderModel, orderModel )
 
 AS_MODEL( WXPayModel, wxpayModel )
 
+AS_MODEL( ALIPayModel, alipayModel)
+
 AS_OUTLET( BeeUIScrollView , list )
 
 @property (nonatomic, retain) BeeUIPickerView * bonusPicker;

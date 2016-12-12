@@ -33,6 +33,8 @@ AS_MODEL( OrderModel, orderModel )
 
 AS_MODEL( WXPayModel, wxpayModel )
 
+AS_MODEL( ALIPayModel, alipayModel )
+
 /**
  * 个人中心-待付款订单，订单被取消时触发该事件
  */

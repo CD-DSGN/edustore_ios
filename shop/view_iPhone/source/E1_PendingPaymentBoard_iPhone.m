@@ -42,6 +42,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 
 DEF_MODEL( OrderModel, orderModel )
 DEF_MODEL( WXPayModel, wxpayModel )
+DEF_MODEL( ALIPayModel, alipayModel )
 
 DEF_SIGNAL( ORDER_CANCELED )
 DEF_SIGNAL( PAY_SDK )
@@ -53,12 +54,14 @@ DEF_SIGNAL( INSTALLATION_APP )
     self.orderModel = [OrderModel modelWithObserver:self];
 	self.orderModel.type = ORDER_LIST_AWAIT_PAY;
     self.wxpayModel = [WXPayModel modelWithObserver:self];
+    self.alipayModel = [ALIPayModel modelWithObserver:self];
 }
 
 - (void)unload
 {
 	SAFE_RELEASE_MODEL( self.orderModel );
     SAFE_RELEASE_MODEL( self.wxpayModel );
+    SAFE_RELEASE_MODEL( self.alipayModel );
 }
 
 #pragma mark -
@@ -221,12 +224,15 @@ ON_SIGNAL3( E1_PendingPaymentCell_iPhone, ORDER_PAY, signal )
 	{
 		if ( NSOrderedSame == [order.order_info.pay_code compare:@"alipay" options:NSCaseInsensitiveSearch] )
 		{
+//          modify nhj, pay sdk only
 			// 选择WAP或SDK支付
-			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
-			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK object:order];
-			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP object:order];
-			[paySelect addCancelTitle:__TEXT(@"button_cancel")];
-			[paySelect showInViewController:self];
+//			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
+//			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK object:order];
+//			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP object:order];
+//			[paySelect addCancelTitle:__TEXT(@"button_cancel")];
+//			[paySelect showInViewController:self];
+            
+            [self sendUISignal:self.PAY_SDK withObject:order];
 		}
 		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"cod" options:NSCaseInsensitiveSearch] )
 		{
@@ -322,6 +328,41 @@ ON_SIGNAL3( C1_CheckOutBoard_iPhone, ACTION_BACK, signal )
     [self.stack popBoardAnimated:YES];
 }
 
+#pragma mark 支付宝支付SIGNAL
+ON_SIGNAL3( ALIPayModel, RELOADING, signal )
+{
+    [self presentMessageTips:@"拉取支付信息中..."];
+}
+
+ON_SIGNAL3( ALIPayModel, RELOADED, signal )
+{
+    ALIAS( bee.services.alipay,	alipay );
+    
+    @weakify(self);
+    
+    alipay.config.signString = self.alipayModel.signString;
+    
+    alipay.whenWaiting = ^
+    {
+    };
+    alipay.whenSucceed = ^
+    {
+        @normalize(self);
+        [self.orderModel firstPage];
+        [self didPaySuccess];
+    };
+    alipay.whenFailed = ^
+    {
+        [self presentMessageTips:__TEXT(@"pay_failed")];
+    };
+    alipay.PAY();
+}
+
+ON_SIGNAL3( ALIPayModel, FAILED, signal )
+{
+    [self presentMessageTips:@"支付出问题啦，请重试"];
+}
+
 #pragma mark -
 
 /**
@@ -341,34 +382,45 @@ ON_SIGNAL3( E1_PendingPaymentBoard_iPhone, ORDER_CANCELED, signal )
  */
 ON_SIGNAL3( E1_PendingPaymentBoard_iPhone, PAY_SDK, signal )
 {
-	ORDER * order = (ORDER *)signal.object;
+    ORDER * order = (ORDER *)signal.object;
+    
+    ALIAS( bee.services.alipay,	alipay );
+    
+    alipay.config.tradeNO		= order.order_sn;
+    alipay.config.productName	= order.order_info.subject;
+    alipay.config.productDescription	= order.order_info.desc;
+    alipay.config.amount	= order.order_info.order_amount;
+    
+    self.alipayModel.order_id = order.order_id;
+    [self.alipayModel pay];
+//	ORDER * order = (ORDER *)signal.object;
 
-	ALIAS( bee.services.alipay,	alipay );
+//	ALIAS( bee.services.alipay,	alipay );
 
 //	if ( alipay.installed )
-	{
-		@weakify(self);
+//	{
+//		@weakify(self);
 
-        alipay.config.tradeNO		= order.order_sn;
-        alipay.config.productName	= order.order_info.subject;
-        alipay.config.productDescription	= order.order_info.desc;
-        alipay.config.amount	= order.order_info.order_amount;
+//        alipay.config.tradeNO		= order.order_sn;
+//        alipay.config.productName	= order.order_info.subject;
+//        alipay.config.productDescription	= order.order_info.desc;
+//        alipay.config.amount	= order.order_info.order_amount;
 
-		alipay.whenWaiting = ^
-		{
-		};
-		alipay.whenSucceed = ^
-		{
-			@normalize(self);
-			[self.orderModel firstPage];
-			[self didPaySuccess];
-		};
-		alipay.whenFailed = ^
-		{
-			[self presentMessageTips:__TEXT(@"pay_failed")];
-		};
-		alipay.PAY();
-	}
+//		alipay.whenWaiting = ^
+//		{
+//		};
+//		alipay.whenSucceed = ^
+//		{
+//			@normalize(self);
+//			[self.orderModel firstPage];
+//			[self didPaySuccess];
+//		};
+//		alipay.whenFailed = ^
+//		{
+//			[self presentMessageTips:__TEXT(@"pay_failed")];
+//		};
+//		alipay.PAY();
+//	}
 //	else
 //	{
 //		BeeUIAlertView * alert = [BeeUIAlertView spawn];

@@ -49,6 +49,11 @@ AS_SIGNAL( TAB_CART )
 AS_SIGNAL( TAB_USER )
 
 /**
+ * 底部菜单-小微博，点击时会触发该事件
+ */
+AS_SIGNAL( TAB_MOMENTS )
+
+/**
  * 通知消息 - 前往
  */
 AS_SIGNAL( NOTIFY_FORWARD )

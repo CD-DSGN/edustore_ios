@@ -57,7 +57,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 	$(@"#home-button").UNSELECT();
 	$(@"#cart-button").UNSELECT();
 	$(@"#user-button").UNSELECT();
-	$(@"#search-button").UNSELECT();
+	$(@"#moments-button").UNSELECT();
 }
 
 - (void)selectHome
@@ -70,13 +70,23 @@ SUPPORT_RESOURCE_LOADING( YES )
     self.RELAYOUT();
 }
 
-- (void)selectSearch
+//- (void)selectSearch
+//{
+//	[self deselectAll];
+//
+//    $(@"#search-bg").SHOW();
+//	$(@"#moments-button").SELECT();
+//
+//    self.RELAYOUT();
+//}
+
+- (void)selectMoments
 {
-	[self deselectAll];
-
-    $(@"#search-bg").SHOW();
-	$(@"#search-button").SELECT();
-
+    [self deselectAll];
+    
+    $(@"search-bg").SHOW();
+    $(@"moments-button").SELECT();
+    
     self.RELAYOUT();
 }
 

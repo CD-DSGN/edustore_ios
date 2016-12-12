@@ -10,7 +10,7 @@
 		</row>
 		<row class="item-wrapper">
 			<image id="search-bg" class="item-active-bg"></image>
-			<button id="search-button" class="item-icon icon-search"></button>
+			<button id="moments-button" class="item-icon icon-search"></button>
 		</row>
 		<row class="item-wrapper">
 			<image id="cart-bg" class="item-active-bg"></image>
@@ -52,26 +52,37 @@
 			height: 100%;
 			position: absolute;
 			left: 0;
-			top: 3px;
-			image: url(footer_active_bg.png);
+			top: 3px;image: url(footer_active_bg.png);
 		}
+        <!-- image: url(footer_active_bg.png);-->
 		
+        <!-- 每一栏的长宽、位置 -->
 		.item-icon {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			left: 0px;
-			top: 0px;
+            width: 40%;
+            height: 70%;
+            position: absolute;
+            left: 30%;
+            top: 15%;
 		}
-		
+
 		.icon-home {
 			image: url(footer_home_icon.png);
 			image-selected: url(footer_home_active_icon.png);
+            width: 40%;
+            height: 70%;
+            position: absolute;
+            left: 30%;
+            top: 15%;
 		}
 		
 		.icon-search {
 			image: url(footer_search_icon.png);
 			image-selected: url(footer_search_active_icon.png);
+            width: 40%;
+            height: 70%;
+            position: absolute;
+            left: 30%;
+            top: 15%;
 		}
 		
 		.icon-cart {

@@ -60,7 +60,10 @@ DEF_MODEL( SearchCategoryModel, searchCategoryModel )
 
 ON_CREATE_VIEWS( signal )
 {
+    
+    self.navigationBarTitle = @"全部商品";
     [self showNavigationBarAnimated:NO];
+    [self showBarButton:BeeUINavigationBar.LEFT image:[UIImage imageNamed:@"nav_back.png"]];
     
     @weakify(self);
     
@@ -98,10 +101,8 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
-    [bee.ui.appBoard showTabbar];
+    [bee.ui.appBoard hideTabbar];
     
-	self.navigationBarTitle = [[D0_SearchInput_iPhone alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44.0f)];
-
     [self.searchCategoryModel reload];
     [[CartModel sharedInstance] reload];
 
@@ -110,6 +111,8 @@ ON_WILL_APPEAR( signal )
 
 ON_DID_APPEAR( signal )
 {
+    // modify nhj
+//    self.navigationBarTitle = [[D0_SearchInput_iPhone alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44.0f)];
 }
 
 ON_WILL_DISAPPEAR( signal )
@@ -131,6 +134,7 @@ ON_DID_DISAPPEAR( signal )
 
 ON_LEFT_BUTTON_TOUCHED( signal )
 {
+    [self.stack popBoardAnimated:YES];
 }
 
 ON_RIGHT_BUTTON_TOUCHED( signal )

@@ -29,6 +29,7 @@
 #import "F0_AddressListBoard_iPhone.h"
 #import "C1_CheckOutBoard_iPhone.h"
 #import "H0_BrowserBoard_iPhone.h"
+#import "I0_MomentsBorad_iPhone.h"
 
 #import "UIViewController+ErrorTips.h"
 
@@ -62,6 +63,7 @@ DEF_SIGNAL( TAB_HOME )
 DEF_SIGNAL( TAB_SEARCH )
 DEF_SIGNAL( TAB_CART )
 DEF_SIGNAL( TAB_USER )
+DEF_SIGNAL( TAB_MOMENTS )
 
 DEF_SIGNAL( NOTIFY_FORWARD )
 DEF_SIGNAL( NOTIFY_IGNORE )
@@ -142,9 +144,10 @@ ON_SIGNAL2( BeeUIBoard, signal )
         self.view.backgroundColor = [UIColor whiteColor];
         
 		bee.ui.router[self.TAB_HOME]	= [B0_IndexBoard_iPhone class];
-		bee.ui.router[self.TAB_SEARCH]	= [D0_SearchBoard_iPhone class];
+//		bee.ui.router[self.TAB_SEARCH]	= [D0_SearchBoard_iPhone class];
 		bee.ui.router[self.TAB_CART]	= [C0_ShoppingCartBoard_iPhone class];
 		bee.ui.router[self.TAB_USER]	= [E0_ProfileBoard_iPhone sharedInstance];
+        bee.ui.router[self.TAB_MOMENTS] = [I0_MomentsBorad_iPhone class];
 
 		[self.view addSubview:bee.ui.router.view];
 		[self.view addSubview:bee.ui.tabbar];
@@ -337,10 +340,16 @@ ON_SIGNAL3( AppTabbar_iPhone, home_button, signal )
 	[bee.ui.router open:AppBoard_iPhone.TAB_HOME animated:NO];
 }
 
-ON_SIGNAL3( AppTabbar_iPhone, search_button, signal )
+//ON_SIGNAL3( AppTabbar_iPhone, search_button, signal )
+//{
+//	[bee.ui.tabbar selectSearch];
+//	[bee.ui.router open:AppBoard_iPhone.TAB_SEARCH animated:NO];
+//}
+
+ON_SIGNAL3( AppTabbar_iPhone, moments_button, signal )
 {
-	[bee.ui.tabbar selectSearch];
-	[bee.ui.router open:AppBoard_iPhone.TAB_SEARCH animated:NO];
+    [bee.ui.tabbar selectMoments];
+    [bee.ui.router open:AppBoard_iPhone.TAB_MOMENTS animated:NO];
 }
 
 ON_SIGNAL3( AppTabbar_iPhone, cart_button, signal )
@@ -359,7 +368,7 @@ ON_SIGNAL3( AppTabbar_iPhone, user_button, signal )
 
 ON_NOTIFICATION3( UserModel, KICKOUT, n )
 {
-	// [self showLogin];
+	[self showLogin];
 	// 登录用户过期后，执行当前页面viewWillApper
 	[bee.ui.router.currentBoard viewWillAppear:YES];
 }

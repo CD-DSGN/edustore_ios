@@ -25,8 +25,9 @@ AS_UI( AppTabbar_iPhone, tabbar )
 AS_SINGLETON( AppTabbar_iPhone )
 
 - (void)selectHome;
-- (void)selectSearch;
+//- (void)selectSearch;
 - (void)selectCart;
 - (void)selectUser;
+- (void)selectMoments;
 
 @end

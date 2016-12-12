@@ -101,8 +101,10 @@
         
         .cart-icon {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 80%;
+        left: 10%;
+        top: 10%;
         image: url(footer_shopping_cart_icon.png);
         }
         

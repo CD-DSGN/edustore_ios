@@ -27,6 +27,7 @@
 
 AS_MODEL( BannerModel,		bannerModel );
 AS_MODEL( CategoryModel,	categoryModel );
+AS_MODEL( UserModel, userModel);
 
 AS_OUTLET( BeeUIScrollView, list )
 AS_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )

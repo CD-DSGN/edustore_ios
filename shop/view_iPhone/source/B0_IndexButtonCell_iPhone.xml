@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ui namespace="B0_IndexButtonCell_iPhone">
+    
+    <row class="button_row">
+        <image class="button_row_bg" />
+        <col class="button" id="all_goods_col">
+            <image class="all_goods_bg button_bg" />
+            <button class="all_goods" id="all_goods"></button>
+        </col>
+        <col class="button" id="integral_col">
+            <button class="integral" id="integral"></button>
+            <image class="integral_bg button_bg" />
+        </col>
+        <col class="button" id="follow_col">
+            <button class="follow" id="follow"></button>
+            <image class="follow_bg button_bg" />
+        </col>
+        <col class="button" id="notify_col">
+            <button class="notify" id="notify"></button>
+            <image class="notify_bg button_bg" />
+        </col>
+    </row>
+
+    <style>
+        
+        .button_row {
+            position: relative;
+            width: 320px;
+            height: 55px;
+        }
+        
+        .button {
+            position: relative;
+            width: 20%;
+            height: 100%;
+            left: 0px;
+        }
+        
+        .button_row_bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            image-mode: stretch;
+        }
+        
+        .button_bg {
+            position: absolute;
+            width: 50px;
+            height: 48px;
+            top: 3;
+            left: 15;
+            image-mode: stretch;
+        }
+        
+        .all_goods_bg {
+            background-image: url(all_goods.png);
+        }
+        
+        .integral_bg {
+            background-image: url(integral.png);
+        }
+        
+        .follow_bg {
+            background-image: url(see_follow.png);
+<!--            background-color: orange;-->
+        }
+        .notify_bg {
+            background-image: url(notify.png);
+        }
+    </style>
+</ui>

@@ -105,7 +105,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         }
         else
         {
-            $(@"#list").HIDE();
+//            $(@"#list").HIDE();
         }
         
 		// info

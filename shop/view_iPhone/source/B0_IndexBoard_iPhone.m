@@ -19,6 +19,10 @@
 #import "H0_BrowserBoard_iPhone.h"
 #import "G1_HelpBoard_iPhone.h"
 #import "G2_MessageBoard_iPhone.h"
+#import "D0_SearchBoard_iPhone.h"
+#import "E8_IntegralBoard_iPhone.h"
+#import "E7_FollowBoard_iPhone.h"
+#import "D0_SearchInput_iPhone.h"
 
 #import "CommonFootLoader.h"
 #import "CommonPullLoader.h"
@@ -27,10 +31,19 @@
 #import "B0_BannerCell_iPhone.h"
 #import "B0_IndexRecommendCell_iPhone.h"
 #import "B0_IndexCategoryCell_iPhone.h"
+#import "B0_IndexButtonCell_iPhone.h"
+#import "B1_ProductListSearchBackgroundCell_iPhone.h"
 
 #import "ECMobileManager.h"
 
 #pragma mark -
+
+@interface B0_IndexBoard_iPhone()
+{
+    D0_SearchInput_iPhone * _titleSearch;
+    B1_ProductListSearchBackgroundCell_iPhone * _searchBackground;
+}
+@end
 
 @implementation B0_IndexBoard_iPhone
 
@@ -39,6 +52,7 @@ SUPPORT_AUTOMATIC_LAYOUT( YES )
 
 DEF_MODEL( BannerModel,		bannerModel );
 DEF_MODEL( CategoryModel,	categoryModel );
+DEF_MODEL( UserModel, userModel);
 
 DEF_OUTLET( BeeUIScrollView, list )
 DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
@@ -49,12 +63,15 @@ DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
 {
 	self.bannerModel	= [BannerModel modelWithObserver:self];
 	self.categoryModel	= [CategoryModel modelWithObserver:self];
+    self.userModel = [UserModel modelWithObserver:self];
 }
 
 - (void)unload
 {
 	self.bannerModel	= nil;
 	self.categoryModel	= nil;
+    
+    SAFE_RELEASE_MODEL( self.userModel );
 }
 
 #pragma mark -
@@ -66,7 +83,7 @@ ON_CREATE_VIEWS( signal )
 //    [self setTitleString:__TEXT(@"ecmobile")];
     
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"ecmobile");
+//    self.navigationBarTitle = __TEXT(@"ecmobile");
     
 
     self.navigationBarRight = self.notifyButton;
@@ -95,7 +112,8 @@ ON_CREATE_VIEWS( signal )
         self.list.total = self.bannerModel.banners.count ? 1 : 0;
         self.list.total += self.bannerModel.goods.count ? 1 : 0;
         self.list.total += self.categoryModel.categories.count;
-
+        self.list.total += 1;       // add nhj, 多加一排按钮在轮播图片之下
+        
         int offset = 0;
 		
         if ( self.bannerModel.banners.count )   // 应该是轮播图片
@@ -108,6 +126,18 @@ ON_CREATE_VIEWS( signal )
             banner.rule = BeeUIScrollLayoutRule_Line;
             banner.insets = UIEdgeInsetsMake(0, 0, 0, 0);
 
+            offset += 1;
+        }
+        
+        // 轮播图片之下的一排按钮
+        {
+            BeeUIScrollItem * item = self.list.items[offset];
+            item.clazz = [B0_IndexButtonCell_iPhone class];
+            item.data = self.userModel;        // 可能会传值判断教师？学生？
+            item.size = CGSizeMake( self.list.width, 55);
+            item.rule = BeeUIScrollLayoutRule_Line;
+            item.insets = UIEdgeInsetsMake(0, 0, 0, 0);
+            
             offset += 1;
         }
 
@@ -140,11 +170,18 @@ ON_CREATE_VIEWS( signal )
     {
         [self.bannerModel reload];
         [self.categoryModel reload];
+        
+        [[UserModel sharedInstance] updateProfile];
 
         [[CartModel sharedInstance] reload];
 		
 		[[ECMobilePushUnread sharedInstance] update];
     };
+    
+    [self observeNotification:UserModel.LOGIN];
+    [self observeNotification:UserModel.LOGOUT];
+    [self observeNotification:UserModel.KICKOUT];
+    [self observeNotification:UserModel.UPDATED];
     
 	[self observeNotification:ECMobilePushUnread.UPDATING];
 	[self observeNotification:ECMobilePushUnread.UPDATED];
@@ -164,13 +201,21 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
-	[self.list reloadData];
+//	[self.list reloadData];
 
 	[bee.ui.appBoard showTabbar];
 
-//		[[CartModel sharedInstance] reload];
-
-	[[ECMobilePushUnread sharedInstance] update];
+  [[CartModel sharedInstance] reload];
+//	[[ECMobilePushUnread sharedInstance] update];
+    
+    if (_titleSearch == nil)
+    {
+        _searchBackground = [[B1_ProductListSearchBackgroundCell_iPhone alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        [self.view insertSubview:_searchBackground atIndex:self.view.subviews.count];
+        
+        _titleSearch = [[D0_SearchInput_iPhone alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44.0f)];
+        self.navigationBarTitle = _titleSearch;
+    }
 }
 
 ON_DID_APPEAR( signal )
@@ -185,7 +230,7 @@ ON_DID_APPEAR( signal )
         [self.categoryModel reload];
     }
     
-//    [self.list reloadData];
+    [self.list reloadData];
 }
 
 ON_WILL_DISAPPEAR( signal )
@@ -211,7 +256,33 @@ ON_LEFT_BUTTON_TOUCHED( signal )
 
 ON_RIGHT_BUTTON_TOUCHED( signal )
 {
-    [self.stack pushBoard:[G2_MessageBoard_iPhone board] animated:YES];
+    [self.stack pushBoard:[D0_SearchBoard_iPhone board] animated:YES];
+//    [self.stack pushBoard:[G2_MessageBoard_iPhone board] animated:YES];
+}
+
+#pragma mark - BeeUITextField, search
+
+ON_SIGNAL2( BeeUITextField, signal )
+{
+    BeeUITextField * textField = (BeeUITextField *)signal.source;
+    
+    if ([signal is:BeeUITextField.RETURN])
+    {
+        // do search
+        [self doSearch:textField.text];
+        [textField endEditing:YES];
+        _searchBackground.hidden = YES;
+    }
+    
+    if ([signal is:BeeUITextField.WILL_ACTIVE])
+    {
+        _searchBackground.hidden = NO;
+    }
+    
+    if ([signal is:BeeUITextField.WILL_DEACTIVE])
+    {
+        _searchBackground.hidden = YES;
+    }
 }
 
 #pragma mark - B0_BannerPhotoCell_iPhone
@@ -349,6 +420,44 @@ ON_SIGNAL3( B0_IndexNotifiBarCell_iPhone, notify, signal )
     }
 }
 
+#pragma mark - B-_IndexButtonCell_iPhone
+
+/**
+ * 首页-全部商品按钮，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( B0_IndexButtonCell_iPhone, all_goods_col, signal )
+{
+    [self.stack pushBoard:[D0_SearchBoard_iPhone board] animated:YES];
+}
+
+/**
+ * 首页-教师积分按钮，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( B0_IndexButtonCell_iPhone, integral_col, signal )
+{
+    E8_IntegralBoard_iPhone * board = [[E8_IntegralBoard_iPhone alloc] init];
+    board.user_id = self.userModel.user.id;
+    [self.stack pushBoard:board animated:YES];
+}
+/**
+ 
+ * 首页-关注教师按钮，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( B0_IndexButtonCell_iPhone, follow_col, signal )
+{
+    E7_FollowBoard_iPhone * board = [[E7_FollowBoard_iPhone alloc] init];
+    board.user_id = self.userModel.user.id;
+    [self.stack pushBoard:board animated:YES];
+}
+
+/**
+ * 首页-通知按钮，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( B0_IndexButtonCell_iPhone, notify_col, signal )
+{
+    [self.stack pushBoard:[G2_MessageBoard_iPhone board] animated:YES];
+}
+
 #pragma mark -
 
 ON_NOTIFICATION3( ECMobilePushUnread, UPDATING, notification )
@@ -415,6 +524,24 @@ ON_MESSAGE3( API, home_category, msg )
 			[self showErrorTips:msg];
 		}
 	}
+}
+
+#pragma mark - search product by keyword
+
+- (void)doSearch:(NSString *)keyword
+{
+    if ( keyword.length )
+    {
+        B1_ProductListBoard_iPhone * board = [[[B1_ProductListBoard_iPhone alloc] init] autorelease];
+        board.searchByHotModel.filter.keywords = keyword;
+        board.searchByCheapestModel.filter.keywords = keyword;
+        board.searchByExpensiveModel.filter.keywords = keyword;
+        [self.stack pushBoard:board animated:YES];
+    }
+    else
+    {
+        [self presentFailureTips:@"请输入搜索内容"];
+    }
 }
 
 @end

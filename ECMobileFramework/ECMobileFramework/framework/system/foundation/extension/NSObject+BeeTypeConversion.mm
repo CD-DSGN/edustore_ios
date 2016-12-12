@@ -109,6 +109,7 @@
 	}
 }
 
+// modify nhj, 修复返回时间时差问题
 - (NSDate *)asNSDate
 {
 	if ( [self isKindOfClass:[NSDate class]] )
@@ -117,6 +118,18 @@
 	}
 	else if ( [self isKindOfClass:[NSString class]] )
 	{
+        // 把时间后面的时区去除，否则格式化的时区总是GMT0，如果之后有其他方案再修改
+        NSRange range = [(NSString *)self rangeOfString:@"+"];
+        NSString * time = [[NSString alloc]init];
+        if ( range.length > 0 )
+        {
+            time = [(NSString *)self substringToIndex:range.location];
+        }
+        else
+        {
+            time = @"";
+        }
+        
 		NSDate * date = nil;
 			
 		if ( nil == date )
@@ -130,7 +143,7 @@
 				[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 			}
 			
-			date = [formatter dateFromString:(NSString *)self];
+			date = [formatter dateFromString:time];
 		}
 
 		if ( nil == date )
@@ -144,7 +157,7 @@
 				[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 			}
 
-			date = [formatter dateFromString:(NSString *)self];
+			date = [formatter dateFromString:time];
 		}
         
 		if ( nil == date )
@@ -158,7 +171,7 @@
 				[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 			}
 			
-			date = [formatter dateFromString:(NSString *)self];
+			date = [formatter dateFromString:time];
 		}
 
 		if ( nil == date )
@@ -172,7 +185,7 @@
 				[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 			}
 
-			date = [formatter dateFromString:(NSString *)self];
+			date = [formatter dateFromString:time];
 		}
 
 		return date;

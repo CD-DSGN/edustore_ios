@@ -24,4 +24,6 @@ AS_SINGLETON( ServiceAlipayConfig )
 // TODO:
 @property (nonatomic, strong) NSString * wapCallBackURL;
 
+@property (nonatomic, strong) NSString * signString;
+
 @end

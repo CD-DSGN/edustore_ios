@@ -236,7 +236,7 @@ static NSMutableArray *			__globalExecuters = nil;
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"msg '%@', state %u", self.message, self.state];
+	return [NSString stringWithFormat:@"msg '%@', state %ld", self.message, (long)self.state];
 }
 
 - (void)dealloc

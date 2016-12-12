@@ -121,7 +121,7 @@ DEF_NOTIFICATION( FAILED )
     order.productDescription = self.config.productDescription; //商品描述
     order.amount = self.config.amount; //商品价格
     order.notifyURL = self.config.notifyURL; //回调URL
-    
+
     // 参见接入与使用（3技术接入规则）、支付宝钱包支付接口开发包（5请求参数说明）
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
@@ -134,12 +134,15 @@ DEF_NOTIFICATION( FAILED )
     NSLog(@"orderSpec = %@",orderSpec);
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
     
-    id<DataSigner> signer = CreateRSADataSigner(self.config.privateKey);
-     NSString * signedString = [signer signString:orderSpec];
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+//    id<DataSigner> signer = CreateRSADataSigner(self.config.privateKey);
+//     NSString * signedString = [signer signString:orderSpec];
+    NSString * signedString = self.config.signString;
+    signedString = [self urlEncodedString:signedString];
+    
     NSString * orderString = nil;
     if ( signedString != nil )
     {
+        //将签名成功字符串格式化为订单字符串,请严格按照该格式
         orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                        orderSpec, signedString, @"RSA"];
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary * resultDic) {
@@ -205,6 +208,13 @@ DEF_NOTIFICATION( FAILED )
             }
         }];
     }
+}
+
+- (NSString*)urlEncodedString:(NSString *)string
+{
+    NSString * encodedString = (__bridge_transfer  NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, NULL, (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 );
+    
+    return encodedString;
 }
 
 @end

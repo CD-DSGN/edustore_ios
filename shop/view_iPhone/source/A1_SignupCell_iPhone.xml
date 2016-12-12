@@ -62,7 +62,7 @@
             line-height: 44px;
             right: 0;
             top: 0;
-            background-image: url(button_blue.png);
+            background-image: url(button_orange.png);
         }
         <!-- input -->
         .signin-input {

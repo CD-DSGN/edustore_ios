@@ -388,6 +388,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
   	NSString * password = nil;
   	NSString * password2 = nil;
     NSString * isTeacher = @"1";
+    NSString * country = @"1";
     
     NSArray * inputs = [self inputs];
     
@@ -547,6 +548,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
                             school:school
                             course:course
                          isTeacher:isTeacher
+                           country:country
                       provinceName:self.selectedProvinceName
                           cityName:self.selectedCityName
                           townName:self.selectedTownName

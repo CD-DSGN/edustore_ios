@@ -389,5 +389,11 @@
 <string name="integral">积分</string>
 <string name="null">搜索结果为空</string>
 <string name="tap_refresh">点击刷新</string>
+<string name="Moments">汇师圈</string>
+<string name="moments_send">发通知。。。</string>
+<string name="moments_sending">正在发送汇师圈</string>
+<string name="moments_success">发送成功</string>
+<string name="moments_error">网络错误，请重新发送</string>
+<string name="moments_null">汇师圈内容不能为空</string>
 
 </resources>

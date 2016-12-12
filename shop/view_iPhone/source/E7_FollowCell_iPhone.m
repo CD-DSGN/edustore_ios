@@ -39,7 +39,7 @@ SUPPORT_RESOURCE_LOADING( YES )
         self.cancel_follow.tag = course_info.course_id.intValue;
         if( course_info.isLastCourse == YES )
         {
-            self.background_row.image = [UIImage imageNamed:@"cell_bg_footer.png"];
+            // self.background_row.image = [UIImage imageNamed:@"cell_bg_footer.png"];
         }
         else
         {

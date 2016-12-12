@@ -164,6 +164,7 @@ ON_DID_DISAPPEAR( signal )
         }
         [history addObject:keyword];
         [userDefault setObject:history forKey:@"searchHistory"];
+        [history release];
     }
     // 存在本地，重新对本地数组进行排序
     else if ( keywordExistInLocal )
@@ -223,6 +224,7 @@ ON_DID_DISAPPEAR( signal )
     }]];
     [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     
+//    [[AppBoard_iPhone sharedInstance] presentViewController:sheet animated:YES completion:nil];
     [self presentViewController:sheet animated:YES completion:nil];
     
     // [self.userModel cancelFollowByStudentId:self.user_id courseId:self.course_id];
@@ -293,7 +295,7 @@ ON_SIGNAL2( BeeUITextField, signal )
 ON_SIGNAL3( E7_SearchTeacherBoard_iPhone, back, signal )
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [bee.ui.tabbar setHidden:YES];
     }];
 }
 
@@ -427,19 +429,24 @@ ON_MESSAGE3( API, cancel_follow, msg )
 // 每行tableView的内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // cell复用
+    static NSString * resultIdentifier = @"result";
+    
     if ( tableView == self.history )
     {
-        UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        UITableViewCell * cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
+        
         cell.frame = CGRectMake(0, 0, 320, 50);
         // 历史记录存在数组中，数组是倒序展示的
-        cell.textLabel.text = [self.searchHistory objectAtIndex:(self.searchHistory.count - indexPath.row - 1)];
+        // cell.textLabel.text = [self.searchHistory objectAtIndex:(self.searchHistory.count - indexPath.row - 1)];
+        cell.textLabel.text = [NSString stringWithString:[self.searchHistory objectAtIndex:(self.searchHistory.count - indexPath.row - 1)]];
         cell.textLabel.font = [UIFont fontWithName:UIFontTextStyleBody size:8];
         cell.imageView.image = [UIImage imageNamed:@"searcher_new_search_icon.png"];
         cell.tag = [indexPath row];
         
         if ( (self.searchHistory.count - indexPath.row - 1) > 0 )
         {
-            UIButton * selected = [[UIButton alloc]init];
+            UIButton * selected = [[UIButton alloc] init];
             selected.frame = CGRectMake(290, 17.5f, 15, 15);
             selected.tag = indexPath.row;
             selected.backgroundImage = [UIImage imageNamed:@"icon_rightArrow_selected.png"];
@@ -450,46 +457,79 @@ ON_MESSAGE3( API, cancel_follow, msg )
     }
     else if ( tableView == self.result )
     {
-        UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        cell.selectionStyle = NO;
-        cell.frame = CGRectMake(0, 0, 320, 50);
-        // 查询结果为空
-        if ( [[self.userResult objectAtIndex:0] isEqualToString:__TEXT(@"null")] )
+        // 对数组做了排序，第一位的要么为空，要么是已经关注的教师（若关注过）
+        // 第一个cell不参加复用
+        if (indexPath.row == 0)
         {
-            
-        }
-        else
-        {
-            // 右侧按钮,目标实现点击关注与取消关注
-            UIButton * follow = [[UIButton alloc] init];
-            follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
-            follow.tag = indexPath.row;
-            // follow.backgroundImage = [UIImage imageNamed:@"follow.png"];
-            NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
-            if ( followed.intValue == 1 )   // 该学生正在关注该教师
+            UITableViewCell * cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
+            cell.selectionStyle = NO;
+            cell.frame = CGRectMake(0, 0, 320, 50);
+            cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
+            // 搜索结果不为空
+            if (![[self.userResult objectAtIndex:0] isEqualToString:__TEXT(@"null")])
             {
-                // follow.backgroundColor = [UIColor blueColor];
-                follow.backgroundImage = [UIImage imageNamed:@"has_follow_02.png"];
-                [follow addTarget:self action:@selector(cancelFollow:) forControlEvents:UIControlEventTouchUpInside];
+                UIButton * follow = [[UIButton alloc] init];
+                follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
+                follow.tag = indexPath.row;
+                NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
+                if (followed.intValue == 1)
+                {
+                    follow.backgroundImage = [UIImage imageNamed:@"has_follow_02.png"];
+                    [follow addTarget:self action:@selector(cancelFollow:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                else
+                {
+                    follow.backgroundImage = [UIImage imageNamed:@"add_follow_06.png"];
+                    [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
+                [cell.contentView addSubview:follow];
+                
             }
             else
+            {// 搜索结果为空
+            }
+            return cell;
+        }
+        else        // 除了第一项，均需要被复用
+        {
+            UITableViewCell * cell = [[tableView dequeueReusableCellWithIdentifier:resultIdentifier] autorelease];
+            UIButton * follow = [[UIButton alloc]init];
+            if (cell == nil)
             {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:resultIdentifier];
+                
+                cell.selectionStyle = NO;
+                cell.frame = CGRectMake(0, 0, 320, 50);
+                // 右侧按钮,目标实现点击关注与取消关注
+                follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
+                // follow.backgroundImage = [UIImage imageNamed:@"follow.png"];
+                // NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
                 // follow.backgroundColor = [UIColor orangeColor];
                 follow.backgroundImage = [UIImage imageNamed:@"add_follow_06.png"];
                 [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.contentView addSubview:follow];
             }
-            [cell.contentView addSubview:follow];
+            follow.tag = indexPath.row;
+            cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
+            
+            return cell;
+            // user name or some describtion
+            // cell.textLabel.text = [self.userResult objectAtIndex:indexPath.row];
+            // cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
+            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@"("];
+            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:self.course_name];
+            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@")"];
+            
+            // cell.detailTextLabel.text = [self.school objectAtIndex:indexPath.row];
+            // cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
+            // user header image
+            // cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];
+            // return cell;
         }
-        // user name or some describtion
-        cell.textLabel.text = [self.userResult objectAtIndex:indexPath.row];
-//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@"("];
-//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:self.course_name];
-//        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@")"];
         
-        cell.detailTextLabel.text = [self.school objectAtIndex:indexPath.row];
-        // user header image
-        // cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];
-        return cell;
     }
     return nil;
 }

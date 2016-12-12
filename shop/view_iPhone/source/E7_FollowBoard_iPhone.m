@@ -11,6 +11,7 @@
 #import "E7_SearchTeacherBoard_iPhone.h"
 
 #import "AppBoard_iPhone.h"
+#import "AppDelegate.h"
 
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
@@ -50,6 +51,9 @@ ON_CREATE_VIEWS( signal )
     self.navigationBarTitle = __TEXT(@"follow");
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
     
+    self.list.headerClass = [CommonPullLoader class];
+    self.list.headerShown = YES;
+    
     @weakify(self);
     
     self.list.whenReloading = ^
@@ -57,7 +61,7 @@ ON_CREATE_VIEWS( signal )
         @normalize(self);
         
         self.list.total = self.course.count;
-        self.list.scrollEnabled = NO;
+//        self.list.scrollEnabled = NO;
         
         for ( int i = 0; i < self.course.count; i++ )
         {
@@ -79,8 +83,14 @@ ON_CREATE_VIEWS( signal )
             item.rule = BeeUIScrollLayoutRule_Line;
             item.size = CGSizeAuto;
             item.data = course_info;
+            
+            [course_info release];
         }
-        
+    };
+    
+    self.list.whenHeaderRefresh = ^
+    {
+        [self setupCourse];
     };
 }
 
@@ -95,6 +105,8 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
+    [bee.ui.appBoard hideTabbar];
+    
     [self setupCourse];
     // [self setupTeacher];
 }
@@ -107,7 +119,8 @@ ON_DID_APPEAR( signal )
 
 ON_WILL_DISAPPEAR( signal )
 {
-    
+    [bee.ui.tabbar setHidden:NO];
+    [bee.ui.appBoard showTabbar];
 }
 
 ON_DID_DISAPPEAR( signal )
@@ -151,9 +164,13 @@ ON_MESSAGE3( API, get_course, msg )
         // 获取课程中
         [self presentLoadingTips:@"正在加载..."];
     }
-    if( msg.succeed )
+    else
     {
         [self dismissTips];
+        [self.list setHeaderLoading:NO];
+    }
+    if( msg.succeed )
+    {
         Course * getCourse = msg.GET_OUTPUT(@"data");
         [self.course removeAllObjects];
         [self.course_id removeAllObjects];
@@ -164,11 +181,6 @@ ON_MESSAGE3( API, get_course, msg )
             [self.course_id addObject:getCourse.course_id[i]];
             [self.teacher_name addObject:getCourse.teacher_name[i]];
         }
-        [self.list reloadData];
-    }
-    else
-    {
-        [self dismissTips];
         [self.list reloadData];
     }
     if ( msg.failed )
@@ -255,8 +267,10 @@ ON_SIGNAL3( E7_FollowCell_iPhone, follow, signal )
         board.user_id = self.user_id;
         board.course_name = [self.course objectAtIndex:temp];
         board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:board animated:YES completion:nil];
-        // [self.stack pushBoard:board animated:YES];
+        
+        [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:^{
+            [bee.ui.tabbar setHidden:YES];
+        }];
     }
     else
     {
@@ -304,7 +318,8 @@ ON_SIGNAL3(E7_FollowCell_iPhone, cancel_follow, signal )
             }]];
             [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
             
-            [self presentViewController:sheet animated:YES completion:nil];
+            [[AppBoard_iPhone sharedInstance] presentViewController:sheet animated:YES completion:nil];
+//            [self presentViewController:sheet animated:YES completion:nil];
         }
     }
     else

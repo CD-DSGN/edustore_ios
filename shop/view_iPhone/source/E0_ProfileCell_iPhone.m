@@ -103,14 +103,22 @@ SUPPORT_RESOURCE_LOADING( YES )
 		
 		if ( [UserModel online] )
 		{
-			if ( [UserModel sharedInstance].avatar )
-			{
-				$(@"#header-avatar").IMAGE( [UserModel sharedInstance].avatar );
-			}
-			else
-			{
-				$(@"#header-avatar").IMAGE( [UIImage imageNamed:@"profile_no_avatar_icon.png"] );
-			}
+//			if ( [UserModel sharedInstance].avatar )
+//			{
+//				$(@"#header-avatar").IMAGE( [UserModel sharedInstance].avatar );
+//			}
+//			else
+//			{
+//				$(@"#header-avatar").IMAGE( [UIImage imageNamed:@"profile_no_avatar_icon.png"] );
+//			}
+            if (userModel.avatar != nil)
+            {
+                $(@"#header-avatar").IMAGE( userModel.avatar );
+            }
+            else
+            {
+                $(@"#header-avatar").IMAGE( [UIImage imageNamed:@"profile_no_avatar_icon.png"] );
+            }
 			
 			$(@"#header-carema").SHOW();
 			$(@"#carema").SHOW();

@@ -67,13 +67,14 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"profile_personal");
+    self.navigationBarShown = YES;
     
     [self showNavigationBarAnimated:NO];
     
     [self showBarButton:BeeUINavigationBar.RIGHT
                   image:[UIImage imageNamed:@"nav_right.png"]
                   image:[UIImage imageNamed:@"profile_refresh_site_icon.png"]];
-    
+
     @weakify(self);
     
     self.list.headerClass = [CommonPullLoader class];
@@ -126,6 +127,8 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
+    self.navigationBarShown = YES;
+    
     [bee.ui.appBoard showTabbar];
     
     [[CartModel sharedInstance] reload];
@@ -173,7 +176,8 @@ ON_SIGNAL3( E0_ProfileBoard_iPhone, PHOTO_FROM_CAMERA, signal )
             [cameraVC.navigationBar setBarStyle:UIBarStyleBlack];
             [cameraVC setDelegate:self];
             [cameraVC setAllowsEditing:YES];
-            [self presentModalViewController:cameraVC animated:YES];
+//            [self presentModalViewController:cameraVC animated:YES];
+            [self presentViewController:cameraVC animated:YES completion:nil];
             [cameraVC release];
         }
         else
@@ -199,7 +203,8 @@ ON_SIGNAL3( E0_ProfileBoard_iPhone, PHOTO_FROM_LIBRARY, signal )
             [imgPickerVC.navigationBar setBarStyle:UIBarStyleBlack];
             [imgPickerVC setDelegate:self];
             [imgPickerVC setAllowsEditing:YES];
-            [self presentModalViewController:imgPickerVC animated:YES];
+            [self presentViewController:imgPickerVC animated:YES completion:nil];
+//            [self presentModalViewController:imgPickerVC animated:YES];
             [imgPickerVC release];
         }
         else
@@ -220,11 +225,12 @@ ON_SIGNAL3( E0_ProfileBoard_iPhone, PHOTO_REMOVE, signal )
     if ( nil == item )
         return;
     
-    $(item).FIND(@"#header-avatar").DATA( [UIImage imageNamed:@"placeholder_image.png"] );
+    $(item).FIND(@"#header-avatar").DATA( [UIImage imageNamed:@"profile_no_avatar_icon.png"] );
     
     [[UserModel sharedInstance] setAvatar:nil];
     
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -348,15 +354,15 @@ ON_SIGNAL3( E0_ProfileCell_iPhone, carema, signal )
         return;
     }
     
-    if ( [UserModel sharedInstance].avatar )
-    {
-        BeeUIActionSheet * confirm = [BeeUIActionSheet spawn];
-        [confirm addDestructiveTitle:__TEXT(@"delete_photo") signal:self.PHOTO_REMOVE];
-        [confirm addCancelTitle:__TEXT(@"button_cancel")];
-        [confirm showInViewController:self];
-    }
-    else
-    {
+//    if ( [UserModel sharedInstance].avatar )
+//    {
+//        BeeUIActionSheet * confirm = [BeeUIActionSheet spawn];
+//        [confirm addDestructiveTitle:__TEXT(@"delete_photo") signal:self.PHOTO_REMOVE];
+//        [confirm addCancelTitle:__TEXT(@"button_cancel")];
+//        [confirm showInViewController:self];
+//    }
+//    else
+//    {
         BeeUIActionSheet * confirm = [BeeUIActionSheet spawn];
         
         if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] )
@@ -370,7 +376,7 @@ ON_SIGNAL3( E0_ProfileCell_iPhone, carema, signal )
         
         [confirm addCancelTitle:__TEXT(@"button_cancel")];
         [confirm showInViewController:self];
-    }
+//    }
 }
 
 /**
@@ -392,6 +398,7 @@ ON_SIGNAL3( E0_ProfileCell_iPhone, follow, signal )
 ON_SIGNAL3( E0_ProfileCell_iPhone, integral, signal )
 {
     E8_IntegralBoard_iPhone * board = [[E8_IntegralBoard_iPhone alloc] init];
+    board.user_id = self.userModel.user.id;
     [self.stack pushBoard:board animated:YES];
 }
 
@@ -494,24 +501,73 @@ ON_MESSAGE3( API, user_info, msg )
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	UIImage * image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+//    UIImage * image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // add nhj,将所选取图片剪裁为圆形
+//    CGSize imageSize = CGSizeMake(image.size.width, image.size.height);
+//    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+//    
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    
+//    CGFloat centerX = image.size.width / 2;
+//    CGFloat centerY = image.size.height / 2;
+//    CGContextAddArc(ctx, centerX, centerY, centerX, 0, M_PI*2, 0);
+//    CGContextClip(ctx);
+//    
+//    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+//    UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    UIGraphicsEndImageContext();
+//    image = newImage;
+    
 	if ( image )
 	{
         UIView * item = ((BeeUIScrollItem *)self.list.items[0]).view;
         if ( nil == item )
             return;
         
+        // add nhj, post user avatar to server
+        // 将图片转换为NSData格式
+        NSData * imageData = UIImageJPEGRepresentation(image, 0.3);
+        if (imageData != nil)
+        {
+            // 将图片Base 64编码
+            NSString * imageStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+            
+            [self.userModel postAvatar:imageStr];
+        }
+        
         $(item).FIND(@"#header-avatar").IMAGE( image );
 
         [[UserModel sharedInstance] setAvatar:image];
 	}
     
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - post user avatar
+ON_MESSAGE3( API, post_avatar, msg )
+{
+    if( msg.sending )
+    {
+        
+    }
+    if( msg.succeed )
+    {
+        
+    }
+    if( msg.failed )
+    {
+        
+    }
 }
 
 @end

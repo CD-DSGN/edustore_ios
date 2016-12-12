@@ -37,7 +37,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 
         $(@"#tel").TEXT( address.tel );
         $(@"#name").TEXT( address.consignee );
-        $(@"#email").TEXT( address.email );
+//        $(@"#email").TEXT( address.email );
         $(@"#zipcode").TEXT( address.zipcode );
         $(@"#address").TEXT( address.address );
 

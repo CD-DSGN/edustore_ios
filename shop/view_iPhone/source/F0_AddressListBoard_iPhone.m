@@ -230,7 +230,7 @@ ON_MESSAGE3( API, address_info, msg )
 		
 		if ( status && status.succeed.boolValue )
 		{
-			F2_EditAddressBoard_iPhone * board = [F2_EditAddressBoard_iPhone board];
+			F2_EditAddressBoard_iPhone * board = [[F2_EditAddressBoard_iPhone alloc] init];
 			board.address = self.addressInfoModel.address;
 			[self.stack pushBoard:board animated:YES];
 		}

@@ -230,7 +230,7 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
 
     NSString * name = $(item).FIND(@"name").text;
     NSString * tel = $(item).FIND(@"tel").text;
-    NSString * email = $(item).FIND(@"email").text;
+//    NSString * email = $(item).FIND(@"email").text;
     NSString * zipcode = $(item).FIND(@"zipcode").text;
     NSString * tempAddress = $(item).FIND(@"address").text;
 
@@ -249,12 +249,12 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         return;
     }
     
-    if ( !( email && email.length && email.isEmail ) )
-    {
-		$(item).FIND(@"#email").FOCUS();
-        [self presentFailureTips:__TEXT(@"warn_no_email")];
-        return;
-    }
+//    if ( !( email && email.length && email.isEmail ) )
+//    {
+//		$(item).FIND(@"#email").FOCUS();
+//        [self presentFailureTips:__TEXT(@"warn_no_email")];
+//        return;
+//    }
     
 	if ( !(zipcode && zipcode.length ) )
 	{
@@ -278,7 +278,8 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     
     ADDRESS * address = [[[ADDRESS alloc] init] autorelease];
     address.tel = tel;
-    address.email = email;
+//    address.email = email;
+    address.email = nil;
     address.zipcode = zipcode;
     address.consignee = name;
     address.address = tempAddress;

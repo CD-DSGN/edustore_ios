@@ -12,10 +12,10 @@
             <input id="tel" class="input" placeholder="@{address_phone}"></input>
         </row>
         
-        <row class="list-item">
-            <image class="list-item-bg"/>
-            <input id="email" class="input" placeholder="@{address_email}"></input>
-        </row>
+<!--        <row class="list-item">-->
+<!--            <image class="list-item-bg"/>-->
+<!--            <input id="email" class="input" placeholder="@{address_email}"></input>-->
+<!--        </row>-->
         
         <row class="list-item">
             <image class="list-item-bg"/>

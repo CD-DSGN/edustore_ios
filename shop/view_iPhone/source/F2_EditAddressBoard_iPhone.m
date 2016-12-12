@@ -87,7 +87,7 @@ ON_DELETE_VIEWS(signal)
 
 ON_WILL_APPEAR(signal)
 {
-
+    [self.list setSize:CGSizeMake(320, 508)];
     [self.list reloadData];
     [bee.ui.appBoard hideTabbar];
 }
@@ -229,7 +229,7 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
 
     NSString * name = $(item).FIND(@"name").text;
     NSString * tel = $(item).FIND(@"tel").text;
-    NSString * email = $(item).FIND(@"email").text;
+//    NSString * email = $(item).FIND(@"email").text;
     NSString * zipcode = $(item).FIND(@"zipcode").text;
     NSString * tempAddress = $(item).FIND(@"address").text;
 
@@ -248,12 +248,12 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         return NO;
     }
     
-    if ( !( email && email.length && email.isEmail ) )
-    {
-		$(item).FIND(@"#email").FOCUS();
-        [self presentFailureTips:__TEXT(@"warn_no_email")];
-        return NO;
-    }
+//    if ( !( email && email.length && email.isEmail ) )
+//    {
+//		$(item).FIND(@"#email").FOCUS();
+//        [self presentFailureTips:__TEXT(@"warn_no_email")];
+//        return NO;
+//    }
     
 	if ( !(zipcode && zipcode.length ) )
 	{
@@ -276,7 +276,7 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     }
     
     self.address.tel = tel;
-    self.address.email = email;
+    self.address.email = nil;
     self.address.zipcode = zipcode;
     self.address.consignee = name;
     self.address.address = tempAddress;

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ui namespace="F2_EditAddressBoard_iPhone">
-    <list id="list" class="col-md-6"/>
+    <list id="list" class="col-md-6 style"/>
+
+    <style>
+        .style {
+            width: 320px;
+            height: 508px;
+        }
+    </style>
 </ui>

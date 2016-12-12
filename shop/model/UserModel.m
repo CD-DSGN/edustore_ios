@@ -228,6 +228,7 @@ DEF_NOTIFICATION( UPDATED )
                 school:(NSString *)school
                 course:(NSString *)course
              isTeacher:(NSString *)isTeacher
+               country:(NSString *)country
           provinceName:(NSString *)provinceName
               cityName:(NSString *)cityName
               townName:(NSString *)townName
@@ -243,6 +244,7 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"school", school )
     .INPUT( @"course", course )
     .INPUT( @"isTeacher", isTeacher )
+    .INPUT( @"country", country ) 
     .INPUT( @"provinceName", provinceName )
     .INPUT( @"cityName", cityName )
     .INPUT( @"townName", townName );
@@ -318,6 +320,14 @@ DEF_NOTIFICATION( UPDATED )
     self
     .MSG( API.get_region )
     .INPUT( @"parent_id", parent_id);
+}
+
+- (void)postAvatar:(NSString *)avatar
+{
+    self.CANCEL_MSG( API.post_avatar );
+    self
+    .MSG( API.post_avatar )
+    .INPUT( @"avatar", avatar );
 }
 
 - (void)checkUser:(NSString *)user

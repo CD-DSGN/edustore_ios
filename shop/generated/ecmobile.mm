@@ -422,6 +422,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize rank_name = _rank_name;
 @synthesize rank_level = _rank_level;
 @synthesize is_teacher = _is_teacher;
+@synthesize avatar = _avatar;
 
 @end
 
@@ -465,6 +466,29 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @synthesize more = _more;
 @synthesize regions = _regions;
+
+@end
+
+@implementation MOMENTS
+
+@synthesize publish_info = _publish_info;
+@synthesize teacher_info = _teacher_info;
+
+@end
+
+@implementation MOMENTS_PUBLISH
+
+@synthesize user_id = _user_id;
+@synthesize publish_time = _publish_time;
+@synthesize news_content = _news_content;
+@synthesize photo_array = _photo_array;
+
+@end
+
+@implementation MOMENTS_TEACHER
+
+@synthesize real_name = _real_name;
+@synthesize avatar = _avatar;
 
 @end
 
@@ -2299,6 +2323,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSString * school = msg.GET_INPUT( @"school" );
         NSString * course = msg.GET_INPUT( @"course" );
         NSNumber * isTeacher = msg.GET_INPUT( @"isTeacher" );
+        NSString * country = msg.GET_INPUT( @"country" );
         NSString * provinceName = msg.GET_INPUT( @"provinceName" );
         NSString * cityName = msg.GET_INPUT( @"cityName" );
         NSString * townName = msg.GET_INPUT( @"townName" );
@@ -2323,6 +2348,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         requestBody.APPEND( @"school", school );
         requestBody.APPEND( @"course", course );
         requestBody.APPEND( @"isTeacher", isTeacher );
+        requestBody.APPEND( @"country", country );
         requestBody.APPEND( @"provinceName", provinceName );
         requestBody.APPEND( @"cityName", cityName );
         requestBody.APPEND( @"townName", townName );
@@ -2946,6 +2972,178 @@ DEF_MESSAGE_( checkUser, msg )
     {
     }
     else if( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( getSign, msg )
+{
+    if( msg.sending )
+    {
+        NSString * requestURI = [NSString stringWithFormat:@"%@/get_sign", [ServerConfig sharedInstance].url];
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"content", msg.GET_INPUT( @"order_id" ) );
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        NSString * signedString = [response stringAtPath:@"data.sign"];
+        if ( signedString == nil )
+        {
+            msg.failed = YES;
+            return;
+        }
+        msg.OUTPUT(@"signedString", signedString);
+    }
+    else if( msg.failed )
+    {
+    }
+    else if( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( moments_list, msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        PAGINATION * pagination = msg.GET_INPUT( @"pagination" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"pagination", pagination );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/moments_list", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        NSString * no_follow = [response stringAtPath:@"data.no_follow"];
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        PAGINATED * paginated = [PAGINATED objectFromDictionary:[response dictAtPath:@"paginated"]];
+        NSArray * data = [MOMENTS objectsFromArray:[response arrayAtPath:@"data.info"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+            
+        if ( nil == paginated || NO == [paginated isKindOfClass:[PAGINATED class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+
+        msg.OUTPUT( @"paginated", paginated );
+        msg.OUTPUT( @"status", status );
+        msg.OUTPUT( @"no_follow", no_follow );
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( teacher_publish, msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSString * curTime = msg.GET_INPUT( @"time" );
+        curTime = [curTime trim];
+        NSString * content = msg.GET_INPUT( @"content" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"time", curTime );
+        requestBody.APPEND( @"content", content );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/teacher_publish", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        NSString * data = [response stringAtPath:@"data"];
+
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( post_avatar, msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSString * avatar = msg.GET_INPUT( @"avatar" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"avatar", avatar );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/post_avatar", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
     {
     }
 }

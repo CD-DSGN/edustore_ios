@@ -58,13 +58,15 @@
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
     // [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
-    [ServerConfig sharedInstance].url = @"http://nhj.vip.natapp.cn/edustore/ecmobile/?url=";
+    [ServerConfig sharedInstance].url = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/?url=";
     // [ServerConfig sharedInstance].url = @"http://localhost/edustore/ecmobile/?url=";
     
     // 配置管理后台
-    [ECMobileManager sharedInstance].appID	= @"52653a425feb4754";
-    [ECMobileManager sharedInstance].appKey	= @"00d4f7310e493c3e92026f71a825c253";
-
+//    [ECMobileManager sharedInstance].appID	= @"52653a425feb4754";
+//    [ECMobileManager sharedInstance].appKey	= @"00d4f7310e493c3e92026f71a825c253";
+    [ECMobileManager sharedInstance].appID	= @"99357ad345fc1d73";
+    [ECMobileManager sharedInstance].appKey	= @"0512f4115e873d99f579b900fb6c8dc4";
+    
 	// 配置闪屏
     bee.services.wizard.config.showBackground  = YES;
     bee.services.wizard.config.showPageControl = YES;
@@ -92,17 +94,17 @@
 	// 配置导航条
 	{
 		[BeeUINavigationBar setTitleColor:[UIColor whiteColor]];
-		[BeeUINavigationBar setBackgroundColor:[UIColor lightGrayColor]];
+		[BeeUINavigationBar setBackgroundColor:[UIColor orangeColor]];
 		
-		if ( IOS7_OR_LATER )
-		{
-			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg_iphone5.png"]];
-		}
-		else
-		{
-			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg.png"]];
-		}
-	}
+//		if ( IOS7_OR_LATER )
+//		{
+//			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg_iphone5.png"]];
+//		}
+//		else
+//		{
+//			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg.png"]];
+//		}
+    }
 	
 	[self observeNotification:ECMobileAppConfig.UPDATING];
 	[self observeNotification:ECMobileAppConfig.UPDATED];
@@ -145,10 +147,15 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
 	ALIAS( bee.services.location,			lbs );
 
 	// 配置微信
-    weixin.config.appId          = [[ECMobileAppConfig sharedInstance] weixinID];
-    weixin.config.appKey         = [[ECMobileAppConfig sharedInstance] weixinKey];
-    weixin.config.partnerId      = [[ECMobileAppConfig sharedInstance] weixinPartnerID];
-    weixin.config.payUrl         = @"http://shop.ecmobile.cn/ecmobile/payment/wxpay/beforepay.php";
+    //weixin.config.appId          = [[ECMobileAppConfig sharedInstance] weixinID];
+    //weixin.config.appKey         = [[ECMobileAppConfig sharedInstance] weixinKey];
+    //weixin.config.partnerId      = [[ECMobileAppConfig sharedInstance] weixinPartnerID];
+    //weixin.config.payUrl         = @"http://shop.ecmobile.cn/ecmobile/payment/wxpay/beforepay.php";
+    weixin.config.appId          = @"wxac39735575af3099";
+    weixin.config.appKey         = @"gao35162016lichenzhangliu2016ohy";
+    weixin.config.partnerId      = @"1403289802";
+    weixin.config.payUrl         = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/wxpay/beforepay.php";
+    
 
 	// 配置新浪
     sweibo.config.appKey         = [[ECMobileAppConfig sharedInstance] sinaWeiboKey];
@@ -161,12 +168,18 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
     tweibo.config.redirectURI    = [[ECMobileAppConfig sharedInstance] tencentWeiboCallback];
 
 	// 配置支付宝
-    alipay.config.partner        = [[ECMobileAppConfig sharedInstance] alipayPartnerID];
-    alipay.config.seller         = [[ECMobileAppConfig sharedInstance] alipaySeller];
-    alipay.config.privateKey     = [[ECMobileAppConfig sharedInstance] alipayPrivateKey];
-    alipay.config.publicKey      = [[ECMobileAppConfig sharedInstance] alipayPublicKey];
-    alipay.config.notifyURL      = [[ECMobileAppConfig sharedInstance] alipayCallback];
-    alipay.config.wapCallBackURL = @"http://shop.ecmobile.cn/ecmobile/payment/app_callback.php?err=";
+//    alipay.config.partner        = [[ECMobileAppConfig sharedInstance] alipayPartnerID];
+//    alipay.config.seller         = [[ECMobileAppConfig sharedInstance] alipaySeller];
+//    alipay.config.privateKey     = [[ECMobileAppConfig sharedInstance] alipayPrivateKey];
+//    alipay.config.publicKey      = [[ECMobileAppConfig sharedInstance] alipayPublicKey];
+//    alipay.config.notifyURL      = [[ECMobileAppConfig sharedInstance] alipayCallback];
+//    alipay.config.wapCallBackURL = @"http://shop.ecmobile.cn/ecmobile/payment/app_callback.php?err=";
+    alipay.config.partner        = @"2088911655683743";
+    alipay.config.seller         = @"2088911655683743";
+    alipay.config.privateKey     = @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBANBMvQSwwr8KfGv5JTBBFxengfb4R7sDY1C9aIZbtlE0NqpuRvpbrEYcHhGhO7pOQ9rfI64Jb+gdAJwCuzd69BpcmvbCp6O78X7SwgXtV9+IC97QwLxtkDhIrHeTyzXiSudpbiRf46KS1U3gFierBpBWNmp3EUTz3MW8LM3gfxc1AgMBAAECgYARq/D9TOG4w3L61hBJn7wNzbBA+59aRldOqkML4wv8p6lbnC95Xf2nlQsYA83FaI5pKzUjtrk/v/YlRjYL5up+isk4kvQhSo7x6ipsRk195v9uxJy6bmIUYp531YkFL5LIQkaihu5jqstHK6EV8VF+iNyuhT1XFJ1TYQwW5mnvAQJBAPZM+jLHJIHwnVnDUu9ab7FORrW8l4mIJk9owJmNLw+ZPQFC922K/0DmzMcJMdsMG/+qgoqQdUA/99kQUgtA4Z0CQQDYgKncRrOXjWH5WQP+pTVu/Wu3xTN7Nrj8csAAdv6xLRGt1jwpMAAWrTd6pnzia+ldB1R/S5IZEqzPnQnmJgR5AkBCyHiG0Cx79ywTLL0OHW1vnBPcLzi/l+UbXwHqILgD+L7r2qaQU0IG7Q3VYg7coBnvZuJig+zm8PFZL+2vE3aZAkBZjGY1kRzJS5ZBj1sCoYzHWpSKT0uq5AiBimj2CEHyQKT2VQ1PL+Zper3ewiwXbvD4JIcDm9tS+ZF20gp9Ii5pAkB2TW96cGyrPuwQdUzfMY8fP1HjqmPUVc2jmfjicgNWcNOok8/85dQCSQdepwDraszxcjfb86y8s7rnvyfUVXNd";
+    alipay.config.publicKey      = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
+    alipay.config.notifyURL      = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/alipay/sdk/notify_url.php";
+    alipay.config.wapCallBackURL = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/app_callback.php?err=";
 
 	// 配置语音识别
     siri.config.showUI           = NO;

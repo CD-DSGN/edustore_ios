@@ -37,6 +37,8 @@
 #import "UserModel.h"
 #import "ValidateModel.h"
 #import "WXPayModel.h"
+#import "ALIPayModel.h"
+#import "MomentModel.h"
 
 #import "ADDRESS+Region.h"
 #import "NSObject+TagList.h"

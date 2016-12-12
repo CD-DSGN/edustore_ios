@@ -423,6 +423,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSNumber *		rank_level;
 @property (nonatomic, retain) NSNumber *		id;
 @property (nonatomic, retain) NSNumber *        is_teacher;
+@property (nonatomic, retain) NSString *        avatar;
 @end
 
 @interface COLLECT_GOODS : SIMPLE_GOODS
@@ -464,6 +465,24 @@ enum RANK_LEVEL
 @interface Regions : NSObject
 @property (nonatomic, retain) NSNumber * more;
 @property (nonatomic, retain) NSArray * regions;
+@end
+
+// 接收返回的 汇师圈 信息，nhj
+@interface MOMENTS_PUBLISH : NSObject
+@property (nonatomic, retain) NSString * news_content;
+@property (nonatomic, retain) NSString * publish_time;
+@property (nonatomic, retain) NSString * user_id;
+@property (nonatomic, retain) NSArray  * photo_array;
+@end
+
+@interface MOMENTS_TEACHER : NSObject
+@property (nonatomic, retain) NSString * real_name;
+@property (nonatomic, retain) NSString * avatar;
+@end
+
+@interface MOMENTS : NSObject
+@property (nonatomic, retain) MOMENTS_PUBLISH * publish_info;
+@property (nonatomic, retain) MOMENTS_TEACHER * teacher_info;
 @end
 
 // add by nhj,a new class for timer
@@ -633,6 +652,18 @@ AS_MESSAGE( getIdentifyCode );
 
 // POST check_username
 AS_MESSAGE( checkUser );
+
+// POST get_sign     获取支付宝支付时的签名
+AS_MESSAGE( getSign );
+
+// POST moments_list  获取汇师圈的教师动态
+AS_MESSAGE( moments_list );
+
+// POST teacher_publish  教师发送汇师圈动态
+AS_MESSAGE( teacher_publish );
+
+// POST 将用户头像上传至服务器
+AS_MESSAGE( post_avatar );
 
 @end
 

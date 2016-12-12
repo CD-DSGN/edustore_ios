@@ -57,6 +57,7 @@ AS_NOTIFICATION( UPDATED )
                 school:(NSString *)school
                 course:(NSString *)course
              isTeacher:(NSString *)isTeacher
+               country:(NSString *)country
           provinceName:(NSString *)provinceName
               cityName:(NSString *)cityName
               townName:(NSString *)townName;
@@ -88,5 +89,7 @@ AS_NOTIFICATION( UPDATED )
 - (void)updateProfile;
 
 - (void)checkUser:(NSString *)user;
+
+- (void)postAvatar:(NSString *)avatar;
 
 @end

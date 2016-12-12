@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="I0_MomentsCell_iPhone">
+    <list id="list" class="col-md-6"/>
+    
+    <style>
+        #list {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        insets: 0 0 44 0;
+        }
+    </style>
+</ui>

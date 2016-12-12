@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="I0_MomentsHeaderCell_iPhone">
+    <row class="moments-cell">
+        <image class="moments-cell-bg" />
+        <row class="moments-head">
+            <image class="user-avatar" id="user-avatar" />
+            <label class="user-name" id="user-name"></label>
+            <label class="create-at" id="create-at"></label>
+        </row>
+        <row class="moments-content">
+            <label class="content" id="content"></label>
+        </row>
+        <!--转发、评论、点赞，暂时先不做-->
+<!--        <row class="moments-foot">-->
+<!--            -->
+<!--        </row>-->
+    </row>
+    
+    <style>
+        .moments-cell {
+        position: relative;
+        width: 320px;
+        height: auto;
+        margin-top: 7px;
+        }
+        
+        .moments-cell-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        widht: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        }
+        
+        .moments-head {
+        position: relative;
+        width: 320px;
+        height: 52px;
+        }
+        
+        .moments-content {
+        position: relative;
+        top: -8px;
+        left: 55px;
+        bottom: 5px;
+        width: 255px;
+        height: auto;
+        }
+        
+        .moments-foot {
+        width: 0;
+        height: 0;
+        }
+        
+        .user-avatar {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        image-mode: fill;
+        border-radius: 20px;
+        border-width: 2px;
+        border-color: #fff;
+        }
+        
+        .user-name {
+        position: absolute;
+        top: 3px;
+        left: 55px;
+        width: 200px;
+        height: 20px;
+        font-size: 14px;
+        color: #000000;
+        }
+        
+        .create-at {
+        position: absolute;
+        top: 20px;
+        left: 55px;
+        width: 200px;
+        height: 20px;
+        font-size: 12px;
+        color: #505050;
+        }
+        
+        .content {
+        position: relative;
+        width: 100%;
+        height: auto;
+        line-num: 0;
+        font: 14px;
+        color: #000000;
+        top:-5px;
+        }
+        
+    </style>
+</ui>

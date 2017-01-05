@@ -398,7 +398,7 @@ ON_SIGNAL3( E0_ProfileCell_iPhone, follow, signal )
 ON_SIGNAL3( E0_ProfileCell_iPhone, integral, signal )
 {
     E8_IntegralBoard_iPhone * board = [[E8_IntegralBoard_iPhone alloc] init];
-    board.user_id = self.userModel.user.id;
+//    board.user_id = self.userModel.user.id;
     [self.stack pushBoard:board animated:YES];
 }
 

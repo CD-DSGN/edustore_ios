@@ -436,7 +436,7 @@ ON_SIGNAL3( B0_IndexButtonCell_iPhone, all_goods_col, signal )
 ON_SIGNAL3( B0_IndexButtonCell_iPhone, integral_col, signal )
 {
     E8_IntegralBoard_iPhone * board = [[E8_IntegralBoard_iPhone alloc] init];
-    board.user_id = self.userModel.user.id;
+//    board.user_id = self.userModel.user.id;
     [self.stack pushBoard:board animated:YES];
 }
 /**

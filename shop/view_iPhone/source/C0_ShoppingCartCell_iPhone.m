@@ -61,12 +61,13 @@ DEF_SIGNAL( CART_REMOVE )
 
 - (void)layoutDidFinish
 {
-    _container.frame = CGRectMake(10, 0, 300, self.height);
+    _container.frame = CGRectMake(10, 0, self.width, self.height);
     _cartCell.frame = CGRectMake( 0, 0, _container.width, _container.height );
     _editCell.frame = CGRectMake( _container.width, 0, 150, _container.height - 1 );
     _editCell.x = _editing ? _container.width - _editCell.width: _container.width;
     _cartCell.x = _editing ? -_editCell.width : 0;
-    _background.frame = CGRectMake( 3, 0, 314, self.height );
+    _background.frame = CGRectMake( 0, 0, self.width , self.height );
+    
 }
 
 - (void)dataDidChanged

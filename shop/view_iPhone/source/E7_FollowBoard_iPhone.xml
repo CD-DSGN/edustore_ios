@@ -20,8 +20,8 @@
         }
         .head {
             margin-top: 10px;
-            margin-left: 10px;
-            width: 300px;
+            margin-left: 2%;
+            width: 96%;
             height: 40px;
             v-align: center;
         }

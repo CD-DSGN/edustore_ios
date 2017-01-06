@@ -93,9 +93,9 @@
 			height: 44px;
 		}
 		.list-wrapper-group {
-			margin-left: 10px;
+			margin-left: 2%;
 			margin-top: 10px;
-			width: 300px;
+			width: 96%;
 			align: center;
 			height: 100px;
 		}

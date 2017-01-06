@@ -58,7 +58,7 @@
         
         .filter-item {
             height: 45px;
-            width: 105px;
+            width: 33%;
             color: #fff;
         }
         
@@ -69,12 +69,14 @@
         }
         
         .filter-title {
-            width: 65px;
+            width: 60%;
             height: 100%;
             color: #999;
             font-size: 12px;
             font-weight: lighter;
-            text-align: right;
+            text-align: center;
+            left: 15%;
+            right: 25%;
         }
         
         .filter-title-selected {

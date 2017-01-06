@@ -130,7 +130,6 @@
         image-mode: fit;
         image-loading: gray;
         position: absolute;
-        background-color: #ccc 0.4;
         }
 		
 		.v-line {

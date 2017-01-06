@@ -113,8 +113,8 @@
         }
         <!-- all col -->
         .list-wrapper-group {
-            margin-left: 10px;
-            width: 300px;
+            margin-left: 2%;
+            width: 96%;
             align: center;
             height: auto;
         }

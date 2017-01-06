@@ -67,14 +67,13 @@
 		.icon-home {
 			image: url(footer_home_icon.png);
 			image-selected: url(footer_home_active_icon.png);
-            width: 24px;
-            height: 70%;
+            width: 22px;
 		}
 		
 		.icon-search {
 			image: url(footer_search_icon.png);
 			image-selected: url(footer_search_active_icon.png);
-            width: 32px;
+            width: 30px;
 		}
 		
 		.icon-cart {
@@ -86,7 +85,7 @@
 		.icon-user {
 			image: url(footer_user_icon.png);
 			image-selected: url(footer_user_active_icon.png);
-            width: 26px;
+            width: 24px;
 		}
 		
 		.badge-wrapper {

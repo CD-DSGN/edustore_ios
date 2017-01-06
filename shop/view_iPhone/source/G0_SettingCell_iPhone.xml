@@ -89,4 +89,11 @@
         .logout.title { height: 44px; width: 100%; margin-left: 0; text-align: center; font-size: 20px; color: #fff; }
         .logout.background { image: url(button_red.png); mode: stretch; }
     </style>
+    <style type="text/css">
+        .background {
+        left: 2%;
+        width: 96%;
+        image-mode: stretch;
+        }
+    </style>
 </ui>

@@ -94,6 +94,7 @@ ON_CREATE_VIEWS( signal )
         item.data = self.userModel;
         item.size = CGSizeAuto;
         item.rule = BeeUIScrollLayoutRule_Tile;
+        
     };
     self.list.whenHeaderRefresh = ^
     {

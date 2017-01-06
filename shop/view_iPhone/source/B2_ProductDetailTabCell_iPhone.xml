@@ -39,7 +39,7 @@
         font: 11px bold;
         text-align: center;
         color: #fff;
-        width: 86px;
+        width: 20%;
         height: 28px;
         line-height: 28px;
         background-mode: stretch;
@@ -56,6 +56,7 @@
         
         .button-red {
         background-image: url(button_red.png);
+        width: 28%;
         }
         
         .button-blue {
@@ -64,6 +65,7 @@
         
         .button-orange {
         background-image: url(button_orange.png);
+        width: 28%;
         }
         
         .button-narrow-red {
@@ -93,7 +95,7 @@
         }
         
         .cart-wrapper {
-        margin-left: 14px;
+        margin-left: 10px;
         width: 44px;
         height: 44px;
         align: center;

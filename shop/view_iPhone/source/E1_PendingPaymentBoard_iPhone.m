@@ -17,6 +17,7 @@
 #import "E1_PendingPaymentCellFooter_iPhone.h"
 #import "E1_PendingPaymentCell_iPhone.h"
 #import "E2_PendingShippedBoard_iPhone.h"
+#import "J0_CheckOutCounterBoard_iPhone.h"
 
 #import "AppBoard_iPhone.h"
 #import "H1_PayBoard_iPhone.h"
@@ -219,51 +220,56 @@ ON_SIGNAL3( E1_PendingPaymentCell_iPhone, ORDER_CANCEL, signal )
 ON_SIGNAL3( E1_PendingPaymentCell_iPhone, ORDER_PAY, signal )
 {
 	ORDER * order = (ORDER *)signal.sourceCell.data;
+    
+    J0_CheckOutCounterBoard_iPhone * board = [J0_CheckOutCounterBoard_iPhone board];
+    board.order = order;
+    
+    [self.stack pushBoard:board animated:YES];
 
-	if ( order && order.order_info )
-	{
-		if ( NSOrderedSame == [order.order_info.pay_code compare:@"alipay" options:NSCaseInsensitiveSearch] )
-		{
-//          modify nhj, pay sdk only
-			// 选择WAP或SDK支付
-//			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
-//			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK object:order];
-//			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP object:order];
-//			[paySelect addCancelTitle:__TEXT(@"button_cancel")];
-//			[paySelect showInViewController:self];
-            
-            [self sendUISignal:self.PAY_SDK withObject:order];
-		}
-		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"cod" options:NSCaseInsensitiveSearch] )
-		{
-			[[BeeUIApplication sharedInstance] presentMessageTips:__TEXT(@"pay_noneed")];
-		}
-		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"upop" options:NSCaseInsensitiveSearch] )
-		{
-			[self.orderModel pay:order];
-		}
-		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"tenpay" options:NSCaseInsensitiveSearch] )
-		{
-			H1_PayBoard_iPhone * board	= [H1_PayBoard_iPhone board];
-			board.backBoard				= self.previousBoard;
-			board.orderID				= order.order_id;
-			board.order_info			= order.order_info;
-			[self.stack pushBoard:board animated:YES];
-		}
-		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"paypal" options:NSCaseInsensitiveSearch] )
-		{
-			H1_PayBoard_iPhone * board	= [H1_PayBoard_iPhone board];
-			board.backBoard				= self.previousBoard;
-			board.orderID				= order.order_id;
-			board.order_info			= order.order_info;
-			[self.stack pushBoard:board animated:YES];
-        }
-        else if ( NSOrderedSame == [order.order_info.pay_code compare:@"wxpay" options:NSCaseInsensitiveSearch] )
-        {
-            self.wxpayModel.order_id = order.order_id;
-            [self.wxpayModel pay];
-        }
-    }
+//	if ( order && order.order_info )
+//	{
+//		if ( NSOrderedSame == [order.order_info.pay_code compare:@"alipay" options:NSCaseInsensitiveSearch] )
+//		{
+////          modify nhj, pay sdk only
+//			// 选择WAP或SDK支付
+////			BeeUIActionSheet * paySelect = [BeeUIActionSheet spawn];
+////			[paySelect addButtonTitle:@"支付宝支付" signal:self.PAY_SDK object:order];
+////			[paySelect addButtonTitle:@"支付宝wap支付" signal:self.PAY_WAP object:order];
+////			[paySelect addCancelTitle:__TEXT(@"button_cancel")];
+////			[paySelect showInViewController:self];
+//            
+//            [self sendUISignal:self.PAY_SDK withObject:order];
+//		}
+//		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"cod" options:NSCaseInsensitiveSearch] )
+//		{
+//			[[BeeUIApplication sharedInstance] presentMessageTips:__TEXT(@"pay_noneed")];
+//		}
+//		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"upop" options:NSCaseInsensitiveSearch] )
+//		{
+//			[self.orderModel pay:order];
+//		}
+//		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"tenpay" options:NSCaseInsensitiveSearch] )
+//		{
+//			H1_PayBoard_iPhone * board	= [H1_PayBoard_iPhone board];
+//			board.backBoard				= self.previousBoard;
+//			board.orderID				= order.order_id;
+//			board.order_info			= order.order_info;
+//			[self.stack pushBoard:board animated:YES];
+//		}
+//		else if ( NSOrderedSame == [order.order_info.pay_code compare:@"paypal" options:NSCaseInsensitiveSearch] )
+//		{
+//			H1_PayBoard_iPhone * board	= [H1_PayBoard_iPhone board];
+//			board.backBoard				= self.previousBoard;
+//			board.orderID				= order.order_id;
+//			board.order_info			= order.order_info;
+//			[self.stack pushBoard:board animated:YES];
+//        }
+//        else if ( NSOrderedSame == [order.order_info.pay_code compare:@"wxpay" options:NSCaseInsensitiveSearch] )
+//        {
+//            self.wxpayModel.order_id = order.order_id;
+//            [self.wxpayModel pay];
+//        }
+//    }
 }
 
 ON_SIGNAL3( WXPayModel, RELOADING, signal )

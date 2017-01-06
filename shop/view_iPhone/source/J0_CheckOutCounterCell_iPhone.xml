@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="J0_CheckOutCounterCell_iPhone">
+    <row class="order_info_wrapper">
+        <image class="order_info_bg" />
+        <row class="order_desc">
+            <label class="desc_title text">订单详情：</label>
+            <label class="desc_content text" id="desc_content"></label>
+        </row>
+        <row class="order_amount">
+            <label class="amount_title text">订单金额：</label>
+            <label class="amount_content text" id="amount_content"></label>
+        </row>
+    </row>
+    <row class="select_payment_wrapper">
+        <label class="please_select">选择支付方式</label>
+    </row>
+    <!-- 支付方式用原生代码混编 -->
+<!--    <row class="payment_wrapper">-->
+<!--    </row>-->
+    <row class="pay_button_wrapper">
+        <button class="pay" id="pay">立即支付</button>
+    </row>
+    
+    <style>
+       
+    .order_info_wrapper {
+        width : 100%;
+        height: 60px;
+        position: relative;
+    }
+    .select_payment_wrapper {
+        position: relative;
+        width : 100%;
+        height: 30px;
+        left: 3%;
+        font: 13px;
+    }
+    .pay_button_wrapper {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        top: 80%;
+    }
+    
+    .order_info_bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+    .order_desc, .order_amount {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        left: 3%;
+        top: 2%;
+    }
+    .text {
+        position: relative;
+        width: auto;
+        height: 100%;
+        font: 15px;
+    }
+
+    .pay {
+        position: relative;
+        width: 90%;
+        height: 100%;
+        left: 5%;
+        font: 25px;
+        background-color: #ff6925;
+    }
+
+    </style>
+</ui>

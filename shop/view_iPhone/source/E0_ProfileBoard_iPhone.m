@@ -92,7 +92,7 @@ ON_CREATE_VIEWS( signal )
         BeeUIScrollItem * item = self.list.items[0];
         item.clazz = [E0_ProfileCell_iPhone class];
         item.data = self.userModel;
-        item.size = CGSizeAuto;
+        item.size = CGSizeMake([[UIScreen mainScreen] bounds].size.width, self.list.height);
         item.rule = BeeUIScrollLayoutRule_Tile;
     };
     self.list.whenHeaderRefresh = ^

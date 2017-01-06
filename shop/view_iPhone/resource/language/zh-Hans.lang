@@ -402,5 +402,6 @@
 <string name="points_from_affiliate">教师推荐赠送汇积分</string>
 <string name="subscription_student_num">已有0位学生关注您</string>
 <string name="recommanded_teacher_num">您直接推荐了0位教师</string>
+<string name="checkOutCounter">支付订单</string>
 
 </resources>

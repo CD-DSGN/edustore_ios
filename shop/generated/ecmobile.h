@@ -496,6 +496,12 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * invite_code;
 @end
 
+@interface PAYMENT_INFO : NSObject
+@property (nonatomic, retain) NSString * pay_id;
+@property (nonatomic, retain) NSString * pay_name;
+@property (nonatomic, retain) NSString * pay_code;
+@end
+
 // add by nhj,a new class for timer
 @interface TIMER : NSObject
 
@@ -675,6 +681,12 @@ AS_MESSAGE( teacher_publish );
 
 // POST 将用户头像上传至服务器
 AS_MESSAGE( post_avatar );
+
+// POST 查询后台支持的支付方式
+AS_MESSAGE( search_payment );
+
+// POST 支付成功后改写更新支付方式
+AS_MESSAGE( writePayId );
 
 @end
 

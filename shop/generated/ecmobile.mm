@@ -505,6 +505,14 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation PAYMENT_INFO
+
+@synthesize pay_id = _pay_id;
+@synthesize pay_name = _pay_name;
+@synthesize pay_code = _pay_code;
+
+@end
+
 @implementation TIMER
 
 - (void)validCountDownTime:(NSInteger)time
@@ -3158,6 +3166,97 @@ DEF_MESSAGE_( post_avatar, msg )
         }
         
         msg.OUTPUT( @"status", status );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( search_payment, msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/flow/searchPayment", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        NSArray * data = [PAYMENT_INFO objectsFromArray:[response arrayAtPath:@"data"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        if ( data == nil )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"data", data );
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( writePayId, msg )
+{
+    if ( msg.sending )
+    {
+        NSString * order_sn = msg.GET_INPUT( @"order_sn" );
+        NSString * pay_code = msg.GET_INPUT( @"pay_code" );
+        SESSION * session = msg.GET_INPUT( @"session" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"order_sn", order_sn );
+        requestBody.APPEND( @"pay_code", pay_code );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/flow/writePayId", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
     }
     else if ( msg.failed )
     {

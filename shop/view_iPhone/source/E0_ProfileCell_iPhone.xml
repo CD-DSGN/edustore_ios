@@ -389,6 +389,7 @@
 			top: 0;
 			left: 0;
 			background-color: #eee;
+            image-mode: fit;
 			image-src:url(profile_img_bg.png);
             image-mode: stretch;
             

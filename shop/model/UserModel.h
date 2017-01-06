@@ -80,7 +80,7 @@ AS_NOTIFICATION( UPDATED )
 - (void)cancelFollowByStudentId:(NSNumber *)student_user_id
                        courseId:(NSNumber *)course_id;
 
-- (void)searchIntegralByUserId:(NSNumber *)user_id;
+- (void)searchIntegral;
 
 - (void)signout;
 - (void)kickout;

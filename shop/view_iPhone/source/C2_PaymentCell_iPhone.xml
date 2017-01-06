@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="C2_PaymentCell_iPhone">
+    
+    <row class="wrapper" id="mask">
+        <image class="wrapper-bg" />
+        <image class="horizontal-line" />
+        <col class="icon">
+            <image class="payment_icon" id="payment_icon" />
+        </col>
+        <col class="description">
+            <label class="payment_name" id="payment_name">支付宝</label>
+            <label class="payment_desc" id="payment_desc">数亿用户都在用，安全可托付</label>
+        </col>
+    </row>
+    
+    <style type="text/css">
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wrapper-bg {
+            position: absolute;
+            background-color: #fff;
+        }
+        
+        .horizontal-line {
+            position:absolute;
+            width: 100%;
+            height: 1px;
+            top: 54px;
+            left: 60px;
+            background-color: #ccc;
+        }
+        
+        .icon {
+            position: relative;
+            width: 60px;
+            height: 100%;
+        }
+        .description {
+            position: relative;
+            width: 80%;
+            height: 100%;
+        }
+        
+        .payment_icon {
+            position: absolute;
+            widht: 80%;
+            height: 80%;
+            left: 3%;
+            top: 10%;
+            image-mode: fit;
+        }
+        .payment_name {
+            position: relative;
+            width: 100%;
+            height: 60%;
+            font: 18px;
+            top: 5px;
+            color: #000;
+            float: center;
+        }
+        .payment_desc {
+            position: relative;
+            idth: 100%;
+            height: 40%;
+            font: 12px;
+            top: -10px;
+            color: #aaa;
+        }
+        
+    </style>
+</ui>

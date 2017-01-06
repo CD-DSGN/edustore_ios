@@ -306,12 +306,11 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"course_id", course_id );
 }
 
-- (void)searchIntegralByUserId:(NSNumber *)user_id
+- (void)searchIntegral
 {
     self.CANCEL_MSG( API.get_integral );
     self
-    .MSG( API.get_integral )
-    .INPUT( @"user_id", user_id );
+    .MSG( API.get_integral );
 }
 
 - (void)selectRegionByParentId:(NSString *)parent_id

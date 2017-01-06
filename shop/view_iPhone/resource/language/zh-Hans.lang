@@ -395,5 +395,12 @@
 <string name="moments_success">发送成功</string>
 <string name="moments_error">网络错误，请重新发送</string>
 <string name="moments_null">汇师圈内容不能为空</string>
+<string name="pay_point">消费积分</string>
+<string name="hui_point">汇积分</string>
+<string name="invite_code">推荐码</string>
+<string name="points_from_subscription">学生关注赠送汇积分</string>
+<string name="points_from_affiliate">教师推荐赠送汇积分</string>
+<string name="subscription_student_num">已有0位学生关注您</string>
+<string name="recommanded_teacher_num">您直接推荐了0位教师</string>
 
 </resources>

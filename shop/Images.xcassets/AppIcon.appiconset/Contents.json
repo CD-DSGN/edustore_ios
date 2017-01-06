@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "huishi_icon_backup@2x-6.png",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {

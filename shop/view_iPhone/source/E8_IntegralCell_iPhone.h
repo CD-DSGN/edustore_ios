@@ -10,7 +10,4 @@
 
 @interface E8_IntegralCell_iPhone : BeeUICell
 
-AS_OUTLET( BeeUITextField, label )
-AS_OUTLET( BeeUITextField, label2 )
-
 @end

@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="E8_IntegralCell_iPhone">
     <col class="content">
-        <row class="line_one">
-            <image class="background_one" />
-            <label class="integral" id="label"></label>
+        <row class="line_pay">
+            <image class="background_single_line" />
+            <label class="pay" id="pay">@{pay_point}</label>
+            <label class="pay_points" id="pay_points"></label>
         </row>
+        
+        <row class="line_hui">
+            <image class="background_single_line" />
+            <label class="hui" id="hui">@{hui_point}</label>
+            <label class="hui_points" id="hui_points"></label>
+        </row>
+        
+        <row class="line_invite">
+            <image class="background_single_line" />
+            <label class="invite" id="invite">@{invite_code}</label>
+            <label class="invite_code" id="invite_code"></label>
+        </row>
+        
         <row class="line_two">
-            <image class="background_two" />
-            <label class="hui_integral" id="hui_integal">汇积分：</label>
-            <label class="recommend_integral" id="recommend_integral">推荐积分：</label>
-            <label class="hui_count" id="hui_count">关注所获积分：</label>
-            <label class="recommend_count" id="recommend_count">推荐人数：</label>
+            <image class="background_mult_line" />
+            <row class="points_from_subscription">
+                <label class="subscription">@{points_from_subscription}</label>
+                <label class="subscription_points" id="subscription_points"></label>
+            </row>
+            <row class="points_from_affiliate">
+                <label class="affiliate">@{points_from_affiliate}</label>
+                <label class="affiliate_points" id="affiliate_points"></label>
+            </row>
+            <row class="subscription_student_num">
+                <label class="subscription_student">@{subscription_student_num}</label>
+            </row>
+            <row class="recommanded_teacher_num">
+                <label class="recommanded">@{recommanded_teacher_num}</label>
+            </row>
         </row>
     </col>
+    
     <style>
         .content {
-            margin-left: 10px;
-            width: 300px;
-            height: 400px;
+            width: 100%;
+            height: 100%;
         }
         
-        .line_one {
+        .line_pay, .line_hui, .line_invite {
             margin-top: 10px;
-            width: 290px;
+            width: 94%;
             height: 40px;
-            float: center;
+            left: 3%;
         }
         .line_two {
             margin-top: 20px;
-            width: 100%;
-            height: 130px;
+            width: 96%;
+            height: 160px;
+            left: 2%;
         }
         
-        .background_one {
+        .background_single_line {
             width: 100%;
             height: 100%;
             position:absolute;
@@ -42,7 +67,7 @@
             background-insets: 10px;
             background-image: url(cell_bg_single.png);
         }
-        .background_two {
+        .background_mult_line {
             width: 100%;
             height: 100%;
             position:absolute;
@@ -53,40 +78,42 @@
             background-image: url(shopping_cart_body_bg_02.png);
         }
         
-        .integral {
-            width: 100%;
-            height: 100%;
-            margin-left: 5px;
-            font-size: 16px;
+<!--        per row-->
+        .pay, .hui, .invite {
+            left: 10px;
+            font: 15px;
+            line-height: 15px;
+            width: 90%;
+            height: 100%
+        }
+        .pay_points, .hui_points, .invite_code {
+            position: absolute;
+            font: 15px;
+            color: #999;
+            height: 40px;
+            width: 40%;
+            float: right;
         }
         
-        .hui_integral {
+        <!--        per row-->
+        .points_from_subscription, .points_from_affiliate, .subscription_student_num, .recommanded_teacher_num {
+            position: relative;
             width: 100%;
-            height: 25px;
-            line-height: 25px;
-            margin-left: 10px;
-            font-size: 14px;
+            height: 33px;
+            left: 12px;
         }
-        .recommend_integral {
-            width: 100%;
-            height: 25px;
-            line-height: 25px;
-            margin-left: 10px;
-            font-size: 14px;
+        .subscription_student_num, .recommanded_teacher_num {
+            top: 10px;
         }
-        .hui_count {
-            width: 100%;
-            height: 25px;
-            line-height: 25px;
-            margin-left: 10px;
-            font-size: 14px;
+
+        .subscription, .affiliate, .subscription_student, .recommanded {
+            font: 13px;
         }
-        .recommend_count {
-            width: 100%;
-            height: 25px;
-            line-height: 25px;
-            margin-left: 10px;
-            font-size: 14px;
+        
+        .subscription_points, .affiliate_points {
+            position: absolute;
+            color: red;
         }
+        
     </style>
 </ui>

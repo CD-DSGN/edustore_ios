@@ -13,7 +13,7 @@
 
 #import "UIViewController+ErrorTips.h"
 
-@interface I0_MomentsBorad_iPhone : BaseBoard_iPhone <momentsPhotoCellDelegate>
+@interface I0_MomentsBorad_iPhone : BaseBoard_iPhone
 
 AS_SINGLETON( MomentsBoard )
 

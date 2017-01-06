@@ -492,6 +492,19 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation TEACHER_INTEGRAL
+
+@synthesize invite_code = _invite_code;
+@synthesize pay_points = _pay_points;
+@synthesize points_from_affiliate = _points_from_affiliate;
+@synthesize points_from_subscription = _points_from_subscription;
+@synthesize rank_points = _rank_points;
+@synthesize subscription_student_num = _subscription_student_num;
+@synthesize recommanded_teacher_num = _recommanded_teacher_num;
+@synthesize teacher_integral = _teacher_integral;
+
+@end
+
 @implementation TIMER
 
 - (void)validCountDownTime:(NSInteger)time
@@ -2732,10 +2745,16 @@ DEF_MESSAGE_( get_integral, msg )
 {
     if ( msg.sending )
     {
-        NSNumber * user_id = msg.GET_INPUT( @"user_id" );
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
-        requestBody.APPEND( @"user_id", user_id );
+        SESSION * session = msg.GET_INPUT( @"session" );
         
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        requestBody.APPEND( @"session", session );
         NSString * requestURI = [NSString stringWithFormat:@"%@/user/getIntegral", [ServerConfig sharedInstance].url];
         
         msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
@@ -2744,7 +2763,7 @@ DEF_MESSAGE_( get_integral, msg )
     {
         NSDictionary * response = msg.responseJSONDictionary;
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
-        NSString * integral = [response stringAtPath:@"data.integral"];
+        TEACHER_INTEGRAL * data = [TEACHER_INTEGRAL objectFromDictionary:[response dictAtPath:@"data"]];
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {
@@ -2752,7 +2771,7 @@ DEF_MESSAGE_( get_integral, msg )
             return;
         }
         
-        msg.OUTPUT( @"data", integral );
+        msg.OUTPUT( @"data", data );
     }
     else if ( msg.failed )
     {

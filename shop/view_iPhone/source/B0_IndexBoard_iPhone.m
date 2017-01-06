@@ -78,7 +78,7 @@ DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
 
 ON_CREATE_VIEWS( signal )
 {
-    self.notifyButton = [B0_IndexNotifiBarCell_iPhone cell];
+//    self.notifyButton = [B0_IndexNotifiBarCell_iPhone cell];
 //    [self showNavigationBarAnimated:NO];
 //    [self setTitleString:__TEXT(@"ecmobile")];
     
@@ -86,7 +86,7 @@ ON_CREATE_VIEWS( signal )
 //    self.navigationBarTitle = __TEXT(@"ecmobile");
     
 
-    self.navigationBarRight = self.notifyButton;
+//    self.navigationBarRight = self.notifyButton;
 
 //    [self showBarButton:BeeUINavigationBar.RIGHT custom:[B0_IndexNotifiBarCell_iPhone cell]];
 //    $(self.rightBarButton).FIND(@"#badge-bg, #badge-count").HIDE();
@@ -205,7 +205,7 @@ ON_WILL_APPEAR( signal )
 
 	[bee.ui.appBoard showTabbar];
 
-  [[CartModel sharedInstance] reload];
+    [[CartModel sharedInstance] reload];
 //	[[ECMobilePushUnread sharedInstance] update];
     
     if (_titleSearch == nil)
@@ -287,49 +287,50 @@ ON_SIGNAL2( BeeUITextField, signal )
 
 #pragma mark - B0_BannerPhotoCell_iPhone
 
+// modify nhj,屏蔽点击轮播图的跳转
 /**
  * 首页-banner，点击事件触发时执行的操作
  */
-ON_SIGNAL3( B0_BannerPhotoCell_iPhone, mask, signal )
-{
-    BANNER * banner = signal.sourceCell.data;
-    
-	if ( banner )
-	{
-        // 首页轮播图片带有不同的信息，跳转至不同的页面
-        // 其中的action由本地的xml文件中写入
-        if ( [banner.action isEqualToString:BANNER_ACTION_GOODS] )
-        {
-            B2_ProductDetailBoard_iPhone * board = [B2_ProductDetailBoard_iPhone board];
-            board.goodsModel.goods_id = banner.action_id;
-            [self.stack pushBoard:board animated:YES];
-        }
-        else if ( [banner.action isEqualToString:BANNER_ACTION_BRAND] )
-        {
-            B1_ProductListBoard_iPhone * board = [B1_ProductListBoard_iPhone board];
-            board.searchByHotModel.filter.brand_id = banner.action_id;
-            board.searchByCheapestModel.filter.brand_id = banner.action_id;
-            board.searchByExpensiveModel.filter.brand_id = banner.action_id;
-            [self.stack pushBoard:board animated:YES];
-        }
-        else if ( [banner.action isEqualToString:BANNER_ACTION_CATEGORY] )
-        {
-            B1_ProductListBoard_iPhone * board = [B1_ProductListBoard_iPhone board];
-			board.category = banner.description;
-            board.searchByHotModel.filter.category_id = banner.action_id;
-            board.searchByCheapestModel.filter.category_id = banner.action_id;
-            board.searchByExpensiveModel.filter.category_id = banner.action_id;
-            [self.stack pushBoard:board animated:YES];
-        }
-        else
-        {
-            H0_BrowserBoard_iPhone * board = [[[H0_BrowserBoard_iPhone alloc] init] autorelease];
-            board.defaultTitle = banner.description.length ? banner.description : __TEXT(@"new_activity");
-            board.urlString = banner.url;
-            [self.stack pushBoard:board animated:YES];
-        }
-	}
-}
+//ON_SIGNAL3( B0_BannerPhotoCell_iPhone, mask, signal )
+//{
+//    BANNER * banner = signal.sourceCell.data;
+//    
+//	if ( banner )
+//	{
+//        // 首页轮播图片带有不同的信息，跳转至不同的页面
+//        // 其中的action由本地的xml文件中写入
+//        if ( [banner.action isEqualToString:BANNER_ACTION_GOODS] )
+//        {
+//            B2_ProductDetailBoard_iPhone * board = [B2_ProductDetailBoard_iPhone board];
+//            board.goodsModel.goods_id = banner.action_id;
+//            [self.stack pushBoard:board animated:YES];
+//        }
+//        else if ( [banner.action isEqualToString:BANNER_ACTION_BRAND] )
+//        {
+//            B1_ProductListBoard_iPhone * board = [B1_ProductListBoard_iPhone board];
+//            board.searchByHotModel.filter.brand_id = banner.action_id;
+//            board.searchByCheapestModel.filter.brand_id = banner.action_id;
+//            board.searchByExpensiveModel.filter.brand_id = banner.action_id;
+//            [self.stack pushBoard:board animated:YES];
+//        }
+//        else if ( [banner.action isEqualToString:BANNER_ACTION_CATEGORY] )
+//        {
+//            B1_ProductListBoard_iPhone * board = [B1_ProductListBoard_iPhone board];
+//			board.category = banner.description;
+//            board.searchByHotModel.filter.category_id = banner.action_id;
+//            board.searchByCheapestModel.filter.category_id = banner.action_id;
+//            board.searchByExpensiveModel.filter.category_id = banner.action_id;
+//            [self.stack pushBoard:board animated:YES];
+//        }
+//        else
+//        {
+//            H0_BrowserBoard_iPhone * board = [[[H0_BrowserBoard_iPhone alloc] init] autorelease];
+//            board.defaultTitle = banner.description.length ? banner.description : __TEXT(@"new_activity");
+//            board.urlString = banner.url;
+//            [self.stack pushBoard:board animated:YES];
+//        }
+//	}
+//}
 
 #pragma mark - B0_IndexCategoryCell_iPhone
 

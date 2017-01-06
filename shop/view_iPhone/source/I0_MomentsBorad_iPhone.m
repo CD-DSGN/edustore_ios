@@ -51,7 +51,9 @@ ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"Moments");
     [self showNavigationBarAnimated:NO];
-    [self showBarButton:BeeUINavigationBar.RIGHT image:[UIImage imageNamed:@"index_hot_icon.png"]];
+    [self showBarButton:BeeUINavigationBar.RIGHT
+                  title:@"发送"
+                  image:[UIImage imageNamed:@"nav_right.png"]];
     
     @weakify(self);
 

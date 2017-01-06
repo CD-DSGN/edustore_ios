@@ -485,6 +485,17 @@ enum RANK_LEVEL
 @property (nonatomic, retain) MOMENTS_TEACHER * teacher_info;
 @end
 
+@interface TEACHER_INTEGRAL : NSObject
+@property (nonatomic, retain) NSString * pay_points;
+@property (nonatomic, retain) NSString * points_from_affiliate;
+@property (nonatomic, retain) NSString * points_from_subscription;
+@property (nonatomic, retain) NSString * rank_points;
+@property (nonatomic, retain) NSString * subscription_student_num;
+@property (nonatomic, retain) NSString * recommanded_teacher_num;
+@property (nonatomic, retain) NSString * teacher_integral;
+@property (nonatomic, retain) NSString * invite_code;
+@end
+
 // add by nhj,a new class for timer
 @interface TIMER : NSObject
 

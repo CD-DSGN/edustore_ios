@@ -26,14 +26,14 @@ DEF_OUTLET( BeeUIScrollView, list )
 {
     self.userModel = [UserModel modelWithObserver:self];
     
-    self.teacher_integral = [NSString alloc];
+    self.data = [[TEACHER_INTEGRAL alloc] init];
 }
 
 - (void)unload
 {
     SAFE_RELEASE_MODEL( self.userModel );
     
-    self.teacher_integral = nil;
+    self.data = nil;
 }
 
 #pragma mark -
@@ -44,6 +44,9 @@ ON_CREATE_VIEWS( signal )
     self.navigationBarTitle = __TEXT(@"integral");
     
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
+    
+    self.list.headerClass = [CommonPullLoader class];
+    self.list.headerShown = YES;
     
     @weakify(self);
     
@@ -59,9 +62,14 @@ ON_CREATE_VIEWS( signal )
         item.clazz = [E8_IntegralCell_iPhone class];
         item.rule = BeeUIScrollLayoutRuleHorizontal;
         item.size = CGSizeAuto;
-        item.data = self.teacher_integral;
+        item.data = self.data;
     };
-    
+    self.list.whenHeaderRefresh = ^
+    {
+        @normalize(self);
+        
+        [self searchIntegral];
+    };
 }
 
 ON_DELETE_VIEWS( signal )
@@ -75,6 +83,7 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
+    [bee.ui.appBoard hideTabbar];
     [self searchIntegral];
 }
 
@@ -106,7 +115,7 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 
 - (void)searchIntegral
 {
-    [self.userModel searchIntegralByUserId:self.userModel.user.id];
+    [self.userModel searchIntegral];
 }
 
 ON_MESSAGE3( API, get_integral, msg )
@@ -115,10 +124,15 @@ ON_MESSAGE3( API, get_integral, msg )
     {
         [self presentMessageTips:@"获取积分中"];
     }
+    else
+    {
+        [self.list setHeaderLoading:NO];
+    }
     if( msg.succeed )
     {
-        NSString * data = msg.GET_OUTPUT( @"data" );
-        self.teacher_integral = data;
+        TEACHER_INTEGRAL * data = msg.GET_OUTPUT( @"data" );
+        self.data = data;
+        [self.list asyncReloadData];
     }
     if( msg.failed )
     {

@@ -54,7 +54,7 @@ ON_CREATE_VIEWS(signal)
             BeeUIScrollItem * item = self.list.items[i];
             item.clazz = [C2_PaymentCell_iPhone class];
             item.rule  = BeeUIScrollLayoutRule_Line;
-            item.size  = CGSizeAuto;
+            item.size  = CGSizeMake(self.view.width, 55.0f);
             item.data  = payment;
         }
     };
@@ -68,6 +68,15 @@ ON_LEFT_BUTTON_TOUCHED( signal )
 ON_DID_APPEAR( signal )
 {
 	[self.list reloadData];
+}
+
+// nhj，更改支付选择样式
+#pragma mark - C2_PaymentCell_iPhone
+
+ON_SIGNAL3 ( C2_PaymentCell_iPhone, mask, signal )
+{
+    self.flowModel.done_payment = signal.sourceCell.data;
+    [self.stack popBoardAnimated:YES];
 }
 
 #pragma mark - FormPlainOptionCell

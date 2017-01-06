@@ -94,16 +94,7 @@
 	// 配置导航条
 	{
 		[BeeUINavigationBar setTitleColor:[UIColor whiteColor]];
-		[BeeUINavigationBar setBackgroundColor:[UIColor orangeColor]];
-		
-//		if ( IOS7_OR_LATER )
-//		{
-//			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg_iphone5.png"]];
-//		}
-//		else
-//		{
-//			[BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg.png"]];
-//		}
+        [BeeUINavigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg.png"]];
     }
 	
 	[self observeNotification:ECMobileAppConfig.UPDATING];

@@ -9,10 +9,9 @@
 #import "E8_IntegralCell_iPhone.h"
 #import "model.h"
 
-@implementation E8_IntegralCell_iPhone
+#define srceenWidth [[UIScreen mainScreen] bounds].size.width
 
-DEF_OUTLET( BeeUITextField, label )
-DEF_OUTLET( BeeUITextField, label2 )
+@implementation E8_IntegralCell_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )
@@ -29,12 +28,60 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
     if ( self.data )
     {
-        //self.label2.active = YES;
-        //self.label2.maxLength = 70;
-        NSString * temp = @"您的积分为：";
-        temp = [temp stringByAppendingString:self.data];
-        self.label.data = temp;
-        // self.label2.data = @"label2 的积分内容显示 label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示label2 的积分内容显示";
+        TEACHER_INTEGRAL * integral = self.data;
+        
+        // 取值
+        NSString * invite_code = integral.invite_code;
+        NSString * pay_points = integral.pay_points;
+        NSString * points_from_affiliate = integral.points_from_affiliate;
+        NSString * points_from_subscription = integral.points_from_subscription;
+//        NSString * rank_points = integral.rank_points;
+        NSString * subscription_student_num = integral.subscription_student_num;
+        NSString * recommanded_teacher_num = integral.recommanded_teacher_num;
+        NSString * teacher_integral = integral.teacher_integral;
+        
+        if (pay_points == nil) {
+            pay_points = @"0";
+        }
+        if (teacher_integral == nil) {
+            teacher_integral = @"0";
+        }
+        if (invite_code == nil) {
+            invite_code = @"获取错误";
+        }
+        if (points_from_subscription == nil) {
+            points_from_subscription = @"0";
+        }
+        if (points_from_affiliate == nil) {
+            points_from_affiliate = @"0";
+        }
+        if (subscription_student_num == nil) {
+            subscription_student_num = @"0";
+        }
+        if (recommanded_teacher_num == nil) {
+            recommanded_teacher_num = @"0";
+        }
+        
+        // 定位
+        CGFloat pay_points_width = [pay_points sizeWithFont:[UIFont systemFontOfSize:15.0f] byHeight:15.0f].width;
+        CGFloat teacher_integral_width = [teacher_integral sizeWithFont:[UIFont systemFontOfSize:15.0f] byHeight:40.0f].width;
+        CGFloat invite_code_width = [invite_code sizeWithFont:[UIFont systemFontOfSize:15.0f] byHeight:40.0f].width;
+        CGFloat subscription_points_width = [points_from_subscription sizeWithFont:[UIFont systemFontOfSize:13.0f] byHeight:33.0f].width;
+        CGFloat affiliate_points_width = [points_from_affiliate sizeWithFont:[UIFont systemFontOfSize:13.0f] byHeight:33.0f].width;
+        
+        CGFloat pay_points_left = 0.85f * srceenWidth - pay_points_width;
+        CGFloat teacher_integral_left = 0.85f * srceenWidth - teacher_integral_width;
+        CGFloat invite_code_left = 0.85f * srceenWidth - invite_code_width;
+        CGFloat subscription_points_left = 0.85f * srceenWidth - subscription_points_width;
+        CGFloat affiliate_points_left = 0.85f * srceenWidth - affiliate_points_width;
+        
+        // 赋值
+        $(@"#pay_points").TEXT(pay_points).CSS([NSString stringWithFormat:@"left:%fpx",pay_points_left]);
+        $(@"#hui_points").TEXT(teacher_integral).CSS([NSString stringWithFormat:@"left:%fpx",teacher_integral_left]);
+        $(@"#invite_code").TEXT(invite_code).CSS([NSString stringWithFormat:@"left:%fpx",invite_code_left]);
+        $(@"#subscription_points").TEXT(points_from_subscription).CSS([NSString stringWithFormat:@"left:%fpx",subscription_points_left]);
+        $(@"#affiliate_points").TEXT(points_from_affiliate).CSS([NSString stringWithFormat:@"left:%fpx",affiliate_points_left]);
+        
     }
 }
 

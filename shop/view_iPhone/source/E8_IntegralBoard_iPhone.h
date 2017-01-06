@@ -20,6 +20,6 @@ AS_MODEL( UserModel, userModel )
 
 AS_OUTLET( BeeUIScrollView, list )
 
-@property (nonatomic, retain)NSString * teacher_integral;
+@property (nonatomic, retain)TEACHER_INTEGRAL * data;
 
 @end

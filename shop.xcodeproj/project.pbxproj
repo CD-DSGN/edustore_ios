@@ -73,6 +73,7 @@
 		5F1676561E1E14B400C5188E /* MomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1676551E1E14B400C5188E /* MomentModel.m */; };
 		5F16765A1E1E151500C5188E /* B0_IndexButtonCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1676581E1E151500C5188E /* B0_IndexButtonCell_iPhone.m */; };
 		5F16765B1E1E151500C5188E /* B0_IndexButtonCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1676591E1E151500C5188E /* B0_IndexButtonCell_iPhone.xml */; };
+		5F16765D1E1E4DF300C5188E /* C2_PaymentCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F16765C1E1E4DF300C5188E /* C2_PaymentCell_iPhone.xml */; };
 		5F27CD571D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F27CD561D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m */; };
 		5F27CD591D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F27CD581D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml */; };
 		5F5C4F251D78340B008BDD84 /* region.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F5C4F241D78340B008BDD84 /* region.plist */; };
@@ -1064,6 +1065,7 @@
 		5F1676571E1E151500C5188E /* B0_IndexButtonCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = B0_IndexButtonCell_iPhone.h; sourceTree = "<group>"; };
 		5F1676581E1E151500C5188E /* B0_IndexButtonCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = B0_IndexButtonCell_iPhone.m; sourceTree = "<group>"; };
 		5F1676591E1E151500C5188E /* B0_IndexButtonCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = B0_IndexButtonCell_iPhone.xml; sourceTree = "<group>"; };
+		5F16765C1E1E4DF300C5188E /* C2_PaymentCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = C2_PaymentCell_iPhone.xml; sourceTree = "<group>"; };
 		5F27CD551D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E7_SearchTeacherBoard_iPhone.h; sourceTree = "<group>"; };
 		5F27CD561D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E7_SearchTeacherBoard_iPhone.m; sourceTree = "<group>"; };
 		5F27CD581D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E7_SearchTeacherBoard_iPhone.xml; sourceTree = "<group>"; };
@@ -3475,6 +3477,7 @@
 				CB9C21F918BB3B0B00DDA501 /* C2_PaymentBoard_iPhone.xml */,
 				CB9C21FA18BB3B0B00DDA501 /* C2_PaymentCell_iPhone.h */,
 				CB9C21FB18BB3B0B00DDA501 /* C2_PaymentCell_iPhone.m */,
+				5F16765C1E1E4DF300C5188E /* C2_PaymentCell_iPhone.xml */,
 				CB9C21FC18BB3B0B00DDA501 /* C3_DistributionBoard_iPhone.h */,
 				CB9C21FD18BB3B0B00DDA501 /* C3_DistributionBoard_iPhone.m */,
 				CB9C21FE18BB3B0B00DDA501 /* C3_DistributionBoard_iPhone.xml */,
@@ -5688,6 +5691,7 @@
 				CB9C23F218BB3B0C00DDA501 /* E3_PendingReceivedBoard_iPhone.xml in Resources */,
 				5F27CD591D893729002079E2 /* E7_SearchTeacherBoard_iPhone.xml in Resources */,
 				CB9C22A018BB3B0C00DDA501 /* CommonTagListCell.xml in Resources */,
+				5F16765D1E1E4DF300C5188E /* C2_PaymentCell_iPhone.xml in Resources */,
 				CB9C234318BB3B0C00DDA501 /* shopping_checkout_sub_order_icon@2x.png in Resources */,
 				CB9C23FC18BB3B0C00DDA501 /* E4_HistoryCellFooter_iPhone.xml in Resources */,
 				CB9C22F418BB3B0C00DDA501 /* item_grid_filter_up_arrow@2x.png in Resources */,
@@ -6527,7 +6531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6568,7 +6572,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustores;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -6583,7 +6587,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6624,7 +6628,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustores;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -6668,7 +6672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6709,7 +6713,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustores;
 				PRODUCT_NAME = ECMobile;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

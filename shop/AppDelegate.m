@@ -57,8 +57,8 @@
 
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
-    // [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
-    [ServerConfig sharedInstance].url = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/?url=";
+     [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
+    //[ServerConfig sharedInstance].url = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/?url=";
     // [ServerConfig sharedInstance].url = @"http://localhost/edustore/ecmobile/?url=";
     
     // 配置管理后台

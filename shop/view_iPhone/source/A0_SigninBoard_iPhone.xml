@@ -71,7 +71,7 @@
 		}
 		.signin-input {
 			height: 35px;
-			width: 255px;
+			width: 90%;
 			line-height: 35px;
 			font: 16px;
 			input-clear: editing;

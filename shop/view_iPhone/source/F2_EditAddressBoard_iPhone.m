@@ -87,7 +87,7 @@ ON_DELETE_VIEWS(signal)
 
 ON_WILL_APPEAR(signal)
 {
-    [self.list setSize:CGSizeMake(320, 508)];
+    [self.list setSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 60)];
     [self.list reloadData];
     [bee.ui.appBoard hideTabbar];
 }

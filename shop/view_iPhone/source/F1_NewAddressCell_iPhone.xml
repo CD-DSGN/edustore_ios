@@ -110,7 +110,7 @@
         .input {
         margin-left: 10px;
         height: 35px;
-        width: 285px;
+        width: 95%;
         line-height: 35px;
         font-size: 14px;
         input-clear: editing;
@@ -124,8 +124,8 @@
         }
         
         .list-wrapper-group {
-        margin-left: 10px;
-        width: 300;
+        margin-left: 2%;
+        width: 96%;
         align: center;
         height: auto;
         }
@@ -194,7 +194,7 @@
         margin-left: 10px;
         font: 16px;
         color: #333;
-        width: 110px;
+        width: 30%;
         text-align: left;
         height: 20px;
         }
@@ -202,7 +202,7 @@
         .list-subtitle {
         font-size: 14px;
         color: #333;
-        width: 156px;
+        width: 60%;
         text-align: right;
         height: 20px;
         }

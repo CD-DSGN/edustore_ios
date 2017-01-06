@@ -5,13 +5,13 @@
 	<row class="wrapper">
 		<image class="logo"/>
 		<col class="inner-wrapper">
-			<col class="col2">
+            <col class="col1">
+                <image id="arrow"/>
+                <indicator id="indicator"/>
+            </col>
+            <col class="col2">
 				<label id="status"/>
 				<label id="date"/>
-			</col>
-			<col class="col1">
-				<image id="arrow"/>
-				<indicator id="indicator"/>
 			</col>
 		</col>
 	</row>
@@ -41,10 +41,10 @@
 		}
 
 		.col1 {
-			width: 30%;
+			width: 20%;
 			height: 100%;
-			position: absolute;
-			left: 0px;
+			position: relative;
+			left: 15%;
 			top: 0px;
 		}
 		
@@ -68,7 +68,7 @@
 		}
 
 		.col2 {
-			width: 100%;
+			width: 65%;
 			height: 100%;
 		}
 

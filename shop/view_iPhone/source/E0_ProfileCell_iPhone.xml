@@ -134,6 +134,7 @@
 		
 		.scroll-wrapper {
 			height: auto;
+            width: 100%;
 			margin-top: 10px;
 			align: center;
 		}
@@ -196,8 +197,9 @@
 			width: auto;
 			height: 15px;
 			position: absolute;
-			left: 36px;
+            right: 23%;
 			top: 0px;
+            
 		}
 		
 		.badge-wrapper-bg {
@@ -325,6 +327,7 @@
 			width: 24px;
 			height: 24px;
 			float: right;
+            top: 40px;
 			background-image: url(profile_refresh_camera_icon.png);
 		}
 		

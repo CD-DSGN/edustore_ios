@@ -92,7 +92,7 @@
 			width: auto;
 			height: 17px;
 			position: absolute;
-			left: 45px;
+			left: 78%;
 			top: 6px;
 		}
 		

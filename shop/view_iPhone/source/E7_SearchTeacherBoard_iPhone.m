@@ -15,6 +15,9 @@
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
 
+#define WIDTH [[UIScreen mainScreen] bounds].size.width
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
+
 @implementation E7_SearchTeacherBoard_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
@@ -55,15 +58,13 @@ DEF_MODEL( UserModel, userModel );
 
 ON_CREATE_VIEWS( signal )
 {
-    CGFloat height = [[UIScreen mainScreen]bounds].size.height;
-    CGFloat width = [[UIScreen mainScreen]bounds].size.width;
     // init history tableView
-    [self.history initWithFrame:CGRectMake(0, 70, width, height-70)];
+    [self.history initWithFrame:CGRectMake(0, 70, WIDTH, HEIGHT-70)];
     self.history.delegate = self;
     self.history.dataSource = self;
     [self.view addSubview:self.history];
     // init search result of user tableView
-    [self.result initWithFrame:CGRectMake(0, 70, width, height-70)];
+    [self.result initWithFrame:CGRectMake(0, 70, WIDTH, HEIGHT-70)];
     self.result.delegate = self;
     self.result.dataSource = self;
     [self.view addSubview:self.result];
@@ -214,9 +215,7 @@ ON_DID_DISAPPEAR( signal )
 - (void)cancelFollow:(UIButton *)button
 {
     NSString * teacherName = self.userResult[button.tag];
-    NSString * title = @"确定要取消";
-    title = [title stringByAppendingString:teacherName];
-    title = [title stringByAppendingString:@"老师的关注吗"];
+    NSString * title = [NSString stringWithFormat:@"确定要取消%@老师的关注吗？",teacherName];
     UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [sheet addAction:[UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action){
@@ -436,7 +435,7 @@ ON_MESSAGE3( API, cancel_follow, msg )
     {
         UITableViewCell * cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
         
-        cell.frame = CGRectMake(0, 0, 320, 50);
+        cell.frame = CGRectMake(0, 0, WIDTH, 50);
         // 历史记录存在数组中，数组是倒序展示的
         // cell.textLabel.text = [self.searchHistory objectAtIndex:(self.searchHistory.count - indexPath.row - 1)];
         cell.textLabel.text = [NSString stringWithString:[self.searchHistory objectAtIndex:(self.searchHistory.count - indexPath.row - 1)]];
@@ -447,9 +446,9 @@ ON_MESSAGE3( API, cancel_follow, msg )
         if ( (self.searchHistory.count - indexPath.row - 1) > 0 )
         {
             UIButton * selected = [[UIButton alloc] init];
-            selected.frame = CGRectMake(290, 17.5f, 15, 15);
+            selected.frame = CGRectMake(WIDTH*0.9f, 17.5f, 15, 15);
             selected.tag = indexPath.row;
-            selected.backgroundImage = [UIImage imageNamed:@"icon_rightArrow_selected.png"];
+            selected.backgroundImage = [UIImage imageNamed:@"delete.png"];
             [selected addTarget:self action:@selector(deleteCell:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:selected];
         }
@@ -458,78 +457,49 @@ ON_MESSAGE3( API, cancel_follow, msg )
     else if ( tableView == self.result )
     {
         // 对数组做了排序，第一位的要么为空，要么是已经关注的教师（若关注过）
-        // 第一个cell不参加复用
-        if (indexPath.row == 0)
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:resultIdentifier];
+        if (cell == nil)
         {
-            UITableViewCell * cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
-            cell.selectionStyle = NO;
-            cell.frame = CGRectMake(0, 0, 320, 50);
-            cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
-            cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
-            // 搜索结果不为空
-            if (![[self.userResult objectAtIndex:0] isEqualToString:__TEXT(@"null")])
-            {
-                UIButton * follow = [[UIButton alloc] init];
-                follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
-                follow.tag = indexPath.row;
-                NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
-                if (followed.intValue == 1)
-                {
-                    follow.backgroundImage = [UIImage imageNamed:@"has_follow_02.png"];
-                    [follow addTarget:self action:@selector(cancelFollow:) forControlEvents:UIControlEventTouchUpInside];
-                }
-                else
-                {
-                    follow.backgroundImage = [UIImage imageNamed:@"add_follow_06.png"];
-                    [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
-                }
-                
-                [cell.contentView addSubview:follow];
-                
-            }
-            else
-            {// 搜索结果为空
-            }
-            return cell;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:resultIdentifier];
         }
-        else        // 除了第一项，均需要被复用
+        else    // 删除旧的cell下的所有子view
         {
-            UITableViewCell * cell = [[tableView dequeueReusableCellWithIdentifier:resultIdentifier] autorelease];
-            UIButton * follow = [[UIButton alloc]init];
-            if (cell == nil)
+            while ([cell.contentView.subviews lastObject] != nil)
             {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:resultIdentifier];
-                
-                cell.selectionStyle = NO;
-                cell.frame = CGRectMake(0, 0, 320, 50);
-                // 右侧按钮,目标实现点击关注与取消关注
-                follow.frame = CGRectMake(250, 11.3f, 57.2f, 27.3f);
-                // follow.backgroundImage = [UIImage imageNamed:@"follow.png"];
-                // NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
-                // follow.backgroundColor = [UIColor orangeColor];
-                follow.backgroundImage = [UIImage imageNamed:@"add_follow_06.png"];
-                [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
-                [cell.contentView addSubview:follow];
+                [(UIView *)[cell.contentView.subviews lastObject] removeFromSuperview];
             }
-            follow.tag = indexPath.row;
-            cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
-            cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
-            
-            return cell;
-            // user name or some describtion
-            // cell.textLabel.text = [self.userResult objectAtIndex:indexPath.row];
-            // cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
-            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@"("];
-            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:self.course_name];
-            //        cell.textLabel.text = [cell.textLabel.text stringByAppendingString:@")"];
-            
-            // cell.detailTextLabel.text = [self.school objectAtIndex:indexPath.row];
-            // cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
-            // user header image
-            // cell.imageView.image = [UIImage imageNamed:@"item_info_buy_entry_loading_header_close_icon.png"];
-            // return cell;
         }
+        cell.selectionStyle = NO;
+        cell.frame = CGRectMake(0, 0, WIDTH, 50);
+        cell.textLabel.text = [NSString stringWithString:[self.userResult objectAtIndex:indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithString:[self.school objectAtIndex:indexPath.row]];
         
+        // 搜索结果不为空
+        if (![[self.userResult objectAtIndex:0] isEqualToString:__TEXT(@"null")])
+        {
+            UIButton * follow = [[UIButton alloc] init];
+            follow.frame = CGRectMake(WIDTH*0.78f, 11.3f, WIDTH*0.18f, 27.3f);
+            follow.tag = indexPath.row;
+            NSNumber * followed = [self.isFollowed objectAtIndex:indexPath.row];
+            if (followed.intValue == 1) // 以关注的老师
+            {
+                follow.backgroundImage = [UIImage imageNamed:@"followed.png"];
+                [follow addTarget:self action:@selector(cancelFollow:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            else    // 未关注的老师
+            {
+                follow.backgroundImage = [UIImage imageNamed:@"follow.png"];
+                [follow addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
+            [cell.contentView addSubview:follow];
+            
+        }
+        else
+        {// 搜索结果为空，空的内容包括在数组中了
+        }
+
+        return cell;
     }
     return nil;
 }

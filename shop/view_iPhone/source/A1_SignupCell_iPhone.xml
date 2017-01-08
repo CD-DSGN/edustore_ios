@@ -39,7 +39,11 @@
             <input id="identifyCode" class="signin-input done" placeholder="@{identify_code}"></input>
             <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
         </row>
+        <row class="signupButton-wrapper">
+            <button class="signupButton" id="signupButton">提交注册</button>
+        </row>
     </col>
+    
 	<style type="text/css">
         .input {
             margin-left: 20px;
@@ -123,6 +127,22 @@
             height: 44px;
             width: 100%;
             v-align: center;
+        }
+        
+        <!-- 注册按钮 -->
+        .signupButton-wrapper {
+            position: relative;
+            width: 100%;
+            height: 44px;
+            left: 3%;
+            top: 10px;
+        }
+        
+        .signupButton {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: orange;
         }
         
         .icon {

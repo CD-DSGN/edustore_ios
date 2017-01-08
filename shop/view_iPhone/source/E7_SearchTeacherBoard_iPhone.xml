@@ -19,10 +19,10 @@
         float: center;
         }
         .search-input-wrapper {
-        width: 250px;
+        width: 80%;
         height: 29px;
         margin-top:27px;
-        margin-left: 10px;
+        margin-left: 3%;
         }
         .search-icon {
         width: 14px;
@@ -32,7 +32,7 @@
         image: url(searcher_new_search_icon.png);
         }
         #searchInput {
-        width: 225px;
+        width: 90%;
         height: 100%;
         font-size: 14px;
         margin-left: 5px;
@@ -42,11 +42,11 @@
         .search-input-bg {
         top: 0;
         left: 0;
-        width: 250px;
+        width: 100%;
         height: 29px;
         position: absolute;
         image-src: url(searcher_new_search_box.png);
-        image-mode: fit;
+        image-mode: stretch;
         }
         .back {
         width: 46px;

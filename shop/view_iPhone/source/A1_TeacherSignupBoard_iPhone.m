@@ -52,9 +52,9 @@ ON_CREATE_VIEWS( signal )
     self.navigationBarShown = YES;
     self.navigationBarTitle = __TEXT(@"teacherSignup");
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
-    [self showBarButton:BeeUINavigationBar.RIGHT
-                  title:__TEXT(@"next_step")
-                  image:[UIImage imageNamed:@"nav_right.png"]];
+//    [self showBarButton:BeeUINavigationBar.RIGHT
+//                  title:__TEXT(@"next_step")
+//                  image:[UIImage imageNamed:@"nav_right.png"]];
     
     @weakify(self);
 
@@ -143,7 +143,6 @@ ON_LEFT_BUTTON_TOUCHED( signal )
 
 ON_RIGHT_BUTTON_TOUCHED( signal )
 {
-    [self nextStep];
 }
 
 #pragma mark - BeeUITextField
@@ -168,6 +167,13 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     }
 }
 
+#pragma mark - A1_TeacherSignupCell_iPhone
+
+ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
+{
+    [self nextStep];
+}
+
 //#pragma mark - SignupBoard_iPhone
 //
 //ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
@@ -186,6 +192,7 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     if ( [item.view isKindOfClass:[A1_TeacherSignupCell_iPhone class]])
     {
         [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).username];
+        [inputs addObject:((A1_TeacherSignupCell_iPhone *) item.view).inviteCode];
         [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).mobilePhone];
         [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).identifyCode];
     }
@@ -260,6 +267,7 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     NSString * userName = nil;
     NSString * mobilePhone = nil;
     NSString * identifyCode = nil;
+    NSString * inviteCode = nil;
     
     NSArray * inputs = [self inputs];
     
@@ -269,6 +277,10 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
         if ( [input.placeholder isEqualToString:__TEXT(@"login_username")] )
         {
             userName = input.text;
+        }
+        if ( [input.placeholder isEqualToString:__TEXT(@"login_inviteCode")])
+        {
+            inviteCode = input.text;
         }
         if ( [input.placeholder isEqualToString:__TEXT(@"mobile_phone")] )
         {
@@ -342,7 +354,8 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     
     self.username = userName;
     self.mobilePhone = mobilePhone;
-    [self.userModel checkUser:userName];
+    self.inviteCode = inviteCode;
+    [self.userModel checkUser:userName andInviteCode:inviteCode];
     
     //[self.stack pushBoard:[A1_TeacherSignupBoard2_iPhone board] animated:TRUE];
 }
@@ -492,6 +505,7 @@ ON_MESSAGE3( API, checkUser, msg )
         //用户名可以使用
         A1_TeacherSignupBoard2_iPhone * detail = [[A1_TeacherSignupBoard2_iPhone alloc] init];
         // 传参
+        detail.inviteCode = self.inviteCode;
         detail.username = self.username;
         detail.mobilePhone = self.mobilePhone;
         // 清除计时器状态

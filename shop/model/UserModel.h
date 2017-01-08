@@ -50,6 +50,7 @@ AS_NOTIFICATION( UPDATED )
                 fields:(NSArray *)fields;
 
 - (void)signupWithUser:(NSString *)user
+            inviteCode:(NSString *)inviteCode
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields
@@ -88,7 +89,7 @@ AS_NOTIFICATION( UPDATED )
 - (void)updateFields;
 - (void)updateProfile;
 
-- (void)checkUser:(NSString *)user;
+- (void)checkUser:(NSString *)user andInviteCode:(NSString *)inviteCode;
 
 - (void)postAvatar:(NSString *)avatar;
 

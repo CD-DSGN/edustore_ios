@@ -69,9 +69,9 @@ ON_CREATE_VIEWS( signal )
     self.navigationBarShown = YES;
     self.navigationBarTitle = __TEXT(@"teacherSignup");
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
-    [self showBarButton:BeeUINavigationBar.RIGHT
-                  title:__TEXT(@"register_regist")
-                  image:[UIImage imageNamed:@"nav_right.png"]];
+//    [self showBarButton:BeeUINavigationBar.RIGHT
+//                  title:__TEXT(@"register_regist")
+//                  image:[UIImage imageNamed:@"nav_right.png"]];
     
     @weakify(self);
 
@@ -160,7 +160,6 @@ ON_LEFT_BUTTON_TOUCHED( signal )
 
 ON_RIGHT_BUTTON_TOUCHED( signal )
 {
-    [self doRegister];
 }
 
 // 如果重构页面需要修改的地方
@@ -201,12 +200,7 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     }
 }
 
-#pragma mark - SignupBoard_iPhone
-
-ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
-{
-	[self.stack popBoardAnimated:YES];
-}
+#pragma mark - A1_TeacherSignupCell2_iPhone
 
 //UIActionSheet ios 8.3 之后被弃用
 //使用新的 UIAlertController 重写
@@ -220,6 +214,11 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
 {
     // 省市县三级联动选择地址
     [self getRegion];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
+{
+    [self doRegister];
 }
 
 // 查询数据库中存在的课程
@@ -382,6 +381,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
     NSString * userName = nil;
 //  	NSString * email = nil;
     NSString * mobilePhone = nil;
+    NSString * inviteCode = nil;
     NSString * realname = nil;
     NSString * school = nil;
     NSString * course = @"0";
@@ -397,7 +397,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
     // 为注册需要的参数赋值
     userName = self.username;
     mobilePhone = self.mobilePhone;
-    course = self.course_id[self.courseId - 1];
+    inviteCode = self.inviteCode;
+    if ( self.course_id.count != 0) {
+        course = self.course_id[self.courseId - 1];
+    }
     
     for ( BeeUITextField * input in inputs )
     {
@@ -541,6 +544,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseRegion, signal )
 	}
 
 	[self.userModel signupWithUser:userName
+                        inviteCode:inviteCode
 						  password:password
                        mobilePhone:mobilePhone
                             fields:fields
@@ -635,7 +639,7 @@ ON_MESSAGE3( API, course, msg )
             [self.course_id addObject:getCourse.course_id[i]];
         }
         // 新建一个 UIPickerView
-        self.selectCourse = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+        self.selectCourse = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 200)];
         self.selectCourse.delegate = self;
         self.selectCourse.dataSource = self;
         
@@ -892,7 +896,7 @@ ON_MESSAGE3( API, course, msg )
 {
     if ( pickerView == self.selectRegion )
     {
-        self.selectRegion = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+        self.selectRegion = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width * 0.9375f , 200)];
         self.selectRegion.delegate = self;
         self.selectRegion.dataSource = self;
         [self.selectRegion selectRow:self.selectedProvinceRow inComponent:0 animated:NO];

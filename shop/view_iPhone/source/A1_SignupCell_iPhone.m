@@ -31,6 +31,7 @@ DEF_OUTLET( BeeUITextField, password )
 DEF_OUTLET( BeeUITextField, confirmePassword )
 DEF_OUTLET( BeeUITextField, mobilePhone )
 DEF_OUTLET( BeeUITextField, identifyCode )
+DEF_OUTLET( BeeUIButton, signupButton )
 
 - (void)load
 {
@@ -60,7 +61,8 @@ DEF_OUTLET( BeeUITextField, identifyCode )
         if ( [registerInfo.identifyCodeTag isEqualToString:__TEXT(@"identify_code")])
         {
             self.identifyCode.keyboardType = UIKeyboardTypeNamePhonePad;
-            $(@"identifyCode").CSS(@"width:160px");
+            CGFloat width = [[UIScreen mainScreen] bounds].size.width * 0.4f;
+            $(@"identifyCode").CSS([NSString stringWithFormat:@"width:%fpx",width]);
             self.identifyCode.returnKeyType = UIReturnKeyDone;
         }
         // 可以这么设计，不过需要放上自己的图片

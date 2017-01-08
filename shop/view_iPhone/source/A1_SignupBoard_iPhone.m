@@ -52,9 +52,9 @@ ON_CREATE_VIEWS( signal )
     self.navigationBarShown = YES;
     self.navigationBarTitle = __TEXT(@"member_signup");
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
-    [self showBarButton:BeeUINavigationBar.RIGHT
-                  title:__TEXT(@"register_regist")
-                  image:[UIImage imageNamed:@"nav_right.png"]];
+//    [self showBarButton:BeeUINavigationBar.RIGHT
+//                  title:__TEXT(@"register_regist")
+//                  image:[UIImage imageNamed:@"nav_right.png"]];
     
     @weakify(self);
 
@@ -142,7 +142,7 @@ ON_LEFT_BUTTON_TOUCHED( signal )
 
 ON_RIGHT_BUTTON_TOUCHED( signal )
 {
-    [self doRegister];
+//    [self doRegister];
 }
 
 #pragma mark - BeeUITextField
@@ -172,6 +172,13 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
 ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
 {
 	[self.stack popBoardAnimated:YES];
+}
+
+#pragma mark - SignupCell_iPhone
+
+ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
+{
+    [self doRegister];
 }
 
 #pragma mark -

@@ -15,44 +15,52 @@
     <col class="list-wrapper-group">
         <row class="list-item">
             <image class="list-item-header-bg" />
-            <image class="input-icon-user" />
+            <image class="input-icon-user icon" />
             <input id="username" class="signin-input" placeholder="@{login_username}"></input>
         </row>
         <row class="list-item">
             <image class="list-item-bg" />
-            <image class="input-icon-password" />
+            <image class="input-icon-inviteCode icon" />
+            <input id="inviteCode" class="signin-input" placeholder="@{login_inviteCode}"></input>
+        </row>
+        <row class="list-item">
+            <image class="list-item-bg" />
+            <image class="input-icon-phone icon" />
             <input id="mobilePhone" class="signin-input" placeholder="@{mobile_phone}"></input>
         </row>
         <row class="list-item">
             <image class="list-item-footer-bg" />
-            <image class="input-icon-password" />
+            <image class="input-icon-identifyCode icon" />
             <input id="identifyCode" class="signin-input done" placeholder="@{identify_code}"></input>
             <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
+        </row>
+        <row class="nextStepButton-wrapper">
+            <button class="nextStepButton" id="nextStepButton">下一步</button>
         </row>
     </col>
 <style type="text/css">
         <!-- identify code button -->
         .identifyCode {
-            position: absolute;
-            font-size: 12px;
-            width: 120px;
-            height: 44px;
-            line-height: 44px;
-            right: 0;
-            top: 0;
-            background-image: url(button_orange.png);
+        position: absolute;
+        font-size: 12px;
+        width: 40%;
+        height: 34px;
+        line-height: 44px;
+        right: 10px;
+        top: 5px;
+        background-image: url(button_orange.png);
         }
         <!-- input -->
         .signin-input {
-            height: 44px;
-            width: 260px;
-            margin-left: 20px;
-            line-height: 35px;
-            font: 16px;
-            input-clear: editing;
-            input-capitalization: none;
-            input-return-key: next;
-            input-correction: false;
+        height: 44px;
+        width: 85%;
+        margin-left: 10px;
+        line-height: 35px;
+        font: 16px;
+        input-clear: editing;
+        input-capitalization: none;
+        input-return-key: next;
+        input-correction: false;
         }
         <!-- return done -->
         .done {
@@ -101,6 +109,42 @@
             height: 44px;
             width: 100%;
             v-align: center;
+        }
+        
+        <!-- 下一步按钮 -->
+        .nextStepButton-wrapper {
+        position: relative;
+        width: 100%;
+        height: 44px;
+        left: 3%;
+        top: 10px;
+        }
+        
+        .nextStepButton {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: orange;
+        }
+        
+        <!-- icon -->
+        .icon {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        image-mode: center;
+        }
+        .input-icon-user {
+        image-src: url(signup_username.png);
+        }
+        .input-icon-identifyCode {
+        image-src: url(signup_identifyCode.png);
+        }
+        .input-icon-inviteCode {
+        image-src: url(signup_inviteCode.png);
+        }
+        .input-icon-phone {
+        image-src: url(signup_phoneNumber.png);
         }
 </style>
 </ui>

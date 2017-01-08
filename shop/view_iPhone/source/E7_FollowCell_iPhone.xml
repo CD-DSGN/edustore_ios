@@ -23,8 +23,7 @@
     
     <style>
         .content {
-            margin-left:10px;
-            width: 300px;
+            width: 100%;
             height: 40px;
         }
         
@@ -60,35 +59,44 @@
         }
         
         .button {
-            width: 35%;
+            width: 50%;
             height: 100%;
+            align: center;
         }
         .follow_bg {
             position:absolute;
-            top: 9px;
-            left: 0px;
-            width: 44px;
-            height: 21px;
+            top: 10px;
+            left: 20%;
+            width: 100%;
+            height: 20px;
             background-mode: fit;
             background-insets: 10px;
-            background-image: url(add_follow_06.png);
+            background-image: url(follow.png);
         }
         .cancel_bg {
             position:absolute;
             top: 10px;
-            left: 0px;
-            width: 43px;
+            left: 0;
+            width: 100%;
             height: 20px;
             background-mode: fit;
             background-insets: 10px;
-            background-image: url(cancel_follow_21.png);
+            background-image: url(cancel.png);
         }
-        .follow_btn, .cancel_btn {
+        .follow_btn {
             position:absolute;
             top: 10px;
-            left: 0px;
-            width: 43px;
+            left: 20%;
+            width: 100%;
             height: 20px;
         }
+        .cancel_btn {
+            position:absolute;
+            top: 10px;
+            left: 0%;
+            width: 100%;
+            height: 20px;
+        }
+
     </style>
 </ui>

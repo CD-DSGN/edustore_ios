@@ -2338,6 +2338,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
     {
         NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
         NSString * name = msg.GET_INPUT( @"name" );
+        NSString * inviteCode = msg.GET_INPUT( @"inviteCode");
         NSString * password = msg.GET_INPUT( @"password" );
         NSArray * field = msg.GET_INPUT( @"field" );
         NSString * realname = msg.GET_INPUT( @"realname" );
@@ -2363,6 +2364,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
         requestBody.APPEND( @"mobilePhone", mobilePhone);
         requestBody.APPEND( @"name", name );
+        requestBody.APPEND( @"inviteCode", inviteCode );
         requestBody.APPEND( @"password", password );
         requestBody.APPEND( @"field", field );
         requestBody.APPEND( @"realname", realname );
@@ -2979,6 +2981,7 @@ DEF_MESSAGE_( checkUser, msg )
         NSString * requestURI = [NSString stringWithFormat:@"%@/user/checkUser", [ServerConfig sharedInstance].url];
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
         requestBody.APPEND( @"username", msg.GET_INPUT( @"name" ) );
+        requestBody.APPEND( @"inviteCode", msg.GET_INPUT( @"inviteCode" ));
         
         msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
     }

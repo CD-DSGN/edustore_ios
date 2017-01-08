@@ -26,4 +26,5 @@ AS_OUTLET( BeeUITextField, password )
 AS_OUTLET( BeeUITextField, confirmePassword )
 AS_OUTLET( BeeUITextField, mobilePhone )
 AS_OUTLET( BeeUITextField, identifyCode )
+AS_OUTLET( BeeUIButton, signupButton )
 @end

@@ -4,15 +4,15 @@
 	
 	<row class="wrapper">
 		<image id="bg"/>
-		<row class="item-wrapper">
+		<row class="item-wrapper" id="home">
 <!--			<image id="home-bg" class="item-active-bg"></image>-->
 			<button id="home-button" class="item-icon icon-home"></button>
 		</row>
-		<row class="item-wrapper">
+		<row class="item-wrapper" id="moments">
 <!--			<image id="search-bg" class="item-active-bg"></image>-->
 			<button id="moments-button" class="item-icon icon-search"></button>
 		</row>
-		<row class="item-wrapper">
+		<row class="item-wrapper" id="cart">
 <!--			<image id="cart-bg" class="item-active-bg"></image>-->
 			<button id="cart-button" class="item-icon icon-cart"></button>
 			<row class="badge-wrapper">
@@ -20,7 +20,7 @@
 				<label id="badge" class="badge-number"/>
 			</row>
 		</row>
-		<row class="item-wrapper">
+		<row class="item-wrapper" id="user">
 <!--			<image id="user-bg" class="item-active-bg"></image>-->
 			<button id="user-button" class="item-icon icon-user"></button>
 		</row>

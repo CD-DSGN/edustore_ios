@@ -300,16 +300,12 @@ ON_SIGNAL3(E7_FollowCell_iPhone, cancel_follow, signal )
         
         if ( [teacherName isEqualToString:@""] )
         {
-            NSString * tips = @"您尚未关注";
-            tips = [tips stringByAppendingString:courseName];
-            tips = [tips stringByAppendingString:@"课的教师"];
+            NSString * tips = [NSString stringWithFormat:@"您尚未关注%@课的教师",courseName];
             [self presentMessageTips:tips];
         }
         else
         {
-            NSString * title = @"确定要取消";
-            title = [title stringByAppendingString:courseName];
-            title = [title stringByAppendingString:@"课的关注吗?"];
+            NSString * title = [NSString stringWithFormat:@"确定要取消%@课的关注吗？",courseName];
             
             UIAlertController * sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
             

@@ -31,6 +31,7 @@ AS_MODEL( RegisterModel, registerModel )
 @property (nonatomic, retain) NSString * identifyCode;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * mobilePhone;
+@property (nonatomic, retain) NSString * inviteCode;
 // 这么写是为了增加复用（checkuser、timer都有使用）
 @property (nonatomic, retain) BeeUIButton * code;
 // 获取验证码按钮计时

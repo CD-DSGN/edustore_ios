@@ -334,7 +334,7 @@ ON_SIGNAL3( AppBoard_iPhone, NOTIFY_FORWARD, signal )
 
 #pragma mark -
 
-ON_SIGNAL3( AppTabbar_iPhone, home_button, signal )
+ON_SIGNAL3( AppTabbar_iPhone, home, signal )
 {
 	[bee.ui.tabbar selectHome];
 	[bee.ui.router open:AppBoard_iPhone.TAB_HOME animated:NO];
@@ -346,19 +346,19 @@ ON_SIGNAL3( AppTabbar_iPhone, home_button, signal )
 //	[bee.ui.router open:AppBoard_iPhone.TAB_SEARCH animated:NO];
 //}
 
-ON_SIGNAL3( AppTabbar_iPhone, moments_button, signal )
+ON_SIGNAL3( AppTabbar_iPhone, moments, signal )
 {
     [bee.ui.tabbar selectMoments];
     [bee.ui.router open:AppBoard_iPhone.TAB_MOMENTS animated:NO];
 }
 
-ON_SIGNAL3( AppTabbar_iPhone, cart_button, signal )
+ON_SIGNAL3( AppTabbar_iPhone, cart, signal )
 {
 	[bee.ui.tabbar selectCart];
 	[bee.ui.router open:AppBoard_iPhone.TAB_CART animated:NO];
 }
 
-ON_SIGNAL3( AppTabbar_iPhone, user_button, signal )
+ON_SIGNAL3( AppTabbar_iPhone, user, signal )
 {
 	[bee.ui.tabbar selectUser];
 	[bee.ui.router open:AppBoard_iPhone.TAB_USER animated:NO];

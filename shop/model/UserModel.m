@@ -221,6 +221,7 @@ DEF_NOTIFICATION( UPDATED )
 }
 
 - (void)signupWithUser:(NSString *)user
+            inviteCode:(NSString *)inviteCode
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields
@@ -237,6 +238,7 @@ DEF_NOTIFICATION( UPDATED )
     self
     .MSG( API.teacher_signup )
     .INPUT( @"name", user )
+    .INPUT( @"inviteCode", inviteCode )
     .INPUT( @"password", password )
     .INPUT( @"mobilePhone", mobilePhone )
     .INPUT( @"field", fields )
@@ -329,12 +331,13 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"avatar", avatar );
 }
 
-- (void)checkUser:(NSString *)user
+- (void)checkUser:(NSString *)user andInviteCode:(NSString *)inviteCode
 {
     self.CANCEL_MSG( API.checkUser );
     self
     .MSG( API.checkUser )
-    .INPUT( @"name", user);
+    .INPUT( @"name", user)
+    .INPUT( @"inviteCode", inviteCode);
 }
 
 - (void)signout

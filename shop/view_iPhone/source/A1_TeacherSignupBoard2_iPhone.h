@@ -30,6 +30,7 @@ AS_MODEL( RegisterModel, registerModel )
 @property (nonatomic, retain) NSMutableArray * group;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * mobilePhone;
+@property (nonatomic, retain) NSString * inviteCode;
 @property (nonatomic, retain) UIPickerView * selectCourse;
 @property (nonatomic, retain) NSMutableArray * course;
 @property (nonatomic, retain) NSString * courseName;

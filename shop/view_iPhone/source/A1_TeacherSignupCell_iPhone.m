@@ -27,6 +27,7 @@ DEF_OUTLET( BeeUIImageView, background )
 DEF_OUTLET( BeeUITextField, input )
 DEF_OUTLET( BeeUIButton, getIdentifyCode )
 DEF_OUTLET( BeeUITextField, username )
+DEF_OUTLET( BeeUITextField, inviteCode )
 DEF_OUTLET( BeeUITextField, mobilePhone )
 DEF_OUTLET( BeeUITextField, identifyCode )
 
@@ -51,7 +52,8 @@ DEF_OUTLET( BeeUITextField, identifyCode )
         if ( [registerInfo.identifyCodeTag isEqualToString:__TEXT(@"identify_code")])
         {
             self.identifyCode.keyboardType = UIKeyboardTypeNamePhonePad;
-            $(@"identifyCode").CSS(@"width:160px");
+            CGFloat width = [[UIScreen mainScreen] bounds].size.width * 0.4f;
+            $(@"identifyCode").CSS([NSString stringWithFormat:@"width:%fpx",width]);
             self.identifyCode.returnKeyType = UIReturnKeyDone;
         }
         

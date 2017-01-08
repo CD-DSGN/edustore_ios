@@ -25,26 +25,26 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
     if (self.data)
     {
-//        UserModel * userModel = self.data;
-//        
-//        if (![UserModel online])
-//        {
-//            $(@"#follow_col").HIDE();
-//            $(@"integral_col").HIDE();
-//        }
-//        else
-//        {
-//            if ( userModel.user.is_teacher.intValue == 0 )     // 学生账户
-//            {
-//                $(@"#follow_col").SHOW();
-//                $(@"#integral_col").HIDE();
-//            }
-//            else if ( userModel.user.is_teacher.intValue == 1 )     // 教师账户
-//            {
-//                $(@"#follow_col").HIDE();
-//                $(@"#integral_col").SHOW();
-//            }
-//        }
+        UserModel * userModel = self.data;
+        
+        if (![UserModel online])
+        {
+            $(@"#follow_col").SHOW();
+            $(@"integral_col").HIDE();
+        }
+        else
+        {
+            if ( userModel.user.is_teacher.intValue == 0 )     // 学生账户
+            {
+                $(@"#follow_col").SHOW();
+                $(@"#integral_col").HIDE();
+            }
+            else if ( userModel.user.is_teacher.intValue == 1 )     // 教师账户
+            {
+                $(@"#follow_col").HIDE();
+                $(@"#integral_col").SHOW();
+            }
+        }
     }
 }
 

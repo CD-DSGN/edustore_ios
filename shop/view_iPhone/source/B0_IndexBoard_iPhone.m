@@ -459,6 +459,22 @@ ON_SIGNAL3( B0_IndexButtonCell_iPhone, notify_col, signal )
     [self.stack pushBoard:[G2_MessageBoard_iPhone board] animated:YES];
 }
 
+/**
+ * 首页-联系客服，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( B0_IndexButtonCell_iPhone, connect_col, signal )
+{
+//    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"18380207432"];
+//    UIWebView * callWebview = [[UIWebView alloc] init];
+//    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+//    [self.view addSubview:callWebview];
+//    [callWebview release];
+//    [str release];
+    
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18380207432"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
 #pragma mark -
 
 ON_NOTIFICATION3( ECMobilePushUnread, UPDATING, notification )

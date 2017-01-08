@@ -209,7 +209,14 @@ ON_DID_DISAPPEAR( signal )
 // 根据查询出来的teacher tableView的关注按钮进行关注
 - (void)follow:(UIButton *)button
 {
-    [self.userModel addFollowByTeacherId:self.teacherId[button.tag] studentId:self.user_id courseId:self.course_id];
+    if (self.user_id != nil)
+    {
+        [self.userModel addFollowByTeacherId:self.teacherId[button.tag] studentId:self.user_id courseId:self.course_id];
+    }
+    else
+    {
+        [self presentFailureTips:@"关注教师请先登录"];
+    }
 }
 
 - (void)cancelFollow:(UIButton *)button

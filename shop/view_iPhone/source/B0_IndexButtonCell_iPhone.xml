@@ -20,6 +20,9 @@
 <!--            <button class="notify" id="notify"></button>-->
             <image class="notify_bg button_bg" />
         </col>
+        <col class="button" id="connect_col">
+            <image class="connect_bg button_bg" />
+        </col>
     </row>
 
     <style>
@@ -70,6 +73,9 @@
         }
         .notify_bg {
             background-image: url(notify.png);
+        }
+        .connect_bg {
+            background-image: url(service.png);
         }
     </style>
 </ui>

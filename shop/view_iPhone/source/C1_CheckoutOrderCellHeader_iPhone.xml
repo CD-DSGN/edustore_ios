@@ -11,8 +11,8 @@
     <style type="text/css">
         
         .order-date-wrapper {
-        margin-left: 3px;
-        width: 314px;
+        left: 0;
+        width: 100%;
         height: 35px;
         }
         

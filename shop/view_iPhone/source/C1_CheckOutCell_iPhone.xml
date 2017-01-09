@@ -70,6 +70,7 @@
     </col>
     
     <style>
+        .background {image-mode: stretch;}
         .CheckoutOrderCell { width: 100%; height: auto; }
         .CheckoutHeader { width: 100%; height: 110px; }
     </style>

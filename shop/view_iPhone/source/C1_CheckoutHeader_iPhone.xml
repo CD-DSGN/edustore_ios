@@ -21,8 +21,8 @@
     <style type="text/css">
         
         .wrapper-one {
-        margin-left: 10px;
-        width: 300px;
+        left: 0;
+        width: 100%;
         height: 110px;
         }
         
@@ -87,7 +87,6 @@
         position: absolute;
         top: 48px;
         left: 12px;
-        width: 280px;
         height: auto;
         }
         

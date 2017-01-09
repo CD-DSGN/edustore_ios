@@ -35,8 +35,8 @@
         }
         
         .order-cell-wrapper {
-        margin-left: 3px;
-        width: 314px;
+        left: 3%;
+        width: 94%;
         height: 90px;
         }
         
@@ -84,12 +84,12 @@
         }
         
         .order-goods-photo-wrapper {
-        width: 70px;
+        width: 25%;
         height: 70px;
         }
         
         .order-goods-photo-wrapper-bg {
-        width: 100%;
+        width: 70px;
         height: 100%;
         border-width: 1px;
         border-color: #ddd;
@@ -109,12 +109,12 @@
         .order-cell-body {
         margin-top: 10px;
         margin-left: 15px;
-        width: 285px;
+        width: 88%;
         }
         
         .order-goods-title-wrapper {
         margin-left: 10px;
-        width: 110px;
+        width: 40%;
         height: 70px;
         }
         
@@ -130,8 +130,8 @@
         
         .order-goods-detail-wrapper {
         margin-top: 5px;
-        margin-left: 10px;
-        width: 85px;
+        left: 0;
+        width: 35%;
         height: 70px;
         }
         

@@ -26,7 +26,7 @@ col { width: 100%; height: auto; }
 /********************
  * form-group
  ********************/
-.form-container { height: auto; }
+.form-container { height: auto; width: 94%; left: 3%;}
 .form-group { height: auto; }
 .form-group.separator { margin-top: 10px; }
 .form-group-caption,

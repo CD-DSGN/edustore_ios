@@ -32,8 +32,8 @@
         }
         
         .cart-cell-wrapper {
-        margin-left: 3px;
-        width: 314px;
+        left: 3%;
+        width: 94%;
         height: 80px;
         }
         

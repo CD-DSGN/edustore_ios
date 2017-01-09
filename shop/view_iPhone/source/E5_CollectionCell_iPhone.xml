@@ -114,9 +114,9 @@
         width: 30px;
         height: 30px;
         button-image: url(item_faverites_edit_close_btn.png);
-        position: relative;
+        position: absolute;
         top: 4px;
-        left: 40%;
+        right: 10px;
         }
         
     </style>

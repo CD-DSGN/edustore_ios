@@ -24,10 +24,10 @@ DEF_OUTLET( BeeUIScrollView, list )
     // 通过查询的返回值来大致计算出高度（如何保证精确度？）
     // 暂时通过多留白的方式
     MOMENTS * moments = data;
-    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:260];      // 正文内容的size
-    CGFloat head_height = 57;                                   // 头部高度+留白
-    CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
-    CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height);
+    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:SCREEN_WIDTH*0.7f];      // 正文内容的size
+    CGFloat head_height = 57.0f;             // 头部高度+留白
+//    CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
+    CGSize size = CGSizeMake(width, content_size.height + head_height);
     return size;
 }
 

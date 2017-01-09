@@ -209,6 +209,10 @@ DEF_NOTIFICATION( CHANGED )
 	BOOL succeed = NO;
 	
 	NSString * langName = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+    
+    // modify nhj,始终使用中文
+    langName = @"zh-Hans-CN";
+    
 	if ( langName )
 	{
 		succeed = [self setCurrentLanguageName:langName];

@@ -13,8 +13,6 @@
 #import "bee.services.uppayplugin.h"
 #import "bee.services.share.weixin.h"
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-
 @implementation J0_CheckOutCounterCell_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )

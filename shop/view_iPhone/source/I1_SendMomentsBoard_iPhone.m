@@ -31,8 +31,8 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 ON_CREATE_VIEWS( signal )
 {
-    self.scrollView.frame = CGRectMake(0, 70, 320, 498);
-    self.scrollView.contentSize = CGSizeMake(320, 500);
+    self.scrollView.frame = CGRectMake(0, 70, SCREEN_WIDTH, SCREEN_HEIGHT-70);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-68);
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
@@ -44,9 +44,9 @@ ON_CREATE_VIEWS( signal )
     self.textViewSendContent.scrollEnabled = YES;
     self.textViewSendContent.delegate = self;
 //    self.textViewSendContent.showsVerticalScrollIndicator = NO;
-    self.textViewSendContent.frame = CGRectMake(0, 0, 320, 498);
+    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-70);
     
-    self.textViewPlaceholder.frame = CGRectMake(5, 0, 320, 40);
+    self.textViewPlaceholder.frame = CGRectMake(5, 0, SCREEN_WIDTH, 40);
     self.textViewPlaceholder.text = __TEXT(@"moments_send");
     self.textViewPlaceholder.textColor = [UIColor grayColor];
     self.textViewPlaceholder.font = [UIFont fontWithName:@"Arial" size:18];
@@ -138,7 +138,7 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
     // 多预留一些空间，以应对字体改变
     if (currentPosition > 200)
     {
-        CGRect temp = CGRectMake(0, currentPosition, 320, 60);
+        CGRect temp = CGRectMake(0, currentPosition, SCREEN_WIDTH, 60);
         CGRect textViewFrame = [self.scrollView convertRect:temp fromView:textView];
         
 //        [self.scrollView scrollRectToVisible:textViewFrame animated:YES];
@@ -190,13 +190,13 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
 // 用户选中时对frame进行调整
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.textViewSendContent.frame = CGRectMake(0, 0, 320, 240);
+    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*0.5f); // 减去键盘高度
     // [self performSelector:@selector(adjustTextView:) withObject:textView afterDelay:0.5f];
 }
     
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.textViewSendContent.frame = CGRectMake(0, 0, 320, 498);
+    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-70);
 }
 
 #pragma mark - 教师发送汇师圈消息

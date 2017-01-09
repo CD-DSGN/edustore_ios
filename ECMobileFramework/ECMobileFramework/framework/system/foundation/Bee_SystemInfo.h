@@ -67,6 +67,10 @@ AS_PACKAGE( BeePackage_System, BeeSystemInfo, info );
 #define IS_SCREEN_4_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define IS_SCREEN_35_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 
+// add nhj,screen width and height
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+
 #else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 
 #define IOS7_OR_LATER		(NO)

@@ -44,7 +44,7 @@
 			width: 20%;
 			height: 100%;
 			position: relative;
-			left: 15%;
+			left: 10%;
 			top: 0px;
 		}
 		

@@ -50,7 +50,7 @@ AS_NOTIFICATION( UPDATED )
                 fields:(NSArray *)fields;
 
 - (void)signupWithUser:(NSString *)user
-            inviteCode:(NSString *)inviteCode
+          inviteUserId:(NSString *)inviteUserId
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields

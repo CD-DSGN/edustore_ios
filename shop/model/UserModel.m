@@ -221,7 +221,7 @@ DEF_NOTIFICATION( UPDATED )
 }
 
 - (void)signupWithUser:(NSString *)user
-            inviteCode:(NSString *)inviteCode
+            inviteUserId:(NSString *)inviteUserId
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields
@@ -238,7 +238,7 @@ DEF_NOTIFICATION( UPDATED )
     self
     .MSG( API.teacher_signup )
     .INPUT( @"name", user )
-    .INPUT( @"inviteCode", inviteCode )
+    .INPUT( @"invite_user_id", inviteUserId )
     .INPUT( @"password", password )
     .INPUT( @"mobilePhone", mobilePhone )
     .INPUT( @"field", fields )

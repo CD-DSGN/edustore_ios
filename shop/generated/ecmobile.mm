@@ -513,6 +513,14 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation CHECK_USER_INFO
+
+@synthesize username = _username;
+@synthesize invite_user_id = _invite_user_id;
+@synthesize invite_error = _invite_error;
+
+@end
+
 @implementation TIMER
 
 - (void)validCountDownTime:(NSInteger)time
@@ -2338,7 +2346,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
     {
         NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
         NSString * name = msg.GET_INPUT( @"name" );
-        NSString * inviteCode = msg.GET_INPUT( @"inviteCode");
+        NSString * invite_user_id = msg.GET_INPUT( @"invite_user_id");
         NSString * password = msg.GET_INPUT( @"password" );
         NSArray * field = msg.GET_INPUT( @"field" );
         NSString * realname = msg.GET_INPUT( @"realname" );
@@ -2364,7 +2372,7 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
         requestBody.APPEND( @"mobilePhone", mobilePhone);
         requestBody.APPEND( @"name", name );
-        requestBody.APPEND( @"inviteCode", inviteCode );
+        requestBody.APPEND( @"invite_user_id", invite_user_id );
         requestBody.APPEND( @"password", password );
         requestBody.APPEND( @"field", field );
         requestBody.APPEND( @"realname", realname );
@@ -2989,6 +2997,13 @@ DEF_MESSAGE_( checkUser, msg )
     {
         NSDictionary * response = msg.responseJSONDictionary;
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        CHECK_USER_INFO * info = [CHECK_USER_INFO objectFromDictionary:[response dictAtPath:@"data"]];
+        
+        if ( nil == info )
+        {
+            msg.failed = YES;
+            return;
+        }
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {
@@ -2996,6 +3011,7 @@ DEF_MESSAGE_( checkUser, msg )
             return;
         }
         
+        msg.OUTPUT( @"info", info );
         msg.OUTPUT( @"status", status );
     }
     else if( msg.failed )

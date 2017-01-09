@@ -502,6 +502,12 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * pay_code;
 @end
 
+@interface CHECK_USER_INFO : NSObject
+@property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSString * invite_user_id;
+@property (nonatomic, retain) NSString * invite_error;
+@end
+
 // add by nhj,a new class for timer
 @interface TIMER : NSObject
 

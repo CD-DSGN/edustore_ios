@@ -379,6 +379,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
 - (void)doRegister
 {    
     NSString * userName = nil;
+    NSString * invite_user_id = nil;
 //  	NSString * email = nil;
     NSString * mobilePhone = nil;
     NSString * inviteCode = nil;
@@ -398,6 +399,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
     userName = self.username;
     mobilePhone = self.mobilePhone;
     inviteCode = self.inviteCode;
+    invite_user_id = self.invite_user_id;
+    if (invite_user_id == nil) {
+        invite_user_id = @"0";
+    }
     if ( self.course_id.count != 0) {
         course = self.course_id[self.courseId - 1];
     }
@@ -544,7 +549,7 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
 	}
 
 	[self.userModel signupWithUser:userName
-                        inviteCode:inviteCode
+                        inviteUserId:invite_user_id
 						  password:password
                        mobilePhone:mobilePhone
                             fields:fields

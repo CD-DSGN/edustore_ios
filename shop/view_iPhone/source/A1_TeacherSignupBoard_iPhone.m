@@ -502,19 +502,30 @@ ON_MESSAGE3( API, checkUser, msg )
     }
     else if( msg.succeed )
     {
-        //用户名可以使用
-        A1_TeacherSignupBoard2_iPhone * detail = [[A1_TeacherSignupBoard2_iPhone alloc] init];
-        // 传参
-        detail.inviteCode = self.inviteCode;
-        detail.username = self.username;
-        detail.mobilePhone = self.mobilePhone;
-        // 清除计时器状态
-        [self removeTimer];
-        [self.code setEnabled:YES];
-        [self.code setImage:nil];
-        [self.code setTitle:@"获取验证码"];
+        CHECK_USER_INFO * info = msg.GET_OUTPUT( @"info" );
         
-        [self.stack pushBoard:detail animated:true];
+        // 所填邀请码不存在
+        if (info.invite_error != nil)
+        {
+            [self presentFailureTips:__TEXT(@"invite_error")];
+        }
+        else
+        {
+            //用户名可以使用
+            A1_TeacherSignupBoard2_iPhone * detail = [[A1_TeacherSignupBoard2_iPhone alloc] init];
+            // 传参
+            detail.inviteCode = self.inviteCode;
+            detail.username = self.username;
+            detail.mobilePhone = self.mobilePhone;
+            detail.invite_user_id = info.invite_user_id;
+            // 清除计时器状态
+            [self removeTimer];
+            [self.code setEnabled:YES];
+            [self.code setImage:nil];
+            [self.code setTitle:@"获取验证码"];
+            
+            [self.stack pushBoard:detail animated:true];
+        }
     }
     else if( msg.failed )
     {

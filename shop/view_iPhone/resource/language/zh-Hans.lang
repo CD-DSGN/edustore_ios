@@ -404,5 +404,6 @@
 <string name="recommanded_teacher_num">您直接推荐了0位教师</string>
 <string name="checkOutCounter">支付订单</string>
 <string name="login_inviteCode">邀请码（可选）</string>
+<string name="invite_error">邀请码错误</string>
 
 </resources>

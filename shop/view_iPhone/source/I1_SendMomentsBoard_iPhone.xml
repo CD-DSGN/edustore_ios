@@ -38,11 +38,12 @@
         .title {
             position: absolute;
             width: 100%;
-            height: 30px;
+            height: 29px;
             font: 16px;
             text-align: center;
-            top: 25px;
+            top: 27px;
             left: 0;
+            color: #fff;
         }
         
         .send {

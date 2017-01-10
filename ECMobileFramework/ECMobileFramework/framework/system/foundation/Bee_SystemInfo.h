@@ -64,8 +64,16 @@ AS_PACKAGE( BeePackage_System, BeeSystemInfo, info );
 #define IOS4_OR_EARLIER		( !IOS5_OR_LATER )
 #define IOS3_OR_EARLIER		( !IOS4_OR_LATER )
 
-#define IS_SCREEN_4_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-#define IS_SCREEN_35_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+//#define IS_SCREEN_4_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+//#define IS_SCREEN_35_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_SCREEN_35_INCH   (CGSizeEqualToSize([[UIScreen mainScreen] bounds].size, CGSizeMake(320, 480)) ? YES : NO )
+#define IS_SCREEN_4_INCH    (CGSizeEqualToSize([[UIScreen mainScreen] bounds].size, CGSizeMake(320, 568)) ? YES : NO )
+
+#define IS_SCREEN_47_INCH   (CGSizeEqualToSize([[UIScreen mainScreen] bounds].size, CGSizeMake(375, 667)) ? YES : NO )
+
+#define IS_SCREEN_55_INCH    (CGSizeEqualToSize([[UIScreen mainScreen] bounds].size, CGSizeMake(414, 736)) ? YES : NO )
+
 
 // add nhj,screen width and height
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width

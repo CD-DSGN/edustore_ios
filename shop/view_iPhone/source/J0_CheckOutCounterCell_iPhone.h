@@ -25,7 +25,8 @@
 
 @property (nonatomic, retain)NSString * selectPayCode;
 @property (nonatomic, retain)NSString * selectPayId;
-
+    
+@property (nonatomic, retain)BeeUICell * selfCell;
 
 AS_MODEL( OrderModel, orderModel )
 

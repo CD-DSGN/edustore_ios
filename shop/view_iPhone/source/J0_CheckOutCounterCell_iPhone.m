@@ -31,6 +31,8 @@ DEF_SIGNAL( PAY_SDK )
     self.payMethodList = [[NSArray alloc] init];
     self.selectIconArray = [[NSMutableArray alloc] init];
     
+    self.selfCell = [[BeeUICell alloc] init];
+    
     self.orderModel = [OrderModel modelWithObserver:self];
     self.orderModel.type = ORDER_LIST_AWAIT_PAY;
     self.wxpayModel = [WXPayModel modelWithObserver:self];
@@ -41,6 +43,8 @@ DEF_SIGNAL( PAY_SDK )
 {
     self.order = nil;
     self.pay_method = nil;
+    
+    self.selfCell = nil;
     
     self.payMethodList = nil;
     self.selectIconArray = nil;
@@ -60,6 +64,8 @@ DEF_SIGNAL( PAY_SDK )
         
         $(@"#desc_content").TEXT(_order.order_info.desc);
         $(@"#amount_content").TEXT(_order.total_fee);
+        
+        _selfCell = self;
         
         // y值在xml里确定了
         [_pay_method setFrame:CGRectMake(0, 90, SCREEN_WIDTH, _payMethodList.count * 60.0f)];
@@ -238,7 +244,7 @@ ON_SIGNAL3( J0_CheckOutCounterCell_iPhone, PAY_SDK, signal )
 //    [self.stack popToRootViewControllerAnimated:NO];
     
     [self updateOrderInfo];
-    UIViewController * parent = [self findViewController:self];
+    UIViewController * parent = [self findViewController:_selfCell];
     [parent.stack popToRootViewControllerAnimated:NO];
 //    [parent.stack pushBoard:[E2_PendingShippedBoard_iPhone board] animated:NO];
     [self.window presentSuccessTips:__TEXT( @"pay_succeed" )];

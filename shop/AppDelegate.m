@@ -57,9 +57,8 @@
 
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
-//     [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile/?url=";
-    [ServerConfig sharedInstance].url = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/?url=";
-    // [ServerConfig sharedInstance].url = @"http://localhost/edustore/ecmobile/?url=";
+     [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile-ios/?url=";
+//    [ServerConfig sharedInstance].url = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/?url=";
     
     // 配置管理后台
 //    [ECMobileManager sharedInstance].appID	= @"52653a425feb4754";
@@ -86,9 +85,9 @@
 	{
 		[BeeUITipsCenter setDefaultContainerView:self.window];
 		[BeeUITipsCenter setDefaultBubble:[UIImage imageNamed:@"alertBox.png"]];
-		[BeeUITipsCenter setDefaultMessageIcon:[UIImage imageNamed:@"icon.png"]];
-		[BeeUITipsCenter setDefaultSuccessIcon:[UIImage imageNamed:@"icon.png"]];
-		[BeeUITipsCenter setDefaultFailureIcon:[UIImage imageNamed:@"icon.png"]];
+		[BeeUITipsCenter setDefaultMessageIcon:[UIImage imageNamed:@"huishi-tips.png"]];
+		[BeeUITipsCenter setDefaultSuccessIcon:[UIImage imageNamed:@"huishi-tips.png"]];
+		[BeeUITipsCenter setDefaultFailureIcon:[UIImage imageNamed:@"huishi-tips.png"]];
 	}
 
 	// 配置导航条

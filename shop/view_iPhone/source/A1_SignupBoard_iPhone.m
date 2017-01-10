@@ -510,9 +510,15 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
     if( msg.sending )
     {
        //短信发送中，进行电话的错误判断
+        [self presentMessageTips:__TEXT(@"identifyCode_getting")];
+    }
+    else
+    {
+        [self dismissTips];
     }
     if( msg.succeed )
     {
+        [self presentSuccessTips:__TEXT(@"identifyCode_success")];
         //短信发送成功，倒计时重新获取
         self.currentCountDown = 60;
         self.identifyCodeValidTime = 300;

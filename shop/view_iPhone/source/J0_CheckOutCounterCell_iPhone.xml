@@ -68,7 +68,9 @@
         height: 100%;
         left: 5%;
         font: 25px;
-        background-color: #ff6925;
+        background-image: url(button_new.png);
+<!--        background-color: #ff6925;-->
+
     }
 
     </style>

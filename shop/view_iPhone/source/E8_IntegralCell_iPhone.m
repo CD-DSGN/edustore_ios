@@ -81,7 +81,7 @@ SUPPORT_RESOURCE_LOADING( YES )
         $(@"#invite_code").TEXT(invite_code).CSS([NSString stringWithFormat:@"left:%fpx",invite_code_left]);
         $(@"#subscription_points").TEXT(points_from_subscription).CSS([NSString stringWithFormat:@"left:%fpx",subscription_points_left]);
         $(@"#affiliate_points").TEXT(points_from_affiliate).CSS([NSString stringWithFormat:@"left:%fpx",affiliate_points_left]);
-        
+
     }
 }
 

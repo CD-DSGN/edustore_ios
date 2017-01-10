@@ -240,6 +240,7 @@ ON_SIGNAL3( WXPayModel, RELOADED, signal )
         wxpay.whenSucceed = ^
         {
             @normalize(self);
+            [self.orderModel firstPage];
             [self didPaySuccess];
         };
 		wxpay.whenCannelled = ^
@@ -298,7 +299,9 @@ ON_SIGNAL3( ALIPayModel, RELOADED, signal )
     };
     alipay.whenFailed = ^
     {
-        [self presentMessageTips:__TEXT(@"pay_failed")];
+        @normalize(self);
+        [self didPayFail];
+//        [self presentMessageTips:__TEXT(@"pay_failed")];
     };
     alipay.PAY();
 }

@@ -30,12 +30,12 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
-			<string>icon@2x</string>
+			<string></string>
 			<key>CFBundleURLName</key>
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx4a1077472c163ccd</string>
+				<string>wxac39735575af3099</string>
 			</array>
 		</dict>
 		<dict>

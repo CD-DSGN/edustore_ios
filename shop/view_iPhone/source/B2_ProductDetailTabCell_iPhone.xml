@@ -3,7 +3,9 @@
     <row class="container">
         <image class="container-bg"/>
         
-        <button id="favorite" class="button-star"></button>
+        <row class="button-star-wrapper">
+            <button id="favorite" class="button-star"></button>
+        </row>
         
 		<button id="buy" class="btn button-orange">@{gooddetail_buy}</button>
         <button id="add" class="btn button-red">@{gooddetail_shoppingcart}</button>
@@ -18,7 +20,6 @@
     </row>
     
     <style type="text/css">
-        
         .container {
         width: 100%;
         height: 100%;
@@ -45,10 +46,16 @@
         background-mode: stretch;
         }
         
+        .button-star-wrapper {
+            position: relative;
+            width: 10%;
+            height: 100%;
+            v-align: center;
+        }
+        
         .button-star {
-        margin-top: 9px;
-        margin-left: 8px;
-        width: 27px;
+        left: 10%;
+        width: 80%;
         height: 27px;
         button-image: url(item_info_disabled_btn.png);
         button-image-selected: url(item_info_pushed_collect_btn.png);
@@ -95,17 +102,17 @@
         }
         
         .cart-wrapper {
-        margin-left: 10px;
-        width: 44px;
+        margin-left: 0;
+        width: 25%;
         height: 44px;
         align: center;
         }
         
         .cart-icon {
         position: absolute;
-        width: 80%;
-        height: 80%;
-        left: 10%;
+        width: 35px;
+        height: 35px;
+        left: 30%;
         top: 10%;
         image: url(footer_shopping_cart_icon.png);
         }
@@ -114,7 +121,7 @@
         width: auto;
         height: 15px;
         position: absolute;
-        left: 26px;
+        left: 50px;
         top: 6px;
 		}
 		
@@ -139,11 +146,11 @@
 		}
 		
         #buy {
-        margin-left: 26px;
+        margin-left: 15%;
         }
         
         #add {
-        margin-left: 20px;
+        margin-left: 15%;
         }
         
     </style>

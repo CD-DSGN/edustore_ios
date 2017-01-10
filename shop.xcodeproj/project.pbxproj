@@ -3475,8 +3475,8 @@
 				CB9C21ED18BB3B0B00DDA501 /* C1_CheckoutOrderCellBody_iPhone.xml */,
 				CB9C21EE18BB3B0B00DDA501 /* C1_CheckoutOrderCellFooter_iPhone.h */,
 				CB9C21EF18BB3B0B00DDA501 /* C1_CheckoutOrderCellFooter_iPhone.m */,
-				CB9C21F118BB3B0B00DDA501 /* C1_CheckoutOrderCellHeader_iPhone.h */,
 				CB9C21F018BB3B0B00DDA501 /* C1_CheckoutOrderCellFooter_iPhone.xml */,
+				CB9C21F118BB3B0B00DDA501 /* C1_CheckoutOrderCellHeader_iPhone.h */,
 				CB9C21F218BB3B0B00DDA501 /* C1_CheckoutOrderCellHeader_iPhone.m */,
 				CB9C21F318BB3B0B00DDA501 /* C1_CheckoutOrderCellHeader_iPhone.xml */,
 				CB9C21F418BB3B0B00DDA501 /* C1_CheckoutOrderCellInfo_iPhone.h */,
@@ -5505,7 +5505,7 @@
 				ORGANIZATIONNAME = "geek-zoo studio";
 				TargetAttributes = {
 					63249C9A1754E07900372FD7 = {
-						DevelopmentTeam = 7DCYJHLQC3;
+						DevelopmentTeam = UF5JE69P2G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -6529,7 +6529,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
@@ -6556,7 +6556,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DCYJHLQC3;
+				DEVELOPMENT_TEAM = UF5JE69P2G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6612,7 +6612,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DCYJHLQC3;
+				DEVELOPMENT_TEAM = UF5JE69P2G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6697,7 +6697,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DCYJHLQC3;
+				DEVELOPMENT_TEAM = UF5JE69P2G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

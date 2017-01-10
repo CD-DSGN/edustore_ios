@@ -51,9 +51,6 @@ ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"Moments");
     [self showNavigationBarAnimated:NO];
-    [self showBarButton:BeeUINavigationBar.RIGHT
-                  title:@"发送"
-                  image:[UIImage imageNamed:@"nav_right.png"]];
     
     @weakify(self);
 
@@ -189,6 +186,17 @@ ON_WILL_APPEAR( signal )
 
 ON_DID_APPEAR( signal )
 {
+    // 发送按钮
+    if ([self.userModel.user.is_teacher isEqual:@1])
+    {
+        [self showBarButton:BeeUINavigationBar.RIGHT
+                      title:@"发送"
+                      image:[UIImage imageNamed:@"nav_right.png"]];
+    }
+    else
+    {
+        [self setNavigationBarRight:nil];
+    }
 }
 
 ON_WILL_DISAPPEAR( signal )
@@ -244,6 +252,7 @@ ON_MESSAGE3( API, moments_list, msg )
         if ( NO == self.momentModel.loaded )
         {
             //			[self presentLoadingTips:__TEXT(@"tips_loading")];
+            [self presentMessageTips:__TEXT(@"moments_loading")];
         }
         
         if ( self.momentModel.moments.count )

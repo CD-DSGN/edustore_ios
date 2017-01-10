@@ -106,6 +106,8 @@ DEF_OUTLET( BeeUIScrollView, list )
         else
         {
 //            $(@"#list").HIDE();
+            // modify nhj,商品无图片时，商品详情中展示没有图片
+            _pictures = [[NSArray alloc] initWithObjects:goodsModel.goods.img, nil];
         }
         
 		// info

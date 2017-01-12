@@ -25,6 +25,28 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
 	$(@"#badge-bg").HIDE();
 	$(@"#badge").HIDE();
+    
+    // 最原始、最笨的方法调整页面
+    if (IS_SCREEN_55_INCH)
+    {
+        $(@"#favorite").CSS(@"left: 15px;");
+        $(@"#add").CSS(@"left:22px;");
+        $(@"#buy").CSS(@"left:22px;");
+        $(@"#badge-wrapper").CSS(@"left:54px");
+    }
+    if (IS_SCREEN_47_INCH)
+    {
+        $(@"#favorite").CSS(@"left: 15px;");
+        $(@"#add").CSS(@"left:20px;");
+        $(@"#buy").CSS(@"left:20px;");
+    }
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@"#favorite").CSS(@"left: 10px;");
+        $(@"#add").CSS(@"left:15px;");
+        $(@"#buy").CSS(@"left:15px;");
+        $(@"#badge-wrapper").CSS(@"left:45px");
+    }
 }
 
 - (void)unload

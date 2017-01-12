@@ -14,22 +14,22 @@
     <style type="text/css">
         
         .comment-wrapper {
-        margin-left: 10px;
-        width: 300px;
+        left: 3%;
+        width: 94%;
         height: auto;
         }
         
         .background {
         position: absolute;
-        width: 300px;
+        width: 100%;
         height: 100%;
         image-mode: stretched;
         }
        
         .comment-header {
-        margin-left: 10px;
+        margin-left: 3%;
         height: 20px;
-        width: 280px;
+        width: 94%;
         }
         
         #creator {

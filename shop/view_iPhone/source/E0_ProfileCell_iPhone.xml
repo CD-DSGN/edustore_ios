@@ -31,7 +31,7 @@
                 <col class="bar-item">
                     <image class="bar-item-icon payment"/>
                     <label class="bar-item-info" id="await_pay_label">@{profile_obligation}</label>
-                    <col class="badge-wrapper">
+                    <col class="badge-wrapper" id="await_pay_badge_wrapper">
                         <image id="await_pay-bg" class="badge-wrapper-bg"/>
                         <label id="await_pay" class="bar-item-badge"></label>
                     </col>
@@ -41,7 +41,7 @@
                 <col class="bar-item">
                     <image class="bar-item-icon ship" />
                     <label class="bar-item-info" id="await_ship_label">@{profile_readyforshipment}</label>
-                    <col class="badge-wrapper">
+                    <col class="badge-wrapper" id="await_ship_badge_wrapper">
                         <image id="await_ship-bg" class="badge-wrapper-bg"/>
                         <label id="await_ship" class="bar-item-badge"></label>
                     </col>
@@ -51,7 +51,7 @@
                 <col class="bar-item">
                     <image class="bar-item-icon receipt"/>
                     <label class="bar-item-info" id="shipped_label">@{profile_forthegoods}</label>
-                    <col class="badge-wrapper">
+                    <col class="badge-wrapper" id="shipped_badge_wrapper">
                         <image id="shipped-bg" class="badge-wrapper-bg"/>
                         <label id="shipped" class="bar-item-badge"></label>
                     </col>
@@ -61,7 +61,7 @@
                 <col class="bar-item">
                     <image class="bar-item-icon history"/>
                     <label class="bar-item-info" id="finished_label">@{profile_history}</label>
-                    <col class="badge-wrapper">
+                    <col class="badge-wrapper" id="finished_wrapper_bg">
                         <image id="finished-bg" class="badge-wrapper-bg"/>
                         <label id="finished" class="bar-item-badge"></label>
                     </col>
@@ -134,7 +134,8 @@
 		
 		.scroll-wrapper {
 			height: auto;
-            width: 100%;
+            width: 94%;
+            left: 3%;
 			margin-top: 10px;
 			align: center;
 		}
@@ -197,9 +198,8 @@
 			width: auto;
 			height: 15px;
 			position: absolute;
-            right: 28%;
 			top: 0px;
-            
+            right: 22%;
 		}
 		
 		.badge-wrapper-bg {

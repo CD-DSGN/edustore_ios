@@ -23,6 +23,22 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 - (void)load
 {
+    // 页面适配调整
+    if (IS_SCREEN_55_INCH)
+    {
+        $(@"#pay").CSS(@"width:80px");
+        $(@"#cancel").CSS(@"width:80px;left:30px;");
+    }
+    if (IS_SCREEN_47_INCH)
+    {
+        $(@"#pay").CSS(@"width:80px");
+        $(@"#cancel").CSS(@"width:80px;left:15px");
+    }
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@"#pay").CSS(@"width:70px");
+        $(@"#cancel").CSS(@"width:70px;left:5px");
+    }
 }
 
 - (void)unload

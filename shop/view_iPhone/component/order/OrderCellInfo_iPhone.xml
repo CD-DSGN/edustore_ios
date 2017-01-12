@@ -48,7 +48,7 @@
         }
         
         .order-info-title {
-        width: 100px;
+        width: 65%;
         height: 14px;
         color: #333;
         font: 12px;
@@ -57,7 +57,7 @@
         
         .order-info-content {
         text: ￥0.00;
-        width: 60%;
+        width: 30%;
         height: 10px;
         font: 12px;
         text-align: right;

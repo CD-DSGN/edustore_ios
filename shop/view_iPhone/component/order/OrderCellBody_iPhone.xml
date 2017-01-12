@@ -64,15 +64,6 @@
         v-align: center;
         }
         
-        #order-goods-price {
-        font: 20px;
-        color: #cc0b00;
-        text: ￥ 2000;
-        height: 20px;
-        width: 200px;
-        text-align: left;
-        }
-        
         #action-modify {
         width: 54px;
         height: 18px;
@@ -131,7 +122,7 @@
         .order-goods-detail-wrapper {
         margin-top: 5px;
         left: 0;
-        width: 35%;
+        width: 33%;
         height: 70px;
         }
         

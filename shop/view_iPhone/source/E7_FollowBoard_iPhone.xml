@@ -16,7 +16,7 @@
     <list id="list" class="col-md-6"/>
     <style type="text/css">
         #list {
-            insets: 0 0 64 0;
+            insets: 0 0 44 0;
         }
         .head {
             width: 100%;

@@ -23,6 +23,20 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 - (void)load
 {
+    if (IS_SCREEN_55_INCH)
+    {
+        $(@"#submit").CSS(@"width:65%;");
+        $(@"#button-image").CSS(@"left:25px;");
+    }
+    if (IS_SCREEN_47_INCH)
+    {
+        $(@"#submit").CSS(@"width:70%;");
+        $(@"#button-image").CSS(@"left:25px;");
+    }
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@"#submit").CSS(@"width:80%;");
+    }
 }
 
 - (void)unload

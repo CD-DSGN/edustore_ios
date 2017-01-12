@@ -162,6 +162,19 @@ ON_NOTIFICATION3( CartModel, UPDATED, notification )
 		$(@"#badge-bg").HIDE();
 		$(@"#badge").HIDE();
 	}
+
+    if (IS_SCREEN_55_INCH)
+    {
+        $(@"#badge-wrapper").CSS(@"left:78%;");
+    }
+    if (IS_SCREEN_47_INCH)
+    {
+        $(@"#badge-wrapper").CSS(@"left:84%;");
+    }
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@"#badge-wrapper").CSS(@"left:90%;");
+    }
 }
 
 @end

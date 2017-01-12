@@ -8,8 +8,8 @@
             <image class="payment_icon" id="payment_icon" />
         </col>
         <col class="description">
-            <label class="payment_name" id="payment_name">支付宝</label>
-            <label class="payment_desc" id="payment_desc">数亿用户都在用，安全可托付</label>
+            <label class="payment_name" id="payment_name"></label>
+            <label class="payment_desc" id="payment_desc"></label>
         </col>
     </row>
     
@@ -47,10 +47,10 @@
         
         .payment_icon {
             position: absolute;
-            widht: 80%;
-            height: 80%;
+            widht: 70%;
+            height: 70%;
             left: 3%;
-            top: 10%;
+            top: 15%;
             image-mode: fit;
         }
         .payment_name {

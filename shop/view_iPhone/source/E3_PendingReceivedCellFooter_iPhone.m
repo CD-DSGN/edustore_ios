@@ -24,6 +24,21 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 - (void)load
 {
+    if (IS_SCREEN_55_INCH)
+    {
+        $(@"#shipping").CSS(@"width:80px;left:30px;");
+        $(@"#confirm").CSS(@"width:80px");
+    }
+    if (IS_SCREEN_47_INCH)
+    {
+        $(@"#shipping").CSS(@"width:80px;left:15px;");
+        $(@"#confirm").CSS(@"width:80px");
+    }
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@"#shipping").CSS(@"width:70px;left:5px;");
+        $(@"#confirm").CSS(@"width:70px");
+    }
 }
 
 - (void)unload
@@ -51,6 +66,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 	{
 		$(@"#shipping").HIDE();
 	}
+
 }
 
 @end

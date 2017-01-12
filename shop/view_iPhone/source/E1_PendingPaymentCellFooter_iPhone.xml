@@ -82,8 +82,7 @@
         
         .button-wrapper {
         margin-top: 20px;
-        margin-left: 5px;
-        width: 41%;
+        width: 60%;
         height: 40px;
         }
         

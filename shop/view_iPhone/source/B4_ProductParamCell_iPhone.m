@@ -34,8 +34,9 @@ SUPPORT_RESOURCE_LOADING( YES )
     if ( self.data )
     {
         GOOD_ATTR * attr = self.data;
-        self.title.data = attr.name;
+//        self.title.data = attr.name;
         self.subtitle.data = attr.value;
+        self.title.data = @"88.8";
     }
 }
 

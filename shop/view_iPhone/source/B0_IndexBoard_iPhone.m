@@ -464,15 +464,9 @@ ON_SIGNAL3( B0_IndexButtonCell_iPhone, notify_col, signal )
  */
 ON_SIGNAL3( B0_IndexButtonCell_iPhone, connect_col, signal )
 {
-//    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"18380207432"];
-//    UIWebView * callWebview = [[UIWebView alloc] init];
-//    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-//    [self.view addSubview:callWebview];
-//    [callWebview release];
-//    [str release];
-    
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18380207432"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18380207432"];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    [self openTelephone:@"028-61380687"];
 }
 
 #pragma mark -
@@ -558,6 +552,28 @@ ON_MESSAGE3( API, home_category, msg )
     else
     {
         [self presentFailureTips:@"请输入搜索内容"];
+    }
+}
+
+- (void)openTelephone:(NSString *)telephone
+{
+    if ( telephone )
+    {
+        NSString * str = [[telephone componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", str]];
+        
+        if ( [[UIApplication sharedApplication] canOpenURL:url] )
+        {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+        else
+        {
+            [self presentFailureTips:[NSString stringWithFormat:@"%@\n%@", __TEXT(@"cannot_call"), telephone]];
+        }
+    }
+    else
+    {
+        [self presentFailureTips:__TEXT(@"cannot_call")];
     }
 }
 

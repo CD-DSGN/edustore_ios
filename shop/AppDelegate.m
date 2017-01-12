@@ -67,19 +67,19 @@
     [ECMobileManager sharedInstance].appKey	= @"0512f4115e873d99f579b900fb6c8dc4";
     
 	// 配置闪屏
-    bee.services.wizard.config.showBackground  = YES;
-    bee.services.wizard.config.showPageControl = YES;
-    bee.services.wizard.config.backgroundImage = [UIImage imageNamed:@"tuitional_bg.jpg"];
-    bee.services.wizard.config.pageDotSize   = CGSizeMake( 11.0f, 11.0f );
-    bee.services.wizard.config.pageDotLast   = [UIImage imageNamed:@"tuitional-carousel-btn-last.png"];
-    bee.services.wizard.config.pageDotNormal = [UIImage imageNamed:@"tuitional-carousel-active-btn.png"];
-	bee.services.wizard.config.pageDotHighlighted = [UIImage imageNamed:@"tuitional-carousel-btn.png"];
-
-	bee.services.wizard.config.splashes[0] = @"wizard_1.xml";
-	bee.services.wizard.config.splashes[1] = @"wizard_2.xml";
-	bee.services.wizard.config.splashes[2] = @"wizard_3.xml";
-	bee.services.wizard.config.splashes[3] = @"wizard_4.xml";
-	bee.services.wizard.config.splashes[4] = @"wizard_5.xml";
+//    bee.services.wizard.config.showBackground  = YES;
+//    bee.services.wizard.config.showPageControl = YES;
+//    bee.services.wizard.config.backgroundImage = [UIImage imageNamed:@"tuitional_bg.jpg"];
+//    bee.services.wizard.config.pageDotSize   = CGSizeMake( 11.0f, 11.0f );
+//    bee.services.wizard.config.pageDotLast   = [UIImage imageNamed:@"tuitional-carousel-btn-last.png"];
+//    bee.services.wizard.config.pageDotNormal = [UIImage imageNamed:@"tuitional-carousel-active-btn.png"];
+//	bee.services.wizard.config.pageDotHighlighted = [UIImage imageNamed:@"tuitional-carousel-btn.png"];
+//
+//	bee.services.wizard.config.splashes[0] = @"wizard_1.xml";
+//	bee.services.wizard.config.splashes[1] = @"wizard_2.xml";
+//	bee.services.wizard.config.splashes[2] = @"wizard_3.xml";
+//	bee.services.wizard.config.splashes[3] = @"wizard_4.xml";
+//	bee.services.wizard.config.splashes[4] = @"wizard_5.xml";
     
 	// 配置提示框
 	{
@@ -144,7 +144,7 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
     weixin.config.appId          = @"wxac39735575af3099";
     weixin.config.appKey         = @"gao35162016lichenzhangliu2016ohy";
     weixin.config.partnerId      = @"1403289802";
-    weixin.config.payUrl         = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/wxpay/beforepay.php";
+    weixin.config.payUrl         = @"http://60.205.92.85/ecmobile-ios/payment/wxpay/beforepay.php";
     
 
 	// 配置新浪
@@ -166,10 +166,9 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
 //    alipay.config.wapCallBackURL = @"http://shop.ecmobile.cn/ecmobile/payment/app_callback.php?err=";
     alipay.config.partner        = @"2088911655683743";
     alipay.config.seller         = @"2088911655683743";
-    alipay.config.privateKey     = @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBANBMvQSwwr8KfGv5JTBBFxengfb4R7sDY1C9aIZbtlE0NqpuRvpbrEYcHhGhO7pOQ9rfI64Jb+gdAJwCuzd69BpcmvbCp6O78X7SwgXtV9+IC97QwLxtkDhIrHeTyzXiSudpbiRf46KS1U3gFierBpBWNmp3EUTz3MW8LM3gfxc1AgMBAAECgYARq/D9TOG4w3L61hBJn7wNzbBA+59aRldOqkML4wv8p6lbnC95Xf2nlQsYA83FaI5pKzUjtrk/v/YlRjYL5up+isk4kvQhSo7x6ipsRk195v9uxJy6bmIUYp531YkFL5LIQkaihu5jqstHK6EV8VF+iNyuhT1XFJ1TYQwW5mnvAQJBAPZM+jLHJIHwnVnDUu9ab7FORrW8l4mIJk9owJmNLw+ZPQFC922K/0DmzMcJMdsMG/+qgoqQdUA/99kQUgtA4Z0CQQDYgKncRrOXjWH5WQP+pTVu/Wu3xTN7Nrj8csAAdv6xLRGt1jwpMAAWrTd6pnzia+ldB1R/S5IZEqzPnQnmJgR5AkBCyHiG0Cx79ywTLL0OHW1vnBPcLzi/l+UbXwHqILgD+L7r2qaQU0IG7Q3VYg7coBnvZuJig+zm8PFZL+2vE3aZAkBZjGY1kRzJS5ZBj1sCoYzHWpSKT0uq5AiBimj2CEHyQKT2VQ1PL+Zper3ewiwXbvD4JIcDm9tS+ZF20gp9Ii5pAkB2TW96cGyrPuwQdUzfMY8fP1HjqmPUVc2jmfjicgNWcNOok8/85dQCSQdepwDraszxcjfb86y8s7rnvyfUVXNd";
     alipay.config.publicKey      = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
-    alipay.config.notifyURL      = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/alipay/sdk/notify_url.php";
-    alipay.config.wapCallBackURL = @"http://nhj.s1.natapp.cc/edustore/ecmobile-ios/payment/app_callback.php?err=";
+    alipay.config.notifyURL      = @"http://60.205.92.85/ecmobile-ios/payment/alipay/sdk/notify_url.php";
+    alipay.config.wapCallBackURL = @"http://60.205.92.85/ecmobile-ios/payment/app_callback.php?err=";
 
 	// 配置语音识别
     siri.config.showUI           = NO;

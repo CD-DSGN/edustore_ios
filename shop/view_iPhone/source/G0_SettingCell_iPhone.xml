@@ -25,28 +25,28 @@
             </row>
         </col>
         <!-- 推送管理 -->
-        <label class="form-group-caption">@{setting_push}</label>
-        <col class="form-group">
-            <row class="form switch single">
-                <image class="background"/>
-                <label class="title">@{push_notification}</label>
-                <switch class="switchr" id="push_notification"/>
-            </row>
-        </col>
+<!--        <label class="form-group-caption">@{setting_push}</label>-->
+<!--        <col class="form-group">-->
+<!--            <row class="form switch single">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{push_notification}</label>-->
+<!--                <switch class="switchr" id="push_notification"/>-->
+<!--            </row>-->
+<!--        </col>-->
         <!-- 账号管理 -->
-        <label class="form-group-caption">@{setting_account}</label>
-        <col class="form-group">
-            <row class="form switch">
-                <image class="background"/>
-                <label class="title">@{sina_weibo}</label>
-                <switch class="switchr" id="sina_weibo"/>
-            </row>
-            <row class="form switch">
-                <image class="background"/>
-                <label class="title">@{tencent_weibo}</label>
-                <switch class="switchr" id="tencent_weibo"/>
-            </row>
-        </col>
+<!--        <label class="form-group-caption">@{setting_account}</label>-->
+<!--        <col class="form-group">-->
+<!--            <row class="form switch">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{sina_weibo}</label>-->
+<!--                <switch class="switchr" id="sina_weibo"/>-->
+<!--            </row>-->
+<!--            <row class="form switch">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{tencent_weibo}</label>-->
+<!--                <switch class="switchr" id="tencent_weibo"/>-->
+<!--            </row>-->
+<!--        </col>-->
         <!-- 官方信息 -->
         <label class="form-group-caption">@{setting_official}</label>
         <col class="form-group">
@@ -66,15 +66,15 @@
             </row>
         </col>
         <!-- 技术支持 -->
-        <label class="form-group-caption">@{setting_tech}</label>
-        <col class="form-group">
-            <row class="form single nextor">
-                <image class="background"/>
-                <label class="title">@{setting_geekzoo}</label>
-                <image class="accessory"/>
-                <button class="mask" id="setting_geekzoo"/>
-            </row>
-        </col>
+<!--        <label class="form-group-caption">@{setting_tech}</label>-->
+<!--        <col class="form-group">-->
+<!--            <row class="form single nextor">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{setting_geekzoo}</label>-->
+<!--                <image class="accessory"/>-->
+<!--                <button class="mask" id="setting_geekzoo"/>-->
+<!--            </row>-->
+<!--        </col>-->
         <col class="form-group">
             <row class="form custom">
                 <image class="background logout"/>

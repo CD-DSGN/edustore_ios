@@ -15,7 +15,7 @@
 		<row class="item-wrapper" id="cart">
 <!--			<image id="cart-bg" class="item-active-bg"></image>-->
 			<button id="cart-button" class="item-icon icon-cart"></button>
-			<row class="badge-wrapper">
+			<row class="badge-wrapper" id="badge-wrapper">
 				<image id="badge-bg" class="badge-bg"/>
 				<label id="badge" class="badge-number"/>
 			</row>
@@ -92,7 +92,7 @@
 			width: auto;
 			height: 17px;
 			position: absolute;
-			left: 78%;
+			left: 90%;
 			top: 6px;
 		}
 		

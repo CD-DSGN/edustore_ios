@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B167A91E27777600276D66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B167A81E27777600276D66 /* main.m */; };
+		07B167AC1E27777600276D66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B167AB1E27777600276D66 /* AppDelegate.m */; };
+		07B167AF1E27777600276D66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B167AE1E27777600276D66 /* ViewController.m */; };
+		07B167B21E27777600276D66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B167B01E27777600276D66 /* Main.storyboard */; };
+		07B167B41E27777600276D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B167B31E27777600276D66 /* Assets.xcassets */; };
+		07B167B71E27777600276D66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B167B51E27777600276D66 /* LaunchScreen.storyboard */; };
 		1835C75B18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835C75918C03736008D71BC /* E0_ProfileHelpBoard_iPhone.m */; };
 		1835C75C18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1835C75A18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.xml */; };
 		1848BD7E18B4D8690007238A /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1848BD5618B4D8690007238A /* libMobClickLibrary.a */; };
@@ -971,6 +977,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07B167A51E27777600276D66 /* edustore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = edustore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B167A81E27777600276D66 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		07B167AA1E27777600276D66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		07B167AB1E27777600276D66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		07B167AD1E27777600276D66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		07B167AE1E27777600276D66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		07B167B11E27777600276D66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07B167B31E27777600276D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07B167B61E27777600276D66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		07B167B81E27777600276D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1835C75818C03736008D71BC /* E0_ProfileHelpBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E0_ProfileHelpBoard_iPhone.h; sourceTree = "<group>"; };
 		1835C75918C03736008D71BC /* E0_ProfileHelpBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E0_ProfileHelpBoard_iPhone.m; sourceTree = "<group>"; };
 		1835C75A18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E0_ProfileHelpBoard_iPhone.xml; sourceTree = "<group>"; };
@@ -2635,6 +2651,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07B167A21E27777600276D66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63249C981754E07900372FD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2671,6 +2694,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B167A61E27777600276D66 /* edustore */ = {
+			isa = PBXGroup;
+			children = (
+				07B167AA1E27777600276D66 /* AppDelegate.h */,
+				07B167AB1E27777600276D66 /* AppDelegate.m */,
+				07B167AD1E27777600276D66 /* ViewController.h */,
+				07B167AE1E27777600276D66 /* ViewController.m */,
+				07B167B01E27777600276D66 /* Main.storyboard */,
+				07B167B31E27777600276D66 /* Assets.xcassets */,
+				07B167B51E27777600276D66 /* LaunchScreen.storyboard */,
+				07B167B81E27777600276D66 /* Info.plist */,
+				07B167A71E27777600276D66 /* Supporting Files */,
+			);
+			path = edustore;
+			sourceTree = "<group>";
+		};
+		07B167A71E27777600276D66 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07B167A81E27777600276D66 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		1848BD5118B4D8690007238A /* vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2854,6 +2901,7 @@
 				CB60E56B179E2B360094F91C /* icon@2x.png */,
 				CB60E569179E2B100094F91C /* icon.png */,
 				630236AF177C1675004C052D /* shop */,
+				07B167A61E27777600276D66 /* edustore */,
 				63249C9D1754E07900372FD7 /* Frameworks */,
 				63249C9C1754E07900372FD7 /* Products */,
 			);
@@ -2863,6 +2911,7 @@
 			isa = PBXGroup;
 			children = (
 				63249C9B1754E07900372FD7 /* ECMobile.app */,
+				07B167A51E27777600276D66 /* edustore.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5478,6 +5527,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		07B167A41E27777600276D66 /* edustore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07B167B91E27777600276D66 /* Build configuration list for PBXNativeTarget "edustore" */;
+			buildPhases = (
+				07B167A11E27777600276D66 /* Sources */,
+				07B167A21E27777600276D66 /* Frameworks */,
+				07B167A31E27777600276D66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = edustore;
+			productName = edustore;
+			productReference = 07B167A51E27777600276D66 /* edustore.app */;
+			productType = "com.apple.product-type.application";
+		};
 		63249C9A1754E07900372FD7 /* shop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63249CB81754E07900372FD7 /* Build configuration list for PBXNativeTarget "shop" */;
@@ -5504,9 +5570,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "geek-zoo studio";
 				TargetAttributes = {
-					63249C9A1754E07900372FD7 = {
-						DevelopmentTeam = UF5JE69P2G;
+					07B167A41E27777600276D66 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = N37ZY5XXAZ;
 						ProvisioningStyle = Automatic;
+					};
+					63249C9A1754E07900372FD7 = {
+						DevelopmentTeam = 6KM3WVLJ6Q;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -5516,6 +5587,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 63249C921754E07900372FD7;
 			productRefGroup = 63249C9C1754E07900372FD7 /* Products */;
@@ -5523,11 +5595,22 @@
 			projectRoot = "";
 			targets = (
 				63249C9A1754E07900372FD7 /* shop */,
+				07B167A41E27777600276D66 /* edustore */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		07B167A31E27777600276D66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B167B71E27777600276D66 /* LaunchScreen.storyboard in Resources */,
+				07B167B41E27777600276D66 /* Assets.xcassets in Resources */,
+				07B167B21E27777600276D66 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63249C991754E07900372FD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5881,6 +5964,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		07B167A11E27777600276D66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B167AF1E27777600276D66 /* ViewController.m in Sources */,
+				07B167AC1E27777600276D66 /* AppDelegate.m in Sources */,
+				07B167A91E27777600276D66 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63249C971754E07900372FD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6482,7 +6575,130 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		07B167B01E27777600276D66 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07B167B11E27777600276D66 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		07B167B51E27777600276D66 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07B167B61E27777600276D66 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		07B167BA1E27777600276D66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N37ZY5XXAZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = edustore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07B167BB1E27777600276D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = N37ZY5XXAZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = edustore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		07B167BC1E27777600276D66 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = N37ZY5XXAZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = edustore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribution;
+		};
 		63249CB61754E07900372FD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6554,9 +6770,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UF5JE69P2G;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6574,7 +6791,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6592,10 +6809,11 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -6610,9 +6828,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UF5JE69P2G;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6630,7 +6848,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6648,10 +6866,11 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -6695,9 +6914,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UF5JE69P2G;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
+				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6715,7 +6934,7 @@
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor",
 				);
 				INFOPLIST_FILE = "shop/shop-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ECMobileFramework/ECMobileFramework/services/bee.services.alipay/vendor/AlipaySDK/openssl/lib",
@@ -6733,10 +6952,11 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edustore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -6746,6 +6966,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07B167B91E27777600276D66 /* Build configuration list for PBXNativeTarget "edustore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B167BA1E27777600276D66 /* Debug */,
+				07B167BB1E27777600276D66 /* Release */,
+				07B167BC1E27777600276D66 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63249C961754E07900372FD7 /* Build configuration list for PBXProject "shop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

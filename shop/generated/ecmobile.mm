@@ -2953,7 +2953,7 @@ DEF_MESSAGE_( getIdentifyCode, msg)
 {
     if( msg.sending )
     {
-        NSString * requestURI = [NSString stringWithFormat:@"%@/user/sendTemplateSMS", [ServerConfig sharedInstance].url];
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/SendTemplateSMS", [ServerConfig sharedInstance].url];
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
         requestBody.APPEND( @"mobilePhone", msg.GET_INPUT( @"mobilePhone" ) );
         

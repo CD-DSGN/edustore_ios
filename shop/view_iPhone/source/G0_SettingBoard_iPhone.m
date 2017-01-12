@@ -176,7 +176,8 @@ ON_SIGNAL3( G0_SettingCell_iPhone, setting_rate, signal )
 
 ON_SIGNAL3( G0_SettingCell_iPhone, setting_service, signal )
 {
-    [self openTelephone:[ConfigModel sharedInstance].config.service_phone];
+//    [self openTelephone:[ConfigModel sharedInstance].config.service_phone];
+    [self openTelephone:@"028-61380687"];
 }
 
 ON_SIGNAL3( G0_SettingCell_iPhone, setting_website, signal )

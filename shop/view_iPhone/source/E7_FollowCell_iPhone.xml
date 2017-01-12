@@ -10,11 +10,9 @@
         </row>
         <row class="action">
             <row class="button">
-                <image class="follow_bg" />
                 <button id="follow" class="follow_btn" />
             </row>
             <row class="button">
-                <image class="cancel_bg" />
                 <button id="cancel_follow" class="cancel_btn" />
             </row>
         </row>
@@ -63,39 +61,24 @@
             height: 100%;
             align: center;
         }
-        .follow_bg {
-            position:absolute;
-            top: 10px;
-            left: 20%;
-            width: 100%;
-            height: 20px;
-            background-mode: fit;
-            background-insets: 10px;
-            background-image: url(follow.png);
-        }
-        .cancel_bg {
-            position:absolute;
-            top: 10px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background-mode: fit;
-            background-insets: 10px;
-            background-image: url(cancel.png);
-        }
+        
         .follow_btn {
             position:absolute;
-            top: 10px;
-            left: 20%;
-            width: 100%;
-            height: 20px;
+            top: 9px;
+            left: 0;
+            width: 80%;
+            height: 22px;
+            background-mode: fit;
+            background-image: url(follow.png);
         }
         .cancel_btn {
             position:absolute;
-            top: 10px;
+            top: 9px;
             left: 0%;
-            width: 100%;
-            height: 20px;
+            width: 80%;
+            height: 22px;
+            background-mode: fit;
+            background-image: url(cancel.png);
         }
 
     </style>

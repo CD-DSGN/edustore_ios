@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>汇师club</string>
+	<string>汇师网</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>ECMobile</string>
+	<string>EDUstore</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>weixin</string>
@@ -94,6 +94,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>是否允许汇师club使用您的相机？</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>是否允许汇师club使用您的麦克风？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许汇师club使用您的相片？</string>
 	<key>UIPrerenderedIcon</key>

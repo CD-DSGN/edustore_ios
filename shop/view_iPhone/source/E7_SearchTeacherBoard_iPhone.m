@@ -312,8 +312,13 @@ ON_MESSAGE3( API, search_user, msg )
     if ( msg.sending )
     {
         // TODO:查询教师中，等待结果
+        [self presentMessageTips:@"搜索教师中"];
     }
-    else if ( msg.succeed )
+    else
+    {
+        [self dismissTips];
+    }
+    if ( msg.succeed )
     {
         NSArray * data = msg.GET_OUTPUT(@"data");
         [self.userResult removeAllObjects];

@@ -12,7 +12,7 @@
 		
         <col class="cart-wrapper">
             <button id="cart" class="cart-icon"/>
-			<col class="badge-wrapper">
+			<col class="badge-wrapper" id="badge-wrapper">
 				<image id="badge-bg" class="badge-bg"/>
 				<label id="badge" class="badge-number"/>
 			</col>
@@ -21,58 +21,25 @@
     
     <style type="text/css">
         .container {
-        width: 100%;
-        height: 100%;
-        v-align: center;
+            width: 100%;
+            height: 100%;
+            v-align: center;
         }
         
         .container-bg  {
-        image: url(footer_bg.png);
-        image-insets: 0 25;
-        image-mode: fit;
-        
-        position: absolute;
-        left: 0;
-        top: 0;
+            image: url(footer_bg.png);
+            image-insets: 0 25;
+            image-mode: fit;
+            position: absolute;
+            left: 0;
+            top: 0;
 		}
-        
-        .btn {
-        font: 11px bold;
-        text-align: center;
-        color: #fff;
-        width: 20%;
-        height: 28px;
-        line-height: 28px;
-        background-mode: stretch;
-        }
         
         .button-star-wrapper {
             position: relative;
             width: 10%;
             height: 100%;
             v-align: center;
-        }
-        
-        .button-star {
-        left: 10%;
-        width: 80%;
-        height: 27px;
-        button-image: url(item_info_disabled_btn.png);
-        button-image-selected: url(item_info_pushed_collect_btn.png);
-        }
-        
-        .button-red {
-        background-image: url(button_red.png);
-        width: 28%;
-        }
-        
-        .button-blue {
-        background-image: url(button_blue.png);
-        }
-        
-        .button-orange {
-        background-image: url(button_orange.png);
-        width: 28%;
         }
         
         .button-narrow-red {
@@ -101,12 +68,7 @@
         line-height: 33px;
         }
         
-        .cart-wrapper {
-        margin-left: 0;
-        width: 25%;
-        height: 44px;
-        align: center;
-        }
+        
         
         .cart-icon {
         position: absolute;
@@ -144,13 +106,52 @@
         font-weight: bold;
         text-align: center;
 		}
-		
+        
+        .button-star {
+            left: 0;
+            width: 80%;
+            height: 27px;
+            button-image: url(item_info_disabled_btn.png);
+            button-image-selected: url(item_info_pushed_collect_btn.png);
+        }
+        
+        .btn {
+            font: 11px bold;
+            text-align: center;
+            color: #fff;
+            width: 30%;
+            height: 28px;
+            line-height: 28px;
+            background-mode: stretch;
+        }
+        
+        .button-red {
+            background-image: url(button_red.png);
+            width: 28%;
+        }
+        
+        .button-blue {
+            background-image: url(button_blue.png);
+        }
+        
+        .button-orange {
+            background-image: url(button_orange.png);
+            width: 28%;
+        }
+        
         #buy {
-        margin-left: 15%;
+        left: 0;
         }
         
         #add {
-        margin-left: 15%;
+        left: 0;
+        }
+        
+        .cart-wrapper {
+            margin-left: 0;
+            width: 25%;
+            height: 44px;
+            align: center;
         }
         
     </style>

@@ -236,6 +236,8 @@ ON_SIGNAL3( J0_CheckOutCounterCell_iPhone, PAY_SDK, signal )
 
 - (void)didPaySuccess
 {
+    
+    [self updateOrderInfo];
 //    [bee.ui.tabbar selectUser];
 //    [bee.ui.router open:AppBoard_iPhone.TAB_USER animated:NO];
 //    [bee.ui.profile.stack pushBoard:[E2_PendingShippedBoard_iPhone board] animated:NO];
@@ -243,12 +245,9 @@ ON_SIGNAL3( J0_CheckOutCounterCell_iPhone, PAY_SDK, signal )
 //    [self.viewController.stack popToRootViewControllerAnimated:NO];
 //    [self.stack popToRootViewControllerAnimated:NO];
     
-    [self updateOrderInfo];
-    UIViewController * parent = [self findViewController:_selfCell];
-    [parent.stack popToRootViewControllerAnimated:NO];
-//    [parent.stack pushBoard:[E2_PendingShippedBoard_iPhone board] animated:NO];
-    [self.window presentSuccessTips:__TEXT( @"pay_succeed" )];
-    
+//    UIViewController * parent = [self findViewController:_selfCell];
+//    [parent.stack popToRootViewControllerAnimated:NO];
+//    [self.window presentSuccessTips:__TEXT( @"pay_succeed" )];
 }
 
 - (UIViewController *)findViewController:(UIView *)sourceView
@@ -272,6 +271,25 @@ ON_SIGNAL3( J0_CheckOutCounterCell_iPhone, PAY_SDK, signal )
     .INPUT( @"order_sn", _order.order_sn);
 }
 
+#pragma mark - update order info
+
+ON_MESSAGE3( API, writePayId, msg)
+{
+    if (msg.sending)
+    {}
+    if (msg.succeed)
+    {
+        UIViewController * parent = [self findViewController:_selfCell];
+        [parent.stack popToRootViewControllerAnimated:NO];
+        [self.window presentSuccessTips:__TEXT( @"pay_succeed" )];
+    }
+    if (msg.failed)
+    {
+        UIViewController * parent = [self findViewController:_selfCell];
+        [parent.stack popToRootViewControllerAnimated:NO];
+        [self.window presentSuccessTips:__TEXT( @"pay_succeed" )];
+    }
+}
 
 #pragma mark - UITableViewDataSource
 

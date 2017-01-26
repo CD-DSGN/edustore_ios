@@ -27,6 +27,7 @@ SUPPORT_AUTOMATIC_LAYOUT( YES );
     _photo.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     _photo.contentMode = UIViewContentModeScaleAspectFit;
     
+    
     _zoomView = [[BeeUIZoomView alloc] init];
     _zoomView.backgroundColor = [UIColor blackColor];
     [_zoomView setContent:_photo animated:NO];
@@ -45,7 +46,7 @@ SUPPORT_AUTOMATIC_LAYOUT( YES );
     NSDictionary * photo = self.data;
     if ( photo )
     {
-        [_photo GET:[photo objectForKey:@"thumb"]
+        [_photo GET:[photo objectForKey:@"img"]
            useCache:YES
         placeHolder:[UIImage imageNamed:@"placeholder_image.png"]];
     }

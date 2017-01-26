@@ -24,31 +24,42 @@ DEF_OUTLET( BeeUIScrollView, list )
     // 通过查询的返回值来大致计算出高度（如何保证精确度？）
     // 暂时通过多留白的方式
     MOMENTS * moments = data;
-    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:SCREEN_WIDTH*0.7f];      // 正文内容的size
-    CGFloat head_height = 57.0f;             // 头部高度+留白
-//    CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
-    CGSize size = CGSizeMake(width, content_size.height + head_height);
-    return size;
+    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
+    CGFloat head_height = 40.0f;             // 头部高度+留白
+    CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
+    if (moments.publish_info.photo_array.count == 0) {
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + 10 );
+        return  size;
+    }
+    else if(moments.publish_info.photo_array.count == 1){
+        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20 + 20 );
+        return  size;
+    }
+    else{
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height );
+        return size;
+    }
+    
 }
 
 + (CGFloat)photoHeightByCount:(NSInteger)count
 {
-    CGFloat photo_height = 0;
+    CGFloat photo_height = 10;
     switch (count) {
         case 1:
         case 2:
         case 3:
-            photo_height = 65;
+            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 + 20;
             break;
         case 4:
         case 5:
         case 6:
-            photo_height = 65 * 2;
+            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 30;
             break;
         case 7:
         case 8:
         case 9:
-            photo_height = 65 * 3;
+            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 3 + 40;
             break;
         default:
             break;
@@ -106,6 +117,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 - (void)dataDidChanged
 {
     // 一样的，此时frame为0
+    
 }
 
 

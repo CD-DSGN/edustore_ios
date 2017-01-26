@@ -11,11 +11,11 @@
 #import "I2_MomentsPhotoBoard_iPhone.h"
 #import "I0_MomentsCell_iPhone.h"
 #import "AppBoard_iPhone.h"
-
-#define IMAGEWIDTH   81.6f
-#define IMAGEHEIGHT  60.0f
+#import "SinglePhotoBrowerViewController.h"
+#define IMAGEWIDTH   (SCREEN_WIDTH - 50 - 20 * 3)/3.0
+#define IMAGEHEIGHT  (SCREEN_WIDTH - 50 - 20 * 3)/3.0
 #define IMAGELEFT    50.0f
-#define BLANKHEIGHT  5.0f
+#define BLANKHEIGHT  10.0f
 
 @implementation I0_MomentsPhotoCell_iPhone
 
@@ -35,63 +35,133 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
     if (self.data)
     {
+        self.hidden = YES;
+        for (UIView *view in self.subviews) {
+            if (view.tag == 1000) {
+                [view removeFromSuperview];
+                
+                for (UIView *sub in view.subviews) {
+                    [sub removeFromSuperview];
+                    [sub release];
+                    sub = nil;
+                }
+                [view release];
+                view = nil;
+            }
+        }
         MOMENTS * moments = self.data;
         NSArray * photo_array = moments.publish_info.photo_array;
         NSInteger photo_count = photo_array.count;
         UIView * imageView = [[UIView alloc] initWithFrame:CGRectAuto];
+        imageView.tag = 1000;
         
         if (photo_count > 0)
         {
+            self.hidden = NO;
             for (int i = 0; i < photo_count; i++)
             {
                 NSDictionary * photo = [photo_array objectAtIndex:i];
                 BeeUIImageView * imageCell = [[BeeUIImageView alloc] initWithFrame:CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(i%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), IMAGEWIDTH, IMAGEHEIGHT)];
+                imageCell.clipsToBounds = YES;
                 imageCell.userInteractionEnabled = YES;
-                [imageCell setUrl:[photo objectForKey:@"thumb"]];
-                [imageCell setContentMode:UIViewContentModeScaleToFill];
-                [imageCell setTag:i];
+                [imageCell setUrl:[photo objectForKey:@"img"]];
                 
+                //[imageCell setContentMode:UIViewContentModeScaleToFill];
+                [imageCell setTag:i];
+                imageCell.contentMode = UIViewContentModeCenter;
+                imageCell.contentMode = UIViewContentModeScaleAspectFill;
                 UITapGestureRecognizer * tapRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openBig:)];
                 [imageCell addGestureRecognizer:tapRecongnizer];
 //                imageCell.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[photo objectForKey:@"thumb"]]]];
+                if (photo_array.count == 1) {
+                    imageCell.hidden = YES;
+                    imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(i%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), IMAGEWIDTH * 2, IMAGEHEIGHT * 2);
+                    imageCell.contentMode = UIViewContentModeScaleAspectFill;
+                    imageCell.layer.masksToBounds = NO;
+                    [imageCell retain];
+                    [imageCell HTTP_GET:[photo objectForKey:@"img"]];
+                    imageCell.tag = 10000;
+                    [imageCell setFinishImage:^(){
+                        imageCell.hidden = NO;
+                        
+                        if (imageCell.image.size.width != 0 && imageCell.image.size.height != 0) {
+                            imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(0%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(0/3)), imageCell.image.size.width / imageCell.image.size.height*IMAGEHEIGHT * 2, IMAGEHEIGHT * 2);
+                        }
+                        
+                    }];
+ 
+                }
                 
                 if ( i%3 == 0 )
                 {
-                    CGFloat height = (int)(i/3 + 1)*(IMAGEHEIGHT + BLANKHEIGHT);
+                    
+                    CGFloat height;
+                    if (photo_array.count != 1) {
+                        height = (int)(i/3 + 1)*(IMAGEHEIGHT + BLANKHEIGHT);
+                    }else {
+                        height = 2 * (IMAGEHEIGHT + BLANKHEIGHT);
+                    }
+                    
                     NSString * cssHeight = [NSString stringWithFormat:@"height: %f",height];
                     $(@"#background").CSS(cssHeight);
-                    [imageView setFrame:CGRectMake(0, 0, 320, height)];
+                    [imageView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
                 }
+                
                 [imageView addSubview:imageCell];
             }
         }
+        
         // 消除复用影响代价最小的想法（目前）
-        for (NSInteger i = photo_count; i < 9; i++) {
-            BeeUIImageView * imageCell = [[BeeUIImageView alloc] initWithFrame:CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(i%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), 320, IMAGEHEIGHT)];
-            if ( i%3 == 0 ) {
-                [imageCell setFrame:CGRectMake(0, ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), 320, IMAGEHEIGHT)];
-            }
-            [imageCell setBackgroundColor:[UIColor whiteColor]];
-            [imageView addSubview:imageCell];
+//        for (NSInteger i = photo_count; i < 9; i++) {
+//            BeeUIImageView * imageCell = [[BeeUIImageView alloc] initWithFrame:CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(i%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), SCREEN_WIDTH, IMAGEHEIGHT)];
+//            if ( i%3 == 0 ) {
+//                [imageCell setFrame:CGRectMake(0, ((IMAGEHEIGHT+BLANKHEIGHT)*(i/3)), SCREEN_WIDTH, IMAGEHEIGHT)];
+//            }
+//            [imageCell setBackgroundColor:[UIColor clearColor]];
+//            [imageView addSubview:imageCell];
+//        }
+        if (photo_array.count == 1) {
+            imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (IMAGEHEIGHT + BLANKHEIGHT)*2);
+            
         }
-
         [self addSubview:imageView];
+
     }
 }
+
+
+
+
 // 不用代理，使用根类的单例
 - (void)openBig:(UITapGestureRecognizer *)tapRecongnizer
 {
-    I2_MomentsPhotoBoard_iPhone * board = [I2_MomentsPhotoBoard_iPhone board];
-    board.moments = self.data;
+    MOMENTS * moments = self.data;
+//    if (moments.publish_info.photo_array.count == 1) {
+        SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
+        board.imageArray = moments.publish_info.photo_array;
+        board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        //    board.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
+    board.index = tapRecongnizer.view.tag;
+        [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
+        
+        
+//    }
+//    else {
+//        I2_MomentsPhotoBoard_iPhone * board = [I2_MomentsPhotoBoard_iPhone board];
+//        [board retain];
+//        board.moments = self.data;
+//        
+//        board.pageIndex = tapRecongnizer.view.tag;
+//    
+//    
+//        board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        //    board.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
+//        
+//        [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
     
-    board.pageIndex = tapRecongnizer.view.tag;
-    board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    board.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
-    
-    // 在当前view中的位置，但我需要的是其在window中的位置
-    // CGPoint location = [tapRecongnizer locationInView:self];
+        // 在当前view中的位置，但我需要的是其在window中的位置
+        // CGPoint location = [tapRecongnizer locationInView:self];
+//    }
 }
 
 //- (void)dataDidChanged

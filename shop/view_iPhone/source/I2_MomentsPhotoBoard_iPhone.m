@@ -64,7 +64,7 @@ ON_CREATE_VIEWS( signal )
             item.data = [self.moments.publish_info.photo_array safeObjectAtIndex:item.index];
             item.rule = BeeUIScrollLayoutRule_Tile;
         }
-        
+
         self.pager.numberOfPages = self.list.total;
         self.pager.currentPage = self.pageIndex;
     };

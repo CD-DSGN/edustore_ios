@@ -15,6 +15,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 - (void)load
 {
+
 }
 
 - (void)unload

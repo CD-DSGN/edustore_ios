@@ -8,11 +8,14 @@
 
 #import "Bee.h"
 #import "BaseBoard_iPhone.h"
-
-@interface I1_SendMomentsBoard_iPhone : BaseBoard_iPhone<UITextViewDelegate>
+#import "TZImagePickerController.h"
+@interface I1_SendMomentsBoard_iPhone : BaseBoard_iPhone<UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, retain) UIScrollView * scrollView;
 @property (nonatomic, retain) UITextView * textViewSendContent;
 @property (nonatomic, retain) UILabel * textViewPlaceholder;
+
+@property (nonatomic,strong) NSMutableArray *photoArray;
+@property (nonatomic,strong) UICollectionView *collectionView;
 
 @end

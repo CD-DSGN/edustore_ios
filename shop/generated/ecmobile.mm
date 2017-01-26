@@ -3113,6 +3113,7 @@ DEF_MESSAGE_( teacher_publish, msg )
         NSString * curTime = msg.GET_INPUT( @"time" );
         curTime = [curTime trim];
         NSString * content = msg.GET_INPUT( @"content" );
+        NSArray *imageArray = msg.GET_INPUT( @"publish_images");
         
         if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
         {
@@ -3124,14 +3125,15 @@ DEF_MESSAGE_( teacher_publish, msg )
         requestBody.APPEND( @"session", session );
         requestBody.APPEND( @"time", curTime );
         requestBody.APPEND( @"content", content );
-        
+        requestBody.APPEND( @"publish_images", imageArray);
         NSString * requestURI = [NSString stringWithFormat:@"%@/user/teacher_publish", [ServerConfig sharedInstance].url];
-        
-        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+        NSString *json = [self makeJsonWithSession:session andTime:curTime andContent:content andImageArray:imageArray];
+        msg.HTTP_POST( requestURI ).PARAM( @"json", json );
     }
     else if ( msg.succeed )
     {
         NSDictionary * response = msg.responseJSONDictionary;
+        NSLog(@"%@", response[@"status"][@"error_desc"]);
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
         NSString * data = [response stringAtPath:@"data"];
 
@@ -3142,7 +3144,7 @@ DEF_MESSAGE_( teacher_publish, msg )
         }
         
         msg.OUTPUT( @"status", status );
-        msg.OUTPUT( @"data", data );
+        msg.OUTPUT( @"data", @"1" );
     }
     else if ( msg.failed )
     {
@@ -3151,7 +3153,17 @@ DEF_MESSAGE_( teacher_publish, msg )
     {
     }
 }
-
+-(NSString*)makeJsonWithSession:(SESSION*)session andTime:(NSString*)time andContent:(NSString*)content andImageArray:(NSArray*)imageArray
+{
+    NSDictionary *jsonDic = @{
+                              @"session": @{@"sid":session.sid, @"uid":session.uid},
+                              @"time": time,
+                              @"content": content,
+                              @"publish_images": imageArray
+                              };
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDic options:NSJSONWritingPrettyPrinted error:nil];
+    return [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 DEF_MESSAGE_( post_avatar, msg )
 {
     if ( msg.sending )

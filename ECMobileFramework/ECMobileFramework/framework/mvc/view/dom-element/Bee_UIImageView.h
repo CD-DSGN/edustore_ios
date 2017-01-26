@@ -71,6 +71,8 @@ AS_SINGLETON( BeeImageCache )
 
 #pragma mark -
 
+typedef void(^FinishLoadingImage)() ;
+
 @interface BeeUIImageView : UIImageView
 
 AS_SIGNAL( LOAD_START )			// 加载开始
@@ -103,6 +105,8 @@ AS_SIGNAL( LOAD_CACHE )         // 加载缓存
 @property (nonatomic, assign) NSString *					url;
 @property (nonatomic, assign) NSString *					file;
 @property (nonatomic, assign) NSString *					resource;
+
+@property (nonatomic, copy) FinishLoadingImage finishImage;
 
 - (void)GET:(NSString *)url useCache:(BOOL)useCache;
 - (void)GET:(NSString *)url useCache:(BOOL)useCache placeHolder:(UIImage *)defaultImage;

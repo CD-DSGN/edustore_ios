@@ -711,9 +711,10 @@
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 - (CGSize)sizeWithFont:(UIFont *)font byWidth:(CGFloat)width
 {
-	return [self sizeWithFont:font
-			constrainedToSize:CGSizeMake(width, 999999.0f)
-				lineBreakMode:UILineBreakModeWordWrap];	
+//	return [self sizeWithFont:font
+//			constrainedToSize:CGSizeMake(width, 999999.0f)
+//				lineBreakMode:UILineBreakModeWordWrap];
+    return [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
 }
 
 - (CGSize)sizeWithFont:(UIFont *)font byHeight:(CGFloat)height

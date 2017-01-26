@@ -74,8 +74,6 @@
 		5F1676441E1E136E00C5188E /* I0_MomentsNoResultCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F16762F1E1E136E00C5188E /* I0_MomentsNoResultCell_iPhone.xml */; };
 		5F1676451E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1676311E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.m */; };
 		5F1676461E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1676321E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.xml */; };
-		5F1676471E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1676341E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.m */; };
-		5F1676481E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1676351E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.xml */; };
 		5F1676491E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1676371E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.m */; };
 		5F16764A1E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F1676381E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.xml */; };
 		5F16764B1E1E136E00C5188E /* I2_MomentsPhotoSlideCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F16763A1E1E136E00C5188E /* I2_MomentsPhotoSlideCell_iPhone.m */; };
@@ -139,6 +137,25 @@
 		6324A4231754FC7700372FD7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A4151754FC7700372FD7 /* SystemConfiguration.framework */; };
 		6324A4241754FC7700372FD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A4161754FC7700372FD7 /* UIKit.framework */; };
 		6324A91E1755AA8300372FD7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A91D1755AA8300372FD7 /* AudioToolbox.framework */; };
+		923E426A1E2CBEF300F50109 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */; };
+		923E426B1E2CBEF300F50109 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42581E2CBEF300F50109 /* TZAssetCell.m */; };
+		923E426C1E2CBEF300F50109 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E425A1E2CBEF300F50109 /* TZAssetModel.m */; };
+		923E426D1E2CBEF300F50109 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E425C1E2CBEF300F50109 /* TZImageManager.m */; };
+		923E426E1E2CBEF300F50109 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 923E425D1E2CBEF300F50109 /* TZImagePickerController.bundle */; };
+		923E426F1E2CBEF300F50109 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E425F1E2CBEF300F50109 /* TZImagePickerController.m */; };
+		923E42701E2CBEF300F50109 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42611E2CBEF300F50109 /* TZPhotoPickerController.m */; };
+		923E42711E2CBEF300F50109 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42631E2CBEF300F50109 /* TZPhotoPreviewCell.m */; };
+		923E42721E2CBEF300F50109 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42651E2CBEF300F50109 /* TZPhotoPreviewController.m */; };
+		923E42731E2CBEF300F50109 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42671E2CBEF300F50109 /* TZVideoPlayerController.m */; };
+		923E42741E2CBEF300F50109 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42691E2CBEF300F50109 /* UIView+Layout.m */; };
+		923E42761E2CC1D900F50109 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E42751E2CC1D900F50109 /* libz.tbd */; };
+		923E42781E2CC80800F50109 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E42771E2CC80800F50109 /* AssetsLibrary.framework */; };
+		923E427A1E2CC81000F50109 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923E42791E2CC81000F50109 /* Photos.framework */; };
+		923E42801E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E427C1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.m */; };
+		923E42811E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 923E427D1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml */; };
+		923E42821E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E427F1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m */; };
+		92402EAB1E2DAF0100FDA15E /* PhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92402EAA1E2DAF0100FDA15E /* PhotoBrowserViewController.m */; };
+		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
 		CB013ED018C0500700D381A0 /* CommonNoResultCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */; };
 		CB55509A18B45695000EC760 /* NSObject+ScrollViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CB55509918B45695000EC760 /* NSObject+ScrollViewExt.m */; };
@@ -1076,9 +1093,6 @@
 		5F1676301E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I0_MomentsPhotoCell_iPhone.h; sourceTree = "<group>"; };
 		5F1676311E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I0_MomentsPhotoCell_iPhone.m; sourceTree = "<group>"; };
 		5F1676321E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = I0_MomentsPhotoCell_iPhone.xml; sourceTree = "<group>"; };
-		5F1676331E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I1_SendMomentsBoard_iPhone.h; sourceTree = "<group>"; };
-		5F1676341E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I1_SendMomentsBoard_iPhone.m; sourceTree = "<group>"; };
-		5F1676351E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = I1_SendMomentsBoard_iPhone.xml; sourceTree = "<group>"; };
 		5F1676361E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I2_MomentsPhotoBoard_iPhone.h; sourceTree = "<group>"; };
 		5F1676371E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I2_MomentsPhotoBoard_iPhone.m; sourceTree = "<group>"; };
 		5F1676381E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = I2_MomentsPhotoBoard_iPhone.xml; sourceTree = "<group>"; };
@@ -1172,6 +1186,39 @@
 		6324A4151754FC7700372FD7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6324A4161754FC7700372FD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6324A91D1755AA8300372FD7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		923E42551E2CBEF300F50109 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		923E42571E2CBEF300F50109 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		923E42581E2CBEF300F50109 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		923E42591E2CBEF300F50109 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		923E425A1E2CBEF300F50109 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		923E425B1E2CBEF300F50109 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		923E425C1E2CBEF300F50109 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		923E425D1E2CBEF300F50109 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		923E425E1E2CBEF300F50109 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		923E425F1E2CBEF300F50109 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		923E42601E2CBEF300F50109 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		923E42611E2CBEF300F50109 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		923E42621E2CBEF300F50109 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		923E42631E2CBEF300F50109 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		923E42641E2CBEF300F50109 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		923E42651E2CBEF300F50109 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		923E42661E2CBEF300F50109 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		923E42671E2CBEF300F50109 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		923E42681E2CBEF300F50109 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		923E42691E2CBEF300F50109 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		923E42751E2CC1D900F50109 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		923E42771E2CC80800F50109 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		923E42791E2CC81000F50109 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		923E427B1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I1_SendMomentsBoard_iPhone.h; sourceTree = "<group>"; };
+		923E427C1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I1_SendMomentsBoard_iPhone.m; sourceTree = "<group>"; };
+		923E427D1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = I1_SendMomentsBoard_iPhone.xml; sourceTree = "<group>"; };
+		923E427E1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I1_SendMomentsBoardCell_iPhone.h; sourceTree = "<group>"; };
+		923E427F1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I1_SendMomentsBoardCell_iPhone.m; sourceTree = "<group>"; };
+		92402EA91E2DAF0100FDA15E /* PhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserViewController.h; sourceTree = "<group>"; };
+		92402EAA1E2DAF0100FDA15E /* PhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserViewController.m; sourceTree = "<group>"; };
+		928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePhotoBrowerViewController.h; sourceTree = "<group>"; };
+		928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePhotoBrowerViewController.m; sourceTree = "<group>"; };
 		92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_img_bg@2x.png"; sourceTree = "<group>"; };
 		CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonNoResultCell.xml; sourceTree = "<group>"; };
 		CB55509818B45695000EC760 /* NSObject+ScrollViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ScrollViewExt.h"; sourceTree = "<group>"; };
@@ -2662,6 +2709,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923E427A1E2CC81000F50109 /* Photos.framework in Frameworks */,
+				923E42781E2CC80800F50109 /* AssetsLibrary.framework in Frameworks */,
+				923E42761E2CC1D900F50109 /* libz.tbd in Frameworks */,
 				3268BEE2192B4CCD00512CB7 /* AddressBook.framework in Frameworks */,
 				6324A4171754FC7700372FD7 /* libz.dylib in Frameworks */,
 				D8135D141BCCE3BA00C9FDBE /* libcrypto.a in Frameworks */,
@@ -2919,6 +2969,9 @@
 		63249C9D1754E07900372FD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				923E42791E2CC81000F50109 /* Photos.framework */,
+				923E42771E2CC80800F50109 /* AssetsLibrary.framework */,
+				923E42751E2CC1D900F50109 /* libz.tbd */,
 				3268BEE1192B4CCD00512CB7 /* AddressBook.framework */,
 				6324A4091754FC7700372FD7 /* libz.dylib */,
 				6324A40A1754FC7700372FD7 /* libsqlite3.dylib */,
@@ -2938,6 +2991,53 @@
 				6324A4161754FC7700372FD7 /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		923E42531E2CBEF300F50109 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				923E42541E2CBEF300F50109 /* TZImagePickerController */,
+			);
+			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		923E42541E2CBEF300F50109 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				923E42551E2CBEF300F50109 /* NSBundle+TZImagePicker.h */,
+				923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */,
+				923E42571E2CBEF300F50109 /* TZAssetCell.h */,
+				923E42581E2CBEF300F50109 /* TZAssetCell.m */,
+				923E42591E2CBEF300F50109 /* TZAssetModel.h */,
+				923E425A1E2CBEF300F50109 /* TZAssetModel.m */,
+				923E425B1E2CBEF300F50109 /* TZImageManager.h */,
+				923E425C1E2CBEF300F50109 /* TZImageManager.m */,
+				923E425D1E2CBEF300F50109 /* TZImagePickerController.bundle */,
+				923E425E1E2CBEF300F50109 /* TZImagePickerController.h */,
+				923E425F1E2CBEF300F50109 /* TZImagePickerController.m */,
+				923E42601E2CBEF300F50109 /* TZPhotoPickerController.h */,
+				923E42611E2CBEF300F50109 /* TZPhotoPickerController.m */,
+				923E42621E2CBEF300F50109 /* TZPhotoPreviewCell.h */,
+				923E42631E2CBEF300F50109 /* TZPhotoPreviewCell.m */,
+				923E42641E2CBEF300F50109 /* TZPhotoPreviewController.h */,
+				923E42651E2CBEF300F50109 /* TZPhotoPreviewController.m */,
+				923E42661E2CBEF300F50109 /* TZVideoPlayerController.h */,
+				923E42671E2CBEF300F50109 /* TZVideoPlayerController.m */,
+				923E42681E2CBEF300F50109 /* UIView+Layout.h */,
+				923E42691E2CBEF300F50109 /* UIView+Layout.m */,
+			);
+			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		92402EA81E2DAED400FDA15E /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				92402EA91E2DAF0100FDA15E /* PhotoBrowserViewController.h */,
+				92402EAA1E2DAF0100FDA15E /* PhotoBrowserViewController.m */,
+				928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */,
+				928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */,
+			);
+			name = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		CB60E564179E2ACF0094F91C /* Supporting files */ = {
@@ -3055,6 +3155,8 @@
 				CB9C207918BB3B0900DDA501 /* AppTabbar_iPhone.h */,
 				CB9C207A18BB3B0900DDA501 /* AppTabbar_iPhone.m */,
 				CB9C207B18BB3B0900DDA501 /* AppTabbar_iPhone.xml */,
+				92402EA81E2DAED400FDA15E /* PhotoBrowser */,
+				923E42531E2CBEF300F50109 /* TZImagePickerController */,
 				CB9C207C18BB3B0900DDA501 /* component */,
 				CB9C20B418BB3B0900DDA501 /* resource */,
 				CB9C216D18BB3B0A00DDA501 /* source */,
@@ -3723,9 +3825,11 @@
 				5F1676301E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.h */,
 				5F1676311E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.m */,
 				5F1676321E1E136E00C5188E /* I0_MomentsPhotoCell_iPhone.xml */,
-				5F1676331E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.h */,
-				5F1676341E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.m */,
-				5F1676351E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.xml */,
+				923E427B1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.h */,
+				923E427C1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.m */,
+				923E427D1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml */,
+				923E427E1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.h */,
+				923E427F1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m */,
 				5F1676361E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.h */,
 				5F1676371E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.m */,
 				5F1676381E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.xml */,
@@ -5576,8 +5680,8 @@
 						ProvisioningStyle = Automatic;
 					};
 					63249C9A1754E07900372FD7 = {
-						DevelopmentTeam = 6KM3WVLJ6Q;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 7DCYJHLQC3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -5660,6 +5764,7 @@
 				CB9C232C18BB3B0C00DDA501 /* shopping_cart_acc_btn_red@2x.png in Resources */,
 				1848BD9718B4D8690007238A /* Localizable.strings in Resources */,
 				CB9C232B18BB3B0C00DDA501 /* setting_log_out_btn_red@2x.png in Resources */,
+				923E42811E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml in Resources */,
 				CB9C22A518BB3B0C00DDA501 /* FormInputCell.xml in Resources */,
 				CB9C22FD18BB3B0C00DDA501 /* item_info_buy_entry_loading_header_close_icon@2x.png in Resources */,
 				CB9C234018BB3B0C00DDA501 /* shopping_checkout_cont_bg@2x.png in Resources */,
@@ -5680,6 +5785,7 @@
 				63023910177C1676004C052D /* Default.png in Resources */,
 				CB9C230118BB3B0C00DDA501 /* item_info_carousel_bg@2x.png in Resources */,
 				CB9C235D18BB3B0C00DDA501 /* tuitional_img_3_1@2x.png in Resources */,
+				923E426E1E2CBEF300F50109 /* TZImagePickerController.bundle in Resources */,
 				CB9C22BD18BB3B0C00DDA501 /* address_edit_modify_btn_red@2x.png in Resources */,
 				CB9C22F318BB3B0C00DDA501 /* item_grid_filter_up_active_arrow@2x.png in Resources */,
 				CB9C23BB18BB3B0C00DDA501 /* C1_CheckoutOrderCell_iPhone.xml in Resources */,
@@ -5875,7 +5981,6 @@
 				CB9C22D518BB3B0C00DDA501 /* filter_blue_btn@2x.png in Resources */,
 				CB9C22E518BB3B0C00DDA501 /* index_new_full_detail_icon@2x.png in Resources */,
 				CB9C22B618BB3B0C00DDA501 /* OrderCellInfo_iPhone.xml in Resources */,
-				5F1676481E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.xml in Resources */,
 				CB9C231318BB3B0C00DDA501 /* profile_img_bg@2x.jpg in Resources */,
 				CB9C23D018BB3B0C00DDA501 /* C6_RedEnvelopeBoard_iPhone.xml in Resources */,
 				CB9C233318BB3B0C00DDA501 /* shopping_cart_body_bg_04@2x.png in Resources */,
@@ -6007,6 +6112,7 @@
 				CB9C23A518BB3B0C00DDA501 /* B6_ProductDescBoard_iPhone.m in Sources */,
 				CBD1753718BCBFC8003D1862 /* NSObject+BeeTypeConversion.mm in Sources */,
 				CBD1745618BCBFC8003D1862 /* UIView+UIViewController.m in Sources */,
+				928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */,
 				CBD1752318BCBFC8003D1862 /* Bee_Runtime.mm in Sources */,
 				CBD1754E18BCBFC8003D1862 /* Bee_HTTPWorklet2.m in Sources */,
 				CBD1747918BCBFC8003D1862 /* Bee_UIAnimationZoom.m in Sources */,
@@ -6024,10 +6130,10 @@
 				CB9C239318BB3B0C00DDA501 /* B2_ProductSpecifyBoard_iPhone.m in Sources */,
 				CB9C23C618BB3B0C00DDA501 /* C2_PaymentCell_iPhone.m in Sources */,
 				6302390D177C1676004C052D /* controller.m in Sources */,
+				923E42741E2CBEF300F50109 /* UIView+Layout.m in Sources */,
 				CBD1752A18BCBFC8003D1862 /* NSArray+BeeExtension.mm in Sources */,
 				E9003D161AF78E2900D03D17 /* bee.services.share.weixin.m in Sources */,
 				CB9C23ED18BB3B0C00DDA501 /* E2_PendingShippedCell_iPhone.m in Sources */,
-				5F1676471E1E136E00C5188E /* I1_SendMomentsBoard_iPhone.m in Sources */,
 				CBD174A118BCBFC8003D1862 /* Bee_UIToolbar.m in Sources */,
 				CBD1750D18BCBFC8003D1862 /* Bee_FileCache.mm in Sources */,
 				CBD1746518BCBFC8003D1862 /* UIImageView+BeeUIStyle.m in Sources */,
@@ -6102,6 +6208,7 @@
 				18EBA40B1936DE6800BD9AFF /* Bee_HTTPConfig.m in Sources */,
 				CBD1757A18BCBFC8003D1862 /* ZipArchive.mm in Sources */,
 				18EBA4081936D4CA00BD9AFF /* UIPageControl+BeeUILayout.m in Sources */,
+				923E426F1E2CBEF300F50109 /* TZImagePickerController.m in Sources */,
 				CB81D26A18ABB3F000F277EA /* ExpressModel.m in Sources */,
 				CBD1755918BCBFC8003D1862 /* ASIAuthenticationDialog.m in Sources */,
 				CBD174DE18BCBFC8003D1862 /* BeeUIQuery+Dimensions.m in Sources */,
@@ -6129,6 +6236,7 @@
 				CBD1745018BCBFC8003D1862 /* BeeUIBoard+ModalStack.m in Sources */,
 				CB81D26918ABB3F000F277EA /* ConfigModel.m in Sources */,
 				CB9C238718BB3B0C00DDA501 /* B1_ProductListLargeCell_Phone.m in Sources */,
+				923E426D1E2CBEF300F50109 /* TZImageManager.m in Sources */,
 				CBD1745E18BCBFC8003D1862 /* Bee_UIStyleManager.m in Sources */,
 				CBD174B218BCBFC8003D1862 /* UIView+Wireframe.m in Sources */,
 				CBD1746018BCBFC8003D1862 /* BeeUIStyle+Builder.m in Sources */,
@@ -6170,6 +6278,7 @@
 				5F81666F1D87DFD700B7A3B7 /* E7_FollowBoard_iPhone.m in Sources */,
 				CBD1756B18BCBFC8003D1862 /* CXMLDocument.m in Sources */,
 				CBD174C118BCBFC8003D1862 /* BeeUISignal+SourceView.m in Sources */,
+				923E426C1E2CBEF300F50109 /* TZAssetModel.m in Sources */,
 				CBD1753D18BCBFC8003D1862 /* Bee_HTTP.mm in Sources */,
 				CB81D26518ABB3F000F277EA /* CartModel.m in Sources */,
 				CB9C238518BB3B0C00DDA501 /* B1_ProductListGridCell_iPhone.m in Sources */,
@@ -6221,6 +6330,7 @@
 				CBD174F518BCBFC8003D1862 /* Bee_UITemplate.m in Sources */,
 				CBD174F218BCBFC8003D1862 /* Bee_PagingViewModel.mm in Sources */,
 				CBD174AC18BCBFC8003D1862 /* UIView+Screenshot.m in Sources */,
+				923E42711E2CBEF300F50109 /* TZPhotoPreviewCell.m in Sources */,
 				E9F5DEF71954407600216A56 /* ServiceShare_Post.m in Sources */,
 				CBD174D418BCBFC8003D1862 /* UIImageView+LayoutParser.m in Sources */,
 				CB9C239918BB3B0C00DDA501 /* B2_ProductSpecifyCountCell_iPhone.m in Sources */,
@@ -6257,6 +6367,7 @@
 				CBD1753918BCBFC8003D1862 /* NSTimer+BeeExtension.mm in Sources */,
 				CBD1753F18BCBFC8003D1862 /* Bee_HTTPClient.m in Sources */,
 				CB9C237D18BB3B0C00DDA501 /* B0_IndexRecommendGoodsCell_iPhone.m in Sources */,
+				923E42721E2CBEF300F50109 /* TZPhotoPreviewController.m in Sources */,
 				CB9C240318BB3B0C00DDA501 /* E6_ShippingStatusBody_iPhone.m in Sources */,
 				E9F5DEFE1954407600216A56 /* ServiceShare_SinaWeibo_AuthorizeBoard.m in Sources */,
 				CBD1751B18BCBFC8003D1862 /* NSArray+BeeActiveRecord.m in Sources */,
@@ -6299,12 +6410,14 @@
 				CBD1746218BCBFC8003D1862 /* UIActivityIndicatorView+BeeUIStyle.m in Sources */,
 				CB9C23F518BB3B0C00DDA501 /* E3_PendingReceivedCellFooter_iPhone.m in Sources */,
 				CBD1744318BCBFC8003D1862 /* Bee_ViewPackage.mm in Sources */,
+				923E426A1E2CBEF300F50109 /* NSBundle+TZImagePicker.m in Sources */,
 				CBD1748118BCBFC8003D1862 /* UITextView+UIDataBinding.m in Sources */,
 				5F27CD571D8936E4002079E2 /* E7_SearchTeacherBoard_iPhone.m in Sources */,
 				CBD1744118BCBFC8003D1862 /* Bee_UIApplication.m in Sources */,
 				CB81D26018ABB3F000F277EA /* AddressListModel.m in Sources */,
 				CBD1751D18BCBFC8003D1862 /* NSObject+BeeActiveRecord.m in Sources */,
 				CBD174A518BCBFC8003D1862 /* UIView+Background.m in Sources */,
+				923E42731E2CBEF300F50109 /* TZVideoPlayerController.m in Sources */,
 				CBD1754318BCBFC8003D1862 /* NSObject+BeeHTTPRequest.m in Sources */,
 				CBD1751018BCBFC8003D1862 /* Bee_UserDefaults.mm in Sources */,
 				E9F5DEFD1954407600216A56 /* ServiceShare_SinaWeibo_API.m in Sources */,
@@ -6322,6 +6435,7 @@
 				CB9C242418BB3B0C00DDA501 /* G2_MessageCell_iPhone.m in Sources */,
 				CBD174B518BCBFC8003D1862 /* Bee_UIFootLoader.m in Sources */,
 				CB81D26618ABB3F000F277EA /* CategoryModel.m in Sources */,
+				923E42701E2CBEF300F50109 /* TZPhotoPickerController.m in Sources */,
 				CBD174FE18BCBFC8003D1862 /* Bee_UITemplateParserXMLImpl.m in Sources */,
 				CBD1751A18BCBFC8003D1862 /* BeeDatabase+BeeActiveRecord.m in Sources */,
 				CBD174AE18BCBFC8003D1862 /* UIView+Tag.m in Sources */,
@@ -6367,6 +6481,7 @@
 				CBD175B218BCBFC8003D1862 /* bee.services.location.m in Sources */,
 				CB9C23D918BB3B0C00DDA501 /* D1_CategoryBoard_iPhone.m in Sources */,
 				CBD1743118BCBFC8003D1862 /* Bee_Package.mm in Sources */,
+				923E42801E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.m in Sources */,
 				CB9C22A618BB3B0C00DDA501 /* FormOptionCell.m in Sources */,
 				CBD1746718BCBFC8003D1862 /* UIPageControl+BeeUIStyle.m in Sources */,
 				CBD174D818BCBFC8003D1862 /* UITextView+LayoutParser.m in Sources */,
@@ -6435,12 +6550,14 @@
 				CBD1755618BCBFC8003D1862 /* Bee_Resource.mm in Sources */,
 				CB55509A18B45695000EC760 /* NSObject+ScrollViewExt.m in Sources */,
 				D8135D311BCCF2EB00C9FDBE /* bee.services.uppayplugin.m in Sources */,
+				923E42821E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m in Sources */,
 				CBD1745718BCBFC8003D1862 /* UIViewController+LifeCycle.m in Sources */,
 				CB9C229F18BB3B0C00DDA501 /* CommonTagListCell.m in Sources */,
 				CBD174C418BCBFC8003D1862 /* Bee_UILayout.m in Sources */,
 				CB9C22A318BB3B0C00DDA501 /* FormData.m in Sources */,
 				CBD1752918BCBFC8003D1862 /* Bee_UnitTest.m in Sources */,
 				CBD1746318BCBFC8003D1862 /* UIButton+BeeUIStyle.m in Sources */,
+				923E426B1E2CBEF300F50109 /* TZAssetCell.m in Sources */,
 				CBD1749018BCBFC8003D1862 /* Bee_UIKeyboard.m in Sources */,
 				CBD1750118BCBFC8003D1862 /* UIButton+XMLParser.m in Sources */,
 				CB9C23F318BB3B0C00DDA501 /* E3_PendingReceivedCell_iPhone.m in Sources */,
@@ -6535,6 +6652,7 @@
 				CBD1748B18BCBFC8003D1862 /* Bee_UIButton.m in Sources */,
 				CB9C239D18BB3B0C00DDA501 /* B4_ProductParamBoard_iPhone.m in Sources */,
 				CB9C241A18BB3B0C00DDA501 /* G0_SettingBoard_iPhone.m in Sources */,
+				92402EAB1E2DAF0100FDA15E /* PhotoBrowserViewController.m in Sources */,
 				CBD1751F18BCBFC8003D1862 /* Bee_Assertion.mm in Sources */,
 				CB9C23A618BB3B0C00DDA501 /* BaseBoard_iPhone.m in Sources */,
 				CB9C240F18BB3B0C00DDA501 /* F1_NewAddressBoard_iPhone.m in Sources */,
@@ -6772,8 +6890,8 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7DCYJHLQC3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6808,12 +6926,15 @@
 					"$(PROJECT_DIR)/ECMobileManager/lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -6829,8 +6950,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7DCYJHLQC3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6865,12 +6986,15 @@
 					"$(PROJECT_DIR)/ECMobileManager/lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -6915,8 +7039,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7DCYJHLQC3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6951,12 +7075,15 @@
 					"$(PROJECT_DIR)/ECMobileManager/lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;

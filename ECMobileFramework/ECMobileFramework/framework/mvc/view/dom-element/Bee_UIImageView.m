@@ -340,7 +340,6 @@ DEF_SIGNAL( LOAD_CACHE )
 		_pattern = NO;
 		_strech = NO;
 		_strechInsets = UIEdgeInsetsZero;
-		
 		_inited = YES;
 
 //		[self load];
@@ -438,24 +437,28 @@ DEF_SIGNAL( LOAD_CACHE )
     }
     else
     {
-	if ( [cache hasCachedForURL:newURL] )
-	{
-//		[self changeImage:nil];
-//		[self performSelector:@selector(loadFromCache:) withObject:newURL afterDelay:0.25f];
-		[self loadFromCache:newURL];
-	}
-	else
-	{
-		[self changeImage:self.defaultImage];
-		[self performSelector:@selector(loadFromWeb:) withObject:newURL afterDelay:0.25f];
-	}
-}
+        if ( [cache hasCachedForURL:newURL] )
+        {
+            //		[self changeImage:nil];
+            //		[self performSelector:@selector(loadFromCache:) withObject:newURL afterDelay:0.25f];
+            [self loadFromCache:newURL];
+            
+            
+            
+            
+        }
+        else
+        {
+            [self changeImage:self.defaultImage];
+            [self performSelector:@selector(loadFromWeb:) withObject:newURL afterDelay:0.25f];
+        }
+    }
 }
 
 - (void)loadFromCache:(NSString *)newURL
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
-
+    
 	BeeImageCache * cache = [BeeImageCache sharedInstance];
 	if ( [cache hasCachedForURL:newURL] )
 	{
@@ -475,7 +478,11 @@ DEF_SIGNAL( LOAD_CACHE )
 			[self changeImage:self.defaultImage];
 			[self performSelector:@selector(loadFromFile:) withObject:newURL afterDelay:0.1f];
 		}
+        if (self.tag == 10000) {
+            _finishImage();
+        }
 	}
+    
 	else
 	{
 		[self changeImage:self.defaultImage];
@@ -507,6 +514,9 @@ DEF_SIGNAL( LOAD_CACHE )
 						[self sendUISignal:BeeUIImageView.LOAD_CACHE];
 					}
 				}
+                if (self.tag == 10000) {
+                    _finishImage();
+                }
 				return;
 			}
 		}
@@ -522,12 +532,17 @@ DEF_SIGNAL( LOAD_CACHE )
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
 
 	[self HTTP_GET:newURL].timeOutSeconds = 45.0f;
+    
 }
 
 - (void)setUrl:(NSString *)string
 {
 	[self GET:string useCache:YES];
 }
+
+
+
+
 
 - (void)setFile:(NSString *)path
 {
@@ -680,7 +695,9 @@ DEF_SIGNAL( LOAD_CACHE )
 			}
 
 			[super setImage:image];
-
+            if (self.tag == 10000) {
+                _finishImage();
+            }
 //			[self sendUISignal:BeeUIImageView.DID_CHANGED];
 		}
 				
@@ -832,6 +849,8 @@ DEF_SIGNAL( LOAD_CACHE )
 	}
 	else if ( request.succeed )
 	{
+        
+        
 	PERF_ENTER
 		
 		[_indicator stopAnimating];
@@ -955,6 +974,7 @@ DEF_SIGNAL( LOAD_CACHE )
 	}
 	else if ( [signal is:BeeUIImageView.LOAD_COMPLETED] )
 	{
+        
 		if ( _altLabel )
 		{
 			_altLabel.hidden = YES;
@@ -976,6 +996,8 @@ DEF_SIGNAL( LOAD_CACHE )
 	}
 	else if ( [signal is:BeeUIImageView.LOAD_CACHE] )
 	{
+        
+        
 		if ( _altLabel )
 		{
 			_altLabel.hidden = YES;

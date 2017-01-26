@@ -7,7 +7,8 @@
 //
 
 #import "I1_SendMomentsBoard_iPhone.h"
-
+#import "I1_SendMomentsBoardCell_iPhone.h"
+#import "PhotoBrowserViewController.h"
 @implementation I1_SendMomentsBoard_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
@@ -25,6 +26,14 @@ SUPPORT_RESOURCE_LOADING( YES )
     self.textViewSendContent = nil;
     self.textViewPlaceholder = nil;
     self.scrollView = nil;
+}
+-(NSMutableArray *)photoArray
+{
+    if (!_photoArray) {
+        _photoArray = [NSMutableArray array];
+        [_photoArray retain];
+    }
+    return _photoArray;
 }
 
 #pragma mark -
@@ -44,19 +53,128 @@ ON_CREATE_VIEWS( signal )
     self.textViewSendContent.scrollEnabled = YES;
     self.textViewSendContent.delegate = self;
 //    self.textViewSendContent.showsVerticalScrollIndicator = NO;
-    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-70);
+    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT-70) /3.0 );
+    
+    
     
     self.textViewPlaceholder.frame = CGRectMake(5, 0, SCREEN_WIDTH, 40);
     self.textViewPlaceholder.text = __TEXT(@"moments_send");
     self.textViewPlaceholder.textColor = [UIColor grayColor];
     self.textViewPlaceholder.font = [UIFont fontWithName:@"Arial" size:18];
     
+    UIImageView *seperatorLine = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fengexian"]];
+    seperatorLine.frame = CGRectMake(5, CGRectGetMaxY(self.textViewSendContent.frame), SCREEN_WIDTH - 10, 1);
+    seperatorLine.contentMode = UIViewContentModeScaleAspectFit;
+    seperatorLine.backgroundColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1];
+    seperatorLine.layer.cornerRadius = 0.5;
+    
     [self.view addSubview:self.scrollView];
+    
     [self.scrollView addSubview:self.textViewSendContent];
     [self.scrollView addSubview:self.textViewPlaceholder];
     
+    [self.scrollView addSubview:self.collectionView];
+    [self.scrollView addSubview:seperatorLine];
 //    UIPinchGestureRecognizer * recognizer = [[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)] autorelease];
 //    [self.textViewSendContent addGestureRecognizer:recognizer];
+}
+static NSString *photoId = @"PhotoCell";
+-(UICollectionView *)collectionView
+{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 50)/3.0, (SCREEN_WIDTH - 50)/3.0);
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.textViewSendContent.frame), SCREEN_WIDTH, layout.itemSize.height + 20) collectionViewLayout:layout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.contentInset = UIEdgeInsetsMake(10, 15, 10, 15);
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        [_collectionView registerClass:[I1_SendMomentsBoardCell_iPhone class] forCellWithReuseIdentifier:photoId];
+    }
+    return _collectionView;
+}
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.photoArray.count + 1 > 3? 3 : self.photoArray.count + 1;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    I1_SendMomentsBoardCell_iPhone *cell = [collectionView dequeueReusableCellWithReuseIdentifier:photoId forIndexPath:indexPath];
+    if (_photoArray.count != 0) {
+        if (_photoArray.count == 3) {
+            cell.photoImageView.image = self.photoArray[indexPath.row];
+        }
+        else {
+            cell.photoImageView.image = indexPath.row == self.photoArray.count ? [UIImage imageNamed:@"tianjiazhaopian"] : self.photoArray[indexPath.item];
+        }
+
+    }else {
+        cell.photoImageView.image = [UIImage imageNamed:@"tianjiazhaopian"];
+    }
+    
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.photoArray.count != 3 && indexPath.row == self.photoArray.count) {
+        UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *actionCamera = [UIAlertAction actionWithTitle:@"拍摄" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];//初始化
+            picker.delegate = self;
+            picker.allowsEditing = YES;//设置可编辑
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            //进入照相界面
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+        UIAlertAction *actionPhotoLibrary = [UIAlertAction actionWithTitle:@"从手机相册选取" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            TZImagePickerController *imagePickerController = [[TZImagePickerController alloc]initWithMaxImagesCount:3 - _photoArray.count delegate:self];
+            imagePickerController.allowTakePicture = NO;
+            [self presentViewController:imagePickerController animated:YES completion:nil];
+            [imagePickerController setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isOriginal) {
+                [self.photoArray addObjectsFromArray:photos];
+                [self.collectionView reloadData];
+            }];
+            
+        }];
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [sheet addAction:actionCamera];
+        [sheet addAction:actionPhotoLibrary];
+        [sheet addAction:actionCancel];
+        [self presentViewController:sheet animated:YES completion:nil];
+        
+    }
+    else {
+        PhotoBrowserViewController *photoBrowser = [[PhotoBrowserViewController alloc]init];
+        [photoBrowser retain];
+        photoBrowser.index = indexPath.row;
+        photoBrowser.imageArray = _photoArray;
+        [photoBrowser.imageArray retain];
+        [photoBrowser setDeletePhoto:^(NSInteger index){
+            [self.photoArray removeObjectAtIndex:index];
+            [self.collectionView reloadData];
+        }];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:photoBrowser] animated:NO completion:nil];
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self.photoArray addObject:image];
+    
+    [self.collectionView reloadData];
+    [picker release];
 }
 
 ON_DELETE_VIEWS( signal )
@@ -107,7 +225,19 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
     NSString * curTime = [NSString stringWithFormat:@"%llu", time];
 
     NSString * content = [[NSString stringWithString:self.textViewSendContent.text] trim];
+    NSMutableArray *imageArray = [NSMutableArray array];
     
+    for (int i = 0; i < _photoArray.count; i ++) {
+        UIImage *image = _photoArray[i];
+        NSData * imageData = UIImageJPEGRepresentation(image, 0.1);
+        if (imageData != nil)
+        {
+            // 将图片Base 64编码
+            NSString * imageStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+            [imageStr retain];
+            [imageArray addObject:imageStr];
+        }
+    }
     if (content.length == 0)
     {
         [self presentFailureTips:__TEXT(@"moments_null")];
@@ -117,7 +247,9 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
         self.CANCEL_MSG( API.teacher_publish );
         self.MSG( API.teacher_publish )
         .INPUT( @"time", curTime)
-        .INPUT( @"content", content);
+        .INPUT( @"content", content)
+        .INPUT( @"publish_images", imageArray);
+
     }
 }
 

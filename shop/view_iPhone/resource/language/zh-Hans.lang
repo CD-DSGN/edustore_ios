@@ -396,6 +396,7 @@
 <string name="moments_error">网络错误，请重新发送</string>
 <string name="moments_null">汇师圈内容不能为空</string>
 <string name="moments_loading">加载汇师圈中</string>
+<string name="moments_delete">汇师圈删除中</string>
 <string name="pay_point">消费积分</string>
 <string name="hui_point">汇积分</string>
 <string name="invite_code">推荐码</string>

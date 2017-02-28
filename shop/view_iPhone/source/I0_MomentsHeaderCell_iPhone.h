@@ -10,4 +10,11 @@
 
 @interface I0_MomentsHeaderCell_iPhone : BeeUICell
 
+
+@property (nonatomic,strong) UIButton *deleteButton;
+
+@property (nonatomic,strong) NSString *publish_time;
+
+@property (nonatomic,strong) NSString *publish_uid;
+
 @end

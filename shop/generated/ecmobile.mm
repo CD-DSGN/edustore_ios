@@ -3105,6 +3105,53 @@ DEF_MESSAGE_( moments_list, msg )
     }
 }
 
+
+DEF_MESSAGE_(moments_delete,msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSString * publish_time = msg.GET_INPUT( @"publish_time" );
+        NSString * publish_uid = msg.GET_INPUT(@"publish_uid");
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"publish_time", publish_time );
+        requestBody.APPEND(@"publish_uid", publish_uid);
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/interaction/delete_one_comment", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        
+        msg.OUTPUT( @"status", status );
+        
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
 DEF_MESSAGE_( teacher_publish, msg )
 {
     if ( msg.sending )

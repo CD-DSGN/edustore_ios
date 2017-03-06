@@ -137,6 +137,8 @@
 		6324A4231754FC7700372FD7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A4151754FC7700372FD7 /* SystemConfiguration.framework */; };
 		6324A4241754FC7700372FD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A4161754FC7700372FD7 /* UIKit.framework */; };
 		6324A91E1755AA8300372FD7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A91D1755AA8300372FD7 /* AudioToolbox.framework */; };
+		920A82181E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 920A82171E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m */; };
+		920A821B1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 920A821A1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml */; };
 		923E426A1E2CBEF300F50109 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */; };
 		923E426B1E2CBEF300F50109 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42581E2CBEF300F50109 /* TZAssetCell.m */; };
 		923E426C1E2CBEF300F50109 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E425A1E2CBEF300F50109 /* TZAssetModel.m */; };
@@ -1186,6 +1188,9 @@
 		6324A4151754FC7700372FD7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6324A4161754FC7700372FD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6324A91D1755AA8300372FD7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		920A82161E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E4_GoodsReturnBoard_iPhone.h; sourceTree = "<group>"; };
+		920A82171E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E4_GoodsReturnBoard_iPhone.m; sourceTree = "<group>"; };
+		920A821A1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E4_GoodsReturnBoard_iPhone.xml; sourceTree = "<group>"; };
 		923E42551E2CBEF300F50109 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
 		923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		923E42571E2CBEF300F50109 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
@@ -3718,6 +3723,9 @@
 				CB9C224518BB3B0B00DDA501 /* E4_HistoryBoard_iPhone.h */,
 				CB9C224618BB3B0B00DDA501 /* E4_HistoryBoard_iPhone.m */,
 				CB9C224718BB3B0B00DDA501 /* E4_HistoryBoard_iPhone.xml */,
+				920A82161E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.h */,
+				920A82171E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m */,
+				920A821A1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml */,
 				CB9C224818BB3B0B00DDA501 /* E4_HistoryCell_iPhone.h */,
 				CB9C224918BB3B0B00DDA501 /* E4_HistoryCell_iPhone.m */,
 				CB9C224A18BB3B0B00DDA501 /* E4_HistoryCell_iPhone.xml */,
@@ -5862,6 +5870,7 @@
 				CB9C242518BB3B0C00DDA501 /* G2_MessageCell_iPhone.xml in Resources */,
 				CB9C234218BB3B0C00DDA501 /* shopping_checkout_required_bg@2x.png in Resources */,
 				CB9C240018BB3B0C00DDA501 /* E5_CollectionCell_iPhone.xml in Resources */,
+				920A821B1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml in Resources */,
 				CB9C230718BB3B0C00DDA501 /* item_info_new_collection_star_icon@2x.png in Resources */,
 				CB9C239B18BB3B0C00DDA501 /* B3_ProductPhotoBoard_iPhone.xml in Resources */,
 				CB9C22EB18BB3B0C00DDA501 /* item_grid_body_free_shipping_btn@2x.png in Resources */,
@@ -6321,6 +6330,7 @@
 				CBD174A218BCBFC8003D1862 /* Bee_UIVideoEditorController.m in Sources */,
 				5F12937F1D66AE4B008E21ED /* A1_TeacherSignupBoard2_iPhone.m in Sources */,
 				CBD175E918BCBFC8003D1862 /* bee.services.wizard.m in Sources */,
+				920A82181E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m in Sources */,
 				CB9C241118BB3B0C00DDA501 /* F1_NewAddressCell_iPhone.m in Sources */,
 				E9F5DEFC1954407600216A56 /* ServiceShare_SinaWeibo.m in Sources */,
 				E9F5DEF41954407600216A56 /* ServiceShare_ActivityWindow.m in Sources */,

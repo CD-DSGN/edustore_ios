@@ -122,7 +122,6 @@ SUPPORT_RESOURCE_LOADING( YES )
 //        }
         if (photo_array.count == 1) {
             imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (IMAGEHEIGHT + BLANKHEIGHT)*2);
-            
         }
         [self addSubview:imageView];
 

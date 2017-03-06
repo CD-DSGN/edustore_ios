@@ -682,6 +682,9 @@ AS_MESSAGE( getSign );
 // POST moments_list  获取汇师圈的教师动态
 AS_MESSAGE( moments_list );
 
+//POST moments_delete 删除自己发的汇师圈动态
+AS_MESSAGE (moments_delete);
+
 // POST teacher_publish  教师发送汇师圈动态
 AS_MESSAGE( teacher_publish );
 

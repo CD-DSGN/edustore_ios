@@ -54,7 +54,9 @@ ON_CREATE_VIEWS( signal )
     self.textViewSendContent.delegate = self;
 //    self.textViewSendContent.showsVerticalScrollIndicator = NO;
     self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT-70) /3.0 );
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewEditChanged:)
+                                                name:@"UITextViewTextDidChangeNotification"
+                                              object:self.textViewSendContent];
     
     
     self.textViewPlaceholder.frame = CGRectMake(5, 0, SCREEN_WIDTH, 40);
@@ -320,15 +322,46 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
 }
     
 // 用户选中时对frame进行调整
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*0.5f); // 减去键盘高度
-    // [self performSelector:@selector(adjustTextView:) withObject:textView afterDelay:0.5f];
-}
+//- (void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*0.5f); // 减去键盘高度
+//    // [self performSelector:@selector(adjustTextView:) withObject:textView afterDelay:0.5f];
+//}
+
+//- (void)textViewDidEndEditing:(UITextView *)textView
+//{
+//    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-70);
+//}
+
+/**
+ 限制文本输入框字数
+ */
+-(void)textViewEditChanged:(NSNotification *)obj{
+    UITextView *textView = (UITextView *)obj.object;
     
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    self.textViewSendContent.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-70);
+    NSString *toBeString = textView.text;
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage]; // 键盘输入模式
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textView markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if (toBeString.length > 500) {
+                textView.text = [toBeString substringToIndex:500];
+            }
+        }
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
+        else{
+            
+        }
+    }
+    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+    else{
+        if (toBeString.length > 500) {
+            textView.text = [toBeString substringToIndex:500];
+        }
+    }
 }
 
 #pragma mark - 教师发送汇师圈消息

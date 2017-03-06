@@ -132,7 +132,7 @@ ON_SIGNAL3( E1_PendingPaymentCellFooter_iPhone, cancel, signal )
 /**
  * 个人中心-待付款订单-订单列表-付款，点击事件触发时执行的操作
  */
-ON_SIGNAL3( E1_PendingPaymentCellFooter_iPhone, pay, signal )
+ON_SIGNAL3( E1_PendingPaymentCellFooter_iPhone, return, signal )
 {
 	if ( [signal is:BeeUIButton.TOUCH_UP_INSIDE] )
 	{

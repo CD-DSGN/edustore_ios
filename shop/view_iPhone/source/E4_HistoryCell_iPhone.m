@@ -25,6 +25,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_SIGNAL( ORDER_EXPRESS )
 
+
 DEF_OUTLET( BeeUIScrollView, list )
 
 + (CGSize)estimateUISizeByWidth:(CGFloat)width forData:(id)data
@@ -37,7 +38,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 
 + (CGFloat)heightByCount:(NSInteger)count
 {
-    return ( 210 + 90 * count );  // 210 = 50 + 90 +70
+    return ( 210 + 120 * count );  // 210 = 50 + 90 +70
 }
 
 - (void)layoutDidFinish
@@ -85,7 +86,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         {
             BeeUIScrollItem * item = [self.list.items safeObjectAtIndex:( i + offset  )];
             item.clazz = [OrderCellBody_iPhone class];
-            item.size = CGSizeMake( self.list.width , 90 );
+            item.size = CGSizeMake( self.list.width , 120 );
             item.data = [self.order.goods_list safeObjectAtIndex:i];
             item.rule = BeeUIScrollLayoutRule_Tile;
         }
@@ -122,5 +123,7 @@ ON_SIGNAL3( E4_HistoryCellFooter_iPhone, shipping, signal )
         [self sendUISignal:self.ORDER_EXPRESS];
     }
 }
+
+
 
 @end

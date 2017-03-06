@@ -36,6 +36,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_OUTLET( BeeUIScrollView, list )
 
+DEF_SIGNAL( ORDER_RETURN)
 DEF_MODEL( OrderModel, orderModel )
 
 - (void)load
@@ -175,6 +176,17 @@ ON_SIGNAL2( E4_HistoryCell_iPhone, signal )
 		board.expressModel.order = cell.order;
 		[self.stack pushBoard:board animated:YES];
 	}
+}
+/**
+ * 个人中心-历史订单-订单列表-申请退货，点击事件触发时执行的操作
+ */
+ON_SIGNAL3( OrderCellBody_iPhone, order_goods_return, signal )
+{
+    E4_HistoryCell_iPhone * cell = (E4_HistoryCell_iPhone *)signal.source;
+    NSLog(@"%@", cell.order);
+    E6_ShippingStatusBoard_iPhone * board = [E6_ShippingStatusBoard_iPhone board];
+    board.expressModel.order = cell.order;
+    [self.stack pushBoard:board animated:YES];
 }
 
 #pragma mark -

@@ -36,6 +36,8 @@
 <string name="balance_rental">总额：</string>
 <string name="balance_submit">提交订单</string>
 <string name="balance_cancel">取消订单</string>
+<string name="balance_goodsreturn">申请退货</string>
+<string name="balance_choosereturnreason">请选择退货原因</string>
 <string name="bill_save">保存</string>
 <string name="bill_office">办公用品</string>
 <string name="bill_food">食品</string>

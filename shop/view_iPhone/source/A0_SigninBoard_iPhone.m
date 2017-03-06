@@ -118,7 +118,7 @@ ON_SIGNAL3( A0_SigninBoard_iPhone, teacherSignup, signal)
 	NSString * userName = $(@"username").text.trim;
 	NSString * password = $(@"password").text.trim;
 	
-	if ( 0 == userName.length || NO == [userName isChineseUserName] )
+	if ( 0 == userName.length)
 	{
 		[self presentMessageTips:__TEXT(@"wrong_username")];
 		return;

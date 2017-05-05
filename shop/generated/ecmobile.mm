@@ -3344,6 +3344,83 @@ DEF_MESSAGE_( writePayId, msg )
     }
 }
 
+DEF_MESSAGE_( returnGoods, msg )
+{
+    if ( msg.sending )
+    {
+        NSString * rec_id = msg.GET_INPUT( @"rec_id" );
+        NSString * refund_desc = msg.GET_INPUT( @"refund_desc" );
+        NSString * refund_reason = msg.GET_INPUT( @"refund_reason" );
+        SESSION * session = msg.GET_INPUT( @"session" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"rec_id", rec_id );
+        requestBody.APPEND( @"refund_reason", refund_reason );
+        requestBody.APPEND( @"refund_desc", refund_desc );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/order/goods_return", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        msg.OUTPUT(@"status", status);
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
+DEF_MESSAGE_( returnReason, msg )
+{
+    if ( msg.sending )
+    {
+        NSString * requestURI = [NSString stringWithFormat:@"%@/order/return_reason", [ServerConfig sharedInstance].url];
+        
+        msg.HTTP_POST( requestURI );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        NSArray * data = [[NSArray alloc] initWithArray:[response objectAtPath:@"data"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        msg.OUTPUT(@"status", status);
+        msg.OUTPUT(@"reasonArray", data);
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
 @end
 
 

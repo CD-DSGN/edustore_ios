@@ -298,6 +298,8 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString *		name;
 @property (nonatomic, retain) NSString *		subtotal;
 @property (nonatomic, retain) NSNumber *		goods_id;
+@property (nonatomic, retain) NSNumber *        rec_id;
+@property (nonatomic, retain) NSNumber *        refund_status;
 @end
 
 @interface PAGINATED : NSObject
@@ -696,6 +698,12 @@ AS_MESSAGE( search_payment );
 
 // POST 支付成功后改写更新支付方式
 AS_MESSAGE( writePayId );
+
+// POST 退货请求
+AS_MESSAGE( returnGoods );
+
+// POST 退货原因列表
+AS_MESSAGE( returnReason );
 
 @end
 

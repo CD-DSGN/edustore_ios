@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui namespace="E4_GoodsReturnCell_iPhone">
+    <row id="goods_info">
+        <image id="goods_img" />
+        <label id="goods_name">微信支付测试商品</label>
+        <label id="goods_price">￥0.01元</label>
+        <label id="goods_count">5</label>
+    </row>
+    
+    <row class="reason">
+        <button class="select_reason" id="select_reason">请选择原因</button>
+        <image id="down_arrow" />
+    </row>
+    
+<!--    <row id="description">-->
+<!--        <textarea id="write_description" ></textarea>-->
+<!--        <label id="write_description_placeholder">请填入退款说明</label>-->
+<!--    </row>-->
+
+    <row class="submit">
+        <button id="return_goods">提交申请</button>
+    </row>
+    
+    
+    <style>
+        #goods_info {
+            position: relative;
+            width: 94%;
+            left: 3%;
+            height: 100;
+        }
+        
+        .reason {
+            position: relative;
+            width: 94%;
+            left: 3%;
+            height: 50;
+            top: 5;
+        }
+        
+        #description {
+            position: relative;
+            width: 94%;
+            left: 3%;
+            height: 150px;
+            top: 5;
+        }
+        
+        .submit {
+            position: relative;
+            width: 94%;
+            left: 3%;
+            height: 50px;
+            top: 170px;
+        }
+        
+        #goods_img {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            top: 20px;
+            background-color: red;
+            image-mode: fit;
+        }
+        
+        #goods_name {
+            position: relative;
+            width: 50%;
+            heigth: 14px;
+            font-size: 14;
+            left: 5px;
+            top: -18px;
+        }
+        
+        #goods_price {
+            position: relative;
+            width: 25%;
+            heigth: 14px;
+            font-size: 14;
+            left: 5px;
+            top: -18px;
+            text-align: right;
+        }
+        
+        #goods_count {
+            position: relative;
+            width: 10%;
+            height: 20px;
+            top: 65px;
+            left: -42;
+            text-color: gray;
+            font-size: 12px;
+            text-align: right;
+        }
+        
+        #select_reason {
+            position: relative;
+            width: 98%;
+            height: 100%;
+            color: black;
+            background-image: url(button_narrow_gray.png);
+        }
+        
+        #down_arrow {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url(arrow_down.png);
+            right: 8%;
+            top: 26%;
+            image-mode: fit;
+        }
+        
+        #write_description {
+            position: relative;
+            width: 98%;
+            height: 100%;
+            background-color: #fff;
+        }
+        
+        #write_description_placeholder {
+            position: absolute;
+            width: 200px;
+            height: 20;
+            top: 10;
+            left: 15;
+        }
+        
+        #return_goods {
+            position: relative;
+            width: 98%;
+            height: 100%;
+            color: white;
+            background-image: url(button_narrow_red.png);
+        }
+    </style>
+    
+</ui>

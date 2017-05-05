@@ -15,6 +15,7 @@
 #import "E4_HistoryBoard_iPhone.h"
 #import "E4_HistoryCellFooter_iPhone.h"
 #import "E4_HistoryCell_iPhone.h"
+#import "E4_GoodsReturnBoard_iPhone.h"
 
 #import "E6_ShippingStatusBoard_iPhone.h"
 
@@ -182,11 +183,28 @@ ON_SIGNAL2( E4_HistoryCell_iPhone, signal )
  */
 ON_SIGNAL3( OrderCellBody_iPhone, order_goods_return, signal )
 {
-    E4_HistoryCell_iPhone * cell = (E4_HistoryCell_iPhone *)signal.source;
-    NSLog(@"%@", cell.order);
-    E6_ShippingStatusBoard_iPhone * board = [E6_ShippingStatusBoard_iPhone board];
-    board.expressModel.order = cell.order;
-    [self.stack pushBoard:board animated:YES];
+    BeeUIButton * button = signal.source;
+    if ([button.title isEqualToString:@"退款处理中"])
+    {
+        [self presentFailureTips:@"退款处理中"];
+    }
+    if ([button.title isEqualToString:@"退款失败"])
+    {
+        [self presentFailureTips:@"退款失败"];
+    }
+    if ([button.title isEqualToString:@"退款成功"])
+    {
+        [self presentFailureTips:@"退款成功"];
+    }
+    if ([button.title isEqualToString:@"申请退款"])
+    {
+        OrderCellBody_iPhone * orderCellBody = (OrderCellBody_iPhone *)button.superview;
+        
+        E4_GoodsReturnBoard_iPhone * board = [E4_GoodsReturnBoard_iPhone board];
+        board.goods = orderCellBody.goods;
+        
+        [self.stack pushBoard:board animated:YES];
+    }
 }
 
 #pragma mark -

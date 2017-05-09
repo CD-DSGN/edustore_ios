@@ -157,6 +157,10 @@
 		923E42811E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 923E427D1E2CC86C00F50109 /* I1_SendMomentsBoard_iPhone.xml */; };
 		923E42821E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E427F1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m */; };
 		92402EAB1E2DAF0100FDA15E /* PhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92402EAA1E2DAF0100FDA15E /* PhotoBrowserViewController.m */; };
+		927EC4741EBAD11A000B2752 /* K0_NewsBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 927EC4731EBAD11A000B2752 /* K0_NewsBoard_iPhone.m */; };
+		927EC4761EBAD189000B2752 /* K0_NewsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 927EC4751EBAD189000B2752 /* K0_NewsBoard_iPhone.xml */; };
+		927EC4791EBAFBB7000B2752 /* K0_NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */; };
+		927EC47B1EBAFC17000B2752 /* K0_NewsCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */; };
 		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
 		CB013ED018C0500700D381A0 /* CommonNoResultCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */; };
@@ -1222,6 +1226,12 @@
 		923E427F1E2CC86C00F50109 /* I1_SendMomentsBoardCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I1_SendMomentsBoardCell_iPhone.m; sourceTree = "<group>"; };
 		92402EA91E2DAF0100FDA15E /* PhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserViewController.h; sourceTree = "<group>"; };
 		92402EAA1E2DAF0100FDA15E /* PhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserViewController.m; sourceTree = "<group>"; };
+		927EC4721EBAD11A000B2752 /* K0_NewsBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsBoard_iPhone.h; sourceTree = "<group>"; };
+		927EC4731EBAD11A000B2752 /* K0_NewsBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K0_NewsBoard_iPhone.m; sourceTree = "<group>"; };
+		927EC4751EBAD189000B2752 /* K0_NewsBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = K0_NewsBoard_iPhone.xml; sourceTree = "<group>"; };
+		927EC4771EBAFBB7000B2752 /* K0_NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsCell.h; sourceTree = "<group>"; };
+		927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K0_NewsCell.m; sourceTree = "<group>"; };
+		927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = K0_NewsCell.xml; sourceTree = "<group>"; };
 		928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePhotoBrowerViewController.h; sourceTree = "<group>"; };
 		928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePhotoBrowerViewController.m; sourceTree = "<group>"; };
 		92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_img_bg@2x.png"; sourceTree = "<group>"; };
@@ -3849,6 +3859,12 @@
 				5F09F8CF1E1F2FA70010A5C3 /* J0_CheckOutCounterCell_iPhone.h */,
 				5F09F8D01E1F2FA70010A5C3 /* J0_CheckOutCounterCell_iPhone.m */,
 				5F09F8CD1E1F2F920010A5C3 /* J0_CheckOutCounterCell_iPhone.xml */,
+				927EC4721EBAD11A000B2752 /* K0_NewsBoard_iPhone.h */,
+				927EC4731EBAD11A000B2752 /* K0_NewsBoard_iPhone.m */,
+				927EC4751EBAD189000B2752 /* K0_NewsBoard_iPhone.xml */,
+				927EC4771EBAFBB7000B2752 /* K0_NewsCell.h */,
+				927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */,
+				927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */,
 				5F5C4F241D78340B008BDD84 /* region.plist */,
 			);
 			path = source;
@@ -5902,6 +5918,7 @@
 				CB9C231E18BB3B0C00DDA501 /* profile_refresh_up_arrow_icon@2x.png in Resources */,
 				CB9C22D418BB3B0C00DDA501 /* expired_568h@2x.jpg in Resources */,
 				CB9C22C318BB3B0C00DDA501 /* browser_baritem_stop@2x.png in Resources */,
+				927EC4761EBAD189000B2752 /* K0_NewsBoard_iPhone.xml in Resources */,
 				CB9C229418BB3B0C00DDA501 /* AppClosed_iPhone.xml in Resources */,
 				5F09F8CE1E1F2F920010A5C3 /* J0_CheckOutCounterCell_iPhone.xml in Resources */,
 				CB9C23F218BB3B0C00DDA501 /* E3_PendingReceivedBoard_iPhone.xml in Resources */,
@@ -5932,6 +5949,7 @@
 				5F8166661D87CE0D00B7A3B7 /* D0_SearchBoard_iPhone.xml in Resources */,
 				CB9C238E18BB3B0C00DDA501 /* B2_ProductDetailCell_iPhone.xml in Resources */,
 				CB9C242318BB3B0C00DDA501 /* G2_MessageBoard_iPhone.xml in Resources */,
+				927EC47B1EBAFC17000B2752 /* K0_NewsCell.xml in Resources */,
 				CB9C231F18BB3B0C00DDA501 /* profile_vip_icon@2x.png in Resources */,
 				CB9C22E818BB3B0C00DDA501 /* item_graph_cont_box_bg@2x.png in Resources */,
 				CB9C241B18BB3B0C00DDA501 /* G0_SettingBoard_iPhone.xml in Resources */,
@@ -6347,6 +6365,7 @@
 				CBD1747B18BCBFC8003D1862 /* Bee_UIDataBinding.m in Sources */,
 				CBD1743B18BCBFC8003D1862 /* BeeMessage+BeeActiveRecord.mm in Sources */,
 				CB9C22A218BB3B0C00DDA501 /* FormCell.m in Sources */,
+				927EC4791EBAFBB7000B2752 /* K0_NewsCell.m in Sources */,
 				CB9C237B18BB3B0C00DDA501 /* B0_IndexRecommendCell_iPhone.m in Sources */,
 				CBD175B818BCBFC8003D1862 /* ServicePush_Notification.m in Sources */,
 				D8135D1D1BCCE3BB00C9FDBE /* RSADataSigner.m in Sources */,
@@ -6401,6 +6420,7 @@
 				D8135D181BCCE3BB00C9FDBE /* DataSigner.m in Sources */,
 				CB9C22AA18BB3B0C00DDA501 /* FormPlainInputCell.m in Sources */,
 				CBD1752F18BCBFC8003D1862 /* NSNumber+BeeExtension.mm in Sources */,
+				927EC4741EBAD11A000B2752 /* K0_NewsBoard_iPhone.m in Sources */,
 				CBD1744F18BCBFC8003D1862 /* BeeUIBoard+ModalBoard.m in Sources */,
 				CB81D26118ABB3F000F277EA /* ArticleGroupModel.m in Sources */,
 				CB9C23F118BB3B0C00DDA501 /* E3_PendingReceivedBoard_iPhone.m in Sources */,

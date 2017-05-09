@@ -37,7 +37,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 	$(@"#badge-bg").HIDE();
 	$(@"#badge").HIDE();
 
-	[self selectHome];
+	[self selectNews];
 }
 
 - (void)unload
@@ -54,10 +54,21 @@ SUPPORT_RESOURCE_LOADING( YES )
 	$(@"#user-bg").HIDE();
 	$(@"#search-bg").HIDE();
 
+    $(@"#news-button").UNSELECT();
 	$(@"#home-button").UNSELECT();
 	$(@"#cart-button").UNSELECT();
 	$(@"#user-button").UNSELECT();
 	$(@"#moments-button").UNSELECT();
+}
+
+-(void)selectNews
+{
+    [self deselectAll];
+    
+    $(@"#home-bg").SHOW();
+    $(@"#news-button").SELECT();
+    
+    self.RELAYOUT();
 }
 
 - (void)selectHome

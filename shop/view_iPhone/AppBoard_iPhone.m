@@ -30,7 +30,7 @@
 #import "C1_CheckOutBoard_iPhone.h"
 #import "H0_BrowserBoard_iPhone.h"
 #import "I0_MomentsBorad_iPhone.h"
-
+#import "K0_NewsBoard_iPhone.h"
 #import "UIViewController+ErrorTips.h"
 
 #import "bee.services.alipay.h"
@@ -59,6 +59,7 @@ DEF_UI( AppBoard_iPhone, appBoard )
 
 DEF_SINGLETON( AppBoard_iPhone )
 
+DEF_SIGNAL( TAB_NEWS );
 DEF_SIGNAL( TAB_HOME )
 DEF_SIGNAL( TAB_SEARCH )
 DEF_SIGNAL( TAB_CART )
@@ -142,7 +143,7 @@ ON_SIGNAL2( BeeUIBoard, signal )
 	if ( [signal is:BeeUIBoard.CREATE_VIEWS] )
 	{
         self.view.backgroundColor = [UIColor whiteColor];
-        
+        bee.ui.router[self.TAB_NEWS]  = [K0_NewsBoard_iPhone class];
 		bee.ui.router[self.TAB_HOME]	= [B0_IndexBoard_iPhone class];
 //		bee.ui.router[self.TAB_SEARCH]	= [D0_SearchBoard_iPhone class];
 		bee.ui.router[self.TAB_CART]	= [C0_ShoppingCartBoard_iPhone class];
@@ -153,7 +154,7 @@ ON_SIGNAL2( BeeUIBoard, signal )
 		[self.view addSubview:bee.ui.tabbar];
 		[self.view addSubview:bee.ui.closed];
 
-		[bee.ui.router open:self.TAB_HOME animated:YES];
+		[bee.ui.router open:self.TAB_NEWS animated:YES];
 
 		[self observeNotification:BeeUIRouter.STACK_DID_CHANGED];
 		[self observeNotification:UserModel.LOGIN];
@@ -333,6 +334,12 @@ ON_SIGNAL3( AppBoard_iPhone, NOTIFY_FORWARD, signal )
 }
 
 #pragma mark -
+
+ON_SIGNAL3(AppTabbar_iPhone, news, signal)
+{
+    [bee.ui.tabbar selectNews];
+    [bee.ui.router open:AppBoard_iPhone.TAB_NEWS  animated:NO];
+}
 
 ON_SIGNAL3( AppTabbar_iPhone, home, signal )
 {

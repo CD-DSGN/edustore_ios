@@ -23,7 +23,7 @@ AS_UI( AppTabbar_iPhone, tabbar )
 @interface AppTabbar_iPhone : BeeUICell
 
 AS_SINGLETON( AppTabbar_iPhone )
-
+- (void)selectNews;
 - (void)selectHome;
 //- (void)selectSearch;
 - (void)selectCart;

@@ -54,7 +54,6 @@ DEF_MODEL( BannerModel,		bannerModel );
 DEF_MODEL( CategoryModel,	categoryModel );
 DEF_MODEL( UserModel, userModel);
 
-DEF_OUTLET( BeeUIScrollView, list )
 DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
 
 #pragma mark -

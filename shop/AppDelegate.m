@@ -58,6 +58,7 @@
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
      [ServerConfig sharedInstance].url = @"http://60.205.92.85/ecmobile-ios/?url=";
+    [ServerConfig sharedInstance].url2 = @"http://192.168.1.115/huishiwang/api/web";
 //    [ServerConfig sharedInstance].url = @"http://192.168.1.165/ecmobile-ios/?url=";
 //    [ServerConfig sharedInstance].url = @"http://4s5vi8.natappfree.cc/edustore/ecmobile-ios/?url=";
     
@@ -106,6 +107,58 @@
 	
 	[MobClick appLaunched];
     
+    self.CANCEL_MSG( API.updateVersion );
+    self.MSG( API.updateVersion )
+    .INPUT( @"version", @"1.0.0" );
+    
+    self.CANCEL_MSG( API.getNews );
+    self.MSG( API.getNews )
+    .INPUT( @"cpage", @1 )
+    .INPUT( @"pagesize", @10 );
+}
+
+ON_MESSAGE3( API, updateVersion, msg )
+{
+    if (msg.sending) {
+        
+        
+    } else if (msg.succeed) {
+        
+        NSNumber * code = msg.GET_OUTPUT(@"code");
+        UPDATE_VERSION_INFO * data = msg.GET_OUTPUT(@"data");
+        NSString * message = msg.GET_OUTPUT(@"message");
+        
+        NSLog(@"%@", data);
+    } else if (msg.failed) {
+        
+        
+    } else if (msg.cancelled) {
+        
+        
+    }
+}
+
+ON_MESSAGE3( API, getNews, msg )
+{
+    if (msg.sending) {
+        
+        
+    } else if (msg.succeed) {
+        
+        NSNumber * code = msg.GET_OUTPUT(@"code");
+        NSString * message = msg.GET_OUTPUT(@"message");
+        NSNumber * total_page = msg.GET_OUTPUT(@"total_page");
+        NSArray * data = msg.GET_OUTPUT(@"data");
+        
+        NEWS_DETAIL * newSingle = data[0];
+        NSLog(@"%@",newSingle);
+    } else if (msg.failed) {
+        
+        
+    } else if (msg.cancelled) {
+        
+        
+    }
 }
 
 - (void)unload

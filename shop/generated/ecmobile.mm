@@ -521,6 +521,34 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation UPDATE_VERSION_INFO
+
+@synthesize down_link = _down_link;
+@synthesize is_required = _is_required;
+@synthesize is_update = _is_update;
+@synthesize latest_version = _latest_version;
+@synthesize update_node = _update_node;
+
+@end
+
+@implementation NEWS_BANNER
+
+@synthesize banner_id = _banner_id;
+@synthesize banner_url = _banner_url;
+
+@end
+
+@implementation NEWS_DETAIL
+
+@synthesize created_at = _created_at;
+@synthesize sketch = _sketch;
+@synthesize title = _title;
+@synthesize updated_at = _updated_at;
+@synthesize url = _url;
+@synthesize banner = _banner;
+
+@end
+
 @implementation TIMER
 
 - (void)validCountDownTime:(NSInteger)time
@@ -3418,6 +3446,76 @@ DEF_MESSAGE_( returnReason, msg )
     }
     else if ( msg.cancelled )
     {
+    }
+}
+
+DEF_MESSAGE_( updateVersion, msg )
+{
+    if (msg.sending) {
+        
+        NSString * version = msg.GET_INPUT(@"version");
+        NSNumber * client_type = [NSNumber numberWithInteger:1];
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"version", version );
+        requestBody.APPEND( @"client_type", client_type );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/version/updateversion",[ServerConfig sharedInstance].url2];
+                                 
+        msg.HTTP_POST( requestURI ).PARAM( requestBody );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        
+        NSNumber * code = responseDict[@"code"];
+        UPDATE_VERSION_INFO * data = [UPDATE_VERSION_INFO objectFromDictionary:responseDict[@"data"]];
+        NSString * message = responseDict[@"message"];
+        
+        msg.OUTPUT(@"code", code);
+        msg.OUTPUT(@"data", data);
+        msg.OUTPUT(@"message", message);
+    } else if (msg.failed) {
+        
+        
+    } else if (msg.cancelled) {
+        
+        
+    }
+}
+
+DEF_MESSAGE_( getNews, msg )
+{
+    if (msg.sending) {
+        
+        NSNumber * cpage = msg.GET_INPUT(@"cpage");
+        NSNumber * pagesize = msg.GET_INPUT(@"pagesize");
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"cpage", cpage );
+        requestBody.APPEND( @"pagesize", pagesize );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/getnews/detail", [ServerConfig sharedInstance].url2];
+        
+        msg.HTTP_POST( requestURI ).PARAM( requestBody );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        
+        NSNumber * code = responseDict[@"code"];
+        NSString * message = responseDict[@"message"];
+        NSNumber * total_page = responseDict[@"data"][@"total_page"];
+        NSArray * data = [NEWS_DETAIL objectsFromArray:responseDict[@"data"][@"info"]];
+
+        msg.OUTPUT(@"code", code);
+        msg.OUTPUT(@"message", message);
+        msg.OUTPUT(@"total_page", total_page);
+        msg.OUTPUT(@"data", data);
+    } else if (msg.failed) {
+        
+        
+    } else if (msg.cancelled) {
+        
+        
     }
 }
 

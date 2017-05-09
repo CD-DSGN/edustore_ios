@@ -164,6 +164,7 @@
 		927EC4791EBAFBB7000B2752 /* K0_NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */; };
 		927EC47B1EBAFC17000B2752 /* K0_NewsCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */; };
 		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
+		92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C668141EC16D1700DAB0AA /* NewsModel.m */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
 		CB013ED018C0500700D381A0 /* CommonNoResultCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */; };
 		CB55509A18B45695000EC760 /* NSObject+ScrollViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CB55509918B45695000EC760 /* NSObject+ScrollViewExt.m */; };
@@ -1239,6 +1240,8 @@
 		927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = K0_NewsCell.xml; sourceTree = "<group>"; };
 		928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePhotoBrowerViewController.h; sourceTree = "<group>"; };
 		928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePhotoBrowerViewController.m; sourceTree = "<group>"; };
+		92C668131EC16D1700DAB0AA /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
+		92C668141EC16D1700DAB0AA /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_img_bg@2x.png"; sourceTree = "<group>"; };
 		CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonNoResultCell.xml; sourceTree = "<group>"; };
 		CB55509818B45695000EC760 /* NSObject+ScrollViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ScrollViewExt.h"; sourceTree = "<group>"; };
@@ -3115,6 +3118,8 @@
 				CB81D0BA18ABB3EE00F277EA /* model.m */,
 				5F1676541E1E14B400C5188E /* MomentModel.h */,
 				5F1676551E1E14B400C5188E /* MomentModel.m */,
+				92C668131EC16D1700DAB0AA /* NewsModel.h */,
+				92C668141EC16D1700DAB0AA /* NewsModel.m */,
 				CB81D0BB18ABB3EE00F277EA /* OrderModel.h */,
 				CB81D0BC18ABB3EE00F277EA /* OrderModel.m */,
 				CB81D0BD18ABB3EE00F277EA /* PriceRangeModel.h */,
@@ -6369,6 +6374,7 @@
 				CBD174F218BCBFC8003D1862 /* Bee_PagingViewModel.mm in Sources */,
 				CBD174AC18BCBFC8003D1862 /* UIView+Screenshot.m in Sources */,
 				923E42711E2CBEF300F50109 /* TZPhotoPreviewCell.m in Sources */,
+				92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */,
 				E9F5DEF71954407600216A56 /* ServiceShare_Post.m in Sources */,
 				CBD174D418BCBFC8003D1862 /* UIImageView+LayoutParser.m in Sources */,
 				CB9C239918BB3B0C00DDA501 /* B2_ProductSpecifyCountCell_iPhone.m in Sources */,

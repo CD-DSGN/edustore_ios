@@ -7,13 +7,18 @@
 //
 
 #import "BaseBoard_iPhone.h"
+#import "model.h"
+#import "Bee.h"
+#import "I0_MomentsPhotoCell_iPhone.h"
+
+#import "UIViewController+ErrorTips.h"
 
 @interface K0_NewsBoard_iPhone : BaseBoard_iPhone
 
-AS_SINGLETON( MomentsBoard )
+AS_SINGLETON( NewsBoard )
 
-//AS_MODEL( MomentModel, momentModel )
-//AS_MODEL( UserModel, userModel )
+AS_MODEL( NewsModel, newsModel )
+AS_MODEL( UserModel, userModel )
 
 AS_OUTLET( BeeUIScrollView, list )
 

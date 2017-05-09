@@ -21,13 +21,28 @@
 @implementation K0_NewsBoard_iPhone
 
 
-DEF_SINGLETON( MomentsBoard )
+DEF_SINGLETON( NewsBoard )
 
 SUPPORT_RESOURCE_LOADING( YES )
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 
+DEF_MODEL( NewsModel, newsModel );
+DEF_MODEL( UserModel, userModel );
 
 DEF_OUTLET( BeeUIScrollView, list )
+
+- (void)load
+{
+    self.newsModel = [NewsModel modelWithObserver:self];
+    self.userModel = [UserModel modelWithObserver:self];
+}
+
+- (void)unload
+{
+    SAFE_RELEASE_MODEL( self.newsModel );
+    SAFE_RELEASE_MODEL( self.userModel );
+}
+
 
 ON_CREATE_VIEWS( signal )
 {
@@ -131,19 +146,19 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        //[self.momentModel firstPage];
+        [self.newsModel firstPage];
     };
     self.list.whenFooterRefresh = ^
     {
         @normalize(self);
         
-        //[self.momentModel nextPage];
+        [self.newsModel nextPage];
     };
     self.list.whenReachBottom = ^
     {
         @normalize(self);
         
-        //[self.momentModel nextPage];
+        [self.newsModel nextPage];
     };
     
 }
@@ -161,7 +176,7 @@ ON_WILL_APPEAR( signal )
 {
     [bee.ui.appBoard showTabbar];
     
-//    [self.momentModel firstPage];
+    [self.newsModel firstPage];
     
     [self.list reloadData];
 }

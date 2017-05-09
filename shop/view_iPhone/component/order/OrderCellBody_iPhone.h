@@ -17,4 +17,8 @@
 #pragma mark -
 
 @interface OrderCellBody_iPhone : BeeUICell
+
+AS_OUTLET( BeeUIButton, return_button )
+@property (nonatomic, strong) ORDER_GOODS * goods;
+
 @end

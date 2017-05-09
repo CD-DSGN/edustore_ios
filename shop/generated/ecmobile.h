@@ -298,6 +298,8 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString *		name;
 @property (nonatomic, retain) NSString *		subtotal;
 @property (nonatomic, retain) NSNumber *		goods_id;
+@property (nonatomic, retain) NSNumber *        rec_id;
+@property (nonatomic, retain) NSNumber *        refund_status;
 @end
 
 @interface PAGINATED : NSObject
@@ -508,6 +510,31 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * invite_error;
 @end
 
+// 程序运行，检测更新返回数据
+@interface UPDATE_VERSION_INFO : NSObject
+@property (nonatomic, retain) NSString * down_link;
+@property (nonatomic, retain) NSNumber * is_required;
+@property (nonatomic, retain) NSNumber * is_update;
+@property (nonatomic, retain) NSString * latest_version;
+@property (nonatomic, retain) NSString * update_node;
+@end
+
+// 咨讯图片类
+@interface NEWS_BANNER : NSObject
+@property (nonatomic, retain) NSNumber * banner_id;
+@property (nonatomic, retain) NSString * banner_url;
+@end
+
+// 资讯列表数据类型
+@interface NEWS_DETAIL : NSObject
+@property (nonatomic, retain) NSString * created_at;
+@property (nonatomic, retain) NSString * sketch;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * updated_at;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NEWS_BANNER * banner;
+@end
+
 // add by nhj,a new class for timer
 @interface TIMER : NSObject
 
@@ -697,6 +724,18 @@ AS_MESSAGE( search_payment );
 // POST 支付成功后改写更新支付方式
 AS_MESSAGE( writePayId );
 
+// POST 退货请求
+AS_MESSAGE( returnGoods );
+
+// POST 退货原因列表
+AS_MESSAGE( returnReason );
+
+// POST 更新版本
+AS_MESSAGE ( updateVersion );
+
+// POST 获取新闻资讯
+AS_MESSAGE ( getNews );
+
 @end
 
 #pragma mark - config
@@ -706,5 +745,7 @@ AS_MESSAGE( writePayId );
 AS_SINGLETON( ServerConfig )
 
 @property (nonatomic, retain) NSString *	url;
+// 新服务器的地址
+@property (nonatomic, retain) NSString *    url2;
 
 @end

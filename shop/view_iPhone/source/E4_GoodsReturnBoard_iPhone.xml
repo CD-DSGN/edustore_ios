@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ui namespace="E4_GoodsReturnBoard_iPhone">
-    <row class="wrapper">
-        
-    <row class="order-cell-body">
-        <col class="order-goods-photo-wrapper">
-            <image class="order-goods-photo-wrapper-bg"/>
-            <image id="order-goods-photo"/>
-        </col>
-        
-        <col class="order-goods-title-wrapper">
-            <label id="order-goods-title"></label>
-        </col>
-        
-        <col class="order-goods-detail-wrapper">
-            <label id="order-goods-price"></label>
-            <label id="order-goods-count"></label>
-            
-            <button id="order_goods_return" class="button-narrow-gray">@{balance_goodsreturn}</button>
-            
-        </col>
-    </row>
-    <button class="order_choose_reason" class="button-narrow-gray">@{balance_choosereturnreason}</button>
-    
-    
-    
-    
-    
-    <row class="bottom-wrapper">
-        
-    </row>
-    
-    </row>
-    
+    <list id="list" class="col-md-6"/>
+    <style>
+        #list {
+            width: 100%;
+            height: 100%;
+        }
+    <style>
 </ui>

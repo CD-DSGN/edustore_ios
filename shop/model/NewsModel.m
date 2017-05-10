@@ -11,7 +11,7 @@
 @implementation NewsModel
 
 
-@synthesize moments = _moments;
+@synthesize newsArray = _newsArray;
 
 - (void)load
 {
@@ -34,7 +34,7 @@
 
 - (void)clearCache
 {
-    self.moments = nil;
+    self.newsArray = nil;
     self.loaded = NO;
 }
 
@@ -58,7 +58,7 @@
     if ( NO == self.more )
         return;
     
-    [self gotoPage:(self.moments.count / 10)];
+    [self gotoPage:(self.newsArray.count / 10)];
 }
 
 - (void)gotoPage:(NSUInteger)index
@@ -80,42 +80,39 @@
 
 ON_MESSAGE3( API, getNews, msg )
 {
-//    if ( msg.succeed )
-//    {
-        STATUS * status = msg.GET_OUTPUT( @"status" );
-        if ( NO == status.succeed.boolValue )
-        {
-            msg.failed = YES;
-            return;
-        }
-        
-        PAGINATION * page = msg.GET_INPUT( @"pagination" );
-        if ( page && [page.page isEqualToNumber:@1] )
-        {
-            self.moments = msg.GET_OUTPUT( @"data" );
-        }
-        else
-        {
-            NSArray * array = msg.GET_OUTPUT(@"data");
-            if ( array && array.count )
+    if ( msg.succeed )
+    {
+        NSNumber *code = msg.GET_OUTPUT(@"code");
+        if (code.integerValue == 200) {
+            PAGINATION * page = msg.GET_INPUT( @"pagination" );
+            if ( page && [page.page isEqualToNumber:@1] )
             {
-                [self.moments addObjectsFromArray:array];
+                self.newsArray = msg.GET_OUTPUT( @"data" );
             }
+            else
+            {
+                NSArray * array = msg.GET_OUTPUT(@"data");
+                if ( array && array.count )
+                {
+                    [self.newsArray addObjectsFromArray:array];
+                }
+            }
+            
+            self.loaded = YES;
+            
+            BOOL  paged = [msg.GET_OUTPUT( @"total_page" ) integerValue] == [page.page integerValue];
+            if ( paged )
+            {
+                self.more = YES;
+            }
+            else
+            {
+                self.more = NO;
+            }
+            
+            [self saveCache];
         }
         
-        self.loaded = YES;
-        
-        PAGINATED * paged = msg.GET_OUTPUT( @"paginated" );
-        if ( paged )
-        {
-            self.more = paged.more.boolValue;
-        }
-        else
-        {
-            self.more = NO;
-        }
-        
-        [self saveCache];
-//    }
+    }
 }
 @end

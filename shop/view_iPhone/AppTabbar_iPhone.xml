@@ -75,9 +75,9 @@
         }
         
 		.icon-home {
-			image: url(footer_home_icon.png);
-			image-selected: url(footer_home_active_icon.png);
-            width: 22px;
+			image: url(footer_shop_icon.png);
+			image-selected: url(footer_shop_active_icon.png);
+            width: 32px;
 		}
 		
 		.icon-search {

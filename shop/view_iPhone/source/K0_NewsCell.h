@@ -7,7 +7,11 @@
 //
 
 #import "Bee_UICell.h"
-
+#import "Bee.h"
 @interface K0_NewsCell : BeeUICell
+
+AS_OUTLET( BeeUIScrollView, list )
+
+@property (nonatomic, retain) MOMENTS * moments;
 
 @end

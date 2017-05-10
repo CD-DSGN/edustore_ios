@@ -14,6 +14,8 @@
 #import "CommonNoResultCell.h"
 #import "CommonPullLoader.h"
 #import "CommonFootLoader.h"
+
+#import "I0_MomentsNoResultCell_iPhone.h"
 @interface K0_NewsBoard_iPhone ()
 
 @end
@@ -70,7 +72,7 @@ ON_CREATE_VIEWS( signal )
          * 3.教师已登录，未发布任何消息
          **/
         
-//        self.list.total = self.momentModel.moments.count;
+        self.list.total = self.newsModel.newsArray.count;
         
         if ( [UserModel online] == NO )  // 未登录状态
         {
@@ -88,58 +90,47 @@ ON_CREATE_VIEWS( signal )
         {
             [self handleLogined:YES];
             
-//            // 返回数据为空
-//            if ( self.momentModel.loaded && self.momentModel.moments.count == 0)
-//            {
-//                if ([self.userModel.user.is_teacher isEqual:@1])
-//                {
-//                    // 教师用户，还未发布任何消息
-//                    self.list.total = 1;
-//                    BeeUIScrollItem * item = self.list.items[0];
-//                    item.clazz = [I0_MomentsNoResultCell_iPhone class];
-//                    item.size = self.list.size;
-//                    item.rule = BeeUIScrollLayoutRule_Tile;
-//                    item.data = @"教师尚未发布消息";
-//                }
-//                else
-//                {
-//                    if ([self.no_follow isEqualToString:@"1"])
-//                    {
-//                        // 学生用户，未关注过教师
-//                        self.list.total = 1;
-//                        BeeUIScrollItem * item = self.list.items[0];
-//                        item.clazz = [I0_MomentsNoResultCell_iPhone class];
-//                        item.size = self.list.size;
-//                        item.rule = BeeUIScrollLayoutRule_Tile;
-//                        item.data = @"学生尚未关注任何教师";
-//                    }
-//                    else
-//                    {
-//                        // 学生用户，所关注教师没有发送过消息
-//                        self.list.total = 1;
-//                        BeeUIScrollItem * item = self.list.items[0];
-//                        item.clazz = [I0_MomentsNoResultCell_iPhone class];
-//                        item.size = self.list.size;
-//                        item.rule = BeeUIScrollLayoutRule_Tile;
-//                        item.data = @"学生所关注教师未发布动态";
-//                    }
-//                }
-//                [self handleEmpty:YES];
-//            }
-//            // 有返回数据：学生所关注的教师有发送消息，教师有发送消息
-//            else
-//            {
-//                [self handleEmpty:NO];
-//                
-//                for( int i = 0; i < self.momentModel.moments.count; i++ )
-//                {
-//                    BeeUIScrollItem * item = self.list.items[i];
-//                    item.clazz = [I0_MomentsCell_iPhone class];
-//                    item.data = [self.momentModel.moments safeObjectAtIndex:i];
-//                    item.size = CGSizeAuto;
-//                    item.rule = BeeUIScrollLayoutRule_Tile;
-//                }
-//            }
+            // 返回数据为空
+            if ( self.newsModel.loaded && self.newsModel.newsArray.count == 0)
+            {
+                if ([self.userModel.user.is_teacher isEqual:@1])
+                {
+                    // 教师用户，还未发布任何消息
+                    self.list.total = 1;
+                    BeeUIScrollItem * item = self.list.items[0];
+                    item.clazz = [I0_MomentsNoResultCell_iPhone class];
+                    item.size = self.list.size;
+                    item.rule = BeeUIScrollLayoutRule_Tile;
+                    item.data = @"暂无最新资讯";
+                }
+                else
+                {
+                    
+                    // 学生用户，所关注教师没有发送过消息
+                    self.list.total = 1;
+                    BeeUIScrollItem * item = self.list.items[0];
+                    item.clazz = [I0_MomentsNoResultCell_iPhone class];
+                    item.size = self.list.size;
+                    item.rule = BeeUIScrollLayoutRule_Tile;
+                    item.data = @"暂无最新资讯";
+                    
+                }
+                [self handleEmpty:YES];
+            }
+            // 有返回数据：学生所关注的教师有发送消息，教师有发送消息
+            else
+            {
+                [self handleEmpty:NO];
+                
+                for( int i = 0; i < self.newsModel.newsArray.count; i++ )
+                {
+                    BeeUIScrollItem * item = self.list.items[i];
+                    item.clazz = [K0_NewsCell class];
+                    item.data = [self.newsModel.newsArray safeObjectAtIndex:i];
+                    item.size = CGSizeAuto;
+                    item.rule = BeeUIScrollLayoutRule_Tile;
+                }
+            }
         }
     };
     self.list.whenHeaderRefresh = ^
@@ -223,6 +214,56 @@ ON_DID_DISAPPEAR( signal )
     else
     {
         $(self.list.headerLoader).FIND(@"#background").SHOW();
+    }
+}
+
+#pragma mark -
+
+ON_MESSAGE3( API, getNews, msg )
+{
+    if ( msg.sending )
+    {
+        if ( NO == self.newsModel.loaded )
+        {
+            //			[self presentLoadingTips:__TEXT(@"tips_loading")];
+            [self presentMessageTips:__TEXT(@"news_loading")];
+        }
+        
+        if ( self.newsModel.newsArray.count )
+        {
+            [self.list setFooterLoading:YES];
+        }
+        else
+        {
+            [self.list setFooterLoading:NO];
+        }
+    }
+    else
+    {
+        [self dismissTips];
+        
+        [self.list setHeaderLoading:NO];
+        [self.list setFooterLoading:NO];
+    }
+    
+    if ( msg.succeed )
+    {
+        STATUS * status = msg.GET_OUTPUT(@"status");
+        
+        if ( status && status.succeed.boolValue )
+        {
+            self.list.footerShown = YES;
+            [self.list setFooterMore:self.newsModel.more];
+            [self.list reloadData];
+        }
+        else
+        {
+            [self showErrorTips:msg];
+        }
+    }
+    else if ( msg.failed )
+    {
+        [self showErrorTips:msg];
     }
 }
 

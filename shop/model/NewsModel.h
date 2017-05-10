@@ -10,6 +10,6 @@
 #import "ecmobile.h"
 @interface NewsModel : BeePagingViewModel
 
-@property (nonatomic, retain) NSMutableArray * moments;
+@property (nonatomic, retain) NSMutableArray * newsArray;
 
 @end

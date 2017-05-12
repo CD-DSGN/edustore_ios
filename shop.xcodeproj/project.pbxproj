@@ -166,7 +166,6 @@
 		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
 		92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C668141EC16D1700DAB0AA /* NewsModel.m */; };
 		92EC7F0C1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */; };
-		92EC7F0E1EC46E4200FF08A7 /* K0_NewsDetailBoard_iPhone .xml in Resources */ = {isa = PBXBuildFile; fileRef = 92EC7F0D1EC46E4200FF08A7 /* K0_NewsDetailBoard_iPhone .xml */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
 		CB013ED018C0500700D381A0 /* CommonNoResultCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */; };
 		CB55509A18B45695000EC760 /* NSObject+ScrollViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CB55509918B45695000EC760 /* NSObject+ScrollViewExt.m */; };
@@ -1246,7 +1245,6 @@
 		92C668141EC16D1700DAB0AA /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		92EC7F0A1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsDetailBoard_iPhone.h; sourceTree = "<group>"; };
 		92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K0_NewsDetailBoard_iPhone.m; sourceTree = "<group>"; };
-		92EC7F0D1EC46E4200FF08A7 /* K0_NewsDetailBoard_iPhone .xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "K0_NewsDetailBoard_iPhone .xml"; sourceTree = "<group>"; };
 		92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_img_bg@2x.png"; sourceTree = "<group>"; };
 		CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonNoResultCell.xml; sourceTree = "<group>"; };
 		CB55509818B45695000EC760 /* NSObject+ScrollViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ScrollViewExt.h"; sourceTree = "<group>"; };
@@ -3885,7 +3883,6 @@
 				927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */,
 				92EC7F0A1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.h */,
 				92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */,
-				92EC7F0D1EC46E4200FF08A7 /* K0_NewsDetailBoard_iPhone .xml */,
 				5F5C4F241D78340B008BDD84 /* region.plist */,
 			);
 			path = source;
@@ -5906,7 +5903,6 @@
 				CB9C22BE18BB3B0C00DDA501 /* address_empty_body_add_icon@2x.png in Resources */,
 				CB9C242518BB3B0C00DDA501 /* G2_MessageCell_iPhone.xml in Resources */,
 				CB9C234218BB3B0C00DDA501 /* shopping_checkout_required_bg@2x.png in Resources */,
-				92EC7F0E1EC46E4200FF08A7 /* K0_NewsDetailBoard_iPhone .xml in Resources */,
 				CB9C240018BB3B0C00DDA501 /* E5_CollectionCell_iPhone.xml in Resources */,
 				920A821B1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml in Resources */,
 				CB9C230718BB3B0C00DDA501 /* item_info_new_collection_star_icon@2x.png in Resources */,

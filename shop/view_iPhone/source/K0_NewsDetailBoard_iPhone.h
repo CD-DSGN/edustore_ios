@@ -7,10 +7,8 @@
 //
 
 #import "BaseBoard_iPhone.h"
-
-@interface K0_NewsDetailBoard_iPhone : BaseBoard_iPhone
-
-AS_OUTLET(BeeUIWebView, webView)
+#import "H0_BrowserBoard_iPhone.h"
+@interface K0_NewsDetailBoard_iPhone : H0_BrowserBoard_iPhone
 
 @property (nonatomic,strong) NEWS_DETAIL *newsDetail;
 

@@ -21,46 +21,35 @@ SUPPORT_AUTOMATIC_LAYOUT( YES )
 
 
 
-DEF_OUTLET( BeeUIWebView , webView )
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-   
-    [self addWebView];
-}
-
--(void)addWebView
-{
-    
-}
-
 - (void)load
 {
+    self.isToolbarHiden = YES;
+    
 }
 
 - (void)unload
 {
-
+    
 }
 
 #pragma mark -
 
 ON_CREATE_VIEWS( signal )
 {
+    [self showNavigationBarAnimated:YES];
+    
     self.navigationBarTitle = _newsDetail.title;
-    [self showNavigationBarAnimated:NO];
+    self.webView.scalesPageToFit = YES;
+    
     [self showBarButton:BeeUINavigationBar.LEFT image:[UIImage imageNamed:@"nav_back.png"]];
-    @weakify(self);
     
-    [self.webView setUrl:_newsDetail.url];
+    self.urlString = self.newsDetail.url;
     
-    
+    [self refresh];
 }
 
 ON_DELETE_VIEWS( signal )
 {
-    self.webView = nil;
 }
 
 ON_LAYOUT_VIEWS( signal )
@@ -74,26 +63,26 @@ ON_WILL_APPEAR( signal )
 
 ON_DID_APPEAR( signal )
 {
-
 }
 
 ON_WILL_DISAPPEAR( signal )
 {
-    
 }
 
 ON_DID_DISAPPEAR( signal )
 {
 }
 
+#pragma mark -
+
 ON_LEFT_BUTTON_TOUCHED( signal )
 {
-    [self.stack popBoardAnimated:YES];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+ON_RIGHT_BUTTON_TOUCHED( signal )
+{
 }
+
 
 /*
 #pragma mark - Navigation

@@ -1,7 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="K0_NewsCell">
+    <row>
+        <row class="news-head">
+            <image class="news-image" id="news-image" />
+            
+        </row>
+        <row class="news-content">
+            <label class="news-name" id="news-name"></label>
+            <label class="content" id="content"></label>
+            <label class="create-at" id="create-at"></label>
+        </row>
+        
+    </row>
     
     <style>
+        
+        .news-head {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 90px;
+        height: 90px;
+        background-color: #ff0000;
+        }
+        
+        .news-content {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        bottom: -5px;
+        width: 90%;
+        height: 90px;
+        background-color: #00ff00;
+        }
+
+        
+        .news-image {
+        position: absolute;
+        top: 5;
+        left: 5px;
+        width: 80px;
+        height: 80px;
+        image-mode: fill;
+        border-width: 2px;
+        border-color: #fff;
+        }
+        
+        .news-name {
+        position: absolute;
+        top: 5px;
+        left: 0px;
+        width: 80%;
+        height: 20px;
+        font-size: 16px;
+        color: #000000;
+        }
+        
+        .content {
+        position: absolute;
+        left: 0px;
+        width: 80%;
+        height: 40px;
+        line-num: 0;
+        font: 14px;
+        color: #555555;
+        top:25px;
+        }
+        
+        .create-at {
+        position: absolute;
+        top: 70px;
+        left: 0px;
+        width: 80%;
+        height: 20px;
+        font-size: 12px;
+        color: #505050;
+        }
         
     </style>
 </ui>

@@ -84,7 +84,9 @@ ON_MESSAGE3( API, getNews, msg )
     {
         NSNumber *code = msg.GET_OUTPUT(@"code");
         if (code.integerValue == 200) {
-            PAGINATION * page = msg.GET_INPUT( @"pagination" );
+            PAGINATION * page = [[PAGINATION alloc] init];
+            page.page = msg.GET_INPUT( @"cpage" );
+            page.count = msg.GET_INPUT( @"pagesize" );
             if ( page && [page.page isEqualToNumber:@1] )
             {
                 self.newsArray = msg.GET_OUTPUT( @"data" );

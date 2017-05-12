@@ -16,6 +16,7 @@
 #import "CommonFootLoader.h"
 
 #import "I0_MomentsNoResultCell_iPhone.h"
+#import "K0_NewsDetailBoard_iPhone.h"
 @interface K0_NewsBoard_iPhone ()
 
 @end
@@ -65,12 +66,6 @@ ON_CREATE_VIEWS( signal )
     self.list.whenReloading = ^
     {
         @normalize(self);
-        
-        /**汇师圈为空的情况：
-         * 1.用户未登录状态；
-         * 2.学生已登录，返回数据为空（学生未关注教师/教师未发送任何消息）
-         * 3.教师已登录，未发布任何消息
-         **/
         
         self.list.total = self.newsModel.newsArray.count;
         
@@ -225,7 +220,6 @@ ON_MESSAGE3( API, getNews, msg )
     {
         if ( NO == self.newsModel.loaded )
         {
-            //			[self presentLoadingTips:__TEXT(@"tips_loading")];
             [self presentMessageTips:__TEXT(@"news_loading")];
         }
         
@@ -248,9 +242,9 @@ ON_MESSAGE3( API, getNews, msg )
     
     if ( msg.succeed )
     {
-        STATUS * status = msg.GET_OUTPUT(@"status");
+        NSNumber * code = msg.GET_OUTPUT(@"code");
         
-        if ( status && status.succeed.boolValue )
+        if ( [code integerValue] == 200 )
         {
             self.list.footerShown = YES;
             [self.list setFooterMore:self.newsModel.more];
@@ -267,6 +261,18 @@ ON_MESSAGE3( API, getNews, msg )
     }
 }
 
+
+ON_SIGNAL2( K0_NewsCell, signal )
+{
+    NEWS_DETAIL * news = signal.sourceCell.data;
+    if ( news )
+    {
+        K0_NewsDetailBoard_iPhone * board = [K0_NewsDetailBoard_iPhone board];
+        board.newsDetail= news;
+        board.hidesBottomBarWhenPushed = YES;
+        [self.stack pushBoard:board animated:YES];
+    }
+}
 
 /*
 #pragma mark - Navigation

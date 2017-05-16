@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSString *    regionTag;
 @property (nonatomic, retain) NSString *    schoolTag;
 @property (nonatomic, retain) NSString *    courseTag;
+@property (nonatomic, retain) NSString *    inviteTag;
 
 @end

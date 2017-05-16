@@ -221,18 +221,18 @@ DEF_NOTIFICATION( UPDATED )
 }
 
 - (void)signupWithUser:(NSString *)user
-            inviteUserId:(NSString *)inviteUserId
+          inviteUserId:(NSString *)inviteUserId
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields
               realname:(NSString *)realname
-                school:(NSString *)school
-                course:(NSString *)course
+                school:(NSNumber *)school
+                course:(NSNumber *)course
              isTeacher:(NSString *)isTeacher
                country:(NSString *)country
-          provinceName:(NSString *)provinceName
-              cityName:(NSString *)cityName
-              townName:(NSString *)townName
+            provinceId:(NSNumber *)provinceId
+                cityId:(NSNumber *)cityId
+                townId:(NSNumber *)townId
 {
     self.CANCEL_MSG( API.teacher_signup );
     self
@@ -247,9 +247,9 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"course", course )
     .INPUT( @"isTeacher", isTeacher )
     .INPUT( @"country", country ) 
-    .INPUT( @"provinceName", provinceName )
-    .INPUT( @"cityName", cityName )
-    .INPUT( @"townName", townName );
+    .INPUT( @"provinceId", provinceId )
+    .INPUT( @"cityId", cityId )
+    .INPUT( @"townId", townId );
 }
 
 - (void)get_course

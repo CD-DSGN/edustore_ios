@@ -19,5 +19,6 @@
 @synthesize regionTag = _regionTag;
 @synthesize schoolTag =_schoolTag;
 @synthesize courseTag = _courseTag;
+@synthesize inviteTag = _inviteTag;
 
 @end

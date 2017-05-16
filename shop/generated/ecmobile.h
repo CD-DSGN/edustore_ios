@@ -341,7 +341,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString *		name;
 @property (nonatomic, retain) NSNumber *		parent_id;
 @property (nonatomic, retain) NSNumber *		id;
-@property (nonatomic, retain) NSString *       type;   // 区分省市县
+@property (nonatomic, retain) NSString *        type;   // 区分省市县
 @end
 
 // added by nhj
@@ -533,6 +533,18 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * updated_at;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NEWS_BANNER * banner;
+@end
+
+// 注册时候年级的信息
+@interface Register_grade : NSObject
+@property (nonatomic, retain) NSNumber * grade_id;
+@property (nonatomic, retain) NSString * grade_name;
+@end
+
+// 注册时候学校的信息
+@interface Register_school : NSObject
+@property (nonatomic, retain) NSNumber * school_id;
+@property (nonatomic, retain) NSString * school_name;
 @end
 
 // add by nhj,a new class for timer
@@ -735,6 +747,12 @@ AS_MESSAGE ( updateVersion );
 
 // POST 获取新闻资讯
 AS_MESSAGE ( getNews );
+
+// POST 获取学校信息
+AS_MESSAGE ( getSchool );
+
+// POST 获取年级信息
+AS_MESSAGE ( getGrade );
 
 @end
 

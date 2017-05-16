@@ -26,10 +26,11 @@ SUPPORT_RESOURCE_LOADING( YES )
 DEF_OUTLET( BeeUIImageView, background )
 DEF_OUTLET( BeeUITextField, input )
 DEF_OUTLET( BeeUIButton, getIdentifyCode )
-DEF_OUTLET( BeeUITextField, username )
 DEF_OUTLET( BeeUITextField, inviteCode )
 DEF_OUTLET( BeeUITextField, mobilePhone )
 DEF_OUTLET( BeeUITextField, identifyCode )
+DEF_OUTLET( BeeUITextField, password )
+DEF_OUTLET( BeeUITextField, confirmePassword )
 
 - (void)load
 {
@@ -54,38 +55,19 @@ DEF_OUTLET( BeeUITextField, identifyCode )
             self.identifyCode.keyboardType = UIKeyboardTypeNamePhonePad;
             CGFloat width = [[UIScreen mainScreen] bounds].size.width * 0.4f;
             $(@"identifyCode").CSS([NSString stringWithFormat:@"width:%fpx",width]);
-            self.identifyCode.returnKeyType = UIReturnKeyDone;
         }
-        
-//        FormData * formData = self.data;
-//        self.input.placeholder = formData.placeholder;
-//        self.input.secureTextEntry = formData.isSecure;
-//        self.input.returnKeyType = formData.returnKeyType;
-//        self.input.keyboardType = formData.keyboardType;
-//        
-//        if ( formData.text )
-//        {
-//            self.input.text = formData.text;
-//        }
-//        
-//        switch ( formData.scrollIndex )
-//        {
-//            case UIScrollViewIndexFirst:
-//                self.background.image = [UIImage imageNamed:@"cell_bg_header.png"];
-//                break;
-//            case UIScrollViewIndexLast:
-//                self.background.image = [UIImage imageNamed:@"cell_bg_footer.png"];
-//                break;
-//            case UIScrollViewIndexDefault:
-//            default:
-//                self.background.image = [UIImage imageNamed:@"cell_bg_content.png"];
-//                break;
-//        }
-//        
-//        if ( formData.placeholder != __TEXT(@"identify_code"))
-//        {
-//            self.getIdentifyCode.hidden = YES;
-//        }
+        if ( [registerInfo.passwordTag isEqualToString:__TEXT(@"login_password")])
+        {
+            self.password.secureTextEntry = YES;
+        }
+        if ( [registerInfo.confirmPasswordTag isEqualToString:__TEXT(@"register_confirm")])
+        {
+            self.confirmePassword.secureTextEntry = YES;
+        }
+        if ([registerInfo.inviteTag isEqualToString:@"inviteCode"])
+        {
+            self.inviteCode.returnKeyType = UIReturnKeyDone;
+        }
     }
 }
 

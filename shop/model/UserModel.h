@@ -55,13 +55,13 @@ AS_NOTIFICATION( UPDATED )
            mobilePhone:(NSString *)mobilePhone
                 fields:(NSArray *)fields
               realname:(NSString *)realname
-                school:(NSString *)school
-                course:(NSString *)course
+                school:(NSNumber *)school
+                course:(NSNumber *)course
              isTeacher:(NSString *)isTeacher
                country:(NSString *)country
-          provinceName:(NSString *)provinceName
-              cityName:(NSString *)cityName
-              townName:(NSString *)townName;
+            provinceId:(NSNumber *)provinceId
+                cityId:(NSNumber *)cityId
+                townId:(NSNumber *)townId;
 
 // 通过父亲id查询地区
 - (void)selectRegionByParentId:(NSString *)parent_id;
@@ -89,6 +89,7 @@ AS_NOTIFICATION( UPDATED )
 - (void)updateFields;
 - (void)updateProfile;
 
+// 检测用户名和邀请码是否有效，用户名实则上为手机号码
 - (void)checkUser:(NSString *)user andInviteCode:(NSString *)inviteCode;
 
 - (void)postAvatar:(NSString *)avatar;

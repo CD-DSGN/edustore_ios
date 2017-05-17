@@ -549,6 +549,20 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation Register_grade
+
+@synthesize grade_id = _grade_id;
+@synthesize grade_name = _grade_name;
+
+@end
+
+@implementation Register_school
+
+@synthesize school_id = _school_id;
+@synthesize school_name = _school_name;
+
+@end
+
 @implementation TIMER
 
 - (void)validCountDownTime:(NSInteger)time
@@ -2382,9 +2396,9 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSString * course = msg.GET_INPUT( @"course" );
         NSNumber * isTeacher = msg.GET_INPUT( @"isTeacher" );
         NSString * country = msg.GET_INPUT( @"country" );
-        NSString * provinceName = msg.GET_INPUT( @"provinceName" );
-        NSString * cityName = msg.GET_INPUT( @"cityName" );
-        NSString * townName = msg.GET_INPUT( @"townName" );
+        NSString * provinceName = msg.GET_INPUT( @"provinceId" );
+        NSString * cityName = msg.GET_INPUT( @"cityId" );
+        NSString * townName = msg.GET_INPUT( @"townId" );
         
         if ( nil == name || NO == [name isKindOfClass:[NSString class]] )
         {
@@ -2573,6 +2587,11 @@ DEF_MESSAGE_( get_region, msg )
         NSDictionary * response = msg.responseJSONDictionary;
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
         NSArray * data = [REGION objectsFromArray:[response arrayAtPath:@"data.regions"]];
+        NSNumber * region_type;
+        if (data) {
+            REGION * region = [data objectAtIndex:0];
+            region_type = @([region.type integerValue]);
+        }
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {
@@ -2582,6 +2601,7 @@ DEF_MESSAGE_( get_region, msg )
         
         msg.OUTPUT( @"status", status );
         msg.OUTPUT( @"data", data );
+        msg.OUTPUT( @"region_type", region_type );
     }
     else if ( msg.failed )
     {
@@ -3515,6 +3535,50 @@ DEF_MESSAGE_( getNews, msg )
         
     } else if (msg.cancelled) {
         
+        
+    }
+}
+
+DEF_MESSAGE_( getSchool, msg )
+{
+    if (msg.sending) {
+        
+        NSNumber * schoolRegion = msg.GET_INPUT(@"school_region");
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"school_region", schoolRegion );
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/school", [ServerConfig sharedInstance].url];
+        msg.HTTP_POST( requestURI ).PARAM( requestBody );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        NSArray * data = [Register_school objectsFromArray:responseDict[@"data"]];
+        
+        msg.OUTPUT(@"data", data);
+    } else if (msg.cancelled) {
+        
+    } else if (msg.failed) {
+        
+    }
+
+}
+
+DEF_MESSAGE_( getGrade, msg )
+{
+    if (msg.sending) {
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/grade", [ServerConfig sharedInstance].url];
+        msg.HTTP_POST( requestURI );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        NSArray * data = [Register_grade objectsFromArray:responseDict[@"data"]];
+        
+        msg.OUTPUT(@"data", data);
+    } else if (msg.cancelled) {
+        
+    } else if (msg.failed) {
         
     }
 }

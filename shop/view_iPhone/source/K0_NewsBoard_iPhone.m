@@ -69,63 +69,13 @@ ON_CREATE_VIEWS( signal )
         
         self.list.total = self.newsModel.newsArray.count;
         
-        if ( [UserModel online] == NO )  // 未登录状态
+        for( int i = 0; i < self.newsModel.newsArray.count; i++ )
         {
-            self.list.total = 1;
-            BeeUIScrollItem * item = self.list.items[0];
+            BeeUIScrollItem * item = self.list.items[i];
             item.clazz = [K0_NewsCell class];
-            item.size = self.list.size;
+            item.data = [self.newsModel.newsArray safeObjectAtIndex:i];
+            item.size = CGSizeAuto;
             item.rule = BeeUIScrollLayoutRule_Tile;
-            item.data = @"用户未登录";
-            
-            [self handleEmpty:YES];
-            [self handleLogined:NO];
-        }
-        else    // 已登录
-        {
-            [self handleLogined:YES];
-            
-            // 返回数据为空
-            if ( self.newsModel.loaded && self.newsModel.newsArray.count == 0)
-            {
-                if ([self.userModel.user.is_teacher isEqual:@1])
-                {
-                    // 教师用户，还未发布任何消息
-                    self.list.total = 1;
-                    BeeUIScrollItem * item = self.list.items[0];
-                    item.clazz = [I0_MomentsNoResultCell_iPhone class];
-                    item.size = self.list.size;
-                    item.rule = BeeUIScrollLayoutRule_Tile;
-                    item.data = @"暂无最新资讯";
-                }
-                else
-                {
-                    
-                    // 学生用户，所关注教师没有发送过消息
-                    self.list.total = 1;
-                    BeeUIScrollItem * item = self.list.items[0];
-                    item.clazz = [I0_MomentsNoResultCell_iPhone class];
-                    item.size = self.list.size;
-                    item.rule = BeeUIScrollLayoutRule_Tile;
-                    item.data = @"暂无最新资讯";
-                    
-                }
-                [self handleEmpty:YES];
-            }
-            // 有返回数据：学生所关注的教师有发送消息，教师有发送消息
-            else
-            {
-                [self handleEmpty:NO];
-                
-                for( int i = 0; i < self.newsModel.newsArray.count; i++ )
-                {
-                    BeeUIScrollItem * item = self.list.items[i];
-                    item.clazz = [K0_NewsCell class];
-                    item.data = [self.newsModel.newsArray safeObjectAtIndex:i];
-                    item.size = CGSizeAuto;
-                    item.rule = BeeUIScrollLayoutRule_Tile;
-                }
-            }
         }
     };
     self.list.whenHeaderRefresh = ^

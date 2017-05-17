@@ -2,22 +2,6 @@
 
 <ui namespace="A1_TeacherSignupCell2_iPhone">
 
-	<!--row class="list-item-header">
-        <col>
-            <image id="background" class="background"/>
-            <input id="input" class="input"></input>
-        </col>
-        <col>
-            <image id="button_bkg" class="button_bkg" />
-            <label id="course" class="choose">请选择课程</label>
-            <button id="chooseCourses" class="choose"></button>
-        </col>
-        <col>
-            <image id="button_bkg" class="button_bkg" />
-            <label id="region" class="choose">请选择地区</label>
-            <button id="chooseRegion" class="choose"></button>
-        </col>
-    </row-->
     <col class="list-wrapper-group" >
         <row class="list-item">
             <image class="list-item-header-bg" />
@@ -33,7 +17,9 @@
         <row class="list-item">
             <image class="list-item-bg" />
             <image class="input-icon-school icon" />
-            <input id="school" class="signin-input" placeholder="@{school}"></input>
+<!--            <input id="school" class="signin-input" placeholder="@{school}"></input>-->
+            <label id="school" class="choose">@{school}</label>
+            <button id="chooseSchool" class="choose"></button>
         </row>
         <row class="list-item">
             <image class="list-item-bg" />
@@ -41,16 +27,7 @@
             <label id="course" class="choose">所教课程</label>
             <button id="chooseCourses" class="choose"></button>
         </row>
-        <row class="list-item">
-            <image class="list-item-bg" />
-            <image class="input-icon-password icon" />
-            <input id="password" class="signin-input" placeholder="@{login_password}"></input>
-        </row>
-        <row class="list-item">
-            <image class="list-item-footer-bg" />
-            <image class="input-icon-password icon" />
-            <input id="confirmePassword" class="signin-input done" placeholder="@{register_confirm}"></input>
-        </row>
+<!--   在这要加入年级、班级信息，还不知道怎么加的     -->
         <row class="signupButton-wrapper">
             <button class="signupButton" id="signupButton">提交注册</button>
         </row>
@@ -143,9 +120,6 @@
         }
         .input-icon-user {
         image-src: url(signup_username.png);
-        }
-        .input-icon-password {
-        image-src: url(signup_password.png);
         }
         .input-icon-region {
         image-src: url(signup_region.png);

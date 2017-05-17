@@ -20,6 +20,10 @@
 
 #import "FormCell.h"
 
+@interface A1_TeacherSignupBoard_iPhone () <UIScrollViewDelegate>
+
+@end
+
 @implementation A1_TeacherSignupBoard_iPhone
 
 SUPPORT_RESOURCE_LOADING( YES )
@@ -58,6 +62,7 @@ ON_CREATE_VIEWS( signal )
     
     @weakify(self);
 
+    self.list.delegate = self;
     self.list.reuseEnable = NO;
     self.list.whenReloading = ^
     {
@@ -146,7 +151,7 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 }
 
 #pragma mark - BeeUITextField
-
+// return keyboard
 ON_SIGNAL3( BeeUITextField, RETURN, signal )
 {
     NSArray * inputs = [self inputs];
@@ -167,19 +172,17 @@ ON_SIGNAL3( BeeUITextField, RETURN, signal )
     }
 }
 
-#pragma mark - A1_TeacherSignupCell_iPhone
-
+// next step button
 ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
 {
     [self nextStep];
 }
 
-//#pragma mark - SignupBoard_iPhone
-//
-//ON_SIGNAL3( SignupBoard_iPhone, signin, signal )
-//{
-//	[self.stack popBoardAnimated:YES];
-//}
+// get identify code
+ON_SIGNAL3( A1_TeacherSignupCell_iPhone, getIdentifyCode, signal )
+{
+    [self getIdentifyCode];
+}
 
 #pragma mark -
 
@@ -191,10 +194,11 @@ ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
     
     if ( [item.view isKindOfClass:[A1_TeacherSignupCell_iPhone class]])
     {
-        [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).username];
-        [inputs addObject:((A1_TeacherSignupCell_iPhone *) item.view).inviteCode];
         [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).mobilePhone];
         [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).identifyCode];
+        [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).password];
+        [inputs addObject:((A1_TeacherSignupCell_iPhone *)item.view).confirmePassword];
+        [inputs addObject:((A1_TeacherSignupCell_iPhone *) item.view).inviteCode];
     }
     
     return inputs;
@@ -202,82 +206,27 @@ ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
 
 - (void)setupFields
 {
-    self.registerModel.usernameTag = __TEXT(@"login_username");
-//    self.registerModel.passwordTag = __TEXT(@"login_password");
-//    self.registerModel.confirmPasswordTag = __TEXT(@"register_confirm");
     self.registerModel.mobilePhoneTag = __TEXT(@"mobile_phone");
     self.registerModel.identifyCodeTag = __TEXT(@"identify_code");
-//    self.registerModel.realnameTag = __TEXT(@"login_realname");
-//    self.registerModel.regionTag = __TEXT(@"region");
-//    self.registerModel.schoolTag = __TEXT(@"school");
-//    self.registerModel.courseTag = __TEXT(@"course");
-
-//    [self.group removeAllObjects];
-//    
-//    NSArray * fields = self.userModel.fields;
-//
-//    FormData * username = [FormData data];
-//    username.tagString = @"username";
-//    username.placeholder = __TEXT(@"login_username");
-//    username.keyboardType = UIKeyboardTypeDefault;
-//    username.returnKeyType = UIReturnKeyNext;
-//    [self.group addObject:username];
-//    
-//    FormData * mobilePhone = [FormData data];
-//    mobilePhone.tagString = @"mobilePhone";
-//    mobilePhone.placeholder = __TEXT(@"mobile_phone");
-//    mobilePhone.keyboardType = UIKeyboardTypeDefault;
-//    mobilePhone.returnKeyType = UIReturnKeyNext;
-//    [self.group addObject:mobilePhone];
-//    
-//    FormData * identifyCode = [FormData data];
-//    identifyCode.tagString = @"identifyCode";
-//    identifyCode.placeholder = __TEXT(@"identify_code");
-//    identifyCode.keyboardType = UIKeyboardTypeDefault;
-//    identifyCode.returnKeyType = UIReturnKeyDone;
-//    [self.group addObject:identifyCode];
-//    
-//    if ( fields && 0 != fields.count  )
-//    {
-//        for ( int i=0; i < fields.count; i++ )
-//        {
-//            SIGNUP_FIELD * field = fields[i];
-//            
-//            FormData * element = [FormData data];
-//            element.tagString = field.id.stringValue;
-//            element.placeholder = field.name;
-//            element.data = field;
-//            
-//            if ( i == (fields.count - 1) )
-//            {
-//                element.returnKeyType = UIReturnKeyDone;
-//            }
-//            else
-//            {
-//                element.returnKeyType = UIReturnKeyNext;
-//            }
-//            
-//            [self.group addObject:element];
-//        }
-//    }
+    self.registerModel.passwordTag = __TEXT(@"login_password");
+    self.registerModel.confirmPasswordTag = __TEXT(@"register_confirm");
+    self.registerModel.inviteTag = @"inviteCode";
 }
 
 - (void)nextStep
 {
-    NSString * userName = nil;
     NSString * mobilePhone = nil;
     NSString * identifyCode = nil;
     NSString * inviteCode = nil;
+    NSString * password = nil;
+    NSString * password2 = nil;
     
     NSArray * inputs = [self inputs];
     
     // 为需要的参数赋值
     for ( BeeUITextField * input in inputs )
     {
-        if ( [input.placeholder isEqualToString:__TEXT(@"login_username")] )
-        {
-            userName = input.text;
-        }
+        
         if ( [input.placeholder isEqualToString:__TEXT(@"login_inviteCode")])
         {
             inviteCode = input.text;
@@ -289,6 +238,14 @@ ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
         if ( [input.placeholder isEqualToString:__TEXT(@"identify_code")] )
         {
             identifyCode = input.text;
+        }
+        if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
+        {
+            password = input.text;
+        }
+        if( [input.placeholder isEqualToString:__TEXT(@"register_confirm")] )
+        {
+            password2 = input.text;
         }
     }
     
@@ -316,23 +273,23 @@ ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
 //        }
 //    }
     
-    if ( 0 == userName.length || NO == [userName isChineseUserName] )
-    {
-        [self presentMessageTips:__TEXT(@"wrong_username")];
-        return;
-    }
+//    if ( 0 == userName.length || NO == [userName isChineseUserName] )
+//    {
+//        [self presentMessageTips:__TEXT(@"wrong_username")];
+//        return;
+//    }
     
-    if ( userName.length < 2 )
-    {
-        [self presentMessageTips:__TEXT(@"username_too_short")];
-        return;
-    }
-    
-    if ( userName.length > 20 )
-    {
-        [self presentMessageTips:__TEXT(@"username_too_long")];
-        return;
-    }
+//    if ( userName.length < 2 )
+//    {
+//        [self presentMessageTips:__TEXT(@"username_too_short")];
+//        return;
+//    }
+//    
+//    if ( userName.length > 20 )
+//    {
+//        [self presentMessageTips:__TEXT(@"username_too_long")];
+//        return;
+//    }
     
     if ( 0 == mobilePhone.length || NO == [mobilePhone isMobilePhone] )
     {
@@ -351,13 +308,34 @@ ON_SIGNAL3( A1_TeacherSignupCell_iPhone, nextStepButton, signal )
         [self presentMessageTips:@"验证码不正确"];
         return;
     }
+    if ( 0 == password.length || NO == [password isPassword] )
+    {
+        [self presentMessageTips:__TEXT(@"wrong_password")];
+        return;
+    }
     
-    self.username = userName;
+    if ( password.length < 6 )
+    {
+        [self presentMessageTips:__TEXT(@"password_too_short")];
+        return;
+    }
+    
+    if ( password.length > 20 )
+    {
+        [self presentMessageTips:__TEXT(@"password_too_long")];
+        return;
+    }
+    
+    if ( NO == [password isEqualToString:password2] )
+    {
+        [self presentMessageTips:__TEXT(@"wrong_password")];
+        return;
+    }
+    
+    self.password = password;
     self.mobilePhone = mobilePhone;
     self.inviteCode = inviteCode;
-    [self.userModel checkUser:userName andInviteCode:inviteCode];
-    
-    //[self.stack pushBoard:[A1_TeacherSignupBoard2_iPhone board] animated:TRUE];
+    [self.userModel checkUser:mobilePhone andInviteCode:inviteCode];
 }
 
 #pragma mark -
@@ -381,56 +359,13 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     [self.list setBaseInsets:UIEdgeInsetsZero];
 }
 
-#pragma mark - get identify code
-
-ON_SIGNAL3( A1_TeacherSignupCell_iPhone, getIdentifyCode, signal )
+#pragma mark - scroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self getIdentifyCode];
+    [self.list endEditing:YES];
 }
 
-ON_MESSAGE3( API, getIdentifyCode, msg)
-{
-    if( msg.sending )
-    {
-        //短信发送中，进行电话的错误判断
-        [self presentMessageTips:__TEXT(@"identifyCode_getting")];
-    }
-    else
-    {
-        [self dismissTips];
-    }
-    if( msg.succeed )
-    {
-        [self presentSuccessTips:__TEXT(@"identifyCode_success")];
-        //短信发送成功，倒计时重新获取
-        self.currentCountDown = 60;
-        self.identifyCodeValidTime = 300;
-        //开启两个计时器
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown:) userInfo:nil repeats:YES];
-        self.identifyCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(identifyCodeCountDown:) userInfo:nil repeats:YES];
-        
-        identifyCode * identifyCode = msg.GET_OUTPUT(@"data");
-        self.identifyCode = identifyCode.identifyCode;
-    }
-    else if( msg.failed )
-    {
-        STATUS * status = msg.GET_OUTPUT(@"status");
-        int error_code = [(status.error_code) intValue];
-        if ( error_code == 1 )
-        {
-            [self presentMessageTips:@"电话已被注册"];
-        }
-        else if (error_code == 2 )
-        {
-            [self presentMessageTips:@"电话格式不正确"];
-        }
-        else
-        {
-            [self presentMessageTips:@"错误，请重新获取验证码"];
-        }
-    }
-}
-
+#pragma mark - custom function
 - (void)countDown: (NSTimer *) theTimer
 {
     self.code = [self getIdentifyCodeButton];
@@ -500,6 +435,7 @@ ON_MESSAGE3( API, getIdentifyCode, msg)
     .INPUT( @"mobilePhone", mobilePhone);
 }
 
+#pragma mark - network resutl
 ON_MESSAGE3( API, checkUser, msg )
 {
     if( msg.sending )
@@ -517,13 +453,12 @@ ON_MESSAGE3( API, checkUser, msg )
         }
         else
         {
-            //用户名可以使用
             A1_TeacherSignupBoard2_iPhone * detail = [[A1_TeacherSignupBoard2_iPhone alloc] init];
             // 传参
             detail.inviteCode = self.inviteCode;
-            detail.username = self.username;
             detail.mobilePhone = self.mobilePhone;
             detail.invite_user_id = info.invite_user_id;
+            detail.password = self.password;
             // 清除计时器状态
             [self removeTimer];
             [self.code setEnabled:YES];
@@ -540,6 +475,49 @@ ON_MESSAGE3( API, checkUser, msg )
     }
     else if( msg.cancelled )
     {
+    }
+}
+
+ON_MESSAGE3( API, getIdentifyCode, msg)
+{
+    if( msg.sending )
+    {
+        //短信发送中，进行电话的错误判断
+        [self presentMessageTips:__TEXT(@"identifyCode_getting")];
+    }
+    else
+    {
+        [self dismissTips];
+    }
+    if( msg.succeed )
+    {
+        [self presentSuccessTips:__TEXT(@"identifyCode_success")];
+        //短信发送成功，倒计时重新获取
+        self.currentCountDown = 60;
+        self.identifyCodeValidTime = 300;
+        //开启两个计时器
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown:) userInfo:nil repeats:YES];
+        self.identifyCodeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(identifyCodeCountDown:) userInfo:nil repeats:YES];
+        
+        identifyCode * identifyCode = msg.GET_OUTPUT(@"data");
+        self.identifyCode = identifyCode.identifyCode;
+    }
+    else if( msg.failed )
+    {
+        STATUS * status = msg.GET_OUTPUT(@"status");
+        int error_code = [(status.error_code) intValue];
+        if ( error_code == 1 )
+        {
+            [self presentMessageTips:@"电话已被注册"];
+        }
+        else if (error_code == 2 )
+        {
+            [self presentMessageTips:@"电话格式不正确"];
+        }
+        else
+        {
+            [self presentMessageTips:@"错误，请重新获取验证码"];
+        }
     }
 }
 

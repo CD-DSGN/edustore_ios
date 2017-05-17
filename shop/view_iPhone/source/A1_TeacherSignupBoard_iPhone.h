@@ -29,9 +29,9 @@ AS_MODEL( RegisterModel, registerModel )
 
 @property (nonatomic, retain) NSMutableArray * group;
 @property (nonatomic, retain) NSString * identifyCode;
-@property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * mobilePhone;
 @property (nonatomic, retain) NSString * inviteCode;
+@property (nonatomic, retain) NSString * password;
 // 这么写是为了增加复用（checkuser、timer都有使用）
 @property (nonatomic, retain) BeeUIButton * code;
 // 获取验证码按钮计时
@@ -40,6 +40,5 @@ AS_MODEL( RegisterModel, registerModel )
 // 验证码有效性计时
 @property (nonatomic) NSInteger identifyCodeValidTime;
 @property (nonatomic, assign) NSTimer * identifyCodeTimer;
-//@property (nonatomic, retain) NSArray * group2;
 
 @end

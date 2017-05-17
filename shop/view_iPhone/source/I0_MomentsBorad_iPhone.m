@@ -84,8 +84,8 @@ ON_CREATE_VIEWS( signal )
             item.rule = BeeUIScrollLayoutRule_Tile;
             item.data = @"用户未登录";
             
-            [self handleEmpty:YES];
-            [self handleLogined:NO];
+            [self handleEmpty:NO];
+            [self handleLogined:YES];
         }
         else    // 已登录
         {
@@ -293,5 +293,6 @@ ON_MESSAGE3( API, moments_list, msg )
         [self showErrorTips:msg];
     }
 }
+
 
 @end

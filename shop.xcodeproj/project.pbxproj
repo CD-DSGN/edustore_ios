@@ -163,6 +163,9 @@
 		927EC4761EBAD189000B2752 /* K0_NewsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 927EC4751EBAD189000B2752 /* K0_NewsBoard_iPhone.xml */; };
 		927EC4791EBAFBB7000B2752 /* K0_NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */; };
 		927EC47B1EBAFC17000B2752 /* K0_NewsCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */; };
+		92849ACE1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92849ACC1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.m */; };
+		92849ACF1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92849ACD1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml */; };
+		92849AD11ECC3ACF0052A5C9 /* huishi_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 92849AD01ECC3ACF0052A5C9 /* huishi_logo.png */; };
 		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
 		92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C668141EC16D1700DAB0AA /* NewsModel.m */; };
 		92EC7F0C1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */; };
@@ -1239,6 +1242,10 @@
 		927EC4771EBAFBB7000B2752 /* K0_NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsCell.h; sourceTree = "<group>"; };
 		927EC4781EBAFBB7000B2752 /* K0_NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K0_NewsCell.m; sourceTree = "<group>"; };
 		927EC47A1EBAFC17000B2752 /* K0_NewsCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = K0_NewsCell.xml; sourceTree = "<group>"; };
+		92849ACB1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = G0_AboutUsBoard_iPhone.h; sourceTree = "<group>"; };
+		92849ACC1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = G0_AboutUsBoard_iPhone.m; sourceTree = "<group>"; };
+		92849ACD1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = G0_AboutUsBoard_iPhone.xml; sourceTree = "<group>"; };
+		92849AD01ECC3ACF0052A5C9 /* huishi_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huishi_logo.png; sourceTree = "<group>"; };
 		928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePhotoBrowerViewController.h; sourceTree = "<group>"; };
 		928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePhotoBrowerViewController.m; sourceTree = "<group>"; };
 		92C668131EC16D1700DAB0AA /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
@@ -3390,6 +3397,7 @@
 				CB9C210918BB3B0A00DDA501 /* log_in_key_icon@2x.png */,
 				CB9C210A18BB3B0A00DDA501 /* log_in_user_name_icon@2x.png */,
 				CB9C210B18BB3B0A00DDA501 /* nav_add@2x.png */,
+				92849AD01ECC3ACF0052A5C9 /* huishi_logo.png */,
 				CB9C210C18BB3B0A00DDA501 /* nav_back@2x.png */,
 				CB9C210D18BB3B0A00DDA501 /* nav_bg@2x.png */,
 				CB9C210E18BB3B0A00DDA501 /* nav_bg_iphone5@2x.png */,
@@ -3820,6 +3828,9 @@
 				CB9C227A18BB3B0C00DDA501 /* G0_SettingBoard_iPhone.h */,
 				CB9C227B18BB3B0C00DDA501 /* G0_SettingBoard_iPhone.m */,
 				CB9C227C18BB3B0C00DDA501 /* G0_SettingBoard_iPhone.xml */,
+				92849ACB1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.h */,
+				92849ACC1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.m */,
+				92849ACD1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml */,
 				CB9C227D18BB3B0C00DDA501 /* G0_SettingCell_iPhone.h */,
 				CB9C227E18BB3B0C00DDA501 /* G0_SettingCell_iPhone.m */,
 				CB9C227F18BB3B0C00DDA501 /* G0_SettingCell_iPhone.xml */,
@@ -5837,6 +5848,7 @@
 				CB9C22E418BB3B0C00DDA501 /* index_new_full_detail_bg@2x.png in Resources */,
 				1848BD9818B4D8690007238A /* umFeedback.bundle in Resources */,
 				CB9C239E18BB3B0C00DDA501 /* B4_ProductParamBoard_iPhone.xml in Resources */,
+				92849AD11ECC3ACF0052A5C9 /* huishi_logo.png in Resources */,
 				CB9C238218BB3B0C00DDA501 /* B1_ProductListCartCell_iPhone.xml in Resources */,
 				CB9C229A18BB3B0C00DDA501 /* CommonFootLoader.xml in Resources */,
 				CB9C22CA18BB3B0C00DDA501 /* cell_bg_content@2x.png in Resources */,
@@ -6025,6 +6037,7 @@
 				CB9C22BA18BB3B0C00DDA501 /* accsessory_arrow_up@2x.png in Resources */,
 				1848BD8118B4D8690007238A /* blueArrow.png in Resources */,
 				CB9C22D518BB3B0C00DDA501 /* filter_blue_btn@2x.png in Resources */,
+				92849ACF1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml in Resources */,
 				CB9C22E518BB3B0C00DDA501 /* index_new_full_detail_icon@2x.png in Resources */,
 				CB9C22B618BB3B0C00DDA501 /* OrderCellInfo_iPhone.xml in Resources */,
 				CB9C231318BB3B0C00DDA501 /* profile_img_bg@2x.jpg in Resources */,
@@ -6375,6 +6388,7 @@
 				E9F5DEF41954407600216A56 /* ServiceShare_ActivityWindow.m in Sources */,
 				CBD1744918BCBFC8003D1862 /* Bee_UIConfig.m in Sources */,
 				E9F5DF051954407600216A56 /* ServiceShare_TencentWeibo_Config.m in Sources */,
+				92849ACE1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.m in Sources */,
 				CBD1751518BCBFC8003D1862 /* Bee_ActiveProtocol.m in Sources */,
 				CBD174F518BCBFC8003D1862 /* Bee_UITemplate.m in Sources */,
 				CBD174F218BCBFC8003D1862 /* Bee_PagingViewModel.mm in Sources */,

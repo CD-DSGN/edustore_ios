@@ -98,10 +98,12 @@
 <string name="setting_official">官方信息</string>
 <string name="setting_service">官方客服</string>
 <string name="setting_website">官方网站</string>
+<string name="copyright_notice">版权声明</string>
 <string name="setting_tech">技术支持</string>
 <string name="setting_rate">应用评分</string>
 <string name="setting_geekzoo">Geek Zoo Studio</string>
 <string name="setting_about">关于应用</string>
+<string name="setting_about_us">关于我们</string>
 <string name="setting_sales">经销商</string>
 <string name="setting_logout">注销</string>
 <string name="share_share">分享</string>
@@ -400,6 +402,7 @@
 <string name="moments_loading">加载汇师圈中</string>
 <string name="moments_delete">汇师圈删除中</string>
 <string name="pay_point">消费积分</string>
+<string name="student_point">学生关注赠送汇积分</string>
 <string name="hui_point">汇积分</string>
 <string name="invite_code">推荐码</string>
 <string name="points_from_subscription">学生关注赠送汇积分</string>

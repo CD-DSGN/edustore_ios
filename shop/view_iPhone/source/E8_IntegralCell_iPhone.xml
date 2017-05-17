@@ -19,6 +19,12 @@
             <label class="invite_code" id="invite_code"></label>
         </row>
         
+        <row class="student_point">
+            <image class="background_single_line" />
+            <label class="student" id="student">@{student_point}</label>
+            <label class="student_point_sum" id="student_point_sum"></label>
+        </row>
+        
         <row class="line_two">
             <image class="background_mult_line" />
             <row class="points_from_subscription">
@@ -44,7 +50,7 @@
             height: 100%;
         }
         
-        .line_pay, .line_hui, .line_invite {
+        .line_pay, .line_hui, .line_invite, .student_point{
             margin-top: 10px;
             width: 94%;
             height: 40px;
@@ -79,14 +85,14 @@
         }
         
 <!--        per row-->
-        .pay, .hui, .invite {
+        .pay, .hui, .invite ,.student{
             left: 10px;
             font: 15px;
             line-height: 15px;
             width: 90%;
             height: 100%
         }
-        .pay_points, .hui_points, .invite_code {
+        .pay_points, .hui_points, .invite_code ,.student_point_sum{
             position: absolute;
             font: 15px;
             color: #999;

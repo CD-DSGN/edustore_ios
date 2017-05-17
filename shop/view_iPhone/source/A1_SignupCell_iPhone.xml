@@ -15,8 +15,14 @@
     <col class="list-wrapper-group">
         <row class="list-item">
             <image class="list-item-header-bg" />
-            <image class="input-icon-user icon" />
-            <input id="username" class="signin-input" placeholder="@{login_username}"></input>
+            <image class="input-icon-phone icon" />
+            <input id="mobilePhone" class="signin-input" placeholder="@{mobile_phone}"></input>
+        </row>
+        <row class="list-item">
+            <image class="list-item-bg" />
+            <image class="input-icon-identifyCode icon" />
+            <input id="identifyCode" class="signin-input" placeholder="@{identify_code}"></input>
+            <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
         </row>
         <row class="list-item">
             <image class="list-item-bg" />
@@ -24,23 +30,12 @@
             <input id="password" class="signin-input" placeholder="@{login_password}"></input>
         </row>
         <row class="list-item">
-            <image class="list-item-bg" />
-            <image class="input-icon-password icon" />
-            <input id="confirmePassword" class="signin-input" placeholder="@{register_confirm}"></input>
-        </row>
-        <row class="list-item">
-            <image class="list-item-bg" />
-            <image class="input-icon-phone icon" />
-            <input id="mobilePhone" class="signin-input" placeholder="@{mobile_phone}"></input>
-        </row>
-        <row class="list-item">
             <image class="list-item-footer-bg" />
-            <image class="input-icon-identifyCode icon" />
-            <input id="identifyCode" class="signin-input done" placeholder="@{identify_code}"></input>
-            <button class="identifyCode" id="getIdentifyCode">获取验证码</button>
+            <image class="input-icon-password icon" />
+            <input id="confirmePassword" class="signin-input done" placeholder="@{register_confirm}"></input>
         </row>
         <row class="signupButton-wrapper">
-            <button class="signupButton" id="signupButton">提交注册</button>
+            <button class="signupButton" id="signupButton">下一步</button>
         </row>
     </col>
     

@@ -164,7 +164,7 @@ ON_WILL_APPEAR( signal )
     
     [self.newsModel firstPage];
     
-    [self.list reloadData];
+    //[self.list reloadData];
 }
 
 ON_DID_APPEAR( signal )

@@ -489,6 +489,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @synthesize real_name = _real_name;
 @synthesize avatar = _avatar;
+@synthesize course_name = _course_name;
 
 @end
 

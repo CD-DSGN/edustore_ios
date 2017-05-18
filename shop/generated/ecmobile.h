@@ -480,6 +480,7 @@ enum RANK_LEVEL
 @interface MOMENTS_TEACHER : NSObject
 @property (nonatomic, retain) NSString * real_name;
 @property (nonatomic, retain) NSString * avatar;
+@property (nonatomic, retain) NSString * course_name;
 @end
 
 @interface MOMENTS : NSObject

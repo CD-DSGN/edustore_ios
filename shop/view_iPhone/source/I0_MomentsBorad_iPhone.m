@@ -310,6 +310,8 @@ ON_MESSAGE3( API, moments_list, msg )
 ON_NOTIFICATION3( UserModel, LOGIN, notification )
 {
     [self updateState];
+    
+    [self.momentModel firstPage];
 }
     
 - (void)updateState

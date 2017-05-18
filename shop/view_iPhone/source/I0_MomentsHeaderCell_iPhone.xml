@@ -5,6 +5,7 @@
         <row class="moments-head">
             <image class="user-avatar" id="user-avatar" />
             <label class="user-name" id="user-name"></label>
+            <label class="course-name" id="course-name">123</label>
             <label class="create-at" id="create-at"></label>
         </row>
         <row class="moments-content">
@@ -54,7 +55,7 @@
         }
         
         .user-avatar {
-        position: absolute;
+        position: relative;
         top: 5;
         left: 10px;
         width: 40px;
@@ -66,10 +67,20 @@
         }
         
         .user-name {
-        position: absolute;
+        position: relative;
         top: 5px;
-        left: 55px;
-        width: 80%;
+        left: 10px;
+        width: auto;
+        height: 20px;
+        font-size: 14px;
+        color: #000000;
+        }
+        
+        .course-name {
+        position: relative;
+        top: 5px;
+        left: 5px;
+        width: auto;
         height: 20px;
         font-size: 14px;
         color: #000000;
@@ -78,7 +89,7 @@
         .create-at {
         position: absolute;
         top: 22px;
-        left: 55px;
+        left: 61px;
         width: 80%;
         height: 20px;
         font-size: 12px;

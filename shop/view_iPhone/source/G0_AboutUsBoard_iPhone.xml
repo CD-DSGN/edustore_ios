@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui namespace="G0_AboutUsBoard_iPhone">
+    <linear>
+        <row class="top">
+            <image class="logo"/>
+            <linear class="company">
+                <label class="company_name">沈阳龙图文化公司旗下网站</label>
+                <label class="company_website">www.huishiclub.com</label>
+            </linear>
+        </row>
+        <row class="bottom">
+        <label class="introduce">    汇师网由沈阳龙图文化有限公司运营, 致力于为广大教师和学生提供图书购买及配套服务, 一直本着"以人为本、以诚取信、以质取胜、以新争天下" 的质量方针和"正正直直做人, 踏踏实实做事"的企业精神.</label>
+    
+        </row>
+    </linear>
+    
+    <style>
+        .logo {
+        margin-left: 10px;
+        margin-top: 30px;
+        width: 100px;
+        height: 73.5px;
+        image-src: url(huishi_logo.png);
+        image-mode: center;
+        }
+        
+        .company_name {
+        margin-left: 10px;
+        margin-top: 25px;
+        height: 40px;
+        width: 200px;
+        line-height: 44px;
+        font: 16px;
+        z-index: 99;
+        color: #404040;
+        }
+        
+        .company_website {
+        margin-left: 10px;
+        height: 40px;
+        width: 200px;
+        line-height: 44px;
+        font: 16px;
+        z-index: 99;
+        color: #404040;
+        }
+        
+        .introduce {
+        margin-left: 5%;
+        height: 200px;
+        width:90%;
+        line-height: 44px;
+        font: 18px;
+        z-index: 99;
+        color: #404040;
+        line-num: 50;
+        }
+        
+        .top {
+        margin-top: 10px;
+        margin-left: 0px;
+        height: 100px;
+        marginright:0px;
+        }
+        
+        .bottom {
+        margin-top: 0px;
+        margin-left: 0px;
+        v-align: center;
+        height: 200px;
+        width:100%;
+        }
+    </style>
+</ui>

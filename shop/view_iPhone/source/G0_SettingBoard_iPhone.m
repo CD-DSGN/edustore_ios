@@ -27,7 +27,7 @@
 
 #import "UMFeedback.h"
 #import "UMFeedbackViewController.h"
-
+#import "G0_AboutUsBoard_iPhone.h"
 #pragma mark -
 
 @implementation G0_SettingBoard_iPhone
@@ -174,10 +174,17 @@ ON_SIGNAL3( G0_SettingCell_iPhone, setting_rate, signal )
     }
 }
 
-ON_SIGNAL3( G0_SettingCell_iPhone, setting_service, signal )
+//ON_SIGNAL3( G0_SettingCell_iPhone, setting_service, signal )
+//{
+////    [self openTelephone:[ConfigModel sharedInstance].config.service_phone];
+//    [self openTelephone:@"028-61380687"];
+//}
+
+ON_SIGNAL3( G0_SettingCell_iPhone, copyright_notice, signal )
 {
-//    [self openTelephone:[ConfigModel sharedInstance].config.service_phone];
-    [self openTelephone:@"028-61380687"];
+    G0_AboutUsBoard_iPhone * board = [G0_AboutUsBoard_iPhone board];
+    
+    [self.stack pushBoard:board animated:YES];
 }
 
 ON_SIGNAL3( G0_SettingCell_iPhone, setting_website, signal )

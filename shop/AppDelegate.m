@@ -32,6 +32,11 @@
 #import "bee.services.push.h"
 #import "bee.services.uppayplugin.h"
 
+@interface AppDelegate ()<UIAlertViewDelegate>
+
+@end
+
+
 @implementation AppDelegate
 
 #pragma mark -
@@ -106,6 +111,46 @@
 	self.window.rootViewController = [AppBoard_iPhone sharedInstance];
 	
 	[MobClick appLaunched];
+
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *currentVersion = infoDictionary[@"CFBundleShortVersionString"];
+    
+    self.CANCEL_MSG( API.updateVersion );
+    self.MSG( API.updateVersion )
+    .INPUT( @"version", currentVersion );
+}
+
+ON_MESSAGE3( API, updateVersion, msg )
+{
+    if (msg.sending) {
+        
+        
+    } else if (msg.succeed) {
+        
+        NSNumber * code = msg.GET_OUTPUT(@"code");
+        UPDATE_VERSION_INFO * data = msg.GET_OUTPUT(@"data");
+        NSString * message = msg.GET_OUTPUT(@"message");
+        
+        NSLog(@"%@", data);
+        if ([code integerValue] == 200) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已经有新版本了哦, 快去更新吧~" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    } else if (msg.failed) {
+        
+        
+    } else if (msg.cancelled) {
+        
+        
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/%E6%B1%87%E5%B8%88%E7%BD%91/id1194400791?l=zh&ls=1&mt=8"]];
+    }
 }
 
 - (void)unload

@@ -48,22 +48,35 @@
 <!--            </row>-->
 <!--        </col>-->
         <!-- 官方信息 -->
-        <label class="form-group-caption">@{setting_official}</label>
+<!--        <label class="form-group-caption">@{setting_official}</label>-->
+<!--        <col class="form-group">-->
+<!--			-->
+<!--            <row class="form nextor first">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{setting_service}</label>-->
+<!--                <image class="accessory"/>-->
+<!--                <button class="mask" id="setting_service"/>-->
+<!--            </row>-->
+<!--            -->
+<!--            <row class="form nextor last">-->
+<!--                <image class="background"/>-->
+<!--                <label class="title">@{setting_website}</label>-->
+<!--                <image class="accessory"/>-->
+<!--                <button class="mask" id="setting_website"/>-->
+<!--            </row>-->
+<!--        </col>-->
+
+        <!-- 版权声明 -->
+        <label class="form-group-caption">@{copyright_notice}</label>
         <col class="form-group">
-			
+            
             <row class="form nextor first">
                 <image class="background"/>
-                <label class="title">@{setting_service}</label>
+                <label class="title">@{copyright_notice}</label>
                 <image class="accessory"/>
-                <button class="mask" id="setting_service"/>
+                <button class="mask" id="copyright_notice"/>
             </row>
             
-            <row class="form nextor last">
-                <image class="background"/>
-                <label class="title">@{setting_website}</label>
-                <image class="accessory"/>
-                <button class="mask" id="setting_website"/>
-            </row>
         </col>
         <!-- 技术支持 -->
 <!--        <label class="form-group-caption">@{setting_tech}</label>-->

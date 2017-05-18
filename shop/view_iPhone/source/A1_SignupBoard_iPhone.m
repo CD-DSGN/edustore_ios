@@ -190,11 +190,12 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
     BeeUIScrollItem * item = self.list.items[0];
     if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]])
     {
-        [inputs addObject:((A1_SignupCell_iPhone *)item.view).username];
-        [inputs addObject:((A1_SignupCell_iPhone *)item.view).password];
-        [inputs addObject:((A1_SignupCell_iPhone *)item.view).confirmePassword];
         [inputs addObject:((A1_SignupCell_iPhone *)item.view).mobilePhone];
         [inputs addObject:((A1_SignupCell_iPhone *)item.view).identifyCode];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).password];
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).confirmePassword];
+        
+        
     }
     return inputs;
     
@@ -306,7 +307,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 
 - (void)setupFields
 {
-    self.registerModel.usernameTag = __TEXT(@"login_username");
+    
     self.registerModel.passwordTag = __TEXT(@"login_password");
     self.registerModel.confirmPasswordTag = __TEXT(@"register_confirm");
     self.registerModel.mobilePhoneTag = __TEXT(@"mobile_phone");
@@ -318,9 +319,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 }
 
 - (void)doRegister
-{    
-    NSString * userName = nil;
-  	//NSString * email = nil;
+{
     NSString * mobilePhone = nil;
     NSString * identifyCode = nil;
   	NSString * password = nil;
@@ -333,11 +332,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
     //为我们需要的参数赋值
     for ( BeeUITextField * input in inputs )
     {
-        if ( [input.placeholder isEqualToString:__TEXT(@"login_username")] )
-        {
-            userName = input.text;
-        }
-        else if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
+        if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
         {
             password = input.text;
         }
@@ -372,23 +367,23 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 //        }
     }
 
-	if ( 0 == userName.length || NO == [userName isChineseUserName] )
-	{
-		[self presentMessageTips:__TEXT(@"wrong_username")];
-		return;
-	}
+//	if ( 0 == userName.length || NO == [userName isChineseUserName] )
+//	{
+//		[self presentMessageTips:__TEXT(@"wrong_username")];
+//		return;
+//	}
 	
-	if ( userName.length < 2 )
-	{
-		[self presentMessageTips:__TEXT(@"username_too_short")];
-		return;
-	}
+//	if ( userName.length < 2 )
+//	{
+//		[self presentMessageTips:__TEXT(@"username_too_short")];
+//		return;
+//	}
 	
-	if ( userName.length > 20 )
-	{
-		[self presentMessageTips:__TEXT(@"username_too_long")];
-		return;
-	}
+//	if ( userName.length > 20 )
+//	{
+//		[self presentMessageTips:__TEXT(@"username_too_long")];
+//		return;
+//	}
 
 	if ( 0 == mobilePhone.length || NO == [mobilePhone isMobilePhone] )
 	{
@@ -432,7 +427,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
         return;
     }
 
-    [self.userModel signupWithUser:userName
+    [self.userModel signupWithUser:nil
                           password:password
                        mobilePhone:mobilePhone
                             fields:fields];

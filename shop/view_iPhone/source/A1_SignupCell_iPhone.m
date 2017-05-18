@@ -53,6 +53,7 @@ DEF_OUTLET( BeeUIButton, signupButton )
         if ( [registerInfo.confirmPasswordTag isEqualToString:__TEXT(@"register_confirm")])
         {
             self.confirmePassword.secureTextEntry = YES;
+            self.identifyCode.returnKeyType = UIReturnKeyDone;
         }
         if ( [registerInfo.mobilePhoneTag isEqualToString:__TEXT(@"mobile_phone")])
         {
@@ -63,7 +64,6 @@ DEF_OUTLET( BeeUIButton, signupButton )
             self.identifyCode.keyboardType = UIKeyboardTypeNamePhonePad;
             CGFloat width = [[UIScreen mainScreen] bounds].size.width * 0.4f;
             $(@"identifyCode").CSS([NSString stringWithFormat:@"width:%fpx",width]);
-            self.identifyCode.returnKeyType = UIReturnKeyDone;
         }
         // 可以这么设计，不过需要放上自己的图片
 //        [self.getIdentifyCode setImage:[UIImage imageNamed:@"button_blue.png"] forState:UIControlStateNormal];

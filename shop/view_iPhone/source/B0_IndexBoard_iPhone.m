@@ -53,6 +53,7 @@ SUPPORT_AUTOMATIC_LAYOUT( YES )
 DEF_MODEL( BannerModel,		bannerModel );
 DEF_MODEL( CategoryModel,	categoryModel );
 DEF_MODEL( UserModel, userModel);
+DEF_MODEL( ConfigModel, configModel );
 
 DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
 
@@ -63,12 +64,14 @@ DEF_OUTLET( B0_IndexNotifiBarCell_iPhone, notifyButton )
 	self.bannerModel	= [BannerModel modelWithObserver:self];
 	self.categoryModel	= [CategoryModel modelWithObserver:self];
     self.userModel = [UserModel modelWithObserver:self];
+    self.configModel = [ConfigModel modelWithObserver:self];
 }
 
 - (void)unload
 {
 	self.bannerModel	= nil;
 	self.categoryModel	= nil;
+    self.configModel = nil;
     
     SAFE_RELEASE_MODEL( self.userModel );
 }
@@ -465,7 +468,8 @@ ON_SIGNAL3( B0_IndexButtonCell_iPhone, connect_col, signal )
 {
 //    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18380207432"];
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-    [self openTelephone:@"028-61380687"];
+//    [self openTelephone:@"028-61380687"];
+    [self openTelephone:self.configModel.config.service_phone];
 }
 
 #pragma mark -

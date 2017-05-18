@@ -8,6 +8,7 @@
 
 #import "AppBoard_iPhone.h"
 #import "BaseBoard_iPhone.h"
+#import "ECMobileManager.h"
 
 #import "I0_MomentsBorad_iPhone.h"
 #import "I1_SendMomentsBoard_iPhone.h"
@@ -82,7 +83,7 @@ ON_CREATE_VIEWS( signal )
             item.clazz = [I0_MomentsNoResultCell_iPhone class];
             item.size = self.list.size;
             item.rule = BeeUIScrollLayoutRule_Tile;
-            item.data = @"用户未登录";
+            item.data = @0;
             
             [self handleEmpty:YES];
             [self handleLogined:NO];
@@ -102,7 +103,7 @@ ON_CREATE_VIEWS( signal )
                     item.clazz = [I0_MomentsNoResultCell_iPhone class];
                     item.size = self.list.size;
                     item.rule = BeeUIScrollLayoutRule_Tile;
-                    item.data = @"教师尚未发布消息";
+                    item.data = @1;
                 }
                 else
                 {
@@ -114,7 +115,7 @@ ON_CREATE_VIEWS( signal )
                         item.clazz = [I0_MomentsNoResultCell_iPhone class];
                         item.size = self.list.size;
                         item.rule = BeeUIScrollLayoutRule_Tile;
-                        item.data = @"学生尚未关注任何教师";
+                        item.data = @2;
                     }
                     else
                     {
@@ -124,7 +125,7 @@ ON_CREATE_VIEWS( signal )
                         item.clazz = [I0_MomentsNoResultCell_iPhone class];
                         item.size = self.list.size;
                         item.rule = BeeUIScrollLayoutRule_Tile;
-                        item.data = @"学生所关注教师未发布动态";
+                        item.data = @3;
                     }
                 }
                 [self handleEmpty:YES];
@@ -144,6 +145,8 @@ ON_CREATE_VIEWS( signal )
                 }
             }
         }
+        
+        [self observeNotification:UserModel.LOGIN];
     };
     self.list.whenHeaderRefresh = ^
     {
@@ -169,6 +172,8 @@ ON_CREATE_VIEWS( signal )
 ON_DELETE_VIEWS( signal )
 {
     self.list = nil;
+    
+    [self unobserveAllNotifications];
 }
 
 ON_LAYOUT_VIEWS( signal )
@@ -244,6 +249,13 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 }
 
 #pragma mark -
+ON_SIGNAL3(I0_MomentsNoResultCell_iPhone, signInButton, signal)
+{
+//    NSLog(@"hahah");
+    [bee.ui.appBoard showLogin];
+}
+
+#pragma mark -
 
 ON_MESSAGE3( API, moments_list, msg )
 {
@@ -294,4 +306,38 @@ ON_MESSAGE3( API, moments_list, msg )
     }
 }
 
+#pragma mark - notification
+ON_NOTIFICATION3( UserModel, LOGIN, notification )
+{
+    [self updateState];
+}
+    
+- (void)updateState
+{
+    if ( [UserModel online] )
+    {
+        [[CartModel sharedInstance] reload];
+        {
+            [[UserModel sharedInstance] updateProfile];
+        }
+            
+        if ( ![UserModel sharedInstance].loaded )
+        {
+            [self.list showHeaderLoader:YES animated:NO];
+        }
+    }
+    else
+    {
+        if ( ![UserModel sharedInstance].loaded )
+        {
+            [self.list showHeaderLoader:NO animated:NO];
+        }
+    }
+    
+    [[ECMobilePushUnread sharedInstance] update];
+        
+        
+    [self.list reloadData];
+}
+    
 @end

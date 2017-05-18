@@ -1,40 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="I0_MomentsNoResultCell_iPhone">
 
-    <row class="wrapper">
-        <label id="text"></label>
-        <image id="logo"/>
-    </row>
+    <col class="wrapper">
+        <col class="wrapper">
+            <image class="logInBg logo" id="logInBg" />
+            <label class="notice-label line" id="errorText"></label>
+        </col>
+        <col class="wrapper">
+            <image class="logOutBg logo" id="logOutBg" />
+            <label class="notice-label line" id="logOutLabelOne">您还未登录</label>
+            <label class="notice-label line-two" id="logOutLabelTwo">请先登录后查看</label>
+            <button class="signIn button" id="signInButton"></button>
+        </col>
+    </col>
 
     <style type="text/css">
     
     .wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
     }
     
-    #text {
+    .notice-label {
         font-size: 20;
         font-weight: lighter;
         color: #666;
         line-num: 2;
         line-break: word-wrap;
-        position: absolute;
-        left: 0px;
-        top: 160px;
         width: 100%;
-        height: 26;
+        height: 8%;
+    }
+    
+    .line {
+        position: absolut;
+        left: 0px;
+        top: 46%;
         text-align: center;
     }
     
-    #logo {
-        image-src: url(searcher_no_result_empty_icon.png);
+    .line-two {
+        position: absolut;
+        left: 0px;
+        top: 54%;
+        text-align: center;
+    }
+    
+    .logo {
         image-mode: center;
         position: absolute;
         left: 0px;
-        top: 190px;
+        top: 10%;
         width: 100%;
-        height: 150px;
+        height: 35%;
+    }
+    
+    .logOutBg {
+        image-src: url(moment_logOutImage.png);
+    }
+    
+    .logInBg {
+        image-src: url(moment_noInfoImage.png);
+    }
+    
+    .signIn {
+        background-image: url(moment_logInButton.png);
+    }
+    
+    .button {
+        position: absolute;
+        top: 65%;
+        left: 30%;
+        width: 40%;
+        height: 34px;
     }
     
 </style>

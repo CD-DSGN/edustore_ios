@@ -28,6 +28,26 @@
             <button id="chooseCourses" class="choose"></button>
         </row>
 <!--   在这要加入年级、班级信息，还不知道怎么加的     -->
+        <row class="list-item" id="gradeClassOne">
+            <image class="list-item-footer-bg" />
+            <image class="input-icon-grade icon" />
+            <label id="gradeOne" class="chooseGrade">年级</label>
+            <button id="chooseGradeOne" class="chooseGrade"></button>
+            <image class="teacherClass input-icon-class" />
+            <input id="classOne" class="classInput" placeholder="班级"></input>
+        </row>
+        <row class="list-item" id="gradeClassTwo">
+            <image class="list-item-footer-bg" />
+        </row>
+        <row class="list-item" id="gradeClassThree">
+            <image class="list-item-footer-bg" />
+        </row>
+        <row class="list-item" id="gradeClassFour">
+            <image class="list-item-footer-bg" />
+        </row>
+        <row class="list-item" id="gradeClassFive">
+            <image class="list-item-footer-bg" />
+        </row>
         <row class="signupButton-wrapper">
             <button class="signupButton" id="signupButton">提交注册</button>
         </row>
@@ -130,6 +150,12 @@
         .input-icon-course {
         image-src: url(signup_course.png);
         }
+        .input-icon-grade {
+        image-src: url(signup_grade.png);
+        }
+        .input-icon-class {
+        image-src: url(signup_class.png);
+        }
         
         <!-- 注册按钮 -->
         .signupButton-wrapper {
@@ -145,6 +171,31 @@
         width: 100%;
         height: 100%;
         background-image: url(button_new.png);
+        }
+        
+        .chooseGrade {
+        margin-left: 10px;
+        height: 100%;
+        width: 50%;
+        line-height: 44px;
+        font: 16px;
+        z-index: 99;
+        color: #D3D3D3;
+        }
+        
+        .teacherClass {
+        left: 3%;
+        height: 100%;
+        line-height: 44px;
+        font: 16px;
+        }
+        
+        .classInput {
+        left: 60%;
+        width: 35%;
+        height: 100%;
+        line-height: 44px;
+        font: 16px;
         }
 	</style>
 </ui>

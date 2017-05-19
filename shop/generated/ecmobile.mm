@@ -476,6 +476,17 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation COMMENT_INFO
+
+@synthesize comment_id = _comment_id;
+@synthesize username = _username;
+@synthesize target_username = _target_username;
+@synthesize comment_content = _comment_content;
+@synthesize show_name = _show_name;
+@synthesize show_target_name = _show_target_name;
+
+@end
+
 @implementation MOMENTS_PUBLISH
 
 @synthesize user_id = _user_id;
@@ -3168,6 +3179,10 @@ DEF_MESSAGE_( moments_list, msg )
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
         PAGINATED * paginated = [PAGINATED objectFromDictionary:[response dictAtPath:@"paginated"]];
         NSArray * data = [MOMENTS objectsFromArray:[response arrayAtPath:@"data.info"]];
+        // 就这么着去用comment info吧
+        MOMENTS * a = data[1];
+        NSArray * c = a.publish_info.comment_array;
+        COMMENT_INFO * b = a.publish_info.comment_array[0];
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {

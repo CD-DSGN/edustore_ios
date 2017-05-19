@@ -475,12 +475,22 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * publish_time;
 @property (nonatomic, retain) NSString * user_id;
 @property (nonatomic, retain) NSArray  * photo_array;
+@property (nonatomic, retain) NSArray  * comment_array;
 @end
 
 @interface MOMENTS_TEACHER : NSObject
 @property (nonatomic, retain) NSString * real_name;
 @property (nonatomic, retain) NSString * avatar;
 @property (nonatomic, retain) NSString * course_name;
+@end
+
+@interface COMMENT_INFO : NSObject
+@property (nonatomic, retain) NSString * comment_id;
+@property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSString * target_username;
+@property (nonatomic, retain) NSString * comment_content;
+@property (nonatomic, retain) NSString * show_name;
+@property (nonatomic, retain) NSString * show_target_name;
 @end
 
 @interface MOMENTS : NSObject

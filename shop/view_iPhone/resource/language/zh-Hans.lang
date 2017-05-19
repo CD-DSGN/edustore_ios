@@ -392,6 +392,7 @@
 <string name="follow">关注老师</string>
 <string name="integral">积分</string>
 <string name="class_list">班级列表</string>
+<string name="student_point_list">积分列表</string>
 <string name="null">搜索结果为空</string>
 <string name="tap_refresh">点击刷新</string>
 <string name="Moments">汇师圈</string>

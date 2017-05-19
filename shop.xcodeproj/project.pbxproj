@@ -173,6 +173,10 @@
 		92BF2CC51ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CC31ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m */; };
 		92BF2CC61ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */; };
 		92BF2CC91ECEBE6900B80F9E /* StudentPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CC81ECEBE6900B80F9E /* StudentPointModel.m */; };
+		92BF2CD01ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CCB1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.m */; };
+		92BF2CD11ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92BF2CCC1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.xml */; };
+		92BF2CD21ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CCE1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.m */; };
+		92BF2CD31ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92BF2CCF1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.xml */; };
 		92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C668141EC16D1700DAB0AA /* NewsModel.m */; };
 		92EC7F0C1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
@@ -1264,6 +1268,12 @@
 		92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E8_IntegralClassCell_iPhone.xml; sourceTree = "<group>"; };
 		92BF2CC71ECEBE6900B80F9E /* StudentPointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentPointModel.h; sourceTree = "<group>"; };
 		92BF2CC81ECEBE6900B80F9E /* StudentPointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPointModel.m; sourceTree = "<group>"; };
+		92BF2CCA1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E8_IntegralStudentListBoard_iPhone.h; sourceTree = "<group>"; };
+		92BF2CCB1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E8_IntegralStudentListBoard_iPhone.m; sourceTree = "<group>"; };
+		92BF2CCC1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E8_IntegralStudentListBoard_iPhone.xml; sourceTree = "<group>"; };
+		92BF2CCD1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E8_IntegralStudentCell_iPhone.h; sourceTree = "<group>"; };
+		92BF2CCE1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E8_IntegralStudentCell_iPhone.m; sourceTree = "<group>"; };
+		92BF2CCF1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E8_IntegralStudentCell_iPhone.xml; sourceTree = "<group>"; };
 		92C668131EC16D1700DAB0AA /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
 		92C668141EC16D1700DAB0AA /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		92EC7F0A1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsDetailBoard_iPhone.h; sourceTree = "<group>"; };
@@ -3826,6 +3836,12 @@
 				92BF2CC21ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.h */,
 				92BF2CC31ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m */,
 				92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */,
+				92BF2CCA1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.h */,
+				92BF2CCB1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.m */,
+				92BF2CCC1ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.xml */,
+				92BF2CCD1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.h */,
+				92BF2CCE1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.m */,
+				92BF2CCF1ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.xml */,
 				5FCB81CD1D8F84EE00240074 /* E8_IntegralCell_iPhone.h */,
 				5FCB81CE1D8F84EE00240074 /* E8_IntegralCell_iPhone.m */,
 				5FCB81CB1D8F84DB00240074 /* E8_IntegralCell_iPhone.xml */,
@@ -5817,6 +5833,7 @@
 				CB9C234E18BB3B0C00DDA501 /* trade_info_stream_express_delivery_logo@2x.png in Resources */,
 				CB9C22DA18BB3B0C00DDA501 /* footer_search_active_icon@2x.png in Resources */,
 				CB9C23C518BB3B0C00DDA501 /* C2_PaymentBoard_iPhone.xml in Resources */,
+				92BF2CD31ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.xml in Resources */,
 				6302390F177C1676004C052D /* Default-568h@2x.png in Resources */,
 				CB9C231818BB3B0C00DDA501 /* profile_refresh_history_icon@2x.png in Resources */,
 				CB9C238618BB3B0C00DDA501 /* B1_ProductListGridCell_iPhone.xml in Resources */,
@@ -5895,6 +5912,7 @@
 				CB9C231118BB3B0C00DDA501 /* no_internet_connection_inter_icon@2x.png in Resources */,
 				CB9C22D318BB3B0C00DDA501 /* expired@2x.jpg in Resources */,
 				CB9C23B118BB3B0C00DDA501 /* C0_ShoppingCartHeaderCell_iPhone.xml in Resources */,
+				92BF2CD11ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.xml in Resources */,
 				CB9C237218BB3B0C00DDA501 /* B0_BannerCell_iPhone.xml in Resources */,
 				CB9C240E18BB3B0C00DDA501 /* F0_AddressListCell_iPhone.xml in Resources */,
 				CB9C240C18BB3B0C00DDA501 /* F0_AddressListBoard_iPhone.xml in Resources */,
@@ -6307,6 +6325,7 @@
 				CBD1749118BCBFC8003D1862 /* Bee_UILabel.m in Sources */,
 				5FCB81C81D8F7E8C00240074 /* E8_IntegralBoard_iPhone.m in Sources */,
 				CBD1744718BCBFC8003D1862 /* UIFont+BeeExtension.m in Sources */,
+				92BF2CD01ECED6A300B80F9E /* E8_IntegralStudentListBoard_iPhone.m in Sources */,
 				CBD174AF18BCBFC8003D1862 /* UIView+TapGesture.m in Sources */,
 				CBD174D118BCBFC8003D1862 /* UIView+BeeUILayout.m in Sources */,
 				5F1676561E1E14B400C5188E /* MomentModel.m in Sources */,
@@ -6444,6 +6463,7 @@
 				CBD1748618BCBFC8003D1862 /* Bee_UIAccelerometer.m in Sources */,
 				CBD1743D18BCBFC8003D1862 /* BeeMessage+BeeNetwork.mm in Sources */,
 				CB9C229B18BB3B0C00DDA501 /* CommonNoResultCell.m in Sources */,
+				92BF2CD21ECED6A300B80F9E /* E8_IntegralStudentCell_iPhone.m in Sources */,
 				CBD174DC18BCBFC8003D1862 /* BeeUIQuery+AJAX.m in Sources */,
 				92BF2CC11ECE9E0F00B80F9E /* TeacherClassModel.m in Sources */,
 				5F70DD621D922A3C00F7DAE7 /* ServiceLiveload_Hook.m in Sources */,

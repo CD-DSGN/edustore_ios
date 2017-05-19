@@ -9,9 +9,9 @@
         <row class="teacher">
             <label class="text">关注教师</label>
         </row>
-        <row class="action">
-            <label class="text">操作</label>
-        </row>
+<!--        <row class="action">-->
+<!--            <label class="text">操作</label>-->
+<!--        </row>-->
     </col>
     <list id="list" class="col-md-6"/>
     <style type="text/css">
@@ -25,11 +25,11 @@
         }
         
         .course {
-            width: 30%;
+            width: 40%;
             height: 50px;
         }
         .teacher {
-            width: 35%;
+            width: 55%;
             height: 50px;
         }
         .action {

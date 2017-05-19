@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="E8_IntegralClassCell_iPhone">
+    <col class="content">
+        <row class="line_sample">
+            <image class="background_single_line" />
+            <label class="student_num" id="student_num">@{pay_point}</label>
+            <image class="student_avatar" id="student_avatar"/>
+            <label class="student_name" id="student_name">@{pay_point}</label>
+            <label class="student_point" id="student_point">@{pay_point}</label>
+        </row>
+    </col>
+    
+    <style>
+        .content {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .line_sample{
+            margin-top: 10px;
+            width: 94%;
+            height: 60px;
+            left: 3%;
+        }
+        
+        
+        .background_single_line {
+            width: 100%;
+            height: 100%;
+            position:absolute;
+            top: 0;
+            left: 0;
+            background-mode: stretch;
+            background-insets: 5px;
+            background-image: url(cell_bg_single.png);
+        }
+        
+        
+<!--        per row-->
+        .student_num{
+        left:10px;
+        font: 15px;
+        line-height: 15px;
+        width: 1%;
+        height: 100%
+        }
+
+
+        .student_avatar {
+            left:10px;
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            
+            border-radius: 20px;
+        }
+
+        .student_name{
+            left: 15px;
+            font: 15px;
+            line-height: 15px;
+            width: 60%;
+            height: 100%
+        }
+        
+
+        .student_point {
+        right:5px;
+        font: 15px;
+        line-height: 15px;
+        width: 20%;
+        height: 100%
+        }
+        
+    </style>
+</ui>

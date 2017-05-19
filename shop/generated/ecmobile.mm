@@ -3653,7 +3653,7 @@ DEF_MESSAGE_( getStudentPoint, msg)
         NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
         requestBody.APPEND( @"session", session );
         requestBody.APPEND( @"info_id", info_id);
-        msg.HTTP_POST( requestURI );
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
     } else if (msg.succeed) {
         
         NSDictionary * responseDict = msg.responseJSONDictionary;

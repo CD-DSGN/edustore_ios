@@ -5,34 +5,36 @@
 //  Copyright © 2016年 geek-zoo studio. All rights reserved.
 //
 
-#import "E8_IntegralClassBoard_iPhone.h"
-#import "E8_IntegralClassCell_iPhone.h"
 #import "E8_IntegralStudentListBoard_iPhone.h"
+#import "E8_IntegralStudentCell_iPhone.h"
+
 #import "AppBoard_iPhone.h"
 
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
-#import "TeacherClassModel.h"
-@implementation E8_IntegralClassBoard_iPhone
+
+@implementation E8_IntegralStudentListBoard_iPhone
+
+@synthesize info_id = _info_id;
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_MODEL( UserModel, userModel )
-DEF_MODEL( TeacherClassModel, classModel)
+DEF_MODEL( StudentPointModel, studentPointModel)
 
 DEF_OUTLET( BeeUIScrollView, list )
 
 - (void)load
 {
     self.userModel = [UserModel modelWithObserver:self];
-    self.classModel = [TeacherClassModel modelWithObserver:self];
+    self.studentPointModel = [StudentPointModel modelWithObserver:self];
 }
 
 - (void)unload
 {
     SAFE_RELEASE_MODEL( self.userModel );
-    SAFE_RELEASE_MODEL( self.classModel);
+    SAFE_RELEASE_MODEL( self.studentPointModel);
 }
 
 #pragma mark -
@@ -40,7 +42,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"class_list");
+    self.navigationBarTitle = __TEXT(@"student_point_list");
     
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
     
@@ -53,13 +55,13 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        self.list.total = self.classModel.classArray.count;
+        self.list.total = self.studentPointModel.studentPointArray.count;
         
-        for( int i = 0; i < self.classModel.classArray.count; i++ )
+        for( int i = 0; i < self.studentPointModel.studentPointArray.count; i++ )
         {
             BeeUIScrollItem * item = self.list.items[i];
-            item.clazz = [E8_IntegralClassCell_iPhone class];
-            item.data = [self.classModel.classArray safeObjectAtIndex:i];
+            item.clazz = [E8_IntegralStudentCell_iPhone class];
+            item.data = [self.studentPointModel.studentPointArray safeObjectAtIndex:i];
             item.size = CGSizeAuto;
             item.rule = BeeUIScrollLayoutRule_Tile;
         }
@@ -68,7 +70,7 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        [self.classModel firstPage];
+        [self.studentPointModel firstPage];
     };
 //    self.list.whenFooterRefresh = ^
 //    {
@@ -96,7 +98,8 @@ ON_LAYOUT_VIEWS( signal )
 ON_WILL_APPEAR( signal )
 {
     [bee.ui.appBoard hideTabbar];
-    [self.classModel firstPage];
+    self.studentPointModel.info_id = self.info_id;
+    [self.studentPointModel firstPage];
 }
 
 ON_DID_APPEAR( signal )
@@ -130,11 +133,11 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     [self.userModel searchIntegral];
 }
 
-ON_MESSAGE3( API, getTeacherClass, msg )
+ON_MESSAGE3( API, getStudentPoint, msg )
 {
     if( msg.sending )
     {
-        [self presentMessageTips:@"获取班级列表中"];
+        [self presentMessageTips:@"获取积分中"];
     }
     else
     {
@@ -142,7 +145,7 @@ ON_MESSAGE3( API, getTeacherClass, msg )
     }
     if( msg.succeed )
     {
-        self.classModel.classArray = msg.GET_OUTPUT( @"data" );
+        self.studentPointModel.studentPointArray = msg.GET_OUTPUT( @"data" );
         [self.list asyncReloadData];
     }
     if( msg.failed )
@@ -155,13 +158,7 @@ ON_MESSAGE3( API, getTeacherClass, msg )
     }
 }
 
-ON_SIGNAL2( E8_IntegralClassCell_iPhone, signal )
-{
-    TEACHER_CLASS * teacherClass = signal.sourceCell.data;
-    E8_IntegralStudentListBoard_iPhone *board = [E8_IntegralStudentListBoard_iPhone board];
-    board.info_id = teacherClass.info_id;
-    [self.stack pushBoard:board animated:YES];
-}
+
 
 
 @end

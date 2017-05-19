@@ -52,6 +52,10 @@
 		3268BEE2192B4CCD00512CB7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3268BEE1192B4CCD00512CB7 /* AddressBook.framework */; };
 		3268BEE4192B502100512CB7 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3268BEE3192B502100512CB7 /* iflyMSC.framework */; };
 		32D6036C1A301FB30008B974 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6036B1A301FB30008B974 /* JSONKit.m */; };
+		5F0685F51ECECC3900BE15FD /* A1_SignupBoard2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0685F41ECECC3900BE15FD /* A1_SignupBoard2_iPhone.m */; };
+		5F0685F81ECECC4B00BE15FD /* A1_SignupCell2_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0685F71ECECC4B00BE15FD /* A1_SignupCell2_iPhone.m */; };
+		5F0685FA1ECECC6800BE15FD /* A1_SignupBoard2_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F0685F91ECECC6800BE15FD /* A1_SignupBoard2_iPhone.xml */; };
+		5F0685FC1ECECC7D00BE15FD /* A1_SignupCell2_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F0685FB1ECECC7D00BE15FD /* A1_SignupCell2_iPhone.xml */; };
 		5F077EC61D825AA4002413BB /* history.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F077EC51D825AA4002413BB /* history.plist */; };
 		5F09F8CA1E1F2F720010A5C3 /* J0_CheckOutCounterBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F8C91E1F2F720010A5C3 /* J0_CheckOutCounterBoard_iPhone.m */; };
 		5F09F8CC1E1F2F850010A5C3 /* J0_CheckOutCounterBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5F09F8CB1E1F2F850010A5C3 /* J0_CheckOutCounterBoard_iPhone.xml */; };
@@ -1079,6 +1083,12 @@
 		3268BEE3192B502100512CB7 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		32D6036A1A301FB30008B974 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		32D6036B1A301FB30008B974 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		5F0685F31ECECC3900BE15FD /* A1_SignupBoard2_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_SignupBoard2_iPhone.h; sourceTree = "<group>"; };
+		5F0685F41ECECC3900BE15FD /* A1_SignupBoard2_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_SignupBoard2_iPhone.m; sourceTree = "<group>"; };
+		5F0685F61ECECC4B00BE15FD /* A1_SignupCell2_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A1_SignupCell2_iPhone.h; sourceTree = "<group>"; };
+		5F0685F71ECECC4B00BE15FD /* A1_SignupCell2_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A1_SignupCell2_iPhone.m; sourceTree = "<group>"; };
+		5F0685F91ECECC6800BE15FD /* A1_SignupBoard2_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_SignupBoard2_iPhone.xml; sourceTree = "<group>"; };
+		5F0685FB1ECECC7D00BE15FD /* A1_SignupCell2_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = A1_SignupCell2_iPhone.xml; sourceTree = "<group>"; };
 		5F077EC51D825AA4002413BB /* history.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = history.plist; sourceTree = "<group>"; };
 		5F09F8C81E1F2F720010A5C3 /* J0_CheckOutCounterBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J0_CheckOutCounterBoard_iPhone.h; sourceTree = "<group>"; };
 		5F09F8C91E1F2F720010A5C3 /* J0_CheckOutCounterBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = J0_CheckOutCounterBoard_iPhone.m; sourceTree = "<group>"; };
@@ -3543,6 +3553,12 @@
 				CB9C217418BB3B0A00DDA501 /* A1_SignupCell_iPhone.h */,
 				CB9C217518BB3B0A00DDA501 /* A1_SignupCell_iPhone.m */,
 				CB9C217618BB3B0A00DDA501 /* A1_SignupCell_iPhone.xml */,
+				5F0685F31ECECC3900BE15FD /* A1_SignupBoard2_iPhone.h */,
+				5F0685F41ECECC3900BE15FD /* A1_SignupBoard2_iPhone.m */,
+				5F0685F91ECECC6800BE15FD /* A1_SignupBoard2_iPhone.xml */,
+				5F0685F61ECECC4B00BE15FD /* A1_SignupCell2_iPhone.h */,
+				5F0685F71ECECC4B00BE15FD /* A1_SignupCell2_iPhone.m */,
+				5F0685FB1ECECC7D00BE15FD /* A1_SignupCell2_iPhone.xml */,
 				5F9725FB1D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.h */,
 				5F9725F61D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.m */,
 				5F9725F71D62CDB8000582ED /* A1_TeacherSignupBoard_iPhone.xml */,
@@ -5953,6 +5969,7 @@
 				CB9C22DF18BB3B0C00DDA501 /* footer_user_icon@2x.png in Resources */,
 				CB9C234B18BB3B0C00DDA501 /* trade_info_stream_body_bg_03@2x.png in Resources */,
 				CB9C22CC18BB3B0C00DDA501 /* cell_bg_footer@2x.png in Resources */,
+				5F0685FC1ECECC7D00BE15FD /* A1_SignupCell2_iPhone.xml in Resources */,
 				CB9C23C318BB3B0C00DDA501 /* C1_CheckoutOrderCellInfo_iPhone.xml in Resources */,
 				CB9C23C818BB3B0C00DDA501 /* C3_DistributionBoard_iPhone.xml in Resources */,
 				E9F5DEF61954407600216A56 /* ServiceShare_AuthorizeBoard.xml in Resources */,
@@ -6029,6 +6046,7 @@
 				CB9C232D18BB3B0C00DDA501 /* shopping_cart_acc_cart_icon@2x.png in Resources */,
 				5F09F8CC1E1F2F850010A5C3 /* J0_CheckOutCounterBoard_iPhone.xml in Resources */,
 				CB9C236918BB3B0C00DDA501 /* wizard_4.xml in Resources */,
+				5F0685FA1ECECC6800BE15FD /* A1_SignupBoard2_iPhone.xml in Resources */,
 				CB9C232318BB3B0C00DDA501 /* searcher_new_cont_btn_red@2x.png in Resources */,
 				CB9C23C118BB3B0C00DDA501 /* C1_CheckoutOrderCellHeader_iPhone.xml in Resources */,
 				5F81666C1D87CE0D00B7A3B7 /* D0_SearchRecoder_iPhone.xml in Resources */,
@@ -6572,6 +6590,7 @@
 				CB9C237518BB3B0C00DDA501 /* B0_IndexBoard_iPhone.m in Sources */,
 				CBD1745318BCBFC8003D1862 /* BeeUIBoard+Traversing.m in Sources */,
 				5F803E961D6ADF5E00103EF4 /* A0_SigninBoard_iPhone.m in Sources */,
+				5F0685F51ECECC3900BE15FD /* A1_SignupBoard2_iPhone.m in Sources */,
 				CBD1750F18BCBFC8003D1862 /* Bee_MemoryCache.mm in Sources */,
 				CBD175B218BCBFC8003D1862 /* bee.services.location.m in Sources */,
 				CB9C23D918BB3B0C00DDA501 /* D1_CategoryBoard_iPhone.m in Sources */,
@@ -6762,6 +6781,7 @@
 				CB9C241C18BB3B0C00DDA501 /* G0_SettingCell_iPhone.m in Sources */,
 				CBD174B018BCBFC8003D1862 /* UIView+Traversing.m in Sources */,
 				CBD1753C18BCBFC8003D1862 /* Bee_Network.m in Sources */,
+				5F0685F81ECECC4B00BE15FD /* A1_SignupCell2_iPhone.m in Sources */,
 				CBD1752118BCBFC8003D1862 /* Bee_Log.mm in Sources */,
 				CBD1751918BCBFC8003D1862 /* Bee_SQLITE.m in Sources */,
 				E9F5DEF91954407600216A56 /* ServiceShare_Window.m in Sources */,

@@ -16,7 +16,7 @@
         <row class="list-item">
             <image class="list-item-header-bg" />
             <image class="input-icon-user icon" />
-            <input id="username" class="signin-input" placeholder="@{login_username}"></input>
+            <input id="username" class="signin-input" placeholder="昵称"></input>
         </row>
         <row class="list-item">
             <image class="list-item-bg" />

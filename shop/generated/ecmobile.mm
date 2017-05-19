@@ -476,6 +476,17 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation COMMENT_INFO
+
+@synthesize comment_id = _comment_id;
+@synthesize username = _username;
+@synthesize target_username = _target_username;
+@synthesize comment_content = _comment_content;
+@synthesize show_name = _show_name;
+@synthesize show_target_name = _show_target_name;
+
+@end
+
 @implementation MOMENTS_PUBLISH
 
 @synthesize user_id = _user_id;
@@ -2347,8 +2358,10 @@ DEF_MESSAGE_( user_signup, msg )
         NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
 		NSString * name = msg.GET_INPUT( @"name" );
 		NSString * password = msg.GET_INPUT( @"password" );
-		NSArray * field = msg.GET_INPUT( @"field" );
-
+        NSString * nickname = msg.GET_INPUT( @"nickname" );
+        NSNumber * schoolId = msg.GET_INPUT( @"schoolId" );
+        NSNumber * gradeId = msg.GET_INPUT( @"gradeId" );
+        NSNumber * classId = msg.GET_INPUT( @"classId" );
 //		if ( nil == email || NO == [email isKindOfClass:[NSString class]] )
 //		{
 //			msg.failed = YES;
@@ -2370,7 +2383,10 @@ DEF_MESSAGE_( user_signup, msg )
         requestBody.APPEND( @"mobilePhone", mobilePhone);
 		requestBody.APPEND( @"name", name );
 		requestBody.APPEND( @"password", password );
-		requestBody.APPEND( @"field", field );
+		requestBody.APPEND( @"nickname", nickname );
+        requestBody.APPEND( @"studentSchool", schoolId );
+        requestBody.APPEND( @"studentGrade", gradeId );
+        requestBody.APPEND( @"studentClass", classId );
 
 //		NSString * requestURI = @"http://shop.ecmobile.me/ecmobile/?url=user/signup";
 		NSString * requestURI = [NSString stringWithFormat:@"%@/user/signup", [ServerConfig sharedInstance].url];
@@ -3163,6 +3179,10 @@ DEF_MESSAGE_( moments_list, msg )
         STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
         PAGINATED * paginated = [PAGINATED objectFromDictionary:[response dictAtPath:@"paginated"]];
         NSArray * data = [MOMENTS objectsFromArray:[response arrayAtPath:@"data.info"]];
+        // 就这么着去用comment info吧
+        MOMENTS * a = data[1];
+        NSArray * c = a.publish_info.comment_array;
+        COMMENT_INFO * b = a.publish_info.comment_array[0];
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {

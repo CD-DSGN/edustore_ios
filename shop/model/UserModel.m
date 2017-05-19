@@ -209,7 +209,10 @@ DEF_NOTIFICATION( UPDATED )
 - (void)signupWithUser:(NSString *)user
 			  password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
-				fields:(NSArray *)fields
+              nickname:(NSString *)nickname
+              schoolId:(NSNumber *)schoolId
+               gradeId:(NSNumber *)gradeId
+               classId:(NSNumber *)classId
 {
 	self.CANCEL_MSG( API.user_signup );
 	self
@@ -217,7 +220,10 @@ DEF_NOTIFICATION( UPDATED )
 	.INPUT( @"name", user )
 	.INPUT( @"password", password )
 	.INPUT( @"mobilePhone", mobilePhone )
-	.INPUT( @"field", fields );
+	.INPUT( @"nickname", nickname )
+    .INPUT( @"schoolId", schoolId )
+    .INPUT( @"gradeId", gradeId )
+    .INPUT( @"classId", classId );
 }
 
 - (void)signupWithUser:(NSString *)user

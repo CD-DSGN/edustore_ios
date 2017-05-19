@@ -471,7 +471,8 @@ ON_MESSAGE3( API, checkUser, msg )
     else if( msg.failed )
     {
         //用户名不可使用
-        [self showErrorTips:msg];
+//        [self showErrorTips:msg];
+        [self presentFailureTips:@"电话号码已被注册"];
     }
     else if( msg.cancelled )
     {

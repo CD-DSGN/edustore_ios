@@ -15,6 +15,8 @@
 #import "A1_SignupBoard_iPhone.h"
 #import "A1_SignupCell_iPhone.h"
 
+#import "A1_SignupBoard2_iPhone.h"
+
 #import "AppBoard_iPhone.h"
 
 #import "FormCell.h"
@@ -50,7 +52,7 @@ DEF_OUTLET( BeeUIScrollItem, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"member_signup");
+    self.navigationBarTitle = @"学生注册";
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
 //    [self showBarButton:BeeUINavigationBar.RIGHT
 //                  title:__TEXT(@"register_regist")
@@ -328,13 +330,11 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
   	NSString * password2 = nil;
     
     NSArray * inputs = [self inputs];
-    
-    NSMutableArray * fields = [NSMutableArray array];
 
     //为我们需要的参数赋值
     for ( BeeUITextField * input in inputs )
     {
-        if ([input.placeholder isEqualToString:__TEXT(@"login_username")]) {
+        if ([input.placeholder isEqualToString:@"昵称"]) {
             username = input.text;
         }
         else if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
@@ -389,13 +389,17 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 //		[self presentMessageTips:__TEXT(@"username_too_long")];
 //		return;
 //	}
-
-    if ( 0 == mobilePhone.length )
+    if ( 0 == username.length )
     {
-        [self presentMessageTips:__TEXT(@"null_username")];
+        [self presentFailureTips:@"昵称不能为空"];
         return;
     }
-	if ( 0 == mobilePhone.length || NO == [mobilePhone isMobilePhone] )
+    if ( 0 == mobilePhone.length )
+    {
+        [self presentMessageTips:@"电话号码不能为空"];
+        return;
+    }
+	if ( NO == [mobilePhone isMobilePhone] )
 	{
 		[self presentMessageTips:__TEXT(@"wrong_mobile")];
 		return;
@@ -427,7 +431,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 
 	if ( NO == [password isEqualToString:password2] )
 	{
-		[self presentMessageTips:__TEXT(@"wrong_password")];
+		[self presentMessageTips:@"两次密码不一致"];
 		return;
 	}
     
@@ -437,10 +441,16 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
         return;
     }
 
-    [self.userModel signupWithUser:username
-                          password:password
-                       mobilePhone:mobilePhone
-                            fields:fields];
+    A1_SignupBoard2_iPhone * board = [[A1_SignupBoard2_iPhone alloc] init];
+    board.nickname = username;
+    board.mobilePhone = mobilePhone;
+    board.password = password;
+    [self.stack pushBoard:board animated:YES];
+    
+//    [self.userModel signupWithUser:username
+//                          password:password
+//                       mobilePhone:mobilePhone
+//                            fields:fields];
 }
 
 #pragma mark -
@@ -465,45 +475,6 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
 }
 
 #pragma mark -
-
-ON_MESSAGE3( API, user_signup, msg )
-{
-	if ( msg.sending )
-	{
-		[self presentLoadingTips:__TEXT(@"signing_up")];
-	}
-	else
-	{
-		[self dismissTips];
-	}
-
-	if ( msg.succeed )
-	{
-		STATUS * status = msg.GET_OUTPUT(@"data_status");
-		
-		if ( status && status.succeed.boolValue )
-		{
-			if ( self.userModel.firstUse )
-			{
-				[bee.ui.appBoard presentSuccessTips:__TEXT(@"welcome")];
-			}
-			else
-			{
-				[bee.ui.appBoard presentSuccessTips:__TEXT(@"welcome_back")];
-			}
-
-			[bee.ui.appBoard hideLogin];
-		}
-		else
-		{
-			[self showErrorTips:msg];
-		}
-	}
-	else if ( msg.failed )
-	{
-		[self showErrorTips:msg];
-	}
-}
 
 ON_SIGNAL3( A1_SignupCell_iPhone, getIdentifyCode, signal)
 {

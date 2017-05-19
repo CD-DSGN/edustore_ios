@@ -14,7 +14,6 @@
 
 #import "A1_TeacherSignupBoard2_iPhone.h"
 #import "A1_TeacherSignupCell2_iPhone.h"
-#import "A1_TeacherSignupBoard_iPhone.h"
 
 #import "AppBoard_iPhone.h"
 
@@ -123,6 +122,13 @@ DEF_MODEL( RegisterModel, registerModel )
     
     self.courseArray = nil;
     self.courseIdArray = nil;
+    
+    self.gradeArray = nil;
+    self.gradeIdArray = nil;
+    self.selectedGradeArray = nil;
+    self.selectedGradeIdArray = nil;
+    
+    self.teacherInfo = nil;
 }
 
 #pragma mark -

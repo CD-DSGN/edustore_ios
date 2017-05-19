@@ -3604,7 +3604,7 @@ DEF_MESSAGE_( getGrade, msg )
 {
     if (msg.sending) {
         
-        NSString * requestURI = [NSString stringWithFormat:@"%@/grade", @"http://192.168.1.115"];
+        NSString * requestURI = [NSString stringWithFormat:@"%@/grade", [ServerConfig sharedInstance].url];
         msg.HTTP_POST( requestURI );
     } else if (msg.succeed) {
         

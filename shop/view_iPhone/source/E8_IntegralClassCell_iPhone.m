@@ -6,12 +6,12 @@
 //  Copyright © 2016年 geek-zoo studio. All rights reserved.
 //
 
-#import "E8_IntegralCell_iPhone.h"
+#import "E8_IntegralClassCell_iPhone.h"
 #import "model.h"
 
 #define srceenWidth [[UIScreen mainScreen] bounds].size.width
 
-@implementation E8_IntegralCell_iPhone
+@implementation E8_IntegralClassCell_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )

@@ -5,35 +5,34 @@
 //  Copyright © 2016年 geek-zoo studio. All rights reserved.
 //
 
-#import "E8_IntegralBoard_iPhone.h"
-#import "E8_IntegralCell_iPhone.h"
+#import "E8_IntegralClassBoard_iPhone.h"
+#import "E8_IntegralClassCell_iPhone.h"
 
 #import "AppBoard_iPhone.h"
 
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
-#import "E8_IntegralClassBoard_iPhone.h"
-@implementation E8_IntegralBoard_iPhone
+#import "TeacherClassModel.h"
+@implementation E8_IntegralClassBoard_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )
 
 DEF_MODEL( UserModel, userModel )
+DEF_MODEL( TeacherClassModel, classModel)
 
 DEF_OUTLET( BeeUIScrollView, list )
 
 - (void)load
 {
     self.userModel = [UserModel modelWithObserver:self];
-    
-    self.data = [[TEACHER_INTEGRAL alloc] init];
+    self.classModel = [TeacherClassModel modelWithObserver:self];
 }
 
 - (void)unload
 {
     SAFE_RELEASE_MODEL( self.userModel );
-    
-    self.data = nil;
+    SAFE_RELEASE_MODEL( self.classModel);
 }
 
 #pragma mark -
@@ -41,7 +40,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"integral");
+    self.navigationBarTitle = __TEXT(@"class_list");
     
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
     
@@ -54,22 +53,35 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        // 为积分页面要展示的内容赋值
-        // 如果要多行内容显示，那么传参要传对应的对象，因为页面不循环输出， 都是显示的直接写出来
-        self.list.total = 1;
+        self.list.total = self.classModel.classArray.count;
         
-        BeeUIScrollItem * item = self.list.items[0];
-        item.clazz = [E8_IntegralCell_iPhone class];
-        item.rule = BeeUIScrollLayoutRuleHorizontal;
-        item.size = CGSizeAuto;
-        item.data = self.data;
+        for( int i = 0; i < self.classModel.classArray.count; i++ )
+        {
+            BeeUIScrollItem * item = self.list.items[i];
+            item.clazz = [E8_IntegralClassCell_iPhone class];
+            item.data = [self.classModel.classArray safeObjectAtIndex:i];
+            item.size = CGSizeAuto;
+            item.rule = BeeUIScrollLayoutRule_Tile;
+        }
     };
     self.list.whenHeaderRefresh = ^
     {
         @normalize(self);
         
-        [self searchIntegral];
+        [self.classModel firstPage];
     };
+//    self.list.whenFooterRefresh = ^
+//    {
+//        @normalize(self);
+//        
+//        [self.classModel nextPage];
+//    };
+//    self.list.whenReachBottom = ^
+//    {
+//        @normalize(self);
+//        
+//        [self.classModel nextPage];
+//    };
 }
 
 ON_DELETE_VIEWS( signal )
@@ -118,11 +130,11 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     [self.userModel searchIntegral];
 }
 
-ON_MESSAGE3( API, get_integral, msg )
+ON_MESSAGE3( API, getTeacherClass, msg )
 {
     if( msg.sending )
     {
-        [self presentMessageTips:@"获取积分中"];
+        [self presentMessageTips:@"获取班级列表中"];
     }
     else
     {
@@ -130,8 +142,7 @@ ON_MESSAGE3( API, get_integral, msg )
     }
     if( msg.succeed )
     {
-        TEACHER_INTEGRAL * data = msg.GET_OUTPUT( @"data" );
-        self.data = data;
+        self.classModel.classArray = msg.GET_OUTPUT( @"data" );
         [self.list asyncReloadData];
     }
     if( msg.failed )
@@ -147,8 +158,8 @@ ON_MESSAGE3( API, get_integral, msg )
 ON_SIGNAL2( E8_IntegralCell_iPhone, signal )
 {
     NSLog(@"checkClassList");
-    E8_IntegralClassBoard_iPhone * board = [E8_IntegralClassBoard_iPhone board];
-    [self.stack pushBoard:board animated:YES];
+//    K0_NewsDetailBoard_iPhone * board = [K0_NewsDetailBoard_iPhone board];
+//    [self.stack pushBoard:board animated:YES];
 }
 
 

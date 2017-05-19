@@ -375,7 +375,7 @@
 <string name="will_end2">后结束</string>
 <string name="error_aps">无法开启推送通知，请前往系统设置中修改</string>
 <string name="specs_tips">点击选择配件和数量</string>
-
+<string name="null_username">昵称不能为空</string>
 <string name="teacherSignup">教师注册</string>
 <string name="mobile_phone">电话号码</string>
 <string name="identify_code">验证码</string>
@@ -391,6 +391,7 @@
 <string name="region">请选择地区</string>
 <string name="follow">关注老师</string>
 <string name="integral">积分</string>
+<string name="class_list">班级列表</string>
 <string name="null">搜索结果为空</string>
 <string name="tap_refresh">点击刷新</string>
 <string name="Moments">汇师圈</string>

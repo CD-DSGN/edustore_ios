@@ -40,7 +40,8 @@
 #import "ALIPayModel.h"
 #import "MomentModel.h"
 #import "NewsModel.h"
-
+#import "TeacherClassModel.h"
+#import "StudentPointModel.h"
 #import "ADDRESS+Region.h"
 #import "NSObject+TagList.h"
 #import "BRAND+TagList.h"

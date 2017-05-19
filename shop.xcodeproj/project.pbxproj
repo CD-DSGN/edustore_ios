@@ -167,6 +167,12 @@
 		92849ACF1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92849ACD1ECC317B0052A5C9 /* G0_AboutUsBoard_iPhone.xml */; };
 		92849AD11ECC3ACF0052A5C9 /* huishi_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 92849AD01ECC3ACF0052A5C9 /* huishi_logo.png */; };
 		928640851E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */; };
+		92BF2CBD1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CBB1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.m */; };
+		92BF2CBE1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92BF2CBC1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.xml */; };
+		92BF2CC11ECE9E0F00B80F9E /* TeacherClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CC01ECE9E0F00B80F9E /* TeacherClassModel.m */; };
+		92BF2CC51ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CC31ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m */; };
+		92BF2CC61ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */; };
+		92BF2CC91ECEBE6900B80F9E /* StudentPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF2CC81ECEBE6900B80F9E /* StudentPointModel.m */; };
 		92C668151EC16D1700DAB0AA /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C668141EC16D1700DAB0AA /* NewsModel.m */; };
 		92EC7F0C1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC7F0B1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.m */; };
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
@@ -1248,6 +1254,16 @@
 		92849AD01ECC3ACF0052A5C9 /* huishi_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huishi_logo.png; sourceTree = "<group>"; };
 		928640831E31EFE500E36DE3 /* SinglePhotoBrowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePhotoBrowerViewController.h; sourceTree = "<group>"; };
 		928640841E31EFE500E36DE3 /* SinglePhotoBrowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePhotoBrowerViewController.m; sourceTree = "<group>"; };
+		92BF2CBA1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E8_IntegralClassBoard_iPhone.h; sourceTree = "<group>"; };
+		92BF2CBB1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E8_IntegralClassBoard_iPhone.m; sourceTree = "<group>"; };
+		92BF2CBC1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E8_IntegralClassBoard_iPhone.xml; sourceTree = "<group>"; };
+		92BF2CBF1ECE9E0F00B80F9E /* TeacherClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherClassModel.h; sourceTree = "<group>"; };
+		92BF2CC01ECE9E0F00B80F9E /* TeacherClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherClassModel.m; sourceTree = "<group>"; };
+		92BF2CC21ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E8_IntegralClassCell_iPhone.h; sourceTree = "<group>"; };
+		92BF2CC31ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E8_IntegralClassCell_iPhone.m; sourceTree = "<group>"; };
+		92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E8_IntegralClassCell_iPhone.xml; sourceTree = "<group>"; };
+		92BF2CC71ECEBE6900B80F9E /* StudentPointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentPointModel.h; sourceTree = "<group>"; };
+		92BF2CC81ECEBE6900B80F9E /* StudentPointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPointModel.m; sourceTree = "<group>"; };
 		92C668131EC16D1700DAB0AA /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
 		92C668141EC16D1700DAB0AA /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
 		92EC7F0A1EC464EA00FF08A7 /* K0_NewsDetailBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K0_NewsDetailBoard_iPhone.h; sourceTree = "<group>"; };
@@ -3130,6 +3146,10 @@
 				5F1676551E1E14B400C5188E /* MomentModel.m */,
 				92C668131EC16D1700DAB0AA /* NewsModel.h */,
 				92C668141EC16D1700DAB0AA /* NewsModel.m */,
+				92BF2CBF1ECE9E0F00B80F9E /* TeacherClassModel.h */,
+				92BF2CC01ECE9E0F00B80F9E /* TeacherClassModel.m */,
+				92BF2CC71ECEBE6900B80F9E /* StudentPointModel.h */,
+				92BF2CC81ECEBE6900B80F9E /* StudentPointModel.m */,
 				CB81D0BB18ABB3EE00F277EA /* OrderModel.h */,
 				CB81D0BC18ABB3EE00F277EA /* OrderModel.m */,
 				CB81D0BD18ABB3EE00F277EA /* PriceRangeModel.h */,
@@ -3800,6 +3820,12 @@
 				5FCB81C61D8F7E8C00240074 /* E8_IntegralBoard_iPhone.h */,
 				5FCB81C71D8F7E8C00240074 /* E8_IntegralBoard_iPhone.m */,
 				5FCB81C91D8F7EA700240074 /* E8_IntegralBoard_iPhone.xml */,
+				92BF2CBA1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.h */,
+				92BF2CBB1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.m */,
+				92BF2CBC1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.xml */,
+				92BF2CC21ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.h */,
+				92BF2CC31ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m */,
+				92BF2CC41ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml */,
 				5FCB81CD1D8F84EE00240074 /* E8_IntegralCell_iPhone.h */,
 				5FCB81CE1D8F84EE00240074 /* E8_IntegralCell_iPhone.m */,
 				5FCB81CB1D8F84DB00240074 /* E8_IntegralCell_iPhone.xml */,
@@ -5876,6 +5902,7 @@
 				CB9C22C818BB3B0C00DDA501 /* button_orange@2x.png in Resources */,
 				CB9C22B218BB3B0C00DDA501 /* OrderCellFooter_iPhone.xml in Resources */,
 				CB9C236218BB3B0C00DDA501 /* tuitional_img_5_1@2x.png in Resources */,
+				92BF2CC61ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.xml in Resources */,
 				CB9C236818BB3B0C00DDA501 /* wizard_3.xml in Resources */,
 				CB9C241D18BB3B0C00DDA501 /* G0_SettingCell_iPhone.xml in Resources */,
 				CB9C22C918BB3B0C00DDA501 /* button_red@2x.png in Resources */,
@@ -5960,6 +5987,7 @@
 				CB9C22F418BB3B0C00DDA501 /* item_grid_filter_up_arrow@2x.png in Resources */,
 				CB9C237018BB3B0C00DDA501 /* A1_SignupCell_iPhone.xml in Resources */,
 				CB9C241418BB3B0C00DDA501 /* F2_EditAddressBoard_iPhone.xml in Resources */,
+				92BF2CBE1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.xml in Resources */,
 				CB9C22DC18BB3B0C00DDA501 /* footer_shopping_cart_active_icon@2x.png in Resources */,
 				CB9C23F818BB3B0C00DDA501 /* E4_HistoryBoard_iPhone.xml in Resources */,
 				5FA3E94A1E6D3934005D4CB4 /* E4_GoodsReturnCell_iPhone.xml in Resources */,
@@ -6417,6 +6445,7 @@
 				CBD1743D18BCBFC8003D1862 /* BeeMessage+BeeNetwork.mm in Sources */,
 				CB9C229B18BB3B0C00DDA501 /* CommonNoResultCell.m in Sources */,
 				CBD174DC18BCBFC8003D1862 /* BeeUIQuery+AJAX.m in Sources */,
+				92BF2CC11ECE9E0F00B80F9E /* TeacherClassModel.m in Sources */,
 				5F70DD621D922A3C00F7DAE7 /* ServiceLiveload_Hook.m in Sources */,
 				CB9C239F18BB3B0C00DDA501 /* B4_ProductParamCell_iPhone.m in Sources */,
 				1835C75B18C03736008D71BC /* E0_ProfileHelpBoard_iPhone.m in Sources */,
@@ -6652,6 +6681,7 @@
 				CBD1748918BCBFC8003D1862 /* Bee_UIActivityIndicatorView.m in Sources */,
 				CBD1748518BCBFC8003D1862 /* UIView+BeeExtension.m in Sources */,
 				CBD1755518BCBFC8003D1862 /* Bee_Socket.m in Sources */,
+				92BF2CC51ECEA12900B80F9E /* E8_IntegralClassCell_iPhone.m in Sources */,
 				CBD174F918BCBFC8003D1862 /* Bee_UITemplateParser.m in Sources */,
 				5F81666B1D87CE0D00B7A3B7 /* D0_SearchRecoder_iPhone.m in Sources */,
 				CBD175DA18BCBFC8003D1862 /* ServiceSiri_Window.m in Sources */,
@@ -6700,6 +6730,8 @@
 				CBD1753418BCBFC8003D1862 /* NSObject+BeeProperty.mm in Sources */,
 				CBD1754018BCBFC8003D1862 /* Bee_HTTPClientConfig.m in Sources */,
 				CBD174BC18BCBFC8003D1862 /* BeeUIZoomImageView+BeeUIStyle.m in Sources */,
+				92BF2CC91ECEBE6900B80F9E /* StudentPointModel.m in Sources */,
+				92BF2CBD1ECE969B00B80F9E /* E8_IntegralClassBoard_iPhone.m in Sources */,
 				CBD1746E18BCBFC8003D1862 /* CSSRuleSet.m in Sources */,
 				CBD1746D18BCBFC8003D1862 /* CSSOM.m in Sources */,
 				CB9C229518BB3B0C00DDA501 /* AppTabbar_iPhone.m in Sources */,

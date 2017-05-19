@@ -535,6 +535,25 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NEWS_BANNER * banner;
 @end
 
+//老师查询积分时的班级列表
+@interface TEACHER_CLASS : NSObject
+@property (nonatomic, retain) NSNumber * class_no;
+@property (nonatomic, retain) NSString * grade;
+@property (nonatomic, retain) NSNumber * info_id;
+@property (nonatomic, retain) NSString * school_name;
+
+@end
+
+//老师查询学生时, 班级学生的积分
+@interface STUDENT_POINT : NSObject
+
+@property (nonatomic, retain) NSString * avatar;
+@property (nonatomic, retain) NSNumber * student_points;
+@property (nonatomic, retain) NSString * student_name;
+
+@end
+
+
 // 注册时候年级的信息
 @interface Register_grade : NSObject
 @property (nonatomic, retain) NSNumber * grade_id;
@@ -753,6 +772,12 @@ AS_MESSAGE ( getSchool );
 
 // POST 获取年级信息
 AS_MESSAGE ( getGrade );
+
+//POST获取老师自己的班级列表
+AS_MESSAGE ( getTeacherClass );
+
+// POST 获取该班级所有学生积分信息
+AS_MESSAGE ( getStudentPoint );
 
 @end
 

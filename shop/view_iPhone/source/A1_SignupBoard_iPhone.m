@@ -190,6 +190,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
     BeeUIScrollItem * item = self.list.items[0];
     if ( [item.view isKindOfClass:[A1_SignupCell_iPhone class]])
     {
+        [inputs addObject:((A1_SignupCell_iPhone *)item.view).username];
         [inputs addObject:((A1_SignupCell_iPhone *)item.view).mobilePhone];
         [inputs addObject:((A1_SignupCell_iPhone *)item.view).identifyCode];
         [inputs addObject:((A1_SignupCell_iPhone *)item.view).password];
@@ -320,6 +321,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 
 - (void)doRegister
 {
+    NSString * username = nil;
     NSString * mobilePhone = nil;
     NSString * identifyCode = nil;
   	NSString * password = nil;
@@ -332,7 +334,10 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
     //为我们需要的参数赋值
     for ( BeeUITextField * input in inputs )
     {
-        if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
+        if ([input.placeholder isEqualToString:__TEXT(@"login_username")]) {
+            username = input.text;
+        }
+        else if( [input.placeholder isEqualToString:__TEXT(@"login_password")] )
         {
             password = input.text;
         }
@@ -385,6 +390,11 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
 //		return;
 //	}
 
+    if ( 0 == mobilePhone.length )
+    {
+        [self presentMessageTips:__TEXT(@"null_username")];
+        return;
+    }
 	if ( 0 == mobilePhone.length || NO == [mobilePhone isMobilePhone] )
 	{
 		[self presentMessageTips:__TEXT(@"wrong_mobile")];
@@ -427,7 +437,7 @@ ON_SIGNAL3( A1_SignupCell_iPhone, signupButton, signal )
         return;
     }
 
-    [self.userModel signupWithUser:nil
+    [self.userModel signupWithUser:username
                           password:password
                        mobilePhone:mobilePhone
                             fields:fields];

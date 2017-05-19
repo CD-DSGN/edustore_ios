@@ -15,6 +15,11 @@
     <col class="list-wrapper-group">
         <row class="list-item">
             <image class="list-item-header-bg" />
+            <image class="input-icon-user icon" />
+            <input id="username" class="signin-input" placeholder="@{login_username}"></input>
+        </row>
+        <row class="list-item">
+            <image class="list-item-bg" />
             <image class="input-icon-phone icon" />
             <input id="mobilePhone" class="signin-input" placeholder="@{mobile_phone}"></input>
         </row>

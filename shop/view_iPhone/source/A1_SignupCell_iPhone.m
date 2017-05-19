@@ -46,6 +46,7 @@ DEF_OUTLET( BeeUIButton, signupButton )
     if ( self.data )
     {
         RegisterModel * registerInfo = self.data;
+        
         if ( [registerInfo.passwordTag isEqualToString:__TEXT(@"login_password")])
         {
             self.password.secureTextEntry = YES;

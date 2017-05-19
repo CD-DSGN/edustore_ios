@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui namespace="E8_IntegralBoard_iPhone">
+    <list id="list" class="col-md-6"/>
+    
+    <style>
+        #list {
+            insets: 0 0 10 0;
+        }
+    </style>
+</ui>

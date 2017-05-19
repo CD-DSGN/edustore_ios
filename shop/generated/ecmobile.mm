@@ -549,6 +549,23 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @end
 
+@implementation TEACHER_CLASS
+
+@synthesize class_no = _class_no;
+@synthesize grade = _grade;
+@synthesize info_id = _info_id;
+@synthesize school_name = _school_name;
+
+@end
+
+@implementation STUDENT_POINT
+
+@synthesize student_name = _student_name;
+@synthesize student_points = _student_points;
+@synthesize avatar = _avatar;
+
+@end
+
 @implementation Register_grade
 
 @synthesize grade_id = _grade_id;
@@ -3568,7 +3585,7 @@ DEF_MESSAGE_( getGrade, msg )
 {
     if (msg.sending) {
         
-        NSString * requestURI = [NSString stringWithFormat:@"%@/grade", [ServerConfig sharedInstance].url];
+        NSString * requestURI = [NSString stringWithFormat:@"%@/grade", @"http://192.168.1.115"];
         msg.HTTP_POST( requestURI );
     } else if (msg.succeed) {
         
@@ -3582,6 +3599,56 @@ DEF_MESSAGE_( getGrade, msg )
         
     }
 }
+
+
+DEF_MESSAGE_( getTeacherClass, msg)
+{
+    if (msg.sending) {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/teacher_class_info", [ServerConfig sharedInstance].url];
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        
+        
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        NSArray * data = [TEACHER_CLASS objectsFromArray:responseDict[@"data"]];
+        msg.OUTPUT(@"data", data);
+        msg.OUTPUT(@"success", responseDict[@"succeed"]);
+    } else if (msg.cancelled) {
+        
+    } else if (msg.failed) {
+        
+    }
+}
+
+DEF_MESSAGE_( getStudentPoint, msg)
+{
+    if (msg.sending) {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSNumber * info_id = msg.GET_INPUT( @"info_id");
+        NSString * requestURI = [NSString stringWithFormat:@"%@/user/student_point_info", [ServerConfig sharedInstance].url];
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"info_id", info_id);
+        msg.HTTP_POST( requestURI );
+    } else if (msg.succeed) {
+        
+        NSDictionary * responseDict = msg.responseJSONDictionary;
+        NSArray * data = [STUDENT_POINT objectsFromArray:responseDict[@"data"]];
+        msg.OUTPUT(@"data", data);
+        msg.OUTPUT(@"success", responseDict[@"succeed"]);
+        
+    } else if (msg.cancelled) {
+        
+    } else if (msg.failed) {
+        
+    }
+}
+
 
 @end
 

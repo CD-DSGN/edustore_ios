@@ -233,6 +233,8 @@ DEF_NOTIFICATION( UPDATED )
             provinceId:(NSNumber *)provinceId
                 cityId:(NSNumber *)cityId
                 townId:(NSNumber *)townId
+                 grade:(NSString *)grade
+                 class:(NSString *)teacherClass
 {
     self.CANCEL_MSG( API.teacher_signup );
     self
@@ -249,7 +251,9 @@ DEF_NOTIFICATION( UPDATED )
     .INPUT( @"country", country ) 
     .INPUT( @"provinceId", provinceId )
     .INPUT( @"cityId", cityId )
-    .INPUT( @"townId", townId );
+    .INPUT( @"townId", townId )
+    .INPUT( @"grade", grade)
+    .INPUT( @"class", teacherClass);
 }
 
 - (void)get_course

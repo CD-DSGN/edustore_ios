@@ -61,7 +61,9 @@ AS_NOTIFICATION( UPDATED )
                country:(NSString *)country
             provinceId:(NSNumber *)provinceId
                 cityId:(NSNumber *)cityId
-                townId:(NSNumber *)townId;
+                townId:(NSNumber *)townId
+                 grade:(NSString *)grade
+                 class:(NSString *)teacherClass;
 
 // 通过父亲id查询地区
 - (void)selectRegionByParentId:(NSString *)parent_id;

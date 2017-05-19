@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui namespace="A1_SignupBoard2_iPhone">
+    
+    <list id="list" class="col-md-6"/>
+    
+    <style type="text/css">
+        
+        #list { insets: 10 0 10 0; }
+        
+    </style>
+</ui>

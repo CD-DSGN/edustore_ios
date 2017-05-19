@@ -2347,8 +2347,10 @@ DEF_MESSAGE_( user_signup, msg )
         NSString * mobilePhone = msg.GET_INPUT( @"mobilePhone" );
 		NSString * name = msg.GET_INPUT( @"name" );
 		NSString * password = msg.GET_INPUT( @"password" );
-		NSArray * field = msg.GET_INPUT( @"field" );
-
+        NSString * nickname = msg.GET_INPUT( @"nickname" );
+        NSNumber * schoolId = msg.GET_INPUT( @"schoolId" );
+        NSNumber * gradeId = msg.GET_INPUT( @"gradeId" );
+        NSNumber * classId = msg.GET_INPUT( @"classId" );
 //		if ( nil == email || NO == [email isKindOfClass:[NSString class]] )
 //		{
 //			msg.failed = YES;
@@ -2370,7 +2372,10 @@ DEF_MESSAGE_( user_signup, msg )
         requestBody.APPEND( @"mobilePhone", mobilePhone);
 		requestBody.APPEND( @"name", name );
 		requestBody.APPEND( @"password", password );
-		requestBody.APPEND( @"field", field );
+		requestBody.APPEND( @"nickname", nickname );
+        requestBody.APPEND( @"studentSchool", schoolId );
+        requestBody.APPEND( @"studentGrade", gradeId );
+        requestBody.APPEND( @"studentClass", classId );
 
 //		NSString * requestURI = @"http://shop.ecmobile.me/ecmobile/?url=user/signup";
 		NSString * requestURI = [NSString stringWithFormat:@"%@/user/signup", [ServerConfig sharedInstance].url];

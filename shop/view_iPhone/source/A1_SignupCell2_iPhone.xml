@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui namespace="A1_SignupCell2_iPhone">
+    
+    <col class="list-wrapper-group" >
+        <row class="list-item">
+            <image class="list-item-header-bg" />
+            <image class="input-icon-region icon" />
+            <label id="region" class="choose">所在地区</label>
+            <button id="chooseRegion" class="choose"></button>
+        </row>
+        <row class="list-item">
+            <image class="list-item-bg" />
+            <image class="input-icon-school icon" />
+            <label id="school" class="choose">@{school}</label>
+            <button id="chooseSchool" class="choose"></button>
+        </row>
+        <row class="list-item">
+            <image class="list-item-bg" />
+            <image class="input-icon-grade icon" />
+            <label id="grade" class="choose">年级</label>
+            <button id="chooseGrade" class="choose"></button>
+        </row>
+        <row class="list-item">
+            <image class="list-item-footer-bg" />
+            <image class="input-icon-class icon" />
+            <input id="studentClass" class="signin-input" placeholder="班级"></input>
+        </row>
+        
+        <row class="signupButton-wrapper">
+            <button class="signupButton" id="signupButton">提交注册</button>
+        </row>
+    </col>
+    
+    <style type="text/css">
+        
+        .list-wrapper-group {
+            left: 3%;
+            width: 94%;
+            align: center;
+            height: auto;
+        }
+        .list-item {
+            height: 44px;
+            width: 100%;
+            v-align: center;
+        }
+        .list-item-header-bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            background-mode: stretch;
+            background-insets: 10px;
+            background-image: url(cell_bg_header.png);
+        }
+        .list-item-footer-bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            background-mode: stretch;
+            background-insets: 10px;
+            background-image: url(cell_bg_footer.png);
+        }
+        .list-item-bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            background-mode: stretch;
+            background-insets: 10px;
+            background-image: url(cell_bg_content.png);
+        }
+        .icon {
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+            image-mode: center;
+        }
+        <!-- icon -->
+        .input-icon-region {
+            image-src: url(signup_region.png);
+        }
+        .input-icon-school {
+            image-src: url(signup_school.png);
+        }
+        .input-icon-grade {
+            image-src: url(signup_grade.png);
+        }
+        .input-icon-class {
+            image-src: url(signup_class.png);
+        }
+        
+        .choose {
+            margin-left: 10px;
+            height: 100%;
+            width: 100%;
+            line-height: 44px;
+            font: 16px;
+            z-index: 99;
+            color: #D3D3D3;
+        }
+        
+        .signin-input {
+            height: 44px;
+            width: 85%;
+            margin-left: 10px;
+            line-height: 35px;
+            font: 16px;
+            input-clear: editing;
+            input-capitalization: none;
+            input-return-key: return;
+            input-correction: false;
+        }
+        
+        <!-- 注册按钮 -->
+        .signupButton-wrapper {
+            position: relative;
+            width: 100%;
+            height: 44px;
+            left: 3%;
+            top: 20px;
+        }
+        
+        .signupButton {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(button_new.png);
+        }
+    </style>
+</ui>

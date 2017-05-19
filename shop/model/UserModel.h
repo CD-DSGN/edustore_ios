@@ -47,7 +47,10 @@ AS_NOTIFICATION( UPDATED )
 - (void)signupWithUser:(NSString *)user
               password:(NSString *)password
            mobilePhone:(NSString *)mobilePhone
-                fields:(NSArray *)fields;
+              nickname:(NSString *)nickname
+              schoolId:(NSNumber *)schoolId
+               gradeId:(NSNumber *)gradeId
+               classId:(NSNumber *)classId;
 
 - (void)signupWithUser:(NSString *)user
           inviteUserId:(NSString *)inviteUserId

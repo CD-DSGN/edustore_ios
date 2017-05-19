@@ -489,6 +489,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @synthesize real_name = _real_name;
 @synthesize avatar = _avatar;
+@synthesize course_name = _course_name;
 
 @end
 
@@ -518,6 +519,20 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize username = _username;
 @synthesize invite_user_id = _invite_user_id;
 @synthesize invite_error = _invite_error;
+
+@end
+
+@implementation TEACHER_REGISTER_INFO
+
+@synthesize teacher_name = _teacher_name;
+@synthesize province_id = _province_id;
+@synthesize town_id = _town_id;
+@synthesize district_id = _district_id;
+@synthesize school_id = _school_id;
+@synthesize course_id = _course_id;
+@synthesize grade_array = _grade_array;
+@synthesize class_array = _class_array;
+@synthesize line = _line;
 
 @end
 
@@ -2416,6 +2431,8 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         NSString * provinceName = msg.GET_INPUT( @"provinceId" );
         NSString * cityName = msg.GET_INPUT( @"cityId" );
         NSString * townName = msg.GET_INPUT( @"townId" );
+        NSString * grade = msg.GET_INPUT( @"grade" );
+        NSString * teacherClass = msg.GET_INPUT( @"class" );
         
         if ( nil == name || NO == [name isKindOfClass:[NSString class]] )
         {
@@ -2442,6 +2459,8 @@ DEF_MESSAGE_ ( teacher_signup, msg )
         requestBody.APPEND( @"provinceName", provinceName );
         requestBody.APPEND( @"cityName", cityName );
         requestBody.APPEND( @"townName", townName );
+        requestBody.APPEND( @"teacherGrade", grade );
+        requestBody.APPEND( @"teacherClass", teacherClass );
         
         NSString * requestURI = [NSString stringWithFormat:@"%@/user/signup", [ServerConfig sharedInstance].url];
         

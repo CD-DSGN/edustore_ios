@@ -480,6 +480,7 @@ enum RANK_LEVEL
 @interface MOMENTS_TEACHER : NSObject
 @property (nonatomic, retain) NSString * real_name;
 @property (nonatomic, retain) NSString * avatar;
+@property (nonatomic, retain) NSString * course_name;
 @end
 
 @interface MOMENTS : NSObject
@@ -508,6 +509,18 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * invite_user_id;
 @property (nonatomic, retain) NSString * invite_error;
+@end
+
+@interface TEACHER_REGISTER_INFO : NSObject
+@property (nonatomic, retain) NSString * teacher_name;
+@property (nonatomic, retain) NSString * province_id;
+@property (nonatomic, retain) NSString * town_id;
+@property (nonatomic, retain) NSString * district_id;
+@property (nonatomic, retain) NSString * school_id;
+@property (nonatomic, retain) NSString * course_id;
+@property (nonatomic, retain) NSMutableArray * grade_array;
+@property (nonatomic, retain) NSMutableArray * class_array;
+@property (nonatomic, retain) NSNumber * line;
 @end
 
 // 程序运行，检测更新返回数据

@@ -21,6 +21,10 @@
 #import "FormCell.h"
 
 @interface A1_TeacherSignupBoard2_iPhone ()
+{
+    NSInteger gradeAndClassLine;
+    NSInteger gradeSelectedRow;
+}
 @property (nonatomic, strong) UIPickerView * regionPickerView;
 @property (nonatomic, strong) UIPickerView * schoolPickerView;
 @property (nonatomic, strong) UIPickerView * gradePickerView;
@@ -48,6 +52,13 @@
 @property (nonatomic, strong) NSMutableArray        *    courseIdArray;
 @property (nonatomic, strong) NSString              *    selectedCourseName;
 @property (nonatomic, strong) NSNumber              *    selectedCourseId;
+// 年级、班级数据
+@property (nonatomic, strong) NSMutableArray        *    gradeArray;
+@property (nonatomic, strong) NSMutableArray        *    gradeIdArray;
+@property (nonatomic, strong) NSMutableArray        *    selectedGradeArray;
+@property (nonatomic, strong) NSMutableArray        *    selectedGradeIdArray;
+// 增加年级、班级输入时需要的信息
+@property (nonatomic, strong) TEACHER_REGISTER_INFO * teacherInfo;
 @end
 
 @implementation A1_TeacherSignupBoard2_iPhone
@@ -81,6 +92,18 @@ DEF_MODEL( RegisterModel, registerModel )
     self.courseIdArray = [NSMutableArray array];
     self.selectedCourseId = @0;
     self.selectedCourseName = nil;
+    
+    self.gradeArray = [NSMutableArray array];
+    self.gradeIdArray = [NSMutableArray array];
+    self.selectedGradeArray = [[NSMutableArray alloc] initWithObjects:@"",@"",@"",@"",@"", nil];
+    self.selectedGradeIdArray = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
+    gradeSelectedRow = 0;
+    
+    gradeAndClassLine = 1;
+    self.teacherInfo = [[TEACHER_REGISTER_INFO alloc] init];
+    self.teacherInfo.line = [NSNumber numberWithInteger:gradeAndClassLine];
+    self.teacherInfo.grade_array = [NSMutableArray array];
+    self.teacherInfo.class_array = [NSMutableArray array];
 }
 
 - (void)unload
@@ -122,8 +145,15 @@ ON_CREATE_VIEWS( signal )
         BeeUIScrollItem * item = self.list.items[0];
         item.clazz = [A1_TeacherSignupCell2_iPhone class];
         item.rule  = BeeUIScrollLayoutRule_Line;
-        item.size  = CGSizeAuto;
-        item.data  = self.registerModel;
+        item.size  = self.list.size;
+        item.data  = self.teacherInfo;
+    };
+    
+    self.list.whenScrolling = ^
+    {
+        @normalize(self);
+      
+        [self.list endEditing:YES];
     };
     
     [self observeNotification:BeeUIKeyboard.HIDDEN];
@@ -150,6 +180,7 @@ ON_WILL_APPEAR( signal )
 ON_DID_APPEAR( signal )
 {
     [self.list reloadData];
+    [self getGrade];
 }
 
 ON_WILL_DISAPPEAR( signal )
@@ -185,7 +216,9 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 - (UIPickerView *)gradePickerView
 {
     if (!_gradePickerView) {
-        
+        _gradePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 200)];
+        _gradePickerView.delegate = self;
+        _gradePickerView.dataSource = self;
     }
     return _gradePickerView;
 }
@@ -215,37 +248,37 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 
 ON_SIGNAL3( BeeUITextField, RETURN, signal )
 {
-    NSArray * inputs = [self inputs];
-    
-    BeeUITextField * input = (BeeUITextField *)signal.source;
-    
-    NSInteger index = [inputs indexOfObject:input];
-    
-    if ( index == 0 )
-    {
-        // 下一步为选择地区
-        [self getRegionByParentRegionId:@1];
-        BeeUITextField * next = [inputs objectAtIndex:index];
-        [next resignFirstResponder];
-    }
-    else if ( index == 1 )
-    {
-        // 下一步为选择课程
-        [self getCourse];
-        BeeUITextField * next = [inputs objectAtIndex:index];
-        [next resignFirstResponder];
-    }
-    
-    else if ( UIReturnKeyNext == input.returnKeyType )
-    {
-        BeeUITextField * next = [inputs objectAtIndex:(index + 1)];
-        [next becomeFirstResponder];
-    }
-    else if ( UIReturnKeyDone == input.returnKeyType )
-    {
-        [self.view endEditing:YES];
-        [self doRegister];
-    }
+//    NSArray * inputs = [self inputs];
+//    
+//    BeeUITextField * input = (BeeUITextField *)signal.source;
+//    
+//    NSInteger index = [inputs indexOfObject:input];
+//    
+//    if ( index == 0 )
+//    {
+//        // 下一步为选择地区
+//        [self getRegionByParentRegionId:@1];
+//        BeeUITextField * next = [inputs objectAtIndex:index];
+//        [next resignFirstResponder];
+//    }
+//    else if ( index == 1 )
+//    {
+//        // 下一步为选择课程
+//        [self getCourse];
+//        BeeUITextField * next = [inputs objectAtIndex:index];
+//        [next resignFirstResponder];
+//    }
+//    
+//    else if ( UIReturnKeyNext == input.returnKeyType )
+//    {
+//        BeeUITextField * next = [inputs objectAtIndex:(index + 1)];
+//        [next becomeFirstResponder];
+//    }
+//    else if ( UIReturnKeyDone == input.returnKeyType )
+//    {
+//        [self.view endEditing:YES];
+//        [self doRegister];
+//    }
 }
 
 #pragma mark - A1_TeacherSignupCell2_iPhone
@@ -273,11 +306,125 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseSchool, signal )
     [self getSchool];
 }
 
-ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton_wrapper, signal )
 {
     [self doRegister];
 }
 
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeOne, signal )
+{
+    NSString * message = @"\n\n\n\n\n\n\n\n\n";
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    // 添加确定按钮
+    [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        //点击确定的逻辑处理...
+        BeeUILabel * gradeLabel = [self getLabelByLabelName:@"gradeOne"];
+        gradeLabel.text = [self.gradeArray objectAtIndex:gradeSelectedRow];
+        gradeLabel.textColor = [UIColor blackColor];
+        self.selectedGradeArray[0] = self.gradeArray[gradeSelectedRow];
+        self.selectedGradeIdArray[0] = self.gradeIdArray[gradeSelectedRow];
+    }]];
+    [sheet.view addSubview:self.gradePickerView];
+    [self presentViewController:sheet animated:YES completion:nil];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeTwo, signal )
+{
+    NSString * message = @"\n\n\n\n\n\n\n\n\n";
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    // 添加确定按钮
+    [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        //点击确定的逻辑处理...
+        BeeUILabel * gradeLabel = [self getLabelByLabelName:@"gradeTwo"];
+        gradeLabel.text = [self.gradeArray objectAtIndex:gradeSelectedRow];
+        gradeLabel.textColor = [UIColor blackColor];
+        self.selectedGradeArray[1] = self.gradeArray[gradeSelectedRow];
+        self.selectedGradeIdArray[1] = self.gradeIdArray[gradeSelectedRow];
+    }]];
+    [sheet.view addSubview:self.gradePickerView];
+    [self presentViewController:sheet animated:YES completion:nil];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeThree, signal )
+{
+    NSString * message = @"\n\n\n\n\n\n\n\n\n";
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    // 添加确定按钮
+    [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        //点击确定的逻辑处理...
+        BeeUILabel * gradeLabel = [self getLabelByLabelName:@"gradeThree"];
+        gradeLabel.text = [self.gradeArray objectAtIndex:gradeSelectedRow];
+        gradeLabel.textColor = [UIColor blackColor];
+        self.selectedGradeArray[2] = self.gradeArray[gradeSelectedRow];
+        self.selectedGradeIdArray[2] = self.gradeIdArray[gradeSelectedRow];
+    }]];
+    [sheet.view addSubview:self.gradePickerView];
+    [self presentViewController:sheet animated:YES completion:nil];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeFour, signal )
+{
+    NSString * message = @"\n\n\n\n\n\n\n\n\n";
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    // 添加确定按钮
+    [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        //点击确定的逻辑处理...
+        BeeUILabel * gradeLabel = [self getLabelByLabelName:@"gradeFour"];
+        gradeLabel.text = [self.gradeArray objectAtIndex:gradeSelectedRow];
+        gradeLabel.textColor = [UIColor blackColor];
+        self.selectedGradeArray[3] = self.gradeArray[gradeSelectedRow];
+        self.selectedGradeIdArray[3] = self.gradeIdArray[gradeSelectedRow];
+    }]];
+    [sheet.view addSubview:self.gradePickerView];
+    [self presentViewController:sheet animated:YES completion:nil];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeFive, signal )
+{
+    NSString * message = @"\n\n\n\n\n\n\n\n\n";
+    UIAlertController * sheet = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    // 添加确定按钮
+    [sheet addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        //点击确定的逻辑处理...
+        BeeUILabel * gradeLabel = [self getLabelByLabelName:@"gradeFive"];
+        gradeLabel.text = [self.gradeArray objectAtIndex:gradeSelectedRow];
+        gradeLabel.textColor = [UIColor blackColor];
+        self.selectedGradeArray[4] = self.gradeArray[gradeSelectedRow];
+        self.selectedGradeIdArray[4] = self.gradeIdArray[gradeSelectedRow];
+    }]];
+    [sheet.view addSubview:self.gradePickerView];
+    [self presentViewController:sheet animated:YES completion:nil];
+}
+
+ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, gradeClassAdd, signal )
+{
+    gradeAndClassLine++;
+    if (gradeAndClassLine > 5) {
+        [self presentFailureTips:@"您最多可以选择5个班级"];
+    } else {
+        NSArray * inputs = [self inputs];
+        for ( BeeUITextField * input in inputs )
+        {
+            if ( [input.placeholder isEqualToString:__TEXT(@"login_realname")] )
+            {
+                _teacherInfo.teacher_name = input.text;
+            }
+        }
+        _teacherInfo.province_id = self.selectedProvinceName;
+        _teacherInfo.town_id = self.selectedCityName;
+        _teacherInfo.district_id = self.selectedTownName;
+        _teacherInfo.course_id = self.selectedCourseName;
+        _teacherInfo.school_id = self.selectedSchoolName;
+        
+        _teacherInfo.line = [NSNumber numberWithInteger:gradeAndClassLine];
+        
+        _teacherInfo.grade_array = self.selectedGradeArray;
+        _teacherInfo.class_array = [NSMutableArray arrayWithArray:[self getClassInfo]];
+        
+        [self.list reloadData];
+    }
+}
+    
 #pragma mark -
 
 - (NSArray *)inputs
@@ -293,6 +440,36 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
     return inputs;
 }
 
+- (NSArray *)getClassInfo
+{
+    NSMutableArray * classInfo = [NSMutableArray array];
+    
+    NSMutableArray * inputs = [NSMutableArray array];
+    
+    BeeUIScrollItem * item = self.list.items[0];
+    
+    if ( [item.view isKindOfClass:[A1_TeacherSignupCell2_iPhone class]])
+    {
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).classOne];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).classTwo];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).classThree];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).classFour];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).classFive];
+    }
+    
+    for (int i = 0; i < 5; i++) {
+        
+        BeeUILabel * label = inputs[i];
+        if (label.text.length <= 0) {
+            classInfo[i] = @"0";
+        } else {
+            classInfo[i] = label.text;
+        }
+    }
+    
+    return classInfo;
+}
+
 - (void)setupFields
 {
     self.registerModel.realnameTag = __TEXT(@"login_realname");
@@ -303,16 +480,20 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
 
 - (void)doRegister
 {
+    NSString * mobilePhone = nil;
     NSString * password = nil;
     NSString * invite_user_id = nil;
-    //  	NSString * email = nil;
-    NSString * mobilePhone = nil;
-    NSString * inviteCode = nil;
     NSString * realname = nil;
     NSNumber * school = @0;
     NSNumber * course = @0;
     NSString * isTeacher = @"1";
     NSString * country = @"1";
+    NSString * grade = @"";
+    NSString * class = @"";
+    NSArray * classArray = [self getClassInfo];
+    
+//    NSString * inviteCode = nil;
+//    inviteCode = self.inviteCode;
     
     NSArray * inputs = [self inputs];
     
@@ -321,7 +502,6 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
     // 为注册需要的参数赋值
     password = self.password;
     mobilePhone = self.mobilePhone;
-    inviteCode = self.inviteCode;
     course = self.selectedCourseId;
     school = self.selectedSchoolId;
     
@@ -358,6 +538,48 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
         [self presentMessageTips:__TEXT(@"wrong_course")];
         return;
     }
+    // 年级和班级只能同时存在或同时为空
+    NSInteger gradeCount = 0;
+    for (int i = 0; i < 5; i++) {
+        
+        NSString * classId = [NSString stringWithFormat:@"%@", classArray[i]];
+        NSString * gradeId = [NSString stringWithFormat:@"%@", self.selectedGradeIdArray[i]];
+        // 班级只能是纯数字
+        NSString * classIsNum = classId;
+        classIsNum = [classIsNum stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+        if (classIsNum.length > 0) {
+            
+            [self presentFailureTips:@"班级只能填写数字"];
+            return;
+        }
+        if ([classId isEqualToString:@"0"]) {
+            // 班级为0，年级不为0
+            if (![gradeId isEqualToString:@"0"]) {
+                
+                [self presentFailureTips:@"您必须同时填写年级和班级"];
+                return;
+            }
+        } else {
+            
+            // 班级不为0，年级为0
+            if ([gradeId isEqualToString:@"0"]) {
+                
+                [self presentFailureTips:@"您必须同时填写年级和班级"];
+                return;
+            } else {
+                gradeCount++;
+            }
+        }
+    }
+    
+    if (gradeCount > 0) {
+        grade = [self.selectedGradeIdArray componentsJoinedByString:@"@"];
+        class = [classArray componentsJoinedByString:@"@"];
+    } else {
+        [self presentFailureTips:@"您必须至少填写一个年级和班级"];
+        return;
+    }
+    
     
     [self.userModel signupWithUser:mobilePhone
                       inviteUserId:invite_user_id
@@ -371,7 +593,9 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, signupButton, signal )
                            country:country
                         provinceId:self.selectedProvinceId
                             cityId:self.selectedCityId
-                            townId:self.selectedTownId];
+                            townId:self.selectedTownId
+                             grade:grade
+                             class:class];
 }
 
 #pragma mark -
@@ -411,6 +635,10 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     {
         return 1;
     }
+    else if ( pickerView == self.gradePickerView )
+    {
+        return 1;
+    }
     return 0;
 }
 
@@ -440,6 +668,10 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     {
         return [self.schoolArray count];
     }
+    else if ( pickerView == self.gradePickerView )
+    {
+        return [self.gradeArray count];
+    }
     return 0;
 }
 
@@ -448,7 +680,7 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
 {
     if ( pickerView == self.coursePickerView )
     {
-        return  self.view.frame.size.width;
+        return  self.view.frame.size.width - 20;
     }
     else if ( pickerView == self.regionPickerView )
     {
@@ -467,7 +699,11 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     }
     else if ( pickerView == self.schoolPickerView )
     {
-        return self.view.frame.size.width;
+        return self.view.frame.size.width - 20;
+    }
+    else if ( pickerView == self.gradePickerView )
+    {
+        return self.view.frame.size.width - 20;
     }
     return 0;
 }
@@ -519,6 +755,13 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         text.text = [self.schoolArray objectAtIndex:row];
         [view addSubview:text];
     }
+    else if ( pickerView == self.gradePickerView )
+    {
+        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width - 10, 30)];
+        text.textAlignment = NSTextAlignmentCenter;
+        text.text = [self.gradeArray objectAtIndex:row];
+        [view addSubview:text];
+    }
     return view;
 }
 
@@ -556,6 +799,10 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         self.selectedSchoolName = [self.schoolArray objectAtIndex:row];
         self.selectedSchoolId = [self.schoolIdArray objectAtIndex:row];
     }
+    else if ( pickerView == self.gradePickerView )
+    {
+        gradeSelectedRow = row;
+    }
 }
 
 #pragma mark - custom function
@@ -571,6 +818,11 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).region];
         [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).course];
         [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).school];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).gradeOne];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).gradeTwo];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).gradeThree];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).gradeFour];
+        [inputs addObject:((A1_TeacherSignupCell2_iPhone *)item.view).gradeFive];
     }
     if ( [labelName isEqualToString:@"region"] )
     {
@@ -583,6 +835,26 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     else if ([labelName isEqualToString:@"school"])
     {
         return inputs[2];
+    }
+    else if ([labelName isEqualToString:@"gradeOne"])
+    {
+        return inputs[3];
+    }
+    else if ([labelName isEqualToString:@"gradeTwo"])
+    {
+        return inputs[4];
+    }
+    else if ([labelName isEqualToString:@"gradeThree"])
+    {
+        return inputs[5];
+    }
+    else if ([labelName isEqualToString:@"gradeFour"])
+    {
+        return inputs[6];
+    }
+    else if ([labelName isEqualToString:@"gradeFive"])
+    {
+        return inputs[7];
     }
     return nil;
 }
@@ -683,6 +955,7 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
     [self presentViewController:sheet animated:YES completion:nil];
 }
 
+
 #pragma mark - network result
 
 ON_MESSAGE3( API, teacher_signup, msg )
@@ -735,6 +1008,9 @@ ON_MESSAGE3( API, course, msg )
         Course * getCourse = msg.GET_OUTPUT(@"data");
         [self.courseArray removeAllObjects];
         [self.courseIdArray removeAllObjects];
+        [self.courseArray addObject:@"请选择课程"];
+        [self.courseIdArray addObject:@0];
+        self.selectedCourseName = @"请选择课程";
         for( int i = 0; i < getCourse.course_name.count; i++ )
         {
             [self.courseArray addObject:getCourse.course_name[i]];
@@ -758,7 +1034,17 @@ ON_MESSAGE3( API, getGrade, msg )
         
     } else if (msg.succeed) {
         
+        [self.gradeArray removeAllObjects];
+        [self.gradeIdArray removeAllObjects];
+        [self.gradeArray addObject:@"请选择年级"];
+        [self.gradeIdArray addObject:@0];
         NSArray * gradeArray = msg.GET_OUTPUT(@"data");
+        for (int i = 0; i < gradeArray.count; i++) {
+            
+            Register_grade * registerGrade = gradeArray[i];
+            [self.gradeArray addObject:registerGrade.grade_name];
+            [self.gradeIdArray addObject:registerGrade.grade_id];
+        }
         
     } else if (msg.cancelled) {
         
@@ -779,6 +1065,9 @@ ON_MESSAGE3( API, getSchool, msg )
             
             [self.schoolArray removeAllObjects];
             [self.schoolIdArray removeAllObjects];
+            [self.schoolArray addObject:@"请选择学校"];
+            [self.schoolIdArray addObject:@0];
+            self.selectedSchoolName = @"请选择学校";
             for (int i = 0; i < schoolArray.count; i++) {
                 
                 Register_school * schoolInfo = [schoolArray objectAtIndex:i];

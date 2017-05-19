@@ -38,6 +38,7 @@ SUPPORT_RESOURCE_LOADING( YES )
         NSString * time = [self timeDescription:moments.publish_info.publish_time];
 
         $(@"#user-name").TEXT(moments.teacher_info.real_name);
+        $(@"#course-name").TEXT([NSString stringWithFormat:@"(%@)",moments.teacher_info.course_name]);
         $(@"#create-at").TEXT(time);
         $(@"#content").TEXT(moments.publish_info.news_content);
         

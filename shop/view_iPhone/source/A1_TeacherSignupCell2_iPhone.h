@@ -26,5 +26,16 @@ AS_OUTLET( BeeUITextField, realname )
 AS_OUTLET( BeeUILabel, school )
 AS_OUTLET( BeeUILabel, region )
 AS_OUTLET( BeeUILabel, course )
+AS_OUTLET( BeeUILabel, gradeOne )
+AS_OUTLET( BeeUILabel, gradeTwo )
+AS_OUTLET( BeeUILabel, gradeThree )
+AS_OUTLET( BeeUILabel, gradeFour )
+AS_OUTLET( BeeUILabel, gradeFive )
+AS_OUTLET( BeeUILabel, classOne )
+AS_OUTLET( BeeUILabel, classTwo )
+AS_OUTLET( BeeUILabel, classThree )
+AS_OUTLET( BeeUILabel, classFour )
+AS_OUTLET( BeeUILabel, classFive )
+
 
 @end

@@ -556,6 +556,9 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * updated_at;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NEWS_BANNER * banner;
+@property (nonatomic, retain) NSString * news_id;
+@property (nonatomic, retain) NSString * label_id;
+@property (nonatomic, retain) NSString * label_name;
 @end
 
 //老师查询积分时的班级列表

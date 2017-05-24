@@ -572,7 +572,9 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize updated_at = _updated_at;
 @synthesize url = _url;
 @synthesize banner = _banner;
-
+@synthesize news_id = _news_id;
+@synthesize label_id = _label_id;
+@synthesize label_name =_label_name;
 @end
 
 @implementation TEACHER_CLASS

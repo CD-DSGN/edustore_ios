@@ -14,4 +14,6 @@ AS_OUTLET( BeeUIScrollView, list )
 
 @property (nonatomic, retain) MOMENTS * moments;
 
+@property (nonatomic,strong) BeeUIImageView *imageView;
+
 @end

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="K0_NewsCell">
     <row>
-        <row class="news-head">
-            <image class="news-image" id="news-image" />
+
+        <image class="news-image" id="news-image" />
             
-        </row>
+
         <linear class="news-content">
             
             <label class="news-name" id="news-name"></label>
@@ -20,12 +20,11 @@
     <style>
         
         .news-head {
-    
+        position: relative;
         top: 0px;
         left: 0px;
         width: 30%;
         height: auto;
-        background-color: #ff0000;
         }
         
         .news-content {
@@ -38,16 +37,16 @@
         background-color: #00ff00;
         }
 
-        
         .news-image {
-        
+        position:relative;
         top: 5;
         left: 5px;
-        width: 100%;
+        width: 30%;
         height: auto;
         image-mode: fill;
         border-width: 2px;
         border-color: #fff;
+        image-src: url();
         }
         
         .news-name {
@@ -73,14 +72,15 @@
         
         
         .news-type {
-        top: 5px;
-        left: 10px;
+        position:absolute;
+        bottom: 5%;
+        right: 5%;
         width:auto;
         height: auto;
         font: 14px;
-        color: #ffa500;
-        border-color: #ffa500;
-        border-width: 1px;
+        color: #fff;
+        background-color: #000;
+        
         }
     </style>
 </ui>

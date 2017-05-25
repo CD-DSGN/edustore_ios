@@ -46,16 +46,67 @@ SUPPORT_RESOURCE_LOADING( YES )
             $(@"#content").TEXT(news.sketch);
             $(@"#news-type").TEXT(news.label_name);
             // 此时avatar不为空，应为一个url路径。为空时为路径前缀
-            if ([news.banner.banner_url rangeOfString:@".jpg"].location != NSNotFound)
-            {
-                $(@"#news-image").IMAGE(news.banner.banner_url);
-            }
-            else
-            {
-                $(@"#news-image").IMAGE([UIImage imageNamed:@"profile_no_avatar_icon.png"]);
-            }
+        NSLog(@"%@", news.banner.banner_url);
         
+        if (!_imageView) {
+            _imageView = [[BeeUIImageView alloc]initWithFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width * 0.3, [UIScreen mainScreen].bounds.size.width * 0.3)];
+            [self addSubview:_imageView];
+            _imageView.contentMode = UIViewContentModeScaleAspectFill;
         }
+        [_imageView GET:news.banner.banner_url useCache:YES placeHolder:[UIImage imageNamed:@"profile_no_avatar_icon.png"]];
+//            if ([news.banner.banner_url rangeOfString:@".jpg"].location != NSNotFound)
+//            {
+//                
+//                $(@"#news-image").IMAGE(news.banner.banner_url);
+//            }
+//            else
+//            {
+//                $(@"#news-image").IMAGE([UIImage imageNamed:@"profile_no_avatar_icon.png"]);
+//            }
+        
+        switch ([news.label_id integerValue]) {
+            case 2:
+            {
+                $(@"#news-type").CSS(@"background-color:#82659d");
+            }
+                break;
+            case 3:
+            {
+                $(@"#news-type").CSS(@"background-color:#d780b5");
+            }
+                break;
+            case 4:
+            {
+                $(@"#news-type").CSS(@"background-color:#e57c5e");
+            }
+                break;
+            case 5:
+            {
+                $(@"#news-type").CSS(@"background-color:#ff8879");
+            }
+                break;
+            case 6:
+            {
+                $(@"#news-type").CSS(@"background-color:#f5ab24");
+            }
+                break;
+            case 7:
+            {
+                $(@"#news-type").CSS(@"background-color:#fcde02");
+            }
+                break;
+            case 8:
+            {
+                $(@"#news-type").CSS(@"background-color:#61c7b1");
+            }
+                break;
+            default:
+            {
+                $(@"#news-type").CSS(@"background-color:#99cbee");
+            }
+                break;
+        }
+    }
     
 }
 

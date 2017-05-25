@@ -994,6 +994,27 @@ ON_MESSAGE3( API, teacher_signup, msg )
         }
         else
         {
+            if ([status.error_code integerValue] == 800) {
+                switch ([status.error_desc integerValue]){
+                    case 1:
+                        [self presentFailureTips:@"您当前课程的第一项班级信息已经被注册"];
+                        break;
+                    case 2:
+                        [self presentFailureTips:@"您当前课程的第二项班级信息已经被注册"];
+                        break;
+                    case 3:
+                        [self presentFailureTips:@"您当前课程的第三项班级信息已经被注册"];
+                        break;
+                    case 4:
+                        [self presentFailureTips:@"您当前课程的第四项班级信息已经被注册"];
+                        break;
+                    case 5:
+                        [self presentFailureTips:@"您当前课程的第五项班级信息已经被注册"];
+                        break;
+                }
+            }else {
+                
+            }
             [self showErrorTips:msg];
         }
     }

@@ -119,17 +119,7 @@ ON_WILL_APPEAR( signal )
 
 ON_DID_APPEAR( signal )
 {
-    // 发送按钮
-//    if ([self.userModel.user.is_teacher isEqual:@1])
-//    {
-//        [self showBarButton:BeeUINavigationBar.RIGHT
-//                      title:@"发送"
-//                      image:[UIImage imageNamed:@"nav_right.png"]];
-//    }
-//    else
-//    {
-//        [self setNavigationBarRight:nil];
-//    }
+
 }
 
 ON_WILL_DISAPPEAR( signal )

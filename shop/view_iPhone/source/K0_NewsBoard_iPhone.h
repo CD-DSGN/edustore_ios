@@ -22,4 +22,5 @@ AS_MODEL( UserModel, userModel )
 
 AS_OUTLET( BeeUIScrollView, list )
 
+
 @end

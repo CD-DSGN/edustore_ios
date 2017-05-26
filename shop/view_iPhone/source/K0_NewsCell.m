@@ -52,8 +52,10 @@ SUPPORT_RESOURCE_LOADING( YES )
             _imageView = [[BeeUIImageView alloc]initWithFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width * 0.3, [UIScreen mainScreen].bounds.size.width * 0.3)];
             [self addSubview:_imageView];
             _imageView.contentMode = UIViewContentModeScaleAspectFill;
+            _imageView.layer.cornerRadius = 2;
+            _imageView.layer.masksToBounds = YES;
         }
-        [_imageView GET:news.banner.banner_url useCache:YES placeHolder:[UIImage imageNamed:@"profile_no_avatar_icon.png"]];
+        [_imageView GET:news.banner.banner_url useCache:YES placeHolder:[UIImage imageNamed:@"placeholder_image.png"]];
 //            if ([news.banner.banner_url rangeOfString:@".jpg"].location != NSNotFound)
 //            {
 //                

@@ -426,6 +426,8 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSNumber *		id;
 @property (nonatomic, retain) NSNumber *        is_teacher;
 @property (nonatomic, retain) NSString *        avatar;
+@property (nonatomic, retain) NSString *        nickname;
+@property (nonatomic, retain) NSString *        teacher_name;
 @end
 
 @interface COLLECT_GOODS : SIMPLE_GOODS
@@ -476,6 +478,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * user_id;
 @property (nonatomic, retain) NSArray  * photo_array;
 @property (nonatomic, retain) NSArray  * comment_array;
+@property (nonatomic, retain) NSNumber * news_id;
 @end
 
 @interface MOMENTS_TEACHER : NSObject
@@ -506,7 +509,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * subscription_student_num;
 @property (nonatomic, retain) NSString * recommanded_teacher_num;
 @property (nonatomic, retain) NSString * teacher_integral;
-@property (nonatomic, retain) NSString * invite_code;
+@property (nonatomic, retain) NSString * invitation_code;
 @end
 
 @interface PAYMENT_INFO : NSObject

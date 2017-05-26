@@ -50,7 +50,14 @@ SUPPORT_RESOURCE_LOADING( YES )
         
 		if ( [UserModel online] )
 		{
-			$(@"#name").TEXT(userModel.user.name);
+            if ([userModel.user.is_teacher isEqual:@1]) {
+                
+                $(@"#name").TEXT(userModel.user.teacher_name);
+            } else {
+                
+                $(@"#name").TEXT(userModel.user.nickname);
+            }
+			
 		}
 		else
 		{

@@ -16,6 +16,7 @@
 #import "I0_MomentsNoResultCell_iPhone.h"
 #import "I0_MomentsHeaderCell_iPhone.h"
 #import "I0_MomentsPhotoCell_iPhone.h"
+#import "I0_MomentsWriteCommentCell_iPhone.h"
 #import "I2_MomentsPhotoBoard_iPhone.h"
 
 #import "CommonNoResultCell.h"
@@ -253,6 +254,13 @@ ON_SIGNAL3(I0_MomentsNoResultCell_iPhone, signInButton, signal)
 {
 //    NSLog(@"hahah");
     [bee.ui.appBoard showLogin];
+}
+
+// 点击评论，对汇师圈的评论事件
+ON_SIGNAL3(I0_MomentsWriteCommentCell_iPhone, comment, signal)
+{
+    BeeUIButton * commentLabel = signal.source;
+    NSLog(@"tag:%ld", (long)commentLabel.tag);
 }
 
 #pragma mark -

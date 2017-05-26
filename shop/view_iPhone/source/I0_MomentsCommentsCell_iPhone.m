@@ -25,7 +25,12 @@ SUPPORT_RESOURCE_LOADING( YES )
 
 - (void)dataDidChanged
 {
-
+    if (self.data) {
+        
+        NSDictionary * commentInfo = self.data;
+        $(@"#username").TEXT([NSString stringWithFormat:@"%@:",commentInfo[@"show_name"]]);
+        $(@"#commentContent").TEXT(commentInfo[@"comment_content"]);
+    }
 }
 
 @end

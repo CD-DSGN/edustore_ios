@@ -10,6 +10,7 @@
 #import "I0_MomentsHeaderCell_iPhone.h"
 #import "I0_MomentsCommentsCell_iPhone.h"
 #import "I0_MomentsPhotoCell_iPhone.h"
+#import "I0_MomentsWriteCommentCell_iPhone.h"
 
 @implementation I0_MomentsCell_iPhone
 
@@ -27,16 +28,27 @@ DEF_OUTLET( BeeUIScrollView, list )
     CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
     CGFloat head_height = 40.0f;             // 头部高度+留白
     CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
+    CGFloat commentHeight = 20;  // 评论留白 + 放评论按钮那个框框高度
+    // 计算评论栏的高度
+    NSArray * commentArray = moments.publish_info.comment_array;
+    commentHeight += 5 * commentArray.count;
+    for (int i = 0; i < commentArray.count; i++) {
+        
+        NSDictionary * commentInfo = commentArray[i];
+        CGFloat singleCommentHeight = [commentInfo[@"comment_content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.7f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size.height;
+        commentHeight += singleCommentHeight;
+    }
+    
     if (moments.publish_info.photo_array.count == 0) {
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + 10 );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + 10 + commentHeight );
         return  size;
     }
     else if(moments.publish_info.photo_array.count == 1){
-        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20 + 20 );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20 + 20 + commentHeight );
         return  size;
     }
     else{
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight );
         return size;
     }
     
@@ -90,23 +102,54 @@ DEF_OUTLET( BeeUIScrollView, list )
     {
         @normalize(self);
         
-        self.list.total = 2;
+        NSInteger commentCount = self.moments.publish_info.comment_array.count;
+        NSInteger photoCount = self.moments.publish_info.photo_array.count;
+        
+        self.list.total = 2 + photoCount + commentCount;
+        NSInteger i = 0;    // cell 的索引
         
         // 汇师圈Cell第一栏：头部信息及正文内容
-        BeeUIScrollItem * headerItem = self.list.items[0];
+        BeeUIScrollItem * headerItem = self.list.items[i];
         headerItem.clazz = [I0_MomentsHeaderCell_iPhone class];
         headerItem.data = self.moments;
         headerItem.size = CGSizeAuto;
         headerItem.rule = BeeUIScrollLayoutRule_Tile;
+        i++;
         
         // 汇师圈Cell第二栏：图片信息
-        BeeUIScrollItem * photoItem = self.list.items[1];
-        photoItem.clazz = [I0_MomentsPhotoCell_iPhone class];
-        photoItem.data = self.moments;
-        photoItem.size = CGSizeAuto;
-        photoItem.rule = BeeUIScrollLayoutRule_Tile;
+        if (photoCount > 0) {
+            BeeUIScrollItem * photoItem = self.list.items[i];
+            photoItem.clazz = [I0_MomentsPhotoCell_iPhone class];
+            photoItem.data = self.moments;
+            photoItem.size = CGSizeAuto;
+            photoItem.rule = BeeUIScrollLayoutRule_Tile;
+            i++;
+        }
         
+        // 汇师圈Cell第三栏，学生写评论的按钮
+        BeeUIScrollItem * writeCommentItem = self.list.items[i];
+        writeCommentItem.clazz = [I0_MomentsWriteCommentCell_iPhone class];
+        writeCommentItem.size = CGSizeMake(SCREEN_WIDTH, 20);
+        writeCommentItem.rule = BeeUIScrollLayoutRule_Tile;
+        writeCommentItem.data = self.moments;
+        i++;
         
+        // 汇师圈Cell第四栏：评论信息
+        NSInteger commentIndex = 0;
+        NSArray * commentArray = self.moments.publish_info.comment_array;
+        for (NSInteger j = i; j < self.list.total; j++) {
+        
+            // 传递评论详细信息
+            NSDictionary * commentInfo = commentArray[commentIndex];
+            commentIndex++;
+            
+            BeeUIScrollItem * commentItem = self.list.items[j];
+            commentItem.clazz = [I0_MomentsCommentsCell_iPhone class];
+            commentItem.data = commentInfo;
+            commentItem.size = CGSizeAuto;
+            commentItem.rule = BeeUIScrollLayoutRule_Tile;
+            i++;
+        }
     };
 }
 
@@ -119,6 +162,7 @@ DEF_OUTLET( BeeUIScrollView, list )
     // 一样的，此时frame为0
     
 }
+
 
 
 @end

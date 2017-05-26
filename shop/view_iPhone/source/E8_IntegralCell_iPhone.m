@@ -33,7 +33,7 @@ SUPPORT_RESOURCE_LOADING( YES )
         TEACHER_INTEGRAL * integral = self.data;
         
         // 取值
-        NSString * invite_code = integral.invite_code;
+        NSString * invite_code = integral.invitation_code;
         NSString * pay_points = integral.pay_points;
         NSString * points_from_affiliate = integral.points_from_affiliate;
         NSString * points_from_subscription = integral.points_from_subscription;

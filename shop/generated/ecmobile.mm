@@ -423,6 +423,8 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize rank_level = _rank_level;
 @synthesize is_teacher = _is_teacher;
 @synthesize avatar = _avatar;
+@synthesize nickname = _nickname;
+@synthesize teacher_name = _teacher_name;
 
 @end
 
@@ -493,6 +495,8 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize publish_time = _publish_time;
 @synthesize news_content = _news_content;
 @synthesize photo_array = _photo_array;
+@synthesize comment_array = _comment_array;
+@synthesize news_id = _news_id;
 
 @end
 
@@ -506,7 +510,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 
 @implementation TEACHER_INTEGRAL
 
-@synthesize invite_code = _invite_code;
+@synthesize invitation_code = _invitation_code;
 @synthesize pay_points = _pay_points;
 @synthesize points_from_affiliate = _points_from_affiliate;
 @synthesize points_from_subscription = _points_from_subscription;
@@ -3182,9 +3186,10 @@ DEF_MESSAGE_( moments_list, msg )
         PAGINATED * paginated = [PAGINATED objectFromDictionary:[response dictAtPath:@"paginated"]];
         NSArray * data = [MOMENTS objectsFromArray:[response arrayAtPath:@"data.info"]];
         // 就这么着去用comment info吧
-        MOMENTS * a = data[1];
-        NSArray * c = a.publish_info.comment_array;
-        COMMENT_INFO * b = a.publish_info.comment_array[0];
+//        MOMENTS * a = data[1];
+//        NSArray * c = a.publish_info.comment_array;
+//        COMMENT_INFO * b = a.publish_info.comment_array[0];
+//        NSLog(@"%@", b.show_name);
         
         if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
         {

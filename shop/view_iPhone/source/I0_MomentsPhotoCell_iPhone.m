@@ -79,13 +79,13 @@ SUPPORT_RESOURCE_LOADING( YES )
                     imageCell.contentMode = UIViewContentModeScaleAspectFill;
                     imageCell.layer.masksToBounds = NO;
                     [imageCell retain];
-                    [imageCell HTTP_GET:[photo objectForKey:@"img"]];
+                    [imageCell HTTP_GET: [photo objectForKey:@"img"]];
                     imageCell.tag = 10000;
                     [imageCell setFinishImage:^(){
                         imageCell.hidden = NO;
                         
                         if (imageCell.image.size.width != 0 && imageCell.image.size.height != 0) {
-                            imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(0%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(0/3)), imageCell.image.size.width / imageCell.image.size.height*IMAGEHEIGHT * 4, IMAGEHEIGHT * 2);
+                            imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(0%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(0/3)), imageCell.image.size.width * 1.0 / (imageCell.image.size.height * 1.0)*IMAGEHEIGHT * 2, IMAGEHEIGHT * 2);
                             NSLog(@"%f",imageCell.frame.size.width);
                             NSLog(@"%f", imageCell.frame.size.height);
                         }
@@ -99,9 +99,9 @@ SUPPORT_RESOURCE_LOADING( YES )
                     
                     CGFloat height;
                     if (photo_array.count != 1) {
-                        height = (int)(i/3 + 1)*(IMAGEHEIGHT + BLANKHEIGHT);
+                        height = (int)(i/3 + 1)*(IMAGEHEIGHT + BLANKHEIGHT) - BLANKHEIGHT;
                     }else {
-                        height = 2 * (IMAGEHEIGHT + BLANKHEIGHT);
+                        height = 2 * IMAGEHEIGHT + BLANKHEIGHT;
                     }
                     
                     NSString * cssHeight = [NSString stringWithFormat:@"height: %f",height];

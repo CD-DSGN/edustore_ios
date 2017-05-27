@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="K0_NewsCell">
+    
     <row>
         <image class="background"/>
         <image class="news-image" id="news-image" />
             
-
+            <label class="news-type" id="news-type"></label>
         <linear class="news-content">
             
             <label class="news-name" id="news-name"></label>
             
-            <label class="news-type" id="news-type"></label>
+            
 
             <label class="content" id="content"></label>
 
         </linear>
-        
+        <row class="time">
+            <label class="create_time" id="create_time"></label>
+        </row>
     </row>
     
     <style>
@@ -61,8 +64,8 @@
         .news-name {
         top: 10px;
         margin-left: 10px;
-        margin-right: 0px;
-    
+        width: 91%;
+        line-num: 2;
         height: auto;
         font-size: 16px;
         color: #000000;
@@ -71,7 +74,7 @@
         .content {
         left: 10px;
         top:8px;
-        width: 95%;
+        width: 93%;
         height: auto;
         line-num: 2;
         font: 14px;
@@ -81,7 +84,7 @@
         
         .news-type {
         position:absolute;
-        bottom: 5%;
+        bottom: 10px;
         right: 5%;
         width:auto;
         height: auto;
@@ -89,6 +92,22 @@
         color: #fff;
         background-color: #000;
         border-radius: 2px;
+        }
+        
+        .time {
+        position: absolute;
+        bottom: 0px;
+        left: 12px;
+        width: auto;
+        height: 25px;
+        }
+        
+        .create_time {
+        top: 0px;
+        left: 0px;
+        width: auto;
+        height: 100%;
+        color: #999999
         }
     </style>
 </ui>

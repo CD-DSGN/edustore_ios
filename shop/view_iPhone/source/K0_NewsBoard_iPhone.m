@@ -50,6 +50,13 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"news");
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"huishi_logo"] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 59, 44);
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView: button];
+    
+
     [self showNavigationBarAnimated:NO];
     
     @weakify(self);

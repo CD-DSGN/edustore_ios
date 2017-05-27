@@ -47,17 +47,17 @@ DEF_OUTLET( BeeUIScrollView, list )
         CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.85f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
         commentHeight += singleCommentHeight;
     }
-    commentHeight +=5;
+    commentHeight +=10;
     if (moments.publish_info.photo_array.count == 0) {
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + 10 + commentHeight );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height  + commentHeight - 5);
         return  size;
     }
     else if(moments.publish_info.photo_array.count == 1){
-        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20 + 10 + commentHeight );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20  + commentHeight -5);
         return  size;
     }
     else{
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight - 10 );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight -5 );
         return size;
     }
     
@@ -70,7 +70,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         case 1:
         case 2:
         case 3:
-            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 + 10;
+            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 ;
             break;
         case 4:
         case 5:

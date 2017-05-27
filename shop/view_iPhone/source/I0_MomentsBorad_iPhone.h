@@ -12,7 +12,7 @@
 #import "I0_MomentsPhotoCell_iPhone.h"
 
 #import "UIViewController+ErrorTips.h"
-
+#import "I0_MomentsWriteCommentView.h"
 @interface I0_MomentsBorad_iPhone : BaseBoard_iPhone
 
 AS_SINGLETON( MomentsBoard )
@@ -23,5 +23,7 @@ AS_MODEL( UserModel, userModel )
 AS_OUTLET( BeeUIScrollView, list )
 
 @property (nonatomic, retain)NSString * no_follow;
+
+@property (nonatomic,strong) I0_MomentsWriteCommentView *commentView;
 
 @end

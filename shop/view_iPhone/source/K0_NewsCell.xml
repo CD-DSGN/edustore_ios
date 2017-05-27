@@ -69,7 +69,6 @@
         }
         
         .content {
-        
         left: 10px;
         top:8px;
         width: 95%;

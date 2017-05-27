@@ -147,6 +147,7 @@
 		6324A91E1755AA8300372FD7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324A91D1755AA8300372FD7 /* AudioToolbox.framework */; };
 		920A82181E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 920A82171E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m */; };
 		920A821B1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml in Resources */ = {isa = PBXBuildFile; fileRef = 920A821A1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml */; };
+		923E40BD1ED8355F00146E2A /* I0_MomentsWriteCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E40BC1ED8355F00146E2A /* I0_MomentsWriteCommentView.m */; };
 		923E426A1E2CBEF300F50109 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */; };
 		923E426B1E2CBEF300F50109 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E42581E2CBEF300F50109 /* TZAssetCell.m */; };
 		923E426C1E2CBEF300F50109 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E425A1E2CBEF300F50109 /* TZAssetModel.m */; };
@@ -1230,6 +1231,8 @@
 		920A82161E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E4_GoodsReturnBoard_iPhone.h; sourceTree = "<group>"; };
 		920A82171E6D110400C3B032 /* E4_GoodsReturnBoard_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = E4_GoodsReturnBoard_iPhone.m; sourceTree = "<group>"; };
 		920A821A1E6D11EA00C3B032 /* E4_GoodsReturnBoard_iPhone.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = E4_GoodsReturnBoard_iPhone.xml; sourceTree = "<group>"; };
+		923E40BB1ED8355F00146E2A /* I0_MomentsWriteCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I0_MomentsWriteCommentView.h; sourceTree = "<group>"; };
+		923E40BC1ED8355F00146E2A /* I0_MomentsWriteCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I0_MomentsWriteCommentView.m; sourceTree = "<group>"; };
 		923E42551E2CBEF300F50109 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
 		923E42561E2CBEF300F50109 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		923E42571E2CBEF300F50109 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
@@ -3927,6 +3930,8 @@
 				5F189C001ED823B7005BFD38 /* I0_MomentsWriteCommentCell_iPhone.h */,
 				5F189C011ED823B7005BFD38 /* I0_MomentsWriteCommentCell_iPhone.m */,
 				5F189C031ED82409005BFD38 /* I0_MomentsWriteCommentCell_iPhone.xml */,
+				923E40BB1ED8355F00146E2A /* I0_MomentsWriteCommentView.h */,
+				923E40BC1ED8355F00146E2A /* I0_MomentsWriteCommentView.m */,
 				5F16762A1E1E136E00C5188E /* I0_MomentsHeaderCell_iPhone.h */,
 				5F16762B1E1E136E00C5188E /* I0_MomentsHeaderCell_iPhone.m */,
 				5F16762C1E1E136E00C5188E /* I0_MomentsHeaderCell_iPhone.xml */,
@@ -6668,6 +6673,7 @@
 				CBD174DB18BCBFC8003D1862 /* Bee_UIQuery.m in Sources */,
 				D8135D1C1BCCE3BB00C9FDBE /* openssl_wrapper.m in Sources */,
 				CBD1747718BCBFC8003D1862 /* Bee_UIAnimationFade.m in Sources */,
+				923E40BD1ED8355F00146E2A /* I0_MomentsWriteCommentView.m in Sources */,
 				CBD1757218BCBFC8003D1862 /* CXMLNode.m in Sources */,
 				CB9C22B118BB3B0C00DDA501 /* OrderCellFooter_iPhone.m in Sources */,
 				CBD1756818BCBFC8003D1862 /* Reachability.m in Sources */,

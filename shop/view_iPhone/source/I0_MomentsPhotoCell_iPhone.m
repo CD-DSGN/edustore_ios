@@ -85,7 +85,9 @@ SUPPORT_RESOURCE_LOADING( YES )
                         imageCell.hidden = NO;
                         
                         if (imageCell.image.size.width != 0 && imageCell.image.size.height != 0) {
-                            imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(0%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(0/3)), imageCell.image.size.width / imageCell.image.size.height*IMAGEHEIGHT * 2, IMAGEHEIGHT * 2);
+                            imageCell.frame = CGRectMake((IMAGELEFT + (IMAGEWIDTH+BLANKHEIGHT)*(0%3)), ((IMAGEHEIGHT+BLANKHEIGHT)*(0/3)), imageCell.image.size.width / imageCell.image.size.height*IMAGEHEIGHT * 4, IMAGEHEIGHT * 2);
+                            NSLog(@"%f",imageCell.frame.size.width);
+                            NSLog(@"%f", imageCell.frame.size.height);
                         }
                         
                     }];
@@ -108,6 +110,7 @@ SUPPORT_RESOURCE_LOADING( YES )
                 }
                 
                 [imageView addSubview:imageCell];
+                
             }
         }
         
@@ -124,7 +127,7 @@ SUPPORT_RESOURCE_LOADING( YES )
             imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (IMAGEHEIGHT + BLANKHEIGHT)*2);
         }
         [self addSubview:imageView];
-
+        [self layoutIfNeeded];
     }
 }
 

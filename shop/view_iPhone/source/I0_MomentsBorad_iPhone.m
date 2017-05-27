@@ -23,7 +23,7 @@
 #import "CommonNoResultCell.h"
 #import "CommonPullLoader.h"
 #import "CommonFootLoader.h"
-
+#import "I0_MomentsWriteCommentView.h"
 @implementation I0_MomentsBorad_iPhone
 
 DEF_SINGLETON( MomentsBoard )
@@ -54,6 +54,8 @@ ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"Moments");
     [self showNavigationBarAnimated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTextView:) name:UIKeyboardWillHideNotification object:nil];
     
     @weakify(self);
 
@@ -262,6 +264,10 @@ ON_SIGNAL3(I0_MomentsWriteCommentCell_iPhone, comment, signal)
 {
     BeeUIButton * commentLabel = signal.source;
     NSLog(@"tag:%ld", (long)commentLabel.tag);
+    self.commentView.hidden = NO;
+    [self.commentView setCommitCommentBlock:^(){
+        
+    }];
 }
 
 // 点击评论，对评论进行回复
@@ -359,4 +365,21 @@ ON_NOTIFICATION3( UserModel, LOGIN, notification )
         
     [self.list reloadData];
 }
+
+-(I0_MomentsWriteCommentView *)commentView
+{
+    if (!_commentView) {
+        _commentView = [[I0_MomentsWriteCommentView alloc]init];
+        [self.view addSubview:_commentView];
+        [_commentView.textView becomeFirstResponder];
+        
+    }
+    return _commentView;
+}
+
+-(void)hideTextView:(NSNotification*)noti
+{
+    self.commentView = nil;
+}
+
 @end

@@ -265,11 +265,65 @@ ON_SIGNAL3(I0_MomentsWriteCommentCell_iPhone, comment, signal)
     NSLog(@"tag:%ld", (long)commentLabel.tag);
     self.commentView.hidden = NO;
     [self.commentView setCommitCommentBlock:^(){
-        
+        self.CANCEL_MSG( API.moments_comment );
+        self.MSG( API.moments_comment )
+        .INPUT( @"news_id", @(commentLabel.tag))
+        .INPUT( @"comment_content", self.commentView.textView.text)
+        .INPUT( @"target_comment_id", @"");
     }];
 }
 
 #pragma mark -
+
+ON_MESSAGE3(API, moments_comment, msg)
+{
+    if ( msg.sending )
+    {
+        if ( NO == self.momentModel.loaded )
+        {
+            //			[self presentLoadingTips:__TEXT(@"tips_loading")];
+            [self presentMessageTips:__TEXT(@"moments_loading")];
+        }
+        
+        if ( self.momentModel.moments.count )
+        {
+            [self.list setFooterLoading:YES];
+        }
+        else
+        {
+            [self.list setFooterLoading:NO];
+        }
+    }
+    else
+    {
+        [self dismissTips];
+        
+        [self.list setHeaderLoading:NO];
+        [self.list setFooterLoading:NO];
+    }
+    
+    if ( msg.succeed )
+    {
+        STATUS * status = msg.GET_OUTPUT(@"status");
+        
+        if ( status && status.succeed.boolValue )
+        {
+            [self presentSuccessTips:@"评论成功"];
+            
+            [self.commentView.textView resignFirstResponder];
+            [self.momentModel firstPage];
+            [self.list reloadData];
+        }
+        else
+        {
+            [self showErrorTips:msg];
+        }
+    }
+    else if ( msg.failed )
+    {
+        [self showErrorTips:msg];
+    }
+}
 
 ON_MESSAGE3( API, moments_list, msg )
 {

@@ -36,10 +36,10 @@
                 <label class="affiliate_points" id="affiliate_points"></label>
             </row>
             <row class="subscription_student_num">
-                <label class="subscription_student">@{subscription_student_num}</label>
+                <label class="subscription_student" id="subscription_student">@{subscription_student_num}</label>
             </row>
             <row class="recommanded_teacher_num">
-                <label class="recommanded">@{recommanded_teacher_num}</label>
+                <label class="recommanded" id="recommanded">@{recommanded_teacher_num}</label>
             </row>
         </row>
     </col>

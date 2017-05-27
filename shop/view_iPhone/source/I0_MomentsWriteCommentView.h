@@ -10,7 +10,7 @@
 
 typedef void(^CommitCommentBlock)() ;
 
-@interface I0_MomentsWriteCommentView : UIView
+@interface I0_MomentsWriteCommentView : UIView<UITextViewDelegate>
 
 @property (nonatomic,strong) UITextView *textView;
 
@@ -19,6 +19,8 @@ typedef void(^CommitCommentBlock)() ;
 @property (nonatomic, strong) UIButton *commitComentButton;
 
 @property (nonatomic, copy) CommitCommentBlock commitCommentBlock;
+
+@property (nonatomic,strong) UILabel *placeholderLabel;
 
 @end
 

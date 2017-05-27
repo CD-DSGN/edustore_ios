@@ -21,14 +21,20 @@
         _backView.backgroundColor = [UIColor whiteColor];
         _backView.layer.cornerRadius = 2;
         
+        _placeholderLabel = [[UILabel alloc]initWithFrame:CGRectMake(35, 25, _backView.frame.size.width - 60, 20)];
+        _placeholderLabel.textColor = [UIColor lightGrayColor];
+        [_backView addSubview:_placeholderLabel];
+        _placeholderLabel.font = [UIFont systemFontOfSize:14];
+        
         _textView = [[UITextView alloc]init];
         _textView.frame = CGRectMake(30, 20, _backView.frame.size.width - 60, _backView.frame.size.height - 60);
         [_backView addSubview:_textView];
-        _textView.backgroundColor = [UIColor whiteColor];
+        _textView.backgroundColor = [UIColor clearColor];
         _textView.layer.borderColor = [UIColor colorWithRed:250/255.0 green:104/255.0 blue:51/255.0 alpha:1].CGColor;
         _textView.layer.borderWidth = 0.5;
         _textView.font = [UIFont systemFontOfSize:14];
         _textView.layer.cornerRadius = 5;
+        _textView.delegate = self;
         
         _commitComentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _commitComentButton.frame = CGRectMake(_backView.frame.size.width - 60, _backView.frame.size.height - 5 - 30, 50, 30);
@@ -73,5 +79,15 @@
 -(void)commitComment:(UIButton*)button
 {
     _commitCommentBlock();
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length == 0) {
+        _placeholderLabel.hidden = NO;
+    }else
+    {
+        _placeholderLabel.hidden = YES;
+    }
 }
 @end

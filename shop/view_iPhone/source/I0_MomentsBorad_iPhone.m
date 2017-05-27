@@ -281,6 +281,15 @@ ON_SIGNAL3( I0_MomentsCommentsCell_iPhone, comment_cell, signal )
     NSNumber * news_id = commentInfo[@"news_id"];
     NSNumber * target_comment_id = commentInfo[@"comment_id"];
     NSLog(@"news_id:%@,target_comment_id:%@",news_id,target_comment_id);
+    self.commentView.hidden = NO;
+    self.commentView.placeholderLabel.text = [NSString stringWithFormat:@"回复%@: ", commentInfo[@"show_name"]];
+    [self.commentView setCommitCommentBlock:^(){
+        self.CANCEL_MSG( API.moments_comment );
+        self.MSG( API.moments_comment )
+        .INPUT( @"news_id", news_id)
+        .INPUT( @"comment_content", self.commentView.textView.text)
+        .INPUT( @"target_comment_id", target_comment_id);
+    }];
 }
 
 #pragma mark -

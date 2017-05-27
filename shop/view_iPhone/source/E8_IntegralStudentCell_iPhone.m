@@ -38,12 +38,12 @@ SUPPORT_RESOURCE_LOADING( YES )
     {
         STUDENT_POINT * studentPoint = self.data;
         
-        $(@"#student_num").TEXT(@"");
+        $(@"#student_num").TEXT(studentPoint.student_index);
         $(@"#student_name").TEXT(studentPoint.student_name);
         $(@"#student_point").TEXT(studentPoint.student_points);
         
         // 此时avatar不为空，应为一个url路径。为空时为路径前缀
-        if ([studentPoint.avatar rangeOfString:@".jpg"].location != NSNotFound)
+        if (studentPoint.avatar != nil)
         {
             $(@"#student_avatar").IMAGE(studentPoint.avatar);
         }

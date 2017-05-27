@@ -12,7 +12,7 @@
 
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
-
+#import "CommonNoResultCell.h"
 @implementation E8_IntegralStudentListBoard_iPhone
 
 @synthesize info_id = _info_id;
@@ -55,15 +55,30 @@ ON_CREATE_VIEWS( signal )
     {
         @normalize(self);
         
-        self.list.total = self.studentPointModel.studentPointArray.count;
-        
-        for( int i = 0; i < self.studentPointModel.studentPointArray.count; i++ )
-        {
-            BeeUIScrollItem * item = self.list.items[i];
-            item.clazz = [E8_IntegralStudentCell_iPhone class];
-            item.data = [self.studentPointModel.studentPointArray safeObjectAtIndex:i];
-            item.size = CGSizeAuto;
+        if (self.studentPointModel.studentPointArray.count == 0) {
+            
+            self.list.total = 1;
+            BeeUIScrollItem * item = self.list.items[0];
+            item.clazz = [CommonNoResultCell class];
+            item.size = self.list.size;
             item.rule = BeeUIScrollLayoutRule_Tile;
+            item.data = @1;
+            
+        }else {
+            
+            self.list.total = self.studentPointModel.studentPointArray.count;
+            
+            for( int i = 0; i < self.studentPointModel.studentPointArray.count; i++ )
+            {
+                BeeUIScrollItem * item = self.list.items[i];
+                item.clazz = [E8_IntegralStudentCell_iPhone class];
+                
+                STUDENT_POINT *sp = [self.studentPointModel.studentPointArray safeObjectAtIndex:i];
+                sp.student_index = [NSString stringWithFormat:@"%d", i];
+                item.data = sp;
+                item.size = CGSizeAuto;
+                item.rule = BeeUIScrollLayoutRule_Tile;
+            }
         }
     };
     self.list.whenHeaderRefresh = ^

@@ -44,7 +44,7 @@
 #pragma mark -
 
 #undef	TAB_HEIGHT
-#define TAB_HEIGHT	44.0f
+#define TAB_HEIGHT	49.0f
 
 #pragma mark -
 

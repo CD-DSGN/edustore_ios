@@ -75,7 +75,7 @@
                 <!-- 暂时先在row上加一个id，点击row执行，不知道为什么。。 -->
                 <row class="list-item" id="follow">
                     <image class="list-bg"/>
-                    <label class="list-title">@{follow}</label>
+                    <label class="list-title">查看教师</label>
                     <label class="list-subtitle"></label>
                     <image class="list-indictor"/>
                     <button id="follow" class="mask"/>

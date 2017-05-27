@@ -144,7 +144,7 @@ ON_MESSAGE3( API, get_integral, msg )
     }
 }
 
-ON_SIGNAL2( E8_IntegralCell_iPhone, signal )
+ON_SIGNAL3(E8_IntegralCell_iPhone, student_point, signal )
 {
     NSLog(@"checkClassList");
     E8_IntegralClassBoard_iPhone * board = [E8_IntegralClassBoard_iPhone board];

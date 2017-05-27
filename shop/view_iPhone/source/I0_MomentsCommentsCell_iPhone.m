@@ -33,7 +33,7 @@ DEF_OUTLET( BeeUILable, username )
     if (self.data) {
         
         NSDictionary * commentInfo = self.data;
-        NSString * target_username = commentInfo[@"target_username"];
+        NSString * target_username = commentInfo[@"show_target_name"];
         NSString * show_name = commentInfo[@"show_name"];
         NSString * content = commentInfo[@"comment_content"];
         // 通过range改颜色
@@ -41,7 +41,7 @@ DEF_OUTLET( BeeUILable, username )
         NSRange showNameRange = NSMakeRange(0, show_name.length);
         NSRange targetNameRange = NSMakeRange(show_name.length+2, target_username.length);
         
-        if ([target_username isEqualToString:@""]) {
+        if ([target_username isEqualToString:@""] || target_username == nil) {
             
             comment = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@：%@",show_name, content]];
             [comment addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:73.f/255 green:99.f/255 blue:144.f/255 alpha:1] range:showNameRange];

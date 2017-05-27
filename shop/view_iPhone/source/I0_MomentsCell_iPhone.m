@@ -44,7 +44,9 @@ DEF_OUTLET( BeeUIScrollView, list )
             content = [NSString stringWithFormat:@"%@回复%@：%@",show_name, target_username,comment_content];
         }
         // 每一个评论内容的高度
-        CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.80f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+
+        CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+
         commentHeight += singleCommentHeight;
     }
     commentHeight +=10;

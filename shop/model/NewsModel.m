@@ -103,7 +103,7 @@ ON_MESSAGE3( API, getNews, msg )
             self.loaded = YES;
             
             BOOL  paged = [msg.GET_OUTPUT( @"total_page" ) integerValue] == [page.page integerValue];
-            if ( paged )
+            if ( !paged )
             {
                 self.more = YES;
             }

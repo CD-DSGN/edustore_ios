@@ -74,7 +74,7 @@ ON_CREATE_VIEWS( signal )
                 item.clazz = [E8_IntegralStudentCell_iPhone class];
                 
                 STUDENT_POINT *sp = [self.studentPointModel.studentPointArray safeObjectAtIndex:i];
-                sp.student_index = [NSString stringWithFormat:@"%d", i];
+                sp.student_index = [NSString stringWithFormat:@"%d", i+1];
                 item.data = sp;
                 item.size = CGSizeAuto;
                 item.rule = BeeUIScrollLayoutRule_Tile;

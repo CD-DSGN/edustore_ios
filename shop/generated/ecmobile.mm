@@ -3311,6 +3311,44 @@ DEF_MESSAGE_( teacher_publish, msg )
     {
     }
 }
+
+DEF_MESSAGE_(moments_comment,msg )
+{
+    if ( msg.sending )
+    {
+        SESSION * session = msg.GET_INPUT( @"session" );
+        NSNumber * target_comment_id = msg.GET_INPUT( @"target_comment_id" );
+        NSNumber * news_id = msg.GET_INPUT( @"news_id" );
+        NSString * comment_content = msg.GET_INPUT( @"comment_content" );
+        
+        if ( nil == session || NO == [session isKindOfClass:[SESSION class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        NSMutableDictionary * requestBody = [NSMutableDictionary dictionary];
+        requestBody.APPEND( @"session", session );
+        requestBody.APPEND( @"target_comment_id", target_comment_id );
+        requestBody.APPEND( @"comment_content", comment_content );
+        requestBody.APPEND( @"news_id", news_id);
+        
+        NSString * requestURI = [NSString stringWithFormat:@"%@/interaction/comment_publish", [ServerConfig sharedInstance].url];
+        msg.HTTP_POST( requestURI ).PARAM( @"json", requestBody.objectToString );
+    }
+    else if ( msg.succeed )
+    {
+        NSDictionary * response = msg.responseJSONDictionary;
+        // 我不知道返回值是什么，成功之后的结果等接口测试看吧
+    }
+    else if ( msg.failed )
+    {
+    }
+    else if ( msg.cancelled )
+    {
+    }
+}
+
 -(NSString*)makeJsonWithSession:(SESSION*)session andTime:(NSString*)time andContent:(NSString*)content andImageArray:(NSArray*)imageArray
 {
     NSDictionary *jsonDic = @{

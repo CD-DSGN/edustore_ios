@@ -808,6 +808,9 @@ AS_MESSAGE ( getTeacherClass );
 // POST 获取该班级所有学生积分信息
 AS_MESSAGE ( getStudentPoint );
 
+// 汇师圈之中写评论
+AS_MESSAGE ( moments_comment );
+
 @end
 
 #pragma mark - config

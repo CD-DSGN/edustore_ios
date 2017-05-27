@@ -19,7 +19,7 @@
             <label class="invite_code" id="invite_code"></label>
         </row>
         
-        <row class="student_point">
+        <row class="student_point" id="student_point">
             <image class="background_single_line" />
             <label class="student" id="student">@{student_point}</label>
             <label class="student_point_sum" id="student_point_sum"></label>

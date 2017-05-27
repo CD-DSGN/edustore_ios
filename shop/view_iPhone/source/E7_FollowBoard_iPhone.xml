@@ -7,7 +7,7 @@
             <label class="text">课程</label>
         </row>
         <row class="teacher">
-            <label class="text">关注教师</label>
+            <label class="text">您的教师</label>
         </row>
 <!--        <row class="action">-->
 <!--            <label class="text">操作</label>-->

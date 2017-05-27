@@ -22,8 +22,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 // 评估UIsize
 + (CGSize)estimateUISizeByWidth:(CGFloat)width forData:(id)data
 {
-    // 通过查询的返回值来大致计算出高度（如何保证精确度？）
-    // 暂时通过多留白的方式
+    // 通过查询的返回值来大致计算出高度
     MOMENTS * moments = data;
     CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
     CGFloat head_height = 40.0f;             // 头部高度+留白
@@ -31,19 +30,20 @@ DEF_OUTLET( BeeUIScrollView, list )
     CGFloat commentHeight = 20;  // 评论留白 + 放评论按钮那个框框高度
     // 计算评论栏的高度
     NSArray * commentArray = moments.publish_info.comment_array;
-    commentHeight += 5 * commentArray.count;
+    commentHeight += 5 * commentArray.count;        // 每两个评论之间的gap
     for (int i = 0; i < commentArray.count; i++) {
         
         NSDictionary * commentInfo = commentArray[i];
-        NSString * target_username = commentInfo[@"target_username"];
+        NSString * target_username = commentInfo[@"show_target_name"];
         NSString * show_name = commentInfo[@"show_name"];
         NSString * comment_content = commentInfo[@"comment_content"];
         NSString * content;
-        if ([target_username isEqualToString:@""]) {
+        if ([target_username isEqualToString:@""] || target_username == nil) {
             content = [NSString stringWithFormat:@"%@：%@",show_name, comment_content];
         } else {
             content = [NSString stringWithFormat:@"%@回复%@：%@",show_name, target_username,comment_content];
         }
+        // 每一个评论内容的高度
         CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.85f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
         commentHeight += singleCommentHeight;
     }
@@ -57,7 +57,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         return  size;
     }
     else{
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight - 10 );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight );
         return size;
     }
     

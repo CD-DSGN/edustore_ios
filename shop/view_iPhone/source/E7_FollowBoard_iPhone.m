@@ -48,7 +48,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"follow");
+    self.navigationBarTitle = @"您的教师";
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
     
     self.list.headerClass = [CommonPullLoader class];

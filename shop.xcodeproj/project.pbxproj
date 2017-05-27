@@ -5804,8 +5804,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					63249C9A1754E07900372FD7 = {
-						DevelopmentTeam = 6KM3WVLJ6Q;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -7045,7 +7044,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7104,7 +7103,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7146,9 +7145,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -7193,7 +7192,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7235,9 +7234,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;

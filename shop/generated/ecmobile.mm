@@ -3341,6 +3341,15 @@ DEF_MESSAGE_(moments_comment,msg )
     {
         NSDictionary * response = msg.responseJSONDictionary;
         // 我不知道返回值是什么，成功之后的结果等接口测试看吧
+        STATUS * status = [STATUS objectFromDictionary:[response dictAtPath:@"status"]];
+        
+        if ( nil == status || NO == [status isKindOfClass:[STATUS class]] )
+        {
+            msg.failed = YES;
+            return;
+        }
+        
+        msg.OUTPUT( @"status", status );
     }
     else if ( msg.failed )
     {

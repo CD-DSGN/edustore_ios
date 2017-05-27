@@ -494,6 +494,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * comment_content;
 @property (nonatomic, retain) NSString * show_name;
 @property (nonatomic, retain) NSString * show_target_name;
+@property (nonatomic, retain) NSString * news_id;
 @end
 
 @interface MOMENTS : NSObject

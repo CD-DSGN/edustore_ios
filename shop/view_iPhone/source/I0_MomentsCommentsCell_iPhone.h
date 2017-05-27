@@ -10,4 +10,7 @@
 
 @interface I0_MomentsCommentsCell_iPhone : BeeUICell
 // 汇师圈评论等预留
+
+AS_OUTLET( BeeUILabel, username )
+
 @end

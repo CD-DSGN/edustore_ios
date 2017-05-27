@@ -486,6 +486,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize comment_content = _comment_content;
 @synthesize show_name = _show_name;
 @synthesize show_target_name = _show_target_name;
+@synthesize news_id = _news_id;
 
 @end
 

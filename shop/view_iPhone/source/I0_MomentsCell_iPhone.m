@@ -35,7 +35,16 @@ DEF_OUTLET( BeeUIScrollView, list )
     for (int i = 0; i < commentArray.count; i++) {
         
         NSDictionary * commentInfo = commentArray[i];
-        CGFloat singleCommentHeight = [commentInfo[@"comment_content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.7f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size.height;
+        NSString * target_username = commentInfo[@"target_username"];
+        NSString * show_name = commentInfo[@"show_name"];
+        NSString * comment_content = commentInfo[@"comment_content"];
+        NSString * content;
+        if ([target_username isEqualToString:@""]) {
+            content = [NSString stringWithFormat:@"%@：%@",show_name, comment_content];
+        } else {
+            content = [NSString stringWithFormat:@"%@回复%@：%@",show_name, target_username,comment_content];
+        }
+        CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.75f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size.height;
         commentHeight += singleCommentHeight;
     }
     
@@ -104,6 +113,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         
         NSInteger commentCount = self.moments.publish_info.comment_array.count;
         NSInteger photoCount = self.moments.publish_info.photo_array.count;
+        photoCount = photoCount >= 1 ? 1 : 0;
         
         self.list.total = 2 + photoCount + commentCount;
         NSInteger i = 0;    // cell 的索引

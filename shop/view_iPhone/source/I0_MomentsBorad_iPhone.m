@@ -11,6 +11,7 @@
 #import "ECMobileManager.h"
 
 #import "I0_MomentsBorad_iPhone.h"
+#import "I0_MomentsCommentsCell_iPhone.h"
 #import "I1_SendMomentsBoard_iPhone.h"
 #import "I0_MomentsCell_iPhone.h"
 #import "I0_MomentsNoResultCell_iPhone.h"
@@ -261,6 +262,15 @@ ON_SIGNAL3(I0_MomentsWriteCommentCell_iPhone, comment, signal)
 {
     BeeUIButton * commentLabel = signal.source;
     NSLog(@"tag:%ld", (long)commentLabel.tag);
+}
+
+// 点击评论，对评论进行回复
+ON_SIGNAL3( I0_MomentsCommentsCell_iPhone, comment_cell, signal )
+{
+    NSDictionary * commentInfo = signal.sourceCell.data;
+    NSNumber * news_id = commentInfo[@"news_id"];
+    NSNumber * target_comment_id = commentInfo[@"comment_id"];
+    NSLog(@"news_id:%@,target_comment_id:%@",news_id,target_comment_id);
 }
 
 #pragma mark -

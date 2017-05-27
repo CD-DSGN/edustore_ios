@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="I0_MomentsCommentsCell_iPhone">
     <row class="comment-cell" id="comment_cell">
-            <image class="background" />
-            <label id="username" class="username"></label>
+        <image class="background" />
+        <label id="username" class="username"></label>
+    </row>
+    <row class="comment-gap">
+        <image class="background" />
     </row>
     <style>
         .comment-cell {
@@ -20,13 +23,20 @@
         }
         .username {
             position: relative;
-            left: 10%;
+            left: 55px;
             top: 0;
-            width: 75%;
+            width: 80%;
             height: auto;
-            font-size: 12px;
+            font-size: 14px;
             color: #000;
             line-num: 0;
+        }
+        .comment-gap {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 5px;
         }
 
     </style>

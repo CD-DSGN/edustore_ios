@@ -25,7 +25,7 @@ DEF_OUTLET( BeeUIScrollView, list )
     // 通过查询的返回值来大致计算出高度（如何保证精确度？）
     // 暂时通过多留白的方式
     MOMENTS * moments = data;
-    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
+    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
     CGFloat head_height = 40.0f;             // 头部高度+留白
     CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
     CGFloat commentHeight = 20;  // 评论留白 + 放评论按钮那个框框高度
@@ -44,7 +44,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         } else {
             content = [NSString stringWithFormat:@"%@回复%@：%@",show_name, target_username,comment_content];
         }
-        CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.75f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size.height;
+        CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.85f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
         commentHeight += singleCommentHeight;
     }
     

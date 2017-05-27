@@ -2,7 +2,8 @@
 <ui namespace="I0_MomentsWriteCommentCell_iPhone">
     <row class="writeCommentCell">
         <image class="background" />
-        <label class="comment">评论</label>
+        <image class="comment-icon" />
+        <label class="comment-label">评论</label>
         <button class="comment" id="comment"></button>
     </row>
     <style>
@@ -18,16 +19,32 @@
             height: 100%;
             background-color: #fff;
         }
+        .comment-icon {
+            position: absolute;
+            width: 5%;
+            height: 80%;
+            left: 85%;
+            top: 12%;
+            background-image: url(comment_icon);
+            image-mode: stretch;
+        }
+        .comment-label {
+            position: absolute;
+            width: 10%;
+            height: 100%;
+            line-height: 100%;
+            left: 90%;
+            top: 0;
+            color: #506699;
+            font-size: 12px;
+            text-align: left;
+        }
         .comment {
             position: absolute;
             width: 20%;
             height: 100%;
-            line-height: 100%;
             left: 80%;
             top: 0;
-            color: red;
-            font-size: 10px;
-            text-align: center;
         }
     </style>
 </ui>

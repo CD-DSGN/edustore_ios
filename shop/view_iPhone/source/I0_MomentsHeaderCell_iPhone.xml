@@ -5,7 +5,7 @@
         <row class="moments-head">
             <image class="user-avatar" id="user-avatar" />
             <label class="user-name" id="user-name"></label>
-            <label class="course-name" id="course-name">123</label>
+            <label class="course-name" id="course-name"></label>
             <label class="create-at" id="create-at"></label>
         </row>
         <row class="moments-content">
@@ -72,7 +72,7 @@
         left: 10px;
         width: auto;
         height: 20px;
-        font-size: 14px;
+        font-size: 16px;
         color: #000000;
         }
         
@@ -82,7 +82,7 @@
         left: 5px;
         width: auto;
         height: 20px;
-        font-size: 14px;
+        font-size: 16px;
         color: #000000;
         }
         
@@ -101,7 +101,7 @@
         width: 100%;
         height: auto;
         line-num: 0;
-        font: 14px;
+        font: 16px;
         color: #000000;
         top:-5px;
         }

@@ -428,6 +428,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString *        avatar;
 @property (nonatomic, retain) NSString *        nickname;
 @property (nonatomic, retain) NSString *        teacher_name;
+@property (nonatomic, retain) NSString *        teacher_course;
 @end
 
 @interface COLLECT_GOODS : SIMPLE_GOODS

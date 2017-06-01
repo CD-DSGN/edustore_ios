@@ -11,7 +11,7 @@
 #import "I0_MomentsCommentsCell_iPhone.h"
 #import "I0_MomentsPhotoCell_iPhone.h"
 #import "I0_MomentsWriteCommentCell_iPhone.h"
-
+#import "I0_MomentsSinglePhotoCell_iPhone.h"
 @implementation I0_MomentsCell_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
@@ -24,7 +24,8 @@ DEF_OUTLET( BeeUIScrollView, list )
 {
     // 通过查询的返回值来大致计算出高度
     MOMENTS * moments = data;
-    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0] byWidth:SCREEN_WIDTH - 75.0f];      // 正文内容的size
+//    CGSize content_size = [moments.publish_info.news_content sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.0] byWidth:SCREEN_WIDTH*0.8f];      // 正文内容的size
+    CGSize content_size = [moments.publish_info.news_content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
     CGFloat head_height = 40.0f;             // 头部高度+留白
     CGFloat photo_height = [self.class photoHeightByCount:moments.publish_info.photo_array.count];                     // 图片高度
     CGFloat commentHeight = 20;  // 评论留白 + 放评论按钮那个框框高度
@@ -44,7 +45,6 @@ DEF_OUTLET( BeeUIScrollView, list )
             content = [NSString stringWithFormat:@"%@回复%@：%@",show_name, target_username,comment_content];
         }
         // 每一个评论内容的高度
-
         CGFloat singleCommentHeight = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8f, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
 
         commentHeight += singleCommentHeight;
@@ -55,12 +55,12 @@ DEF_OUTLET( BeeUIScrollView, list )
         return  size;
     }
     else if(moments.publish_info.photo_array.count == 1){
-        CGSize size = CGSizeMake(width, content_size.height + head_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20  + commentHeight -5);
+        CGSize size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
         return  size;
     }
     else{
 
-        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight -5 );
+        CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight + 5);
 
         return size;
     }
@@ -74,7 +74,7 @@ DEF_OUTLET( BeeUIScrollView, list )
         case 1:
         case 2:
         case 3:
-            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 ;
+            photo_height = 70 ;
             break;
         case 4:
         case 5:
@@ -132,12 +132,21 @@ DEF_OUTLET( BeeUIScrollView, list )
         
         // 汇师圈Cell第二栏：图片信息
         if (photoCount > 0) {
-            BeeUIScrollItem * photoItem = self.list.items[i];
-            photoItem.clazz = [I0_MomentsPhotoCell_iPhone class];
-            photoItem.data = self.moments;
-            photoItem.size = CGSizeAuto;
-            photoItem.rule = BeeUIScrollLayoutRule_Tile;
-            i++;
+            if (self.moments.publish_info.photo_array.count == 1) {
+                BeeUIScrollItem * photoItem = self.list.items[i];
+                photoItem.clazz = [I0_MomentsSinglePhotoCell_iPhone class];
+                photoItem.data = self.moments;
+                photoItem.size = CGSizeAuto;
+                photoItem.rule = BeeUIScrollLayoutRule_Tile;
+                i++;
+            }else {
+                BeeUIScrollItem * photoItem = self.list.items[i];
+                photoItem.clazz = [I0_MomentsPhotoCell_iPhone class];
+                photoItem.data = self.moments;
+                photoItem.size = CGSizeAuto;
+                photoItem.rule = BeeUIScrollLayoutRule_Tile;
+                i++;
+            }
         }
         
         // 汇师圈Cell第三栏，学生写评论的按钮

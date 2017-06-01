@@ -189,8 +189,6 @@
 		92F874771E1F475B003DF1AE /* profile_img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F874761E1F475B003DF1AE /* profile_img_bg@2x.png */; };
 		CB013ED018C0500700D381A0 /* CommonNoResultCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */; };
 		CB55509A18B45695000EC760 /* NSObject+ScrollViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CB55509918B45695000EC760 /* NSObject+ScrollViewExt.m */; };
-		CB60E56A179E2B100094F91C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60E569179E2B100094F91C /* icon.png */; };
-		CB60E56C179E2B360094F91C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60E56B179E2B360094F91C /* icon@2x.png */; };
 		CB81D25F18ABB3F000F277EA /* AddressInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB81D08F18ABB3EE00F277EA /* AddressInfoModel.m */; };
 		CB81D26018ABB3F000F277EA /* AddressListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB81D09118ABB3EE00F277EA /* AddressListModel.m */; };
 		CB81D26118ABB3F000F277EA /* ArticleGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB81D09318ABB3EE00F277EA /* ArticleGroupModel.m */; };
@@ -1300,8 +1298,6 @@
 		CB013ECF18C0500700D381A0 /* CommonNoResultCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonNoResultCell.xml; sourceTree = "<group>"; };
 		CB55509818B45695000EC760 /* NSObject+ScrollViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ScrollViewExt.h"; sourceTree = "<group>"; };
 		CB55509918B45695000EC760 /* NSObject+ScrollViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ScrollViewExt.m"; sourceTree = "<group>"; };
-		CB60E569179E2B100094F91C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		CB60E56B179E2B360094F91C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		CB81D08E18ABB3EE00F277EA /* AddressInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInfoModel.h; sourceTree = "<group>"; };
 		CB81D08F18ABB3EE00F277EA /* AddressInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInfoModel.m; sourceTree = "<group>"; };
 		CB81D09018ABB3EE00F277EA /* AddressListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListModel.h; sourceTree = "<group>"; };
@@ -3025,8 +3021,6 @@
 			children = (
 				E933B82D1BD0C3D8000D3567 /* ECMobileManager */,
 				CBD16FF718BCBFC6003D1862 /* ECMobileFramework */,
-				CB60E56B179E2B360094F91C /* icon@2x.png */,
-				CB60E569179E2B100094F91C /* icon.png */,
 				630236AF177C1675004C052D /* shop */,
 				07B167A61E27777600276D66 /* edustore */,
 				63249C9D1754E07900372FD7 /* Frameworks */,
@@ -5805,7 +5799,7 @@
 					};
 					63249C9A1754E07900372FD7 = {
 						DevelopmentTeam = 6KM3WVLJ6Q;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -6147,7 +6141,6 @@
 				CB9C236718BB3B0C00DDA501 /* wizard_2.xml in Resources */,
 				5F16764A1E1E136E00C5188E /* I2_MomentsPhotoBoard_iPhone.xml in Resources */,
 				1848BD8318B4D8690007238A /* icon_rightArrow@2x.png in Resources */,
-				CB60E56A179E2B100094F91C /* icon.png in Resources */,
 				CB9C22FF18BB3B0C00DDA501 /* item_info_buy_kinds_btn_grey@2x.png in Resources */,
 				CB9C232418BB3B0C00DDA501 /* searcher_new_search_box@2x.png in Resources */,
 				CB9C232218BB3B0C00DDA501 /* searcher_new_body_btn_grey@2x.png in Resources */,
@@ -6194,7 +6187,6 @@
 				CB9C232518BB3B0C00DDA501 /* searcher_new_search_icon@2x.png in Resources */,
 				CB9C233118BB3B0C00DDA501 /* shopping_cart_body_bg_02@2x.png in Resources */,
 				5F16763E1E1E136E00C5188E /* I0_MomentsCell_iPhone.xml in Resources */,
-				CB60E56C179E2B360094F91C /* icon@2x.png in Resources */,
 				CB9C22E918BB3B0C00DDA501 /* item_graph_header_view_icon@2x.png in Resources */,
 				CB9C233418BB3B0C00DDA501 /* shopping_cart_body_dotted_line@2x.png in Resources */,
 				CB9C22F918BB3B0C00DDA501 /* item_info_buy_choose_min_btn@2x.png in Resources */,
@@ -7044,7 +7036,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7086,9 +7078,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -7104,7 +7096,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7146,9 +7138,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -7193,7 +7185,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7235,9 +7227,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;

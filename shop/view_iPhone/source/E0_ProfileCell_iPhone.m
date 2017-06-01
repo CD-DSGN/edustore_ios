@@ -131,9 +131,9 @@ SUPPORT_RESOURCE_LOADING( YES )
 //			{
 //				$(@"#header-avatar").IMAGE( [UIImage imageNamed:@"profile_no_avatar_icon.png"] );
 //			}
-            if (userModel.avatar != nil)
+            if (userModel.user.avatar != nil)
             {
-                $(@"#header-avatar").IMAGE( userModel.avatar );
+                $(@"#header-avatar").IMAGE( userModel.user.avatar );
             }
             else
             {

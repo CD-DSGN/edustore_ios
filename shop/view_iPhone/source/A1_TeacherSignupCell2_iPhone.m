@@ -108,10 +108,17 @@ DEF_OUTLET( BeeUILabel, classFive )
             $(@"#school").TEXT(teacherInfo.school_id);
             
         }
+        if ([teacherInfo.school_id isEqualToString:@"请选择学校"]) {
+            $(@"#school").CSS(@"color:#d3d3d3");
+            $(@"#school").TEXT(@"请选择学校");
+        }
         if (![teacherInfo.course_id isEqualToString:@""] && teacherInfo.course_id != nil) {
             $(@"#course").CSS(@"color:black");
             $(@"#course").TEXT(teacherInfo.course_id);
-            
+        }
+        if ([teacherInfo.course_id isEqualToString:@"请选择课程"]) {
+            $(@"#course").CSS(@"color:#d3d3d3");
+            $(@"#course").TEXT(@"请选择课程");
         }
         if (teacherInfo.grade_array.count > 0) {
             
@@ -139,6 +146,31 @@ DEF_OUTLET( BeeUILabel, classFive )
                 
                 $(@"#gradeFive").CSS(@"color:black");
                 $(@"#gradeFive").TEXT(teacherInfo.grade_array[4]);
+            }
+            if ([teacherInfo.grade_array[0] isEqualToString:@"请选择年级"]) {
+                
+                $(@"#gradeOne").CSS(@"color:#d3d3d3");
+                $(@"#gradeOne").TEXT(@"请选择年级");
+            }
+            if ([teacherInfo.grade_array[1] isEqualToString:@"请选择年级"]) {
+                
+                $(@"#gradeOne").CSS(@"color:#d3d3d3");
+                $(@"#gradeOne").TEXT(@"请选择年级");
+            }
+            if ([teacherInfo.grade_array[2] isEqualToString:@"请选择年级"]) {
+                
+                $(@"#gradeOne").CSS(@"color:#d3d3d3");
+                $(@"#gradeOne").TEXT(@"请选择年级");
+            }
+            if ([teacherInfo.grade_array[3] isEqualToString:@"请选择年级"]) {
+                
+                $(@"#gradeOne").CSS(@"color:#d3d3d3");
+                $(@"#gradeOne").TEXT(@"请选择年级");
+            }
+            if ([teacherInfo.grade_array[4] isEqualToString:@"请选择年级"]) {
+                
+                $(@"#gradeOne").CSS(@"color:#d3d3d3");
+                $(@"#gradeOne").TEXT(@"请选择年级");
             }
         }
         if (teacherInfo.class_array.count > 0) {

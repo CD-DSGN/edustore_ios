@@ -597,7 +597,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize student_name = _student_name;
 @synthesize student_points = _student_points;
 @synthesize avatar = _avatar;
-
+@synthesize student_index = _student_index;
 @end
 
 @implementation Register_grade

@@ -41,7 +41,7 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarShown = YES;
-    self.navigationBarTitle = __TEXT(@"integral");
+    self.navigationBarTitle = @"积分信息";
     
     self.navigationBarLeft  = [UIImage imageNamed:@"nav_back.png"];
     

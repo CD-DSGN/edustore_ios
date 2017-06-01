@@ -469,7 +469,13 @@ ON_SIGNAL3( B0_IndexButtonCell_iPhone, connect_col, signal )
 //    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18380207432"];
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 //    [self openTelephone:@"028-61380687"];
-    [self openTelephone:self.configModel.config.service_phone];
+    if (self.configModel.config.service_phone == nil || [self.configModel.config.service_phone isEqualToString:@""]) {
+        
+        [self presentFailureTips:@"当前没有客服在线"];
+    } else {
+     
+        [self openTelephone:self.configModel.config.service_phone];
+    }
 }
 
 #pragma mark -

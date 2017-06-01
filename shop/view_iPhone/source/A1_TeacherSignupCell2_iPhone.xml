@@ -18,20 +18,20 @@
             <image class="list-item-bg" />
             <image class="input-icon-school icon" />
 <!--            <input id="school" class="signin-input" placeholder="@{school}"></input>-->
-            <label id="school" class="choose">@{school}</label>
+            <label id="school" class="choose">请选择学校</label>
             <button id="chooseSchool" class="choose"></button>
         </row>
         <row class="list-item">
             <image class="list-item-bg" />
             <image class="input-icon-course icon" />
-            <label id="course" class="choose">所教课程</label>
+            <label id="course" class="choose">请选择课程</label>
             <button id="chooseCourses" class="choose"></button>
         </row>
 <!--   在这要加入年级、班级信息，还不知道怎么加的     -->
         <row class=" grade-item" id="chooseGradeOne">
             <image class="grade-item-bg" />
             <image class="input-icon-grade icon" />
-            <label id="gradeOne" class="chooseGrade">年级</label>
+            <label id="gradeOne" class="chooseGrade">请选择年级</label>
             <button id="" class="chooseGrade"></button>
             <image class="teacherClass input-icon-class" />
             <input id="classOne" class="classInput" placeholder="班级"></input>
@@ -39,7 +39,7 @@
         <row class=" grade-item" id="chooseGradeTwo">
             <image id="imageBgTwo" class="grade-item-bg hide2" />
             <image id="iconBgTwo" class="input-icon-grade icon hide2" />
-            <label id="gradeTwo" class="chooseGrade hide2">年级</label>
+            <label id="gradeTwo" class="chooseGrade hide2">请选择年级</label>
             <button id="" class="chooseGrade hide2"></button>
             <image id="iconBgTwo2" class="teacherClass input-icon-class hide2" />
             <input id="classTwo" class="classInput hide2" placeholder="班级"></input>
@@ -47,7 +47,7 @@
         <row class=" grade-item" id="chooseGradeThree">
             <image id="imageBgThree" class="grade-item-bg hide3" />
             <image id="iconBgThree" class="input-icon-grade icon hide3" />
-            <label id="gradeThree" class="chooseGrade hide3">年级</label>
+            <label id="gradeThree" class="chooseGrade hide3">请选择年级</label>
             <button id="" class="chooseGrade hide3"></button>
             <image id="iconBgThree2" class="teacherClass input-icon-class hide3" />
             <input id="classThree" class="classInput hide3" placeholder="班级"></input>
@@ -55,7 +55,7 @@
         <row class=" grade-item" id="chooseGradeFour">
             <image id="imageBgFour" class="grade-item-bg hide4" />
             <image id="iconBgFour" class="input-icon-grade icon hide4" />
-            <label id="gradeFour" class="chooseGrade hide4">年级</label>
+            <label id="gradeFour" class="chooseGrade hide4">请选择年级</label>
             <button id="" class="chooseGrade hide4"></button>
             <image id="iconBgFour2" class="teacherClass input-icon-class hide4" />
             <input id="classFour" class="classInput hide4" placeholder="班级"></input>
@@ -63,14 +63,14 @@
         <row class=" grade-item" id="chooseGradeFive">
             <image id="imageBgFive" class="grade-item-bg hide5" />
             <image id="iconBgFive" class="input-icon-grade icon hide5" />
-            <label id="gradeFive" class="chooseGrade hide5">年级</label>
+            <label id="gradeFive" class="chooseGrade hide5">请选择年级</label>
             <button id="" class="chooseGrade hide5"></button>
             <image id="iconBgFive2" class="teacherClass input-icon-class hide5" />
             <input id="classFive" class="classInput hide5" placeholder="班级"></input>
         </row>
         <row class="grade-item-add" id="gradeClassAdd">
             <image class="grade-item-add-footer-bg" />
-            <label id="addGradeLabel" class="addGrade">新加信息</label>
+            <label id="addGradeLabel" class="addGrade">新增年级、班级</label>
         </row>
         <row class="signupButton-wrapper" id="signupButton_wrapper">
             <button class="signupButton" id="signupButton">提交注册</button>
@@ -275,7 +275,7 @@
         height: 44px;
         line-height: 44px;
         text-align: center;
-        font: 12px;
+        font: 14px;
         }
 	</style>
 </ui>

@@ -581,6 +581,7 @@ enum RANK_LEVEL
 @property (nonatomic, retain) NSString * avatar;
 @property (nonatomic, retain) NSNumber * student_points;
 @property (nonatomic, retain) NSString * student_name;
+@property (nonatomic, retain) NSString * student_index;
 
 @end
 

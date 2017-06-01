@@ -83,6 +83,8 @@ SUPPORT_RESOURCE_LOADING( YES )
         $(@"#invite_code").TEXT(invite_code).CSS([NSString stringWithFormat:@"left:%fpx",invite_code_left]);
         $(@"#subscription_points").TEXT(points_from_subscription).CSS([NSString stringWithFormat:@"left:%fpx",subscription_points_left]);
         $(@"#affiliate_points").TEXT(points_from_affiliate).CSS([NSString stringWithFormat:@"left:%fpx",affiliate_points_left]);
+        $(@"#subscription_student").TEXT([NSString stringWithFormat:@"已有%@位学生关注您", subscription_student_num]);
+        $(@"#recommanded").TEXT([NSString stringWithFormat:@"您直接推荐了%@位教师", recommanded_teacher_num]);
 
     }
 }

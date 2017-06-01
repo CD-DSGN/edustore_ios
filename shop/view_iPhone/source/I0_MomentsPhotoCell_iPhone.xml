@@ -1,162 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui namespace="I0_MomentsPhotoCell_iPhone">
-<!--    <image class="blank" />-->
-<!--    <row class="moments_photo">-->
-<!--        <image class="moments_photo_bg" />-->
-        <!-- 如果所上传图片只有一张，则使用 -->
-<!--        <row class="single_photo">-->
-<!--            <image class="only_one_photo" id="big_photo" />-->
-<!--        </row>-->
-        <!-- 多张图片时使用 -->
-<!--        <row class="mult_photo">-->
-
-<!--这是最直观但是最蠢的写法了-->
-<!--            <row class="photo_button button_one">-->
-<!--                <button class="button" id="photo_one_button" />-->
-<!--                <image class="photo_one photo" id="photo_one" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_two">-->
-<!--                <button class="button" id="photo_two_button" />-->
-<!--                <image class="photo_two photo" id="photo_two" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_three">-->
-<!--                <button class="button" id="photo_three_button" />-->
-<!--                <image class="photo_three photo" id="photo_three" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_four">-->
-<!--                <button class="button" id="photo_four_button" />-->
-<!--                <image class="photo_four photo" id="photo_four" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_five">-->
-<!--                <button class="button" id="photo_five_button" />-->
-<!--                <image class="photo_five photo" id="photo_five" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_six">-->
-<!--                <button class="button" id="photo_six_button" />-->
-<!--                <image class="photo_six photo" id="photo_six" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_seven">-->
-<!--                <button class="button" id="photo_seven_button" />-->
-<!--                <image class="photo_seven photo" id="photo_seven" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_eight">-->
-<!--                <button class="button" id="photo_eight_button" />-->
-<!--                <image class="photo_eight photo" id="photo_eight" />-->
-<!--            </row>-->
-<!--            <row class="photo_button button_nine">-->
-<!--                <button class="button" id="photo_nine_button" />-->
-<!--                <image class="photo_nine photo" id="photo_nine" />-->
-<!--            </row>-->
-<!--        </row>-->
-<!--    </row>-->
-    <row class="background" id="background">
+    <!--    <image class="blank" />-->
+    <!--    <row class="moments_photo">-->
+    <!--        <image class="moments_photo_bg" />-->
+    <!-- 如果所上传图片只有一张，则使用 -->
+    <!--        <row class="single_photo">-->
+    <!--            <image class="only_one_photo" id="big_photo" />-->
+    <!--        </row>-->
+    <!-- 多张图片时使用 -->
+    
+    <row class="background">
         <image class="background_bg" />
+        <row class="multi_photo">
+            
+            <row class="photo_button button_one">
+                <button class="button" id="photo_one_button" />
+                <image class="photo_one photo" id="photo_one" />
+            </row>
+            <row class="photo_button button_two">
+                <button class="button" id="photo_two_button" />
+                <image class="photo_two photo" id="photo_two" />
+            </row>
+            <row class="photo_button button_three">
+                <button class="button" id="photo_three_button" />
+                <image class="photo_three photo" id="photo_three" />
+            </row>
+            
+        </row>
     </row>
-
+    
     <!--图片的长、宽不使用百分比、不使用动态计算，直接写死-->
     <style>
+        .multi_photo {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        }
+        
         .background {
-            position: relative;
-            width: 100%;
-            height: auto;
+        position: relative;
+        width: 100%;
+        height: 70px;
         }
+        
         .background_bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 70px;
+        top: 0;
+        left: 0;
+        background-color: #fff;
         }
         
-        .blank {
-            position: absolute;
-            width: 320;
-            height: 5;
-            background-color: #fff;
-        }
-        .moments_photo {
-            position: relative;
-            width: 320px;
-            height: auto;
-            top: 0;
-        }
-        
-        .moments_photo_bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 5;
-            left: 0;
-            background-color: #fff;
-        }
         
         .photo_button {
-            position: relative;
-            width: 81.6px;
-            height: 60px;
+        position: relative;
+        width: 81.6px;
+        height: auto;
         }
         
         .button {
-            position: absolute;
-            width: 81.6px;
-            height: 60px;
+        position: absolute;
+        width: 81.6px;
+        height: 60px;
         }
-        
-        .only_one_photo {
-            position: relative;
-            width: 0px;
-            height: 0px;
-            image-mode: stretch;
-        }
+
         
         .photo {
-            image-mode: stretch;
+        image-mode: stretch;
         }
         
         .button_one {
-            left: 55;
-            top: 0;
+        left: 55px;
+        top: 0;
         }
         
         .button_two {
-            left: 5px;
-            top: 0;
+        left: 5px;
+        top: 0;
         }
         
         .button_three {
-            left: 5px;
-            top: 0;
-        }
-        
-        .button_four {
-            left: -255px;
-            top: 65px;
-        }
-        
-        .button_five {
-            left: 5px;
-            top: 65px;
-        }
-        
-        .button_six {
-            left: 5px;
-            top: 65px;
-        }
-        
-        .button_seven {
-            left: -255px;
-            top: 130px;
-        }
-        
-        .button_eight {
-            left: 5px;
-            top: 130px;
-        }
-        
-        .button_nine {
-            left: 5px;
-            top: 130px;
+        left: 5px;
+        top: 0;
         }
         
     </style>

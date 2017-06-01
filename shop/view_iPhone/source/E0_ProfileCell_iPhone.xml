@@ -83,7 +83,7 @@
                 
                 <row class="list-item" id="integral">
                     <image class="list-bg"/>
-                    <label class="list-title">@{integral}</label>
+                    <label class="list-title">积分查询</label>
                     <label class="list-subtitle"></label>
                     <image class="list-indictor"/>
                     <button id="integral" class="mask"/>

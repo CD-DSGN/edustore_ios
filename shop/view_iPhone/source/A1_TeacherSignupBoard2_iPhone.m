@@ -329,6 +329,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeOne, signal )
         gradeLabel.textColor = [UIColor blackColor];
         self.selectedGradeArray[0] = self.gradeArray[gradeSelectedRow];
         self.selectedGradeIdArray[0] = self.gradeIdArray[gradeSelectedRow];
+        if ([gradeLabel.text isEqualToString:@"请选择年级"]) {
+            
+            gradeLabel.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.gradePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -346,6 +350,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeTwo, signal )
         gradeLabel.textColor = [UIColor blackColor];
         self.selectedGradeArray[1] = self.gradeArray[gradeSelectedRow];
         self.selectedGradeIdArray[1] = self.gradeIdArray[gradeSelectedRow];
+        if ([gradeLabel.text isEqualToString:@"请选择年级"]) {
+            
+            gradeLabel.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.gradePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -363,6 +371,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeThree, signal )
         gradeLabel.textColor = [UIColor blackColor];
         self.selectedGradeArray[2] = self.gradeArray[gradeSelectedRow];
         self.selectedGradeIdArray[2] = self.gradeIdArray[gradeSelectedRow];
+        if ([gradeLabel.text isEqualToString:@"请选择年级"]) {
+            
+            gradeLabel.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.gradePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -380,6 +392,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeFour, signal )
         gradeLabel.textColor = [UIColor blackColor];
         self.selectedGradeArray[3] = self.gradeArray[gradeSelectedRow];
         self.selectedGradeIdArray[3] = self.gradeIdArray[gradeSelectedRow];
+        if ([gradeLabel.text isEqualToString:@"请选择年级"]) {
+            
+            gradeLabel.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.gradePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -397,6 +413,10 @@ ON_SIGNAL3( A1_TeacherSignupCell2_iPhone, chooseGradeFive, signal )
         gradeLabel.textColor = [UIColor blackColor];
         self.selectedGradeArray[4] = self.gradeArray[gradeSelectedRow];
         self.selectedGradeIdArray[4] = self.gradeIdArray[gradeSelectedRow];
+        if ([gradeLabel.text isEqualToString:@"请选择年级"]) {
+            
+            gradeLabel.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.gradePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -938,6 +958,10 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         BeeUILabel * course = [self getLabelByLabelName:@"course"];
         course.textColor = [UIColor blackColor];
         course.text = self.selectedCourseName;
+        if ([course.text isEqualToString:@"请选择课程"]) {
+            
+            course.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.coursePickerView];
     [self presentViewController:sheet animated:YES completion:nil];
@@ -956,6 +980,10 @@ ON_NOTIFICATION3( BeeUIKeyboard, HIDDEN, notification )
         NSString * regionText = [NSString stringWithFormat:@"%@",self.selectedSchoolName];
         school.text = regionText;
         school.textColor = [UIColor blackColor];
+        if ([school.text isEqualToString:@"请选择学校"]) {
+            
+            school.textColor = [UIColor colorWithRed:211.f/255 green:211.f/255 blue:211.f/255 alpha:1];
+        }
     }]];
     [sheet.view addSubview:self.schoolPickerView];
     [self presentViewController:sheet animated:YES completion:nil];

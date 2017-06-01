@@ -21,6 +21,12 @@
 
 @end
 
+@interface K0_NewsBoard_iPhone ()
+
+@property (nonatomic, assign) BOOL isFirstLoad;
+
+@end
+
 @implementation K0_NewsBoard_iPhone
 
 
@@ -38,6 +44,8 @@ DEF_OUTLET( BeeUIScrollView, list )
 {
     self.newsModel = [NewsModel modelWithObserver:self];
     self.userModel = [UserModel modelWithObserver:self];
+    
+    self.isFirstLoad = YES;
 }
 
 - (void)unload
@@ -50,6 +58,13 @@ DEF_OUTLET( BeeUIScrollView, list )
 ON_CREATE_VIEWS( signal )
 {
     self.navigationBarTitle = __TEXT(@"news");
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"huishi_logo"] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 59, 44);
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView: button];
+    
+
     [self showNavigationBarAnimated:NO];
     
     @weakify(self);
@@ -110,11 +125,16 @@ ON_LAYOUT_VIEWS( signal )
 
 ON_WILL_APPEAR( signal )
 {
+    if (self.isFirstLoad) {
+        
+        [self.newsModel firstPage];
+        
+        //[self.list reloadData];
+        
+        self.isFirstLoad = NO;
+    }
+    
     [bee.ui.appBoard showTabbar];
-    
-    [self.newsModel firstPage];
-    
-    //[self.list reloadData];
 }
 
 ON_DID_APPEAR( signal )

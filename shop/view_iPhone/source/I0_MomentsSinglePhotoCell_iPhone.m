@@ -6,7 +6,7 @@
 //  Copyright © 2016年 geek-zoo studio. All rights reserved.
 //
 
-#import "I0_MomentsPhotoCell_iPhone.h"
+#import "I0_MomentsSinglePhotoCell_iPhone.h"
 #import "I0_MomentsBorad_iPhone.h"
 #import "I2_MomentsPhotoBoard_iPhone.h"
 #import "I0_MomentsCell_iPhone.h"
@@ -17,7 +17,7 @@
 #define IMAGELEFT    50.0f
 #define BLANKHEIGHT  10.0f
 
-@implementation I0_MomentsPhotoCell_iPhone
+@implementation I0_MomentsSinglePhotoCell_iPhone
 
 SUPPORT_AUTOMATIC_LAYOUT( YES )
 SUPPORT_RESOURCE_LOADING( YES )
@@ -35,31 +35,13 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
     if (self.data)
     {
-
-        $(@"#photo_one").CSS(@"width: 70px; height: 70px");
-        $(@"#photo_two").CSS(@"width: 70px; height: 70px");
-        $(@"#photo_three").CSS(@"width: 70px; height: 70px");
-        if (IS_SCREEN_47_INCH) {
-            $(@"#photo_two").CSS(@"left: 10px");
-            $(@"#photo_three").CSS(@"left: 10px");
-        }
-        if (IS_SCREEN_55_INCH) {
-            $(@"#photo_two").CSS(@"left: 20px");
-            $(@"#photo_three").CSS(@"left: 20px");
-        }
         
         MOMENTS * moments = self.data;
         NSArray * photo_array = moments.publish_info.photo_array;
-        NSInteger photo_count = photo_array.count;
-        NSDictionary * photo1 = [photo_array objectAtIndex:0];
-        $(@"#photo_one").IMAGE([photo1 objectForKey:@"img"]);
-        NSDictionary * photo2 = [photo_array objectAtIndex:1];
-        $(@"#photo_two").IMAGE([photo2 objectForKey:@"img"]);
-        if (photo_count == 3) {
-            NSDictionary * photo3 = [photo_array objectAtIndex:2];
-            $(@"#photo_three").IMAGE([photo3 objectForKey:@"img"]);
-        }
-
+        NSDictionary * photo = [photo_array objectAtIndex:0];
+        
+        $(@"#big_photo").IMAGE([photo objectForKey:@"img_thumb"]);
+        
         
         // 消除复用影响代价最小的想法（目前）
 //        for (NSInteger i = photo_count; i < 9; i++) {
@@ -75,8 +57,7 @@ SUPPORT_RESOURCE_LOADING( YES )
     }
 }
 
-// 不用代理，使用根类的单例
-ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_one_button, signal)
+ON_SIGNAL3(I0_MomentsSinglePhotoCell_iPhone, photo_button, signal)
 {
     
     MOMENTS * moments = self.data;
@@ -89,30 +70,6 @@ ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_one_button, signal)
     [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
 }
 
-ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_three_button, signal)
-{
-    
-    MOMENTS * moments = self.data;
-    //    if (moments.publish_info.photo_array.count == 1) {
-    SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
-    board.imageArray = moments.publish_info.photo_array;
-    board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //    board.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
-    board.index = 2;
-    [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
-}
-ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_two_button, signal)
-{
-    
-    MOMENTS * moments = self.data;
-    //    if (moments.publish_info.photo_array.count == 1) {
-    SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
-    board.imageArray = moments.publish_info.photo_array;
-    board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //    board.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
-    board.index = 1;
-    [[AppBoard_iPhone sharedInstance] presentViewController:board animated:YES completion:nil];
-}
 
 // 不用代理，使用根类的单例
 - (void)openBig:(UITapGestureRecognizer *)tapRecongnizer

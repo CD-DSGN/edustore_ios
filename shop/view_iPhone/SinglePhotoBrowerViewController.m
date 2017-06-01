@@ -135,7 +135,7 @@
     }
     _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH*_imageArray.count, SCREEN_HEIGHT);
     
-    [_scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * _index, 0) animated:NO];
     
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, _scrollView.frame.size.height-30, SCREEN_WIDTH, 30)];
     [_pageControl retain];

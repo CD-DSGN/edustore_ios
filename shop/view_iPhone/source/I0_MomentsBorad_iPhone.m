@@ -269,16 +269,39 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
 - (void)deleteMomentsCache
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSArray * momentsCacheArray = [NSArray arrayWithArray:[defaults objectForKey:@"momentsCache"]];
     [defaults removeObjectForKey:@"momentsCache"];
+    
+    // 将本地数据源中未发送成功的数据删除
+    for (int i = 0; i < momentsCacheArray.count; i++) {
+        
+        // 插入往前插的，删除也是从前删的
+        [self.momentModel.moments removeObjectAtIndex:i];
+    }
+    [self.list reloadData];
 }
 
 - (void)reSendMomentByCache
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    NSArray * momentsArray = [defaults objectForKey:@"momentsCache"];
+    NSArray * momentsArray = [NSArray arrayWithArray:[defaults objectForKey:@"momentsCache"]];
     // 有数据时才重新发送
     if (momentsArray != nil || momentsArray.count != 0) {
         
+        for (int i = 0; i < momentsArray.count; i++) {
+            
+            NSDictionary * momentDict = [momentsArray objectAtIndex:i];
+            NSString * curTime = [momentDict objectForKey:@"curTime"];
+            NSString * content = [momentDict objectForKey:@"content"];
+            NSArray * photoArray = [NSArray arrayWithArray:[momentDict objectForKey:@"photoArray"]];
+            
+            // 通过网络接口重新发送汇师圈
+            self.CANCEL_MSG( API.teacher_publish );
+            self.MSG( API.teacher_publish )
+            .INPUT( @"time", curTime)
+            .INPUT( @"content", content)
+            .INPUT( @"publish_images", photoArray);
+        }
     }
 }
 
@@ -551,18 +574,11 @@ ON_MESSAGE3( API, teacher_publish, msg )
             @normalize(self);
             // 删除NSUserDefaults
             [self deleteMomentsCache];
-            // 将本地数据源中未发送成功的数据删除
-            for (int i = 0; i < momentsCacheArray.count; i++) {
-                
-                // 插入往前插的，删除也是从前删的
-                [self.momentModel.moments removeObjectAtIndex:i];
-            }
-            [self.list reloadData];
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"发送" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            // 走一个通知重新发送汇师圈
-            
+            @normalize(self);
+            [self reSendMomentByCache];
         }]];
         [[AppBoard_iPhone sharedInstance] presentViewController:alert animated:YES completion:nil];
     }

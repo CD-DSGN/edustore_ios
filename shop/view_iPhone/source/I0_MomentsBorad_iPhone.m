@@ -312,7 +312,7 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     
     [self.momentModel.moments insertObject:newMoments atIndex:0];
     [self.list reloadData];
-    [self.list setOffset:CGPointMake(0, 0)];
+    [self.list setContentOffset:CGPointMake(0, 0) animated:YES];
     
     // 将用户需要发送的信息存在本地
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];

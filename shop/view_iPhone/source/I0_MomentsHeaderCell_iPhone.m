@@ -34,6 +34,11 @@ SUPPORT_RESOURCE_LOADING( YES )
         }else {
             self.deleteButton.hidden = YES;
         }
+        // add nhj, 当汇师圈还未发送成功时，隐藏删除按钮
+        if ([moments.publish_info.news_id isEqual:@0]) {
+            
+            self.deleteButton.hidden = YES;
+        }
         
         NSString * time = [self timeDescription:moments.publish_info.publish_time];
 

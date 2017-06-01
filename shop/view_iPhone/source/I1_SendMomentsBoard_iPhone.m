@@ -321,11 +321,18 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
     }
     else
     {
-        self.CANCEL_MSG( API.teacher_publish );
-        self.MSG( API.teacher_publish )
-        .INPUT( @"time", curTime)
-        .INPUT( @"content", content)
-        .INPUT( @"publish_images", imageArray);
+        if ([self.delegate respondsToSelector:@selector(MomentDidSendWithContent:andCurTime:andPhotoArray:AndBase64PhotoArray:)]) {
+            
+            [self.delegate MomentDidSendWithContent:content andCurTime:curTime andPhotoArray:self.photoArray AndBase64PhotoArray:imageArray];
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        // 将发送的流程改到汇师圈的board中
+//        self.CANCEL_MSG( API.teacher_publish );
+//        self.MSG( API.teacher_publish )
+//        .INPUT( @"time", curTime)
+//        .INPUT( @"content", content)
+//        .INPUT( @"publish_images", imageArray);
 
     }
 }
@@ -439,36 +446,37 @@ ON_SIGNAL3( I1_SendMomentsBoard_iPhone, send, signal )
     }
 }
 
-#pragma mark - 教师发送汇师圈消息
-ON_MESSAGE3( API, teacher_publish, msg )
-{
-    if ( msg.sending )
-    {
-        [self.textViewSendContent resignFirstResponder];
-        [self presentMessageTips:__TEXT(@"moments_sending")];
-    }
-    else
-    {
-        [self dismissTips];
-    }
-    if ( msg.succeed )
-    {
-        NSString * data = msg.GET_OUTPUT(@"data");
-        if ([data isEqualToString:@"1"])
-        {
-            [self presentSuccessTips:__TEXT(@"moments_success")];
-            [self performSelector:@selector(dismissViewController) withObject:self afterDelay:1.0f];
-        }
-        else
-        {
-            [self presentFailureTips:__TEXT(@"moments_error")];
-        }
-    }
-    if ( msg.failed )
-    {
-        [self presentFailureTips:__TEXT(@"moments_error")];
-    }
-}
+// 改到board中执行发送过程
+//#pragma mark - 教师发送汇师圈消息
+//ON_MESSAGE3( API, teacher_publish, msg )
+//{
+//    if ( msg.sending )
+//    {
+//        [self.textViewSendContent resignFirstResponder];
+//        [self presentMessageTips:__TEXT(@"moments_sending")];
+//    }
+//    else
+//    {
+//        [self dismissTips];
+//    }
+//    if ( msg.succeed )
+//    {
+//        NSString * data = msg.GET_OUTPUT(@"data");
+//        if ([data isEqualToString:@"1"])
+//        {
+//            [self presentSuccessTips:__TEXT(@"moments_success")];
+//            [self performSelector:@selector(dismissViewController) withObject:self afterDelay:1.0f];
+//        }
+//        else
+//        {
+//            [self presentFailureTips:__TEXT(@"moments_error")];
+//        }
+//    }
+//    if ( msg.failed )
+//    {
+//        [self presentFailureTips:__TEXT(@"moments_error")];
+//    }
+//}
 
 - (void)dismissViewController
 {

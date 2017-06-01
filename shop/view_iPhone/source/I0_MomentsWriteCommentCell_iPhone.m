@@ -31,6 +31,14 @@ DEF_OUTLET( BeeUIButton, comment )
         
         MOMENTS * moments = self.data;
         self.comment.tag = moments.publish_info.news_id.integerValue;
+        // 新发送的汇师圈内容，还未发送成功时是不可点击的
+        if (self.comment.tag == 0) {
+            
+            $(@"#comment-label").CSS(@"color:#ddd");
+        } else {
+            
+            $(@"#comment-label").CSS(@"color:#506699");
+        }
     }
 }
 

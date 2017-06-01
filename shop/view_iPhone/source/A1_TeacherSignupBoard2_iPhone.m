@@ -151,7 +151,7 @@ ON_CREATE_VIEWS( signal )
         BeeUIScrollItem * item = self.list.items[0];
         item.clazz = [A1_TeacherSignupCell2_iPhone class];
         item.rule  = BeeUIScrollLayoutRule_Line;
-        item.size  = self.list.size;
+        item.size  = CGSizeMake(self.list.size.width, self.list.size.height + 200);
         item.data  = self.teacherInfo;
     };
     

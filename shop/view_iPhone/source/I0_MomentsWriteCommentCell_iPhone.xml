@@ -3,7 +3,7 @@
     <row class="writeCommentCell">
         <image class="background" />
         <image class="comment-icon" />
-        <label class="comment-label">评论</label>
+        <label class="comment-label" id="comment-label">评论</label>
         <button class="comment" id="comment"></button>
     </row>
     <style>

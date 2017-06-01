@@ -13,6 +13,7 @@
 
 #import "UIViewController+ErrorTips.h"
 #import "I0_MomentsWriteCommentView.h"
+
 @interface I0_MomentsBorad_iPhone : BaseBoard_iPhone
 
 AS_SINGLETON( MomentsBoard )

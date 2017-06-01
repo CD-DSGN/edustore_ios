@@ -31,6 +31,7 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
 }
 
+
 - (void)dataDidChanged
 {
     if (self.data)
@@ -52,12 +53,12 @@ SUPPORT_RESOURCE_LOADING( YES )
         NSArray * photo_array = moments.publish_info.photo_array;
         NSInteger photo_count = photo_array.count;
         NSDictionary * photo1 = [photo_array objectAtIndex:0];
-        $(@"#photo_one").IMAGE([photo1 objectForKey:@"img"]);
+        $(@"#photo_one").IMAGE([photo1 objectForKey:@"img_thumb"]);
         NSDictionary * photo2 = [photo_array objectAtIndex:1];
-        $(@"#photo_two").IMAGE([photo2 objectForKey:@"img"]);
+        $(@"#photo_two").IMAGE([photo2 objectForKey:@"img_thumb"]);
         if (photo_count == 3) {
             NSDictionary * photo3 = [photo_array objectAtIndex:2];
-            $(@"#photo_three").IMAGE([photo3 objectForKey:@"img"]);
+            $(@"#photo_three").IMAGE([photo3 objectForKey:@"img_thumb"]);
         }
 
         
@@ -80,7 +81,9 @@ ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_one_button, signal)
 {
     
     MOMENTS * moments = self.data;
-    //    if (moments.publish_info.photo_array.count == 1) {
+    if ([[moments.publish_info.photo_array.firstObject objectForKey:@"img"] isMemberOfClass:[UIImage class]]) {
+        return;
+    }
     SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
     board.imageArray = moments.publish_info.photo_array;
     board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -93,7 +96,9 @@ ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_three_button, signal)
 {
     
     MOMENTS * moments = self.data;
-    //    if (moments.publish_info.photo_array.count == 1) {
+    if ([[moments.publish_info.photo_array.firstObject objectForKey:@"img"] isMemberOfClass:[UIImage class]]) {
+        return;
+    }
     SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
     board.imageArray = moments.publish_info.photo_array;
     board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -105,7 +110,9 @@ ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_two_button, signal)
 {
     
     MOMENTS * moments = self.data;
-    //    if (moments.publish_info.photo_array.count == 1) {
+    if ([[moments.publish_info.photo_array.firstObject objectForKey:@"img"] isMemberOfClass:[UIImage class]]) {
+        return;
+    }
     SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
     board.imageArray = moments.publish_info.photo_array;
     board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -118,7 +125,9 @@ ON_SIGNAL3(I0_MomentsPhotoCell_iPhone, photo_two_button, signal)
 - (void)openBig:(UITapGestureRecognizer *)tapRecongnizer
 {
     MOMENTS * moments = self.data;
-//    if (moments.publish_info.photo_array.count == 1) {
+    if ([[moments.publish_info.photo_array.firstObject objectForKey:@"img"] isMemberOfClass:[UIImage class]]) {
+        return;
+    }
         SinglePhotoBrowerViewController * board = [[SinglePhotoBrowerViewController alloc]init];
         board.imageArray = moments.publish_info.photo_array;
         board.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

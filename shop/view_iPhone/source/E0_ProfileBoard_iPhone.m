@@ -32,7 +32,7 @@
 #import "CommonPullLoader.h"
 #import "ECMobileManager.h"
 #import "E0_ProfileHelpBoard_iPhone.h"
-
+#import "Bee_UIImageView.h"
 #pragma mark -
 
 DEF_UI( E0_ProfileBoard_iPhone, profile )
@@ -563,7 +563,9 @@ ON_MESSAGE3( API, post_avatar, msg )
     }
     if( msg.succeed )
     {
-        
+        BeeImageCache *cache = [BeeImageCache sharedInstance];
+        [cache deleteImageForURL:self.userModel.user.avatar];
+        [self.list reloadData];
     }
     if( msg.failed )
     {

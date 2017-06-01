@@ -46,7 +46,7 @@
 	// [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[AppBoard_iPhone sharedInstance] prefersStatusBarHidden];
     [[AppBoard_iPhone sharedInstance] prefersStatusBarStyle];
-    
+    NSLog(@"%@", NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES).firstObject);
 	bee.ui.config.ASR = YES;		// Signal自动路由
 	bee.ui.config.iOS6Mode = YES;	// iOS6.0界面布局
 

@@ -55,7 +55,19 @@ DEF_OUTLET( BeeUIScrollView, list )
         return  size;
     }
     else if(moments.publish_info.photo_array.count == 1){
-        CGSize size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
+        
+        NSArray * photo_array = moments.publish_info.photo_array;
+        NSDictionary * photo = [photo_array objectAtIndex:0];
+        
+        NSInteger height = [[photo objectForKey:@"thumb_height"] integerValue];
+        NSInteger width = [[photo objectForKey:@"thumb_width"] integerValue];
+        CGSize size;
+        if (height > width ) {
+            CGFloat temp = 140 * height /(width * 1.0);
+            size = CGSizeMake(width, content_size.height + head_height + temp + 10  + commentHeight -5);
+        }else {
+           size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
+        }
         return  size;
     }
     else{

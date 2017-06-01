@@ -69,44 +69,49 @@ SUPPORT_RESOURCE_LOADING( YES )
 //            }
         
         switch ([news.label_id integerValue]) {
-            case 2:
+            case 1:
             {
                 $(@"#news-type").CSS(@"background-color:#82659d");
             }
                 break;
-            case 3:
+            case 2:
             {
                 $(@"#news-type").CSS(@"background-color:#d780b5");
             }
                 break;
-            case 4:
+            case 3:
             {
                 $(@"#news-type").CSS(@"background-color:#e57c5e");
             }
                 break;
-            case 5:
+            case 4:
             {
                 $(@"#news-type").CSS(@"background-color:#ff8879");
             }
                 break;
-            case 6:
+            case 5:
             {
                 $(@"#news-type").CSS(@"background-color:#f5ab24");
             }
                 break;
-            case 7:
+            case 6:
             {
                 $(@"#news-type").CSS(@"background-color:#fcde02");
             }
                 break;
-            case 8:
+            case 7:
             {
                 $(@"#news-type").CSS(@"background-color:#61c7b1");
             }
                 break;
-            default:
+            case 8:
             {
                 $(@"#news-type").CSS(@"background-color:#99cbee");
+            }
+                break;
+            default:
+            {
+                $(@"#news-type").CSS(@"background-color:#3d64ac");
             }
                 break;
         }

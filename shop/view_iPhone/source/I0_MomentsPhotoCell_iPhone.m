@@ -36,17 +36,25 @@ SUPPORT_RESOURCE_LOADING( YES )
 {
     if (self.data)
     {
-
+//640925
         $(@"#photo_one").CSS(@"width: 70px; height: 70px");
         $(@"#photo_two").CSS(@"width: 70px; height: 70px");
         $(@"#photo_three").CSS(@"width: 70px; height: 70px");
-        if (IS_SCREEN_47_INCH) {
+        if (IS_SCREEN_4_INCH) {
             $(@"#photo_two").CSS(@"left: 10px");
             $(@"#photo_three").CSS(@"left: 10px");
         }
-        if (IS_SCREEN_55_INCH) {
+        if (IS_SCREEN_35_INCH) {
+            $(@"#photo_two").CSS(@"left: 10px");
+            $(@"#photo_three").CSS(@"left: 10px");
+        }
+        if (IS_SCREEN_47_INCH) {
             $(@"#photo_two").CSS(@"left: 20px");
             $(@"#photo_three").CSS(@"left: 20px");
+        }
+        if (IS_SCREEN_55_INCH) {
+            $(@"#photo_two").CSS(@"left: 30px");
+            $(@"#photo_three").CSS(@"left: 30px");
         }
         
         MOMENTS * moments = self.data;

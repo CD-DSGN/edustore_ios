@@ -55,34 +55,41 @@
         
         .photo_button {
         position: relative;
-        width: 81.6px;
+        width: 80px;
         height: auto;
         }
         
         .button {
         position: absolute;
-        width: 81.6px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         }
 
         
         .photo {
-        image-mode: stretch;
+        image-mode: fill;
+        width: 70px;
+        height: 70px;
+        top: 0px;
+        left: 0px;
         }
         
         .button_one {
         left: 55px;
         top: 0;
+        width: auto;
         }
         
         .button_two {
-        left: 5px;
+        left: 0px;
         top: 0;
+        width: auto;
         }
         
         .button_three {
-        left: 5px;
+        left: 0px;
         top: 0;
+        width: auto;
         }
         
     </style>

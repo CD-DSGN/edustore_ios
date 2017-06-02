@@ -42,21 +42,31 @@ SUPPORT_RESOURCE_LOADING( YES )
         NSArray * photo_array = moments.publish_info.photo_array;
         NSDictionary * photo = [photo_array objectAtIndex:0];
         
-        NSInteger height = [[photo objectForKey:@"thumb_height"] integerValue];
-        NSInteger width = [[photo objectForKey:@"thumb_width"] integerValue];
-        if (height > width ) {
-            CGFloat temp = 140 * height /(width * 1.0);
-            NSString *tempString = [NSString stringWithFormat:@"height: %fpx", temp];
-            $(@"#big_photo").CSS(tempString);
-            $(@"#big_photo").CSS(@"width: 140px;");
+        if (![[photo objectForKey:@"thumb_height"] isEqual:[NSNull null]]) {
+            NSInteger height = [[photo objectForKey:@"thumb_height"] integerValue];
+            NSInteger width = [[photo objectForKey:@"thumb_width"] integerValue];
+            if (height > width ) {
+                CGFloat temp = 140 * height /(width * 1.0);
+                NSString *tempString = [NSString stringWithFormat:@"height: %fpx", temp];
+                $(@"#big_photo").CSS(tempString);
+                $(@"#photo_button").CSS(tempString);
+                $(@"#big_photo").CSS(@"width: 140px;");
+            }else {
+                CGFloat temp = 140 * width /(height * 1.0);
+                NSString *tempString = [NSString stringWithFormat:@"width: %fpx", temp];
+                $(@"#big_photo").CSS(tempString);
+                $(@"#photo_button").CSS(tempString);
+                $(@"#big_photo").CSS(@"height: 140px;");
+            }
+            
+            $(@"#big_photo").IMAGE([photo objectForKey:@"img_thumb"]);
         }else {
-            CGFloat temp = 140 * width /(height * 1.0);
-            NSString *tempString = [NSString stringWithFormat:@"width: %fpx", temp];
-            $(@"#big_photo").CSS(tempString);
+            $(@"#big_photo").CSS(@"width: 140px");
             $(@"#big_photo").CSS(@"height: 140px;");
+            $(@"#big_photo").IMAGE([UIImage imageNamed:@"huishi_icon_backup"]);
+            
         }
         
-        $(@"#big_photo").IMAGE([photo objectForKey:@"img_thumb"]);
         
         
         // 消除复用影响代价最小的想法（目前）

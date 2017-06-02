@@ -80,7 +80,7 @@
         left: 50px;
         width: 140px;
         height: 140px;
-        image-mode: stretch;
+        image-mode: fill;
         }
         
         .photo {

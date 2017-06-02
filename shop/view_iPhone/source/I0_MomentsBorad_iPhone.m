@@ -402,6 +402,21 @@ ON_SIGNAL3( I0_MomentsCommentsCell_iPhone, comment_cell, signal )
 
 #pragma mark - network result
 
+ON_MESSAGE3(API, user_signin, msg) {
+    if (msg.succeed) {
+        if ([self.userModel.user.is_teacher isEqual:@1])
+        {
+            [self showBarButton:BeeUINavigationBar.RIGHT
+                          title:@"发送"
+                          image:[UIImage imageNamed:@"nav_right.png"]];
+        }
+        else
+        {
+            [self setNavigationBarRight:nil];
+        }
+    }
+}
+
 ON_MESSAGE3(API, moments_comment, msg)
 {
     if ( msg.sending )

@@ -58,20 +58,26 @@ DEF_OUTLET( BeeUIScrollView, list )
         
         NSArray * photo_array = moments.publish_info.photo_array;
         NSDictionary * photo = [photo_array objectAtIndex:0];
-        
-        NSInteger height = [[photo objectForKey:@"thumb_height"] integerValue];
-        NSInteger width = [[photo objectForKey:@"thumb_width"] integerValue];
-        CGSize size;
-        if (height > width ) {
-            CGFloat temp = 140 * height /(width * 1.0);
-            size = CGSizeMake(width, content_size.height + head_height + temp + 10  + commentHeight -5);
+        if (![[photo objectForKey:@"thumb_height"] isEqual:[NSNull null]]) {
+            NSInteger height = [[photo objectForKey:@"thumb_height"] integerValue];
+            NSInteger width = [[photo objectForKey:@"thumb_width"] integerValue];
+            CGSize size;
+            if (height > width ) {
+                CGFloat temp = 140 * height /(width * 1.0);
+                size = CGSizeMake(width, content_size.height + head_height + temp + 10  + commentHeight -5);
+            }else {
+                size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
+            }
+            return  size;
         }else {
-           size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
+            CGSize size;
+                size = CGSizeMake(width, content_size.height + head_height + 140 + 10  + commentHeight -5);
+            return size;
         }
-        return  size;
+        
     }
     else{
-
+        
         CGSize size = CGSizeMake(width, content_size.height + head_height + photo_height + commentHeight + 5);
 
         return size;
@@ -91,12 +97,12 @@ DEF_OUTLET( BeeUIScrollView, list )
         case 4:
         case 5:
         case 6:
-            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 2 + 20;
+            photo_height = 70;
             break;
         case 7:
         case 8:
         case 9:
-            photo_height = photo_height + (SCREEN_WIDTH - 50 - 20 * 3)/3.0 * 3 + 30;
+            photo_height = 70;
             break;
         default:
             break;

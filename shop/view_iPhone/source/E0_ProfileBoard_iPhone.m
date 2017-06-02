@@ -563,9 +563,10 @@ ON_MESSAGE3( API, post_avatar, msg )
     }
     if( msg.succeed )
     {
-        BeeImageCache *cache = [BeeImageCache sharedInstance];
-        [cache deleteImageForURL:self.userModel.user.avatar];
-        [self.list reloadData];
+//        BeeImageCache *cache = [BeeImageCache sharedInstance];
+//        [cache deleteImageForURL:self.userModel.user.avatar];
+//        [self.list reloadData];
+        [self.userModel updateProfile];
     }
     if( msg.failed )
     {

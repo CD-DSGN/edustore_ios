@@ -453,6 +453,8 @@ ON_MESSAGE3(API, moments_comment, msg)
             [self presentSuccessTips:@"评论成功"];
             
             [self.commentView.textView resignFirstResponder];
+            // 标注nhj：这个地方之后就改成只修改数据源，不请求网络接口了吧
+//            NSNumber * news_id = msg.GET_INPUT(@"news_id");
             [self.momentModel firstPage];
             [self.list reloadData];
         }

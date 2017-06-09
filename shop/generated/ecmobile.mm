@@ -3351,6 +3351,7 @@ DEF_MESSAGE_(moments_comment,msg )
         }
         
         msg.OUTPUT( @"status", status );
+        msg.OUTPUT(@"commentInfo", response[@"data"][@"commentInfo"]);
     }
     else if ( msg.failed )
     {

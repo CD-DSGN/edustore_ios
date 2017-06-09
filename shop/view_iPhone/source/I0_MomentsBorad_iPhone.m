@@ -325,11 +325,19 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     publishInfo.news_content = content;
     // 处理传递的图片数组，转为一个字典数组
     NSMutableArray * mutablePhotoArray = [NSMutableArray array];
-    for (int i = 0; i < photoArray.count; i++) {
-        
-        NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:photoArray[i], @"img", photoArray[i], @"img_thumb", nil];
+    if (photoArray.count == 1) {
+        UIImage *image = photoArray[0];
+        NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:image, @"img", image, @"img_thumb", [NSString stringWithFormat:@"%f", image.size.width],@"thumb_width", [NSString stringWithFormat:@"%f", image.size.height], @"thumb_height" , nil];
         [mutablePhotoArray addObject:dict];
+        
+    }else {
+        for (int i = 0; i < photoArray.count; i++) {
+            
+            NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:photoArray[i], @"img", photoArray[i], @"img_thumb", nil];
+            [mutablePhotoArray addObject:dict];
+        }
     }
+    
     publishInfo.photo_array = [NSArray arrayWithArray:mutablePhotoArray];
     publishInfo.news_id = @0;
     publishInfo.comment_array = nil;
@@ -452,28 +460,26 @@ ON_MESSAGE3(API, moments_comment, msg)
     if ( msg.succeed )
     {
         STATUS * status = msg.GET_OUTPUT(@"status");
-        
+        NSArray *commentInfo = msg.GET_OUTPUT(@"commentInfo");
         if ( status && status.succeed.boolValue )
         {
             [self presentSuccessTips:@"评论成功"];
             
             [self.commentView.textView resignFirstResponder];
             // 标注nhj：这个地方之后就改成只修改数据源，不请求网络接口了吧
-//            NSNumber * news_id = msg.GET_INPUT(@"news_id");
-//            NSMutableArray * momentsArray = self.momentModel.moments;
-//            for (int i = 0; i < momentsArray.count; i++) {
-//                
-//                MOMENTS * moments = [momentsArray objectAtIndex:i];
-//                MOMENTS_PUBLISH * publish_info = moments.publish_info;
-//                NSNumber * newsId = publish_info.news_id;
-//                
-//                // 取到了数据源的news_id
-//                if (newsId != nil && ![newsId isEqual:@0]) {
-//                    
-//                    NSMutableArray * commentArray = [NSMutableArray arrayWithArray:publish_info.comment_array];
-//                    
-//                }
-//            }
+            NSNumber * news_id = msg.GET_INPUT(@"news_id");
+            NSMutableArray * momentsArray = self.momentModel.moments;
+            for (int i = 0; i < momentsArray.count; i++) {
+                
+                MOMENTS * moments = [momentsArray objectAtIndex:i];
+                MOMENTS_PUBLISH * publish_info = moments.publish_info;
+                NSNumber * newsId = publish_info.news_id;
+                
+                if ([newsId integerValue] == [news_id integerValue]) {
+                    publish_info.comment_array = commentInfo;
+                    break;
+                }
+            }
             [self.list reloadData];
         }
         else

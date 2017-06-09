@@ -320,11 +320,19 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     publishInfo.news_content = content;
     // 处理传递的图片数组，转为一个字典数组
     NSMutableArray * mutablePhotoArray = [NSMutableArray array];
-    for (int i = 0; i < photoArray.count; i++) {
-        
-        NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:photoArray[i], @"img", photoArray[i], @"img_thumb", nil];
+    if (photoArray.count == 1) {
+        UIImage *image = photoArray[0];
+        NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:image, @"img", image, @"img_thumb", [NSString stringWithFormat:@"%f", image.size.width],@"thumb_width", [NSString stringWithFormat:@"%f", image.size.height], @"thumb_height" , nil];
         [mutablePhotoArray addObject:dict];
+        
+    }else {
+        for (int i = 0; i < photoArray.count; i++) {
+            
+            NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:photoArray[i], @"img", photoArray[i], @"img_thumb", nil];
+            [mutablePhotoArray addObject:dict];
+        }
     }
+    
     publishInfo.photo_array = [NSArray arrayWithArray:mutablePhotoArray];
     publishInfo.news_id = @0;
     publishInfo.comment_array = nil;

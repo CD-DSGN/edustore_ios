@@ -316,7 +316,7 @@ ON_RIGHT_BUTTON_TOUCHED( signal )
     // 教师信息
     MOMENTS_TEACHER * teacherInfo = [[MOMENTS_TEACHER alloc] init];
     teacherInfo.real_name = self.userModel.user.teacher_name;
-    teacherInfo.course_name = self.userModel.user.course_name;
+    teacherInfo.course_name = self.userModel.user.teacher_course;
     teacherInfo.avatar = self.userModel.user.avatar;
     // 发布内容信息
     MOMENTS_PUBLISH * publishInfo = [[MOMENTS_PUBLISH alloc] init];

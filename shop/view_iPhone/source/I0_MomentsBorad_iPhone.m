@@ -49,8 +49,6 @@ DEF_OUTLET( BeeUIScrollView, list )
     self.userModel = [UserModel modelWithObserver:self];
     
     self.sendMomentsDraftArray = [NSMutableArray array];
-    
-    [self.momentModel firstPage];
 }
 
 - (void)unload
@@ -204,6 +202,13 @@ ON_WILL_APPEAR( signal )
     [self.list reloadData];
     
     // 通过一个字段表示是否存在未发送成功的字段
+    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.momentModel firstPage];
 }
 
 ON_DID_APPEAR( signal )
@@ -455,15 +460,26 @@ ON_MESSAGE3(API, moments_comment, msg)
     if ( msg.succeed )
     {
         STATUS * status = msg.GET_OUTPUT(@"status");
-        
+        NSArray *commentInfo = msg.GET_OUTPUT(@"commentInfo");
         if ( status && status.succeed.boolValue )
         {
             [self presentSuccessTips:@"评论成功"];
             
             [self.commentView.textView resignFirstResponder];
             // 标注nhj：这个地方之后就改成只修改数据源，不请求网络接口了吧
-//            NSNumber * news_id = msg.GET_INPUT(@"news_id");
-            [self.momentModel firstPage];
+            NSNumber * news_id = msg.GET_INPUT(@"news_id");
+            NSMutableArray * momentsArray = self.momentModel.moments;
+            for (int i = 0; i < momentsArray.count; i++) {
+                
+                MOMENTS * moments = [momentsArray objectAtIndex:i];
+                MOMENTS_PUBLISH * publish_info = moments.publish_info;
+                NSNumber * newsId = publish_info.news_id;
+                
+                if ([newsId integerValue] == [news_id integerValue]) {
+                    publish_info.comment_array = commentInfo;
+                    break;
+                }
+            }
             [self.list reloadData];
         }
         else
@@ -483,7 +499,7 @@ ON_MESSAGE3( API, moments_list, msg )
     {
         if ( NO == self.momentModel.loaded )
         {
-            //			[self presentLoadingTips:__TEXT(@"tips_loading")];
+//            			[self presentLoadingTips:__TEXT(@"tips_loading")];
             [self presentMessageTips:__TEXT(@"moments_loading")];
         }
         
@@ -578,6 +594,7 @@ ON_MESSAGE3( API, teacher_publish, msg )
             [alert addAction:[UIAlertAction actionWithTitle:@"发送" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 // 走一个通知重新发送汇师圈
+                [self reSendMomentByCache];
                 
             }]];
             [[AppBoard_iPhone sharedInstance] presentViewController:alert animated:YES completion:nil];

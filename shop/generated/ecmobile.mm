@@ -3351,6 +3351,7 @@ DEF_MESSAGE_(moments_comment,msg )
         }
         
         msg.OUTPUT( @"status", status );
+        msg.OUTPUT(@"commentInfo", response[@"data"][@"commentInfo"]);
     }
     else if ( msg.failed )
     {
@@ -3755,5 +3756,9 @@ DEF_MESSAGE_( getStudentPoint, msg)
 DEF_SINGLETON( ServerConfig )
 
 @synthesize url = _url;
+
+@synthesize url2 = _url2;
+
+@synthesize pay_url = _pay_url;
 
 @end

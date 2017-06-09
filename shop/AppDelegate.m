@@ -62,8 +62,11 @@
 
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
+
 //     [ServerConfig sharedInstance].url = @"http://47.93.144.75/ecmobile-ios/?url=";
+
     [ServerConfig sharedInstance].url2 = @"http://60.205.92.85:8000";
+    [ServerConfig sharedInstance].pay_url = @"http://47.93.144.75/ecmobile-ios";
 //    [ServerConfig sharedInstance].url = @"http://127.0.0.1/EduStore/ecmobile-ios/?url=";
     [ServerConfig sharedInstance].url = @"http://192.168.1.167/edustore/ecmobile-ios/?url=";
 //    [ServerConfig sharedInstance].url = @"http://8skxnk.natappfree.cc/edustore/ecmobile-ios/?url=";
@@ -191,7 +194,8 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
     weixin.config.appId          = @"wxac39735575af3099";
     weixin.config.appKey         = @"gao35162016lichenzhangliu2016ohy";
     weixin.config.partnerId      = @"1403289802";
-    weixin.config.payUrl         = @"http://60.205.92.85/ecmobile-ios/payment/wxpay/beforepay.php";
+    weixin.config.payUrl         = [NSString stringWithFormat:@"%@/payment/wxpay/beforepay.php", [ServerConfig sharedInstance].pay_url];
+//    weixin.config.payUrl         = @"http://47.93.144.75/ecmobile-ios/payment/wxpay/beforepay.php";
     
 
 	// 配置新浪
@@ -214,8 +218,10 @@ ON_NOTIFICATION3( ECMobileAppConfig, UPDATED, notification )
     alipay.config.partner        = @"2088911655683743";
     alipay.config.seller         = @"2088911655683743";
     alipay.config.publicKey      = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
-    alipay.config.notifyURL      = @"http://60.205.92.85/ecmobile-ios/payment/alipay/sdk/notify_url.php";
-    alipay.config.wapCallBackURL = @"http://60.205.92.85/ecmobile-ios/payment/app_callback.php?err=";
+    alipay.config.notifyURL      = [NSString stringWithFormat:@"%@/payment/alipay/sdk/notify_url.php", [ServerConfig sharedInstance].pay_url];
+    alipay.config.wapCallBackURL = [NSString stringWithFormat:@"%@/payment/app_callback.php?err=", [ServerConfig sharedInstance].pay_url];
+//    alipay.config.notifyURL      = @"http://47.93.144.75/ecmobile-ios/payment/alipay/sdk/notify_url.php";
+//    alipay.config.wapCallBackURL = @"http://47.93.144.75/ecmobile-ios/payment/app_callback.php?err=";
 
 	// 配置语音识别
     siri.config.showUI           = NO;

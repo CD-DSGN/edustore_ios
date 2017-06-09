@@ -825,5 +825,7 @@ AS_SINGLETON( ServerConfig )
 @property (nonatomic, retain) NSString *	url;
 // 新服务器的地址
 @property (nonatomic, retain) NSString *    url2;
+// 支付地址
+@property (nonatomic, retain) NSString *    pay_url;
 
 @end

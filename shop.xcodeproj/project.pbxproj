@@ -7047,7 +7047,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7107,7 +7107,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7196,7 +7196,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

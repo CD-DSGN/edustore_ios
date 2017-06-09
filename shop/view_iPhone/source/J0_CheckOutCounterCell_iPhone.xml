@@ -4,11 +4,11 @@
         <image class="order_info_bg" />
         <row class="order_desc">
             <label class="desc_title text">订单详情：</label>
-            <label class="desc_content text" id="desc_content"></label>
+            <label class="desc_content text2" id="desc_content"></label>
         </row>
         <row class="order_amount">
             <label class="amount_title text">订单金额：</label>
-            <label class="amount_content text" id="amount_content"></label>
+            <label class="amount_content text2" id="amount_content"></label>
         </row>
     </row>
     <row class="select_payment_wrapper">
@@ -58,6 +58,13 @@
     .text {
         position: relative;
         width: auto;
+        height: 100%;
+        font: 15px;
+    }
+    
+    .text2 {
+        position: relative;
+        width: 70%;
         height: 100%;
         font: 15px;
     }

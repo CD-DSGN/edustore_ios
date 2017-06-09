@@ -425,7 +425,7 @@ CONVERT_PROPERTY_CLASS( goods_list, ORDER_GOODS );
 @synthesize avatar = _avatar;
 @synthesize nickname = _nickname;
 @synthesize teacher_name = _teacher_name;
-@synthesize teacher_course = _teacher_course;
+@synthesize course_name = _course_name;
 
 @end
 

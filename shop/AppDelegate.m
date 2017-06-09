@@ -62,9 +62,7 @@
 
     // 配置ECSHOP
     // [ServerConfig sharedInstance].url = @"http://shop.ecmobile.cn/ecmobile/?url=";
-
-//     [ServerConfig sharedInstance].url = @"http://47.93.144.75/ecmobile-ios/?url=";
-
+//    [ServerConfig sharedInstance].url = @"http://47.93.144.75/ecmobile-ios/?url=";
     [ServerConfig sharedInstance].url2 = @"http://60.205.92.85:8000";
     [ServerConfig sharedInstance].pay_url = @"http://47.93.144.75/ecmobile-ios";
 //    [ServerConfig sharedInstance].url = @"http://127.0.0.1/EduStore/ecmobile-ios/?url=";

@@ -5807,7 +5807,7 @@
 					};
 					63249C9A1754E07900372FD7 = {
 						DevelopmentTeam = 6KM3WVLJ6Q;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -7046,8 +7046,8 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7088,9 +7088,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "bb456519-9025-4eba-921b-fc3e3ec427c5";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
@@ -7106,8 +7106,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu GrandMagic Information Technology Co., Ltd. (6KM3WVLJ6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6KM3WVLJ6Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7148,9 +7148,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.grandmagic.edu.store;
 				PRODUCT_NAME = ECMobile;
-				PROVISIONING_PROFILE = "91eb7826-d997-4810-8382-145fa1d70731";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "grandMagic eduStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;

@@ -94,6 +94,10 @@ SUPPORT_AUTOMATIC_LAYOUT( YES )
             $(@"#goods-image2").HIDE();
 		}
 	}
+    if (IS_SCREEN_4_INCH)
+    {
+        $(@".category-goods-title").CSS(@"width: 80%;");
+    }
 }
 
 ON_SIGNAL3( B0_IndexCategoryCell_iPhone, category, signal )

@@ -3756,4 +3756,8 @@ DEF_SINGLETON( ServerConfig )
 
 @synthesize url = _url;
 
+@synthesize url2 = _url2;
+
+@synthesize pay_url = _pay_url;
+
 @end

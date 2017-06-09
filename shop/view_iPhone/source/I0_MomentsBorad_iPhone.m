@@ -460,7 +460,8 @@ ON_MESSAGE3(API, moments_comment, msg)
     if ( msg.succeed )
     {
         STATUS * status = msg.GET_OUTPUT(@"status");
-        NSArray *commentInfo = msg.GET_OUTPUT(@"commentInfo");
+        NSDictionary *commentInfo = msg.GET_OUTPUT(@"commentInfo");
+        
         if ( status && status.succeed.boolValue )
         {
             [self presentSuccessTips:@"评论成功"];
@@ -476,10 +477,14 @@ ON_MESSAGE3(API, moments_comment, msg)
                 NSNumber * newsId = publish_info.news_id;
                 
                 if ([newsId integerValue] == [news_id integerValue]) {
-                    publish_info.comment_array = commentInfo;
+                    NSMutableArray *commentArray = [NSMutableArray arrayWithArray:publish_info.comment_array];
+                    [commentArray addObject:commentInfo];
+                    publish_info.comment_array = commentArray;
+                    
                     break;
                 }
             }
+            
             [self.list reloadData];
         }
         else

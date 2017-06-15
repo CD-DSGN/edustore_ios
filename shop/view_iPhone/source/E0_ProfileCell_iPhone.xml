@@ -227,6 +227,7 @@
 		.bar-item-icon {
 			width: 25px;
 			height: 25px;
+            image-mode: fit;
 		}
 		
 		.payment {
